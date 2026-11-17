@@ -1,0 +1,46 @@
+{
+  "python": "3.13",
+  "platform": "Linux x86_64, glibc >= 2.39",
+  "wheels": [
+    {
+      "name": "torch",
+      "file": "torch-2.14.0+cpu-cp313-cp313-manylinux_2_28_x86_64.whl",
+      "url": "https://download.pytorch.org/whl/cpu/torch-2.14.0%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl",
+      "sha256": "160e1bc46aeded3111d2801f8ae10dc9a1b946843a7e126b4dbf5e19c5706e95"
+    },
+    {
+      "name": "vllm",
+      "file": "vllm-0.34.0rc1.dev302+gbe47189f3.cpu-cp38-abi3-manylinux_2_39_x86_64.whl",
+      "url": "https://wheels.vllm.ai/be47189f37f6162991366ff6b91539f6e9d1f432/vllm-0.34.0rc1.dev302%2Bgbe47189f3.cpu-cp38-abi3-manylinux_2_39_x86_64.whl",
+      "sha256": "5f36e0273945e4a15ecd8ece9343b7b70d2272f04742eaeffe79400e7f0e6c58"
+    },
+    {
+      "name": "triton",
+      "file": "triton-3.8.0+cpu-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://github.com/triton-lang/triton-cpu/releases/download/v3.8.0/triton-3.8.0+cpu-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "693f657501e6d791e889d5fd880d3b84a9bf4d8f3087dbb685534bb8533361fa"
+    }
+  ],
+  "debs": [
+    {
+      "file": "ibverbs-providers_61.0-2ubuntu3_amd64.deb",
+      "sha256": "2bc9b503295271f8dd82cf40644a4a9b3af86e1bfb93c3396aa96c1c56ad34b4"
+    },
+    {
+      "file": "libibverbs1_61.0-2ubuntu3_amd64.deb",
+      "sha256": "1d9e2e86e6500dabb6143c04adea8d122c7caa72aae3832de88d7ada4fa97201"
+    },
+    {
+      "file": "libnl-3-200_3.12.0-2_amd64.deb",
+      "sha256": "52fda1b991baa2d0fbe82f5dfb15584dcb1f25a7e3d311e2e319cc33858b4f2c"
+    },
+    {
+      "file": "libnl-route-3-200_3.12.0-2_amd64.deb",
+      "sha256": "58c5fa3c2f5226ffb1846db6cf7318196dbf5294a4354edd00fdae2db30a45dc"
+    },
+    {
+      "file": "libnuma1_2.0.19-1build1_amd64.deb",
+      "sha256": "af7bc28b60948609a36719c249a89aef834812833909774538c19f9d984bef31"
+    }
+  ]
+}

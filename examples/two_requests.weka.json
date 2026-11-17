@@ -1,0 +1,12 @@
+{
+  "id": "two-request-demo",
+  "block_size": 64,
+  "hash_id_scope": "local",
+  "requests": [
+    {"t": 0.0, "type": "s", "model": "synthetic-target", "in": 256, "out": 4,
+      "hash_ids": [101, 102, 103, 104]},
+    {"t": 0.2, "type": "s", "model": "synthetic-target", "in": 320, "out": 4,
+      "hash_ids": [101, 102, 103, 104, 105], "think_time": 0.0}
+  ]
+}
+

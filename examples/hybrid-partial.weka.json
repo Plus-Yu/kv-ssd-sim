@@ -1,0 +1,37 @@
+{
+  "id": "hybrid-partial",
+  "block_size": 64,
+  "hash_id_scope": "local",
+  "requests": [
+    {
+      "t": 0.0,
+      "type": "s",
+      "model": "synthetic-target",
+      "in": 270,
+      "out": 4,
+      "hash_ids": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ]
+    },
+    {
+      "t": 0.2,
+      "type": "s",
+      "model": "synthetic-target",
+      "in": 333,
+      "out": 4,
+      "hash_ids": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "think_time": 0.0
+    }
+  ]
+}

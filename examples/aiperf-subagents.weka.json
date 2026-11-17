@@ -1,0 +1,101 @@
+{
+  "id": "subagent-demo",
+  "block_size": 64,
+  "hash_id_scope": "local",
+  "requests": [
+    {
+      "t": 0.0,
+      "type": "s",
+      "in": 128,
+      "out": 4,
+      "hash_ids": [
+        1,
+        2
+      ],
+      "model": "synthetic-target",
+      "api_time": 0.001
+    },
+    {
+      "t": 0.03,
+      "type": "subagent",
+      "agent_id": "worker-a",
+      "requests": [
+        {
+          "t": 0.03,
+          "type": "n",
+          "in": 192,
+          "out": 3,
+          "hash_ids": [
+            1,
+            2,
+            3
+          ],
+          "model": "synthetic-target",
+          "api_time": 0.001
+        },
+        {
+          "t": 0.06,
+          "type": "n",
+          "in": 256,
+          "out": 2,
+          "hash_ids": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "model": "synthetic-target",
+          "api_time": 0.001
+        }
+      ],
+      "subagent_type": "Explore",
+      "status": "completed",
+      "models": [
+        "synthetic-target"
+      ],
+      "duration_ms": 60
+    },
+    {
+      "t": 0.03,
+      "type": "subagent",
+      "agent_id": "worker-b",
+      "requests": [
+        {
+          "t": 0.03,
+          "type": "n",
+          "in": 192,
+          "out": 3,
+          "hash_ids": [
+            1,
+            2,
+            5
+          ],
+          "model": "synthetic-target",
+          "api_time": 0.001
+        }
+      ],
+      "subagent_type": "Explore",
+      "status": "completed",
+      "models": [
+        "synthetic-target"
+      ],
+      "duration_ms": 60
+    },
+    {
+      "t": 0.1,
+      "type": "s",
+      "in": 192,
+      "out": 4,
+      "hash_ids": [
+        1,
+        2,
+        6
+      ],
+      "model": "synthetic-target",
+      "api_time": 0.001
+    }
+  ],
+  "models": [
+    "synthetic-target"
+  ]
+}

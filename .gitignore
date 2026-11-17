@@ -1,0 +1,13 @@
+.venv/
+.venv-aiperf/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+outputs/
+.runtime/
+.native/
+.femu/
+.env
+.env.*
+!.env.example

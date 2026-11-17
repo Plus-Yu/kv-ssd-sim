@@ -1,0 +1,10 @@
+{
+  "layers": ["mla", "kda"],
+  "mla_latent_dim": 48,
+  "mla_rope_dim": 16,
+  "kda_heads": 2,
+  "kda_head_dim": 16,
+  "conv_kernel": 4,
+  "conv_dtype": "float16",
+  "recurrent_dtype": "float32"
+}

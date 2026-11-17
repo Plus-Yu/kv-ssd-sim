@@ -1,0 +1,17 @@
+{
+  "id": "subagent-demo",
+  "block_size": 64,
+  "hash_id_scope": "local",
+  "requests": [
+    {"t": 0.0, "type": "s", "in": 128, "out": 4, "hash_ids": [1, 2]},
+    {"t": 0.03, "type": "subagent", "agent_id": "worker-a", "requests": [
+      {"t": 0.03, "type": "n", "in": 192, "out": 3, "hash_ids": [1, 2, 3]},
+      {"t": 0.06, "type": "n", "in": 256, "out": 2, "hash_ids": [1, 2, 3, 4]}
+    ]},
+    {"t": 0.03, "type": "subagent", "agent_id": "worker-b", "requests": [
+      {"t": 0.03, "type": "n", "in": 192, "out": 3, "hash_ids": [1, 2, 5]}
+    ]},
+    {"t": 0.10, "type": "s", "in": 192, "out": 4, "hash_ids": [1, 2, 6]}
+  ]
+}
+
