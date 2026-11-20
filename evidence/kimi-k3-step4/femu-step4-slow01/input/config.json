@@ -1,0 +1,11 @@
+{
+  "workload": "aiperf",
+  "num_blocks": 96,
+  "max_model_len": 8192,
+  "prefill_ms": 10,
+  "decode_ms": 2,
+  "files": {
+    "trace.json": "7137c2b42f924a842f5d0a24ff52374e60d5ed34288c375e30bbea5a86c06b65",
+    "hybrid.json": "69122acbfac60d1541c08e8e10f61e8924dbd301355415a5407bc2401ae6990e"
+  }
+}

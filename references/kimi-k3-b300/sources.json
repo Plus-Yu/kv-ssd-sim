@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-11-18",
+  "files": [
+    {
+      "file": "references/kimi-k3-b300/recipe.yaml",
+      "repository": "vllm-project/recipes",
+      "revision": "3eeceeab6265abdfed2a3aa48c5d76d9e0636e25",
+      "upstream_path": "models/moonshotai/Kimi-K3.yaml",
+      "url": "https://github.com/vllm-project/recipes/blob/3eeceeab6265abdfed2a3aa48c5d76d9e0636e25/models/moonshotai/Kimi-K3.yaml",
+      "bytes": 55669,
+      "sha256": "edd8e731474a0ae2d12612cca5b55b66f398eee13ee15fd87d49b803f177ebf6",
+      "git_blob_sha1": "9a7d2ccd7f736ea21b6ee663e16a8d41d680c18a"
+    },
+    {
+      "file": "references/kimi-k3-b300/recipe-sources.lock.json",
+      "repository": "vllm-project/recipes",
+      "revision": "3eeceeab6265abdfed2a3aa48c5d76d9e0636e25",
+      "upstream_path": "sources.lock.json",
+      "url": "https://github.com/vllm-project/recipes/blob/3eeceeab6265abdfed2a3aa48c5d76d9e0636e25/sources.lock.json",
+      "bytes": 1133,
+      "sha256": "ab1c777bfc660eeea98a6fa5ff224c63cb70b710fa52993bab61b183283bc2e1",
+      "git_blob_sha1": "4d3cdc41e5f9eca3f8169cb55706077b5142e6b4"
+    },
+    {
+      "file": "references/kimi-k3-b300/recipe-LICENSE",
+      "repository": "vllm-project/recipes",
+      "revision": "3eeceeab6265abdfed2a3aa48c5d76d9e0636e25",
+      "upstream_path": "LICENSE",
+      "url": "https://github.com/vllm-project/recipes/blob/3eeceeab6265abdfed2a3aa48c5d76d9e0636e25/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "file": "references/kimi-k3-b300/trace_0001.source.json",
+      "repository": "callanjfox/kv-cache-tester",
+      "revision": "94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf",
+      "upstream_path": "traces/trace_0001.json",
+      "url": "https://github.com/callanjfox/kv-cache-tester/blob/94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf/traces/trace_0001.json",
+      "bytes": 345136,
+      "sha256": "cfd45b93c58e16b1ae3cb177f91d45bb58590dc592e140e28e4155145746feb3",
+      "git_blob_sha1": "6b2f7eaad0fa3abaeec57cc61ffc981c727b5bd9"
+    },
+    {
+      "file": "references/kimi-k3-b300/weka-LICENSE",
+      "repository": "callanjfox/kv-cache-tester",
+      "revision": "94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf",
+      "upstream_path": "LICENSE",
+      "url": "https://github.com/callanjfox/kv-cache-tester/blob/94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf/LICENSE",
+      "bytes": 10759,
+      "sha256": "7a4cc3b22164f4accb2e7cecee4dc048c0fc4a2aa8a093e1c831569315b8561b",
+      "git_blob_sha1": "92126ac9813702ebfa7593871a462aafd59377b1"
+    },
+    {
+      "file": "references/kimi-k3-b300/model-config.json",
+      "repository": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "upstream_path": "config.json",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/config.json",
+      "bytes": 7006,
+      "sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213"
+    },
+    {
+      "file": "references/kimi-k3-b300/model-tokenizer-config.json",
+      "repository": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "upstream_path": "tokenizer_config.json",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/tokenizer_config.json",
+      "bytes": 3478,
+      "sha256": "5d0803c94db9cd78763499e0956c95fd5a225c14a727e5a6cf5db3f96f010a6e"
+    },
+    {
+      "file": "references/kimi-k3-b300/model-LICENSE",
+      "repository": "moonshotai/Kimi-K3",
+      "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+      "upstream_path": "LICENSE",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/LICENSE",
+      "bytes": 3065,
+      "sha256": "20c797ce19af0c17de52c6afb144644768a591c521655f5ebf5712c9850f2887"
+    }
+  ],
+  "scope": "Metadata, recipe and one public trace only; no weights or remote model code downloaded",
+  "hardware_reference_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+  "hardware_reference_status": "nominal reference only; usable capacity and device calibration deferred to step 2"
+}

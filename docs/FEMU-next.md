@@ -2,7 +2,7 @@
 
 本项目已完成实际 FEMU 在线闭环验收，结果见 [FEMU 验收报告](FEMU验收报告.md)。运行结果以 `outputs/femu-*/verification.json` 为准；没有这个通过记录时，不应把普通文件 offload 或 receiver sleep 称为 FEMU 验证。
 
-2026-11-17 已增加 `--workload aiperf`，在客体内启动 AIPerf、HTTP 服务和 Mooncake。两组联合功能链路通过，包含客户端 TTFT 的严格对照未通过，已定位到人工冷缓存准备的计时干扰。实测结果和复现命令见 [联合验收报告](AIPerf-FEMU联合验收报告.md)。以下默认命令仍使用直接回放路径。
+2026-11-18 的 AIPerf 受控冷读配对已在客体内通过，客户端原始 TTFT 为 252.13 / 654.88 ms，详见[步骤 4 报告](KimiK3-B300步骤4验收报告.md)。11 月 17 日的首次联合运行将人工冷准备计入 TTFT，记录见[历史联合验收报告](AIPerf-FEMU联合验收报告.md)。默认 launcher 命令使用直接回放路径。
 
 ## 已实现的路径
 
@@ -29,6 +29,20 @@ vLLM、Mooncake master 和持有 offload 数据的 real client 都在同一个 L
 - launcher 目前面向本机 `/home/plusyu` 的安装路径。迁移机器需准备相同用户态运行库或改成独立客体镜像。
 
 ## 运行
+
+步骤 5 使用原生 replay 模式的 `--pressure-config`，从包含子分支的夹具触发容量驱逐；客体中可直接验证磁盘恢复，无需清理页缓存。水位、租约、故障探针和复现命令见[自然容量压力验收](KimiK3-B300步骤5验收报告.md)。
+
+步骤 4 起，`--input`、`--hybrid-config`、`--num-blocks`、`--max-model-len`、`--prefill-ms`、`--decode-ms` 可直接传给宿主 launcher；无需编辑 guest init。每次 trial 将输入快照保存在 `input/`，客体核对哈希并写 `guest-input.json`。不传参数仍使用原示例与默认预算。
+
+下例通过 AIPerf 运行受控冷读。仅支持当前 CPU 运行时可执行的 HybridConfig、单并发的串行 WEKA 父轮次；`resolved.json` 是 TP8 元数据规划，不是可传给此执行器的 hybrid 配置。客体入口不将 K3 分片自动缩放到小盘。若只需检查输入并生成启动清单，可加 `--prepare-only`。
+
+```bash
+.venv/bin/python scripts/run_femu.py --trial femu-custom-fast --workload aiperf \
+  --input examples/aiperf-two-requests.weka.json --hybrid-config configs/hybrid-tiny.json \
+  --num-blocks 96 --nand-read-ns 40000
+```
+
+AIPerf 在每次推理发送前发起独立的回环准备请求，中间轮次等待 Store 落盘、上层副本驱逐及 guest 页缓存清理完成。准备耗时、客户端发送前标记、AIPerf 原始 transport 时间戳和服务端到达均按请求 ID 对应。此握手会增加两轮之间的实际间隔，适合强制冷读功能对照，不用于测量自然负载下的到达率。
 
 ```bash
 # 编译完成后才运行；每次使用新 trial 名。
@@ -65,6 +79,6 @@ bash scripts/build_femu.sh
 
 这套脚本用于验证模拟介质完成事件是否真正回到活跃的 scheduler。TCG 的 CPU 执行开销、9p 日志写入、未锁页的 FEMU 后端都可能引入抖动；应报告实际计算窗口与超预算时间。未做硬件标定时，不能用绝对 TTFT 预测真实 GPU 服务性能。
 
-尚未完成逐对象 → bucket 文件偏移 → LBA 的一一映射，也未验证跨 TP/GPU/RDMA、真实模型计算、长期 GC 压力和 SSD 寿命。混合功能与 Mooncake 故障边界见 [混合注意力验收报告](混合注意力验收报告.md)。
+阶段 D 已在 K3 两轮自然回放中完成逐对象、bucket 文件偏移和 LBA 映射，按 nvme0n1 的提交字节归因。[D 实测与复现](阶段D-对象到LBA与布局对照.md)。跨机器 TP/GPU/RDMA、真实模型计算、长期 GC 压力和 SSD 寿命仍待验证。混合功能与 Mooncake 故障边界见 [混合注意力验收报告](混合注意力验收报告.md)。
 
 上游参考：[FEMU](https://github.com/MoatLab/FEMU)、[Mooncake SSD offload](https://kvcache-ai.github.io/Mooncake/design/store/ssd-offload.html)。

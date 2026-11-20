@@ -1,0 +1,33 @@
+{
+  "sha256": {
+    "trace.json": "7137c2b42f924a842f5d0a24ff52374e60d5ed34288c375e30bbea5a86c06b65",
+    "hybrid.json": "69122acbfac60d1541c08e8e10f61e8924dbd301355415a5407bc2401ae6990e",
+    "config.json": "278b87af7846025d78232bde98ce2b35593000926ebe6e9972b4729e8af4c619"
+  },
+  "command": [
+    "/home/plusyu/projects/kv-ssd-sim/.venv/bin/python",
+    "/home/plusyu/projects/kv-ssd-sim/scripts/run_aiperf.py",
+    "--input",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step4-fast01/input/trace.json",
+    "--output",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step4-fast01/joint",
+    "--cold-between-requests",
+    "--prepare-before-send",
+    "--startup-timeout",
+    "900",
+    "--timeout",
+    "900",
+    "--hybrid-config",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step4-fast01/input/hybrid.json",
+    "--femu-mount",
+    "/mnt/femu",
+    "--num-blocks",
+    "96",
+    "--max-model-len",
+    "8192",
+    "--prefill-ms",
+    "10",
+    "--decode-ms",
+    "2"
+  ]
+}

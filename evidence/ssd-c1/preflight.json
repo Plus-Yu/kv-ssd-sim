@@ -1,0 +1,24 @@
+{
+  "source": "Capacity preflight; local TCP Store and host filesystem",
+  "source_slice_sha256": "d123b80995bcba44e7e69b0f3795e0783882e1e4794d838b55e53091f397bdaa",
+  "geometry_sha256": "5baf48628a17addfdece7714e313b7717425770f12516c9849e55c5dc7fe3b83",
+  "insufficient_segment_mib": 768,
+  "failure_example": "Native PUT failed for k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@1c4b108014cff5156f65f0d15c1da22dc374f4fc6d205bb5b3c2311f1424a2ad: -200",
+  "online_profile": {
+    "profile": "k3-tp8",
+    "segment_mib": 2520,
+    "staging_mib": 96,
+    "quota_mib": 2840
+  },
+  "pool_blocks_per_rank": 22,
+  "kv_pool_reserved_bytes": 3737124864,
+  "store_segment_bytes": 2642411520,
+  "client_transfer_budget_bytes": 100663296,
+  "offload_staging_budget_bytes": 100663296,
+  "other_guest_reserve_bytes": 1887436800,
+  "guest_ram_bytes": 8589934592,
+  "namespace_bytes": 3221225472,
+  "raw_nand_bytes": 4294967296,
+  "verified_disk_objects": 208,
+  "object_put_bytes": 2402574336
+}

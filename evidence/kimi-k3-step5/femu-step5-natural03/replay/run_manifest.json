@@ -1,0 +1,104 @@
+{
+  "input": "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/input/trace.json",
+  "input_sha256": "01ce44f72d221c00699acd0233d6512bab6e3be94844945b59946b981515bb33",
+  "harness_source_sha256": {
+    "__init__.py": "61e261907cad6a033775f6b30308856fd3fcb7632dcb4d9c19c7f6e9c6b993fb",
+    "__main__.py": "ef6dd0ed3e82600907ea1f1239567dcf7a88bf867c603b4568f2ca811ae13ee4",
+    "audit.py": "7156f2760e2172ec8a0072f50ce81095acb2c715ea61a5d08c6ebca77b4a3d9e",
+    "cli.py": "a2eb18d88945414b0d4016734c9f6c35cec9bc91857cddc1dcf2c04dacf2fb3d",
+    "deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de",
+    "engine.py": "629182ca5a4dc7054ae5d3436ea1e12acb3ccfe8747138d946a969e0fb71218a",
+    "events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+    "experiment.py": "fe254fa2faeb276faf0f842399436668c88d1735e660161ea0ad34e78f1ba390",
+    "femu.py": "0dea40231090f8782d7b096fd30107d662a3e7e57946e57f7a3bdb28c1eb3705",
+    "hybrid.py": "89a74e383913e92b73c9b3eb18979765401ae3b8a6c502d6f81a495634fda85f",
+    "metadata_cache.py": "ca1a5cdddac39f9c1d59c4c4fc67184deb519861c51bd2fbd1b217d471f552bf",
+    "native.py": "1bcc9446553e9043b8bf413026e09fc09cf550fecc87d31874a8d707e9738081",
+    "payload.py": "3a568e830798aa6d48d539ab7b9d24e7b339c74c30299f0a4abe5710d7634f00",
+    "pressure.py": "40c86290ddf4cc6663544578b67565e9dbcf6b88aff74dc33a756be9f6b0f5e1",
+    "runtime.py": "fbcefac7b00ee051745935b22e4d0be7a0c00e1591ae9890272c27706c9b4380",
+    "server.py": "02fa657a6fa9a82d13c10a427210312df1c2abf79eaaf0a20af1de9eac8d6b87",
+    "smoke.py": "c849e16fde4f74ebbed5cf5947b7020edf33d0946cea885753c2aed7b4c374cb",
+    "storage.py": "abeda45ef0af691a0b7047fc1f6524fc0b38da297f6159bc1b49673ab7263e01",
+    "timing.py": "82d8b9c23f5dba551232ac8d54494d92a8cb02a73109bf2291db8d1cf7c12915",
+    "trace.py": "944d9eca9d1b16ea730890669c422b27408b15e433cb82d94c3a62946958478e"
+  },
+  "versions": {
+    "vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+    "torch": "2.14.0+cpu",
+    "mooncake-transfer-engine-non-cuda": "0.3.14",
+    "kv-ssd-sim": "0.1.0"
+  },
+  "read_delay_ms": 0,
+  "prefill_ms": 10.0,
+  "decode_ms": 2.0,
+  "mixed_step_ms": 10.0,
+  "timing": "causal",
+  "cold_between_turns": false,
+  "max_model_len": 1024,
+  "num_blocks": 24,
+  "hybrid_config": {
+    "layers": [
+      "mla",
+      "kda"
+    ],
+    "mla_latent_dim": 960,
+    "mla_rope_dim": 64,
+    "kda_heads": 2,
+    "kda_head_dim": 16,
+    "conv_kernel": 4,
+    "conv_dtype": "float16",
+    "recurrent_dtype": "float32"
+  },
+  "cpu_kv_pool_bytes": 3145728,
+  "offload_staging_bytes": 16777216,
+  "disk_limit_bytes": 134217728,
+  "compute_emulation": {
+    "payload": "MLA latent bytes and KDA boundary snapshots from prefix digests",
+    "timer": "absolute step deadline including scheduled-slot copying",
+    "event_flush_every": 64,
+    "startup_package_mapping_snapshot": "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/package-distributions.json",
+    "store_checksum": "full SHA256, zero-copy host buffer view"
+  },
+  "fidelity": {
+    "native_vllm_scheduler": true,
+    "native_kv_cache_manager": true,
+    "native_mooncake_store_connector": true,
+    "native_mooncake_disk_offload": true,
+    "cpu_save_event_adapter": true,
+    "explicit_native_offload_setup_adapter": true,
+    "model_forward": false,
+    "femu": true,
+    "nand_ftl_model": true,
+    "http_serving_stack": false,
+    "mla_kda": true,
+    "read_delay_injection": "disabled"
+  },
+  "pressure_config": {
+    "segment_bytes": 33554432,
+    "staging_bytes": 16777216,
+    "disk_bytes": 134217728,
+    "high_watermark": 0.045,
+    "eviction_ratio": 0.85,
+    "lease_ttl_ms": 500,
+    "producer": "pressure/main/0",
+    "restore": "pressure/main/4",
+    "incomplete_producer": "pressure/main/1",
+    "recompute": "pressure/main/5"
+  },
+  "offload_use_uring": true,
+  "storage_device": {
+    "mount": "/mnt/femu",
+    "device": "nvme0n1",
+    "model": "FEMU BlackBox-SSD Controller",
+    "sysfs": "/sys/devices/pci0000:00/0000:00:01.0/nvme/nvme0/nvme0n1",
+    "block_counters": {
+      "reads": 89,
+      "read_sectors": 1690,
+      "read_ms": 38,
+      "writes": 19,
+      "write_sectors": 82832,
+      "write_ms": 811
+    }
+  }
+}

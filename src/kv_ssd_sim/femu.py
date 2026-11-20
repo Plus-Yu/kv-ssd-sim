@@ -58,11 +58,15 @@ class FEMUDevice:
         self.samples.append(sample)
         events.emit("femu_block_io_during_get", **sample)
 
-    def verify(self):
-        if not self.samples or sum(s["delta"]["read_sectors"] for s in self.samples) <= 0:
+    def verify(self, *, require_disk_read=True):
+        if require_disk_read and not any(s["delta"]["read_sectors"] > 0 for s in self.samples):
             raise RuntimeError("No FEMU block reads observed during native Store GET; not verified")
         return {
             **self.describe(),
             "get_io_samples": self.samples,
-            "verification": "native disk restore with observed FEMU namespace reads",
+            "verification": (
+                "native disk restore with observed FEMU namespace reads"
+                if require_disk_read
+                else "identified FEMU namespace; natural cache policy"
+            ),
         }

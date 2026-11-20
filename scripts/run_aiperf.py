@@ -23,7 +23,7 @@ def stop(process, *, whole_group=True):
         else:
             process.terminate()
         try:
-            process.wait(timeout=80)
+            process.wait(timeout=600 if os.environ.get("KV_SSD_LAYOUT") else 80)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             process.wait(timeout=5)
@@ -36,6 +36,7 @@ def main():
     parser.add_argument("--concurrency", type=int, default=1)
     parser.add_argument("--timing", choices=["causal", "fixed"], default="causal")
     parser.add_argument("--cold-between-requests", action="store_true")
+    parser.add_argument("--prepare-before-send", action="store_true")
     parser.add_argument("--read-delay-ms", type=float, default=0)
     parser.add_argument("--prefill-ms", type=float, default=10)
     parser.add_argument("--decode-ms", type=float, default=2)
@@ -46,6 +47,10 @@ def main():
     parser.add_argument("--femu-mount", type=Path)
     parser.add_argument("--hybrid-config", type=Path, default=ROOT / "configs/hybrid-tiny.json")
     args = parser.parse_args()
+    if args.prepare_before_send and (
+        not args.cold_between_requests or args.concurrency != 1 or args.timing != "causal"
+    ):
+        parser.error("Pre-send cold validation requires serial causal replay and cold mode")
     trace = json.loads(args.input.read_text())
     records = []
     for entry in trace["requests"]:
@@ -56,8 +61,12 @@ def main():
         parser.error(
             "This harness requires positive lengths; it does not rewrite zero-output turns"
         )
+    manager_block = (
+        1536 if json.loads(args.hybrid_config.read_text()).get("profile") == "k3-tp8" else 64
+    )
     if any(
-        r["in"] + r["out"] > min(args.max_model_len, (args.num_blocks - 2) * 64) for r in records
+        r["in"] + r["out"] > min(args.max_model_len, (args.num_blocks - 2) * manager_block)
+        for r in records
     ):
         parser.error(
             "Trace exceeds server capacity; increase pool/context, never silently truncate"
@@ -102,8 +111,8 @@ def main():
     if args.cold_between_requests:
         server_cmd.append("--cold-between-requests")
     if args.femu_mount:
-        if not args.cold_between_requests or args.read_delay_ms != 0:
-            parser.error("FEMU verification requires cold requests and no injected read delay")
+        if args.read_delay_ms != 0:
+            parser.error("FEMU requires zero injected receiver delay")
         server_cmd += ["--femu-mount", str(args.femu_mount.resolve())]
     client_cmd = [
         str(ROOT / ".venv-aiperf/bin/aiperf"),
@@ -141,7 +150,7 @@ def main():
         "--random-seed",
         "42",
         "--request-timeout-seconds",
-        "120",
+        "480" if manager_block == 1536 else "120",
         "--synthesis-max-isl",
         str(args.max_model_len),
         "--synthesis-max-osl",
@@ -156,6 +165,7 @@ def main():
         json.dumps(
             {
                 "aiperf_version": version,
+                "prepare_before_send": args.prepare_before_send,
                 "server_command": server_cmd,
                 "client_command": client_cmd,
                 "input_sha256": hashlib.sha256(args.input.read_bytes()).hexdigest(),
@@ -178,6 +188,11 @@ def main():
             server_cmd,
             cwd=ROOT,
             stdout=server_log,
+            env={
+                **os.environ,
+                **({"VLLM_SSM_CONV_STATE_LAYOUT": "SD"} if manager_block == 1536 else {}),
+                "KV_SSD_EXTERNAL_GATE": str(int(args.prepare_before_send)),
+            },
             stderr=subprocess.STDOUT,
             start_new_session=True,
         )
@@ -204,6 +219,20 @@ def main():
             env.pop("HF_HUB_OFFLINE", None)
             env.pop("TRANSFORMERS_OFFLINE", None)
             env["TOKENIZERS_PARALLELISM"] = "false"
+            if args.prepare_before_send:
+                env["KV_SSD_GATE_URL"] = f"http://127.0.0.1:{port}/internal/prepare"
+                env["KV_SSD_GATE_LOG"] = str(output / "client-send.jsonl")
+            if args.prepare_before_send or env.get("KV_SSD_CAPTURE_ROOT"):
+                env["PYTHONPATH"] = os.pathsep.join(
+                    filter(
+                        None,
+                        [
+                            str(ROOT / "scripts/aiperf_gate"),
+                            str(ROOT / "src"),
+                            env.get("PYTHONPATH"),
+                        ],
+                    )
+                )
             client = subprocess.Popen(
                 client_cmd,
                 cwd=ROOT,

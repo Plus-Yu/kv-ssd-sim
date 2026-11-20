@@ -1,0 +1,195 @@
+{
+  "trial": "femu-e-k3-default01",
+  "samples": [
+    {
+      "label": "first_send",
+      "before_ns": 352212278608,
+      "after_ns": 352472546285,
+      "stat_before": [
+        260,
+        1,
+        3050,
+        40,
+        65,
+        599,
+        234584,
+        4935,
+        0,
+        2104,
+        6307,
+        3,
+        0,
+        6291464,
+        1331,
+        0,
+        0
+      ],
+      "stat_after": [
+        260,
+        1,
+        3050,
+        40,
+        65,
+        599,
+        234584,
+        4935,
+        0,
+        2104,
+        6307,
+        3,
+        0,
+        6291464,
+        1331,
+        0,
+        0
+      ],
+      "namespace_sectors": 6291456,
+      "geometry": {
+        "pages-per-block": 64,
+        "pages-per-line": 512,
+        "luns-per-channel": 4,
+        "page-size": 4096,
+        "planes-per-lun": 1,
+        "blocks-per-plane": 2048,
+        "channels": 2
+      },
+      "cumulative": {
+        "nand-write-pages": 29323,
+        "gc-write-pages": 0,
+        "map-write-pages": 0,
+        "pad-write-pages": 0,
+        "parity-write-pages": 0,
+        "host-write-pages": 29323,
+        "block-erases": 0
+      },
+      "raw_pages": 1048576,
+      "valid_pages": 29292,
+      "invalid_pages": 31,
+      "physical_occupied_fraction": 0.02796459197998047,
+      "valid_data_over_namespace": 0.0372467041015625,
+      "line_counts": {
+        "total": 2048,
+        "free": 1990,
+        "full": 54,
+        "spare": 0,
+        "retired": 0,
+        "victim": 3
+      },
+      "min_block_wear": 0,
+      "max_block_wear": 0,
+      "wear_sum_bounds": [
+        0,
+        0
+      ]
+    },
+    {
+      "label": "device_end",
+      "before_ns": 655412662919,
+      "after_ns": 655643234620,
+      "stat_before": [
+        262,
+        1,
+        3066,
+        403,
+        729,
+        770,
+        4929312,
+        270016,
+        0,
+        16836,
+        271751,
+        3,
+        0,
+        6291464,
+        1331,
+        0,
+        0
+      ],
+      "stat_after": [
+        262,
+        1,
+        3066,
+        403,
+        729,
+        770,
+        4929312,
+        270016,
+        0,
+        16836,
+        271751,
+        3,
+        0,
+        6291464,
+        1331,
+        0,
+        0
+      ],
+      "namespace_sectors": 6291456,
+      "geometry": {
+        "pages-per-block": 64,
+        "pages-per-line": 512,
+        "luns-per-channel": 4,
+        "page-size": 4096,
+        "planes-per-lun": 1,
+        "blocks-per-plane": 2048,
+        "channels": 2
+      },
+      "cumulative": {
+        "nand-write-pages": 616164,
+        "gc-write-pages": 0,
+        "map-write-pages": 0,
+        "pad-write-pages": 0,
+        "parity-write-pages": 0,
+        "host-write-pages": 616164,
+        "block-erases": 0
+      },
+      "raw_pages": 1048576,
+      "valid_pages": 615905,
+      "invalid_pages": 259,
+      "physical_occupied_fraction": 0.5876197814941406,
+      "valid_data_over_namespace": 0.7831637064615885,
+      "line_counts": {
+        "total": 2048,
+        "free": 844,
+        "full": 1192,
+        "spare": 0,
+        "retired": 0,
+        "victim": 11
+      },
+      "min_block_wear": 0,
+      "max_block_wear": 0,
+      "wear_sum_bounds": [
+        0,
+        0
+      ]
+    }
+  ],
+  "windows": [
+    {
+      "start": "first_send",
+      "end": "device_end",
+      "host_write_bytes": 2403700736,
+      "host_read_bytes": 8192,
+      "nand_program_bytes": 2403700736,
+      "gc_relocation_bytes": 0,
+      "block_erases": 0,
+      "page_deltas": {
+        "nand-write-pages": 586841,
+        "gc-write-pages": 0,
+        "map-write-pages": 0,
+        "pad-write-pages": 0,
+        "parity-write-pages": 0,
+        "host-write-pages": 586841
+      },
+      "byte_waf": 1.0
+    }
+  ],
+  "block_reconciliation": {
+    "first_http_send_ns": 352510233294,
+    "device_end_ns": 655647018838,
+    "target": "259,0",
+    "block_issued_write_bytes": 2403700736,
+    "block_completed_write_bytes": 2403700736,
+    "block_issued_read_bytes": 8192
+  }
+}

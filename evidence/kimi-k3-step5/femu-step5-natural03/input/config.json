@@ -1,0 +1,12 @@
+{
+  "workload": "replay",
+  "num_blocks": 24,
+  "max_model_len": 1024,
+  "prefill_ms": 10,
+  "decode_ms": 2,
+  "files": {
+    "hybrid.json": "7ed17baf114b64c4cdcdda7f890a6193a5a5dc9be884be222ad0b0aa2692e2a5",
+    "trace.json": "01ce44f72d221c00699acd0233d6512bab6e3be94844945b59946b981515bb33",
+    "pressure.json": "b08e3b481426fa296a48498543f0cb83a05bd9578d3215acfc8afbbf4634f3d4"
+  }
+}

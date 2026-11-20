@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/home/plusyu/projects/kv-ssd-sim/.venv/bin/mooncake_master",
+    "--rpc_port=51325",
+    "--rpc_address=127.0.0.1",
+    "--enable_offload=true",
+    "--default_kv_lease_ttl=500",
+    "--default_kv_soft_pin_ttl=0",
+    "--rpc_thread_num=2",
+    "--metrics_host=127.0.0.1",
+    "--metrics_port=55801",
+    "--logtostderr=true",
+    "--eviction_high_watermark_ratio=0.9",
+    "--eviction_ratio=0.85"
+  ]
+}

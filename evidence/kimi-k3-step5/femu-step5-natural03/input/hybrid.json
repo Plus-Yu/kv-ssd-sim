@@ -1,0 +1,8 @@
+{
+  "layers": [
+    "mla",
+    "kda"
+  ],
+  "mla_latent_dim": 960,
+  "mla_rope_dim": 64
+}

@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "lease_ttl_ms": 500,
+  "high": {
+    "watermark": 0.9,
+    "restore_tiers": {
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@6d7f5b3d4451da6ae9ce0aecd6d85c14200636d2c4ba2f194b8e377a47451bb9": [
+        "MEMORY",
+        "LOCAL_DISK"
+      ],
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac": [
+        "MEMORY",
+        "LOCAL_DISK"
+      ],
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac": [
+        "MEMORY",
+        "LOCAL_DISK"
+      ]
+    },
+    "positive_eviction_cycles": 0,
+    "requests": 22,
+    "distinct_objects": 142
+  },
+  "low": {
+    "watermark": 0.045,
+    "restore_tiers": {
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@6d7f5b3d4451da6ae9ce0aecd6d85c14200636d2c4ba2f194b8e377a47451bb9": [
+        "LOCAL_DISK"
+      ],
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac": [
+        "LOCAL_DISK"
+      ],
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac": [
+        "LOCAL_DISK"
+      ]
+    },
+    "positive_eviction_cycles": 5,
+    "requests": 22,
+    "distinct_objects": 142
+  }
+}

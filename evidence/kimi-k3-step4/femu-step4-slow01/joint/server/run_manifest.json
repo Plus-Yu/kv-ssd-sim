@@ -1,0 +1,79 @@
+{
+  "mode": "http",
+  "model": "kv-ssd-sim",
+  "tokenizer": "/home/plusyu/projects/kv-ssd-sim/configs/sim-tokenizer",
+  "tokenizer_sha256": {
+    "chat_template.jinja": "c4123e078b4bdc0f5f63fa38eca171496c1d7ee48987353469d9d611d0428e66",
+    "tokenizer.json": "73ba49a1889d80a633cef1e86ea21b66cd7fa2274bd86135d844872aed7fe9b6",
+    "tokenizer_config.json": "a1641d0c19704700109f186096017511cfe5fbf9b08b37f9be65c591a20716d3"
+  },
+  "harness_source_sha256": {
+    "__init__.py": "61e261907cad6a033775f6b30308856fd3fcb7632dcb4d9c19c7f6e9c6b993fb",
+    "__main__.py": "ef6dd0ed3e82600907ea1f1239567dcf7a88bf867c603b4568f2ca811ae13ee4",
+    "audit.py": "7156f2760e2172ec8a0072f50ce81095acb2c715ea61a5d08c6ebca77b4a3d9e",
+    "cli.py": "7632101eb07b1088880316f04166edcfe96665cc3314465e50d1b1a6be35b4ac",
+    "deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de",
+    "engine.py": "ed1d2c3ddad90151731d5071dae8d589591dd55a4093f3a87f414fa37cdd4540",
+    "events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+    "experiment.py": "fe254fa2faeb276faf0f842399436668c88d1735e660161ea0ad34e78f1ba390",
+    "femu.py": "0dea40231090f8782d7b096fd30107d662a3e7e57946e57f7a3bdb28c1eb3705",
+    "hybrid.py": "89a74e383913e92b73c9b3eb18979765401ae3b8a6c502d6f81a495634fda85f",
+    "metadata_cache.py": "ca1a5cdddac39f9c1d59c4c4fc67184deb519861c51bd2fbd1b217d471f552bf",
+    "native.py": "1bcc9446553e9043b8bf413026e09fc09cf550fecc87d31874a8d707e9738081",
+    "payload.py": "3a568e830798aa6d48d539ab7b9d24e7b339c74c30299f0a4abe5710d7634f00",
+    "runtime.py": "3222573419b5b5e9499aee174ce079ff61b02eda1fe32edaeb9f5ae7fc527ac3",
+    "server.py": "02fa657a6fa9a82d13c10a427210312df1c2abf79eaaf0a20af1de9eac8d6b87",
+    "smoke.py": "c849e16fde4f74ebbed5cf5947b7020edf33d0946cea885753c2aed7b4c374cb",
+    "storage.py": "cff5da3a445d849b256bbf3845c60cebe0a902c890839d51803260889978f399",
+    "timing.py": "82d8b9c23f5dba551232ac8d54494d92a8cb02a73109bf2291db8d1cf7c12915",
+    "trace.py": "944d9eca9d1b16ea730890669c422b27408b15e433cb82d94c3a62946958478e"
+  },
+  "versions": {
+    "vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+    "torch": "2.14.0+cpu",
+    "mooncake-transfer-engine-non-cuda": "0.3.14",
+    "aiohttp": "3.14.5"
+  },
+  "prefill_ms": 10.0,
+  "decode_ms": 2.0,
+  "read_delay_ms": 0.0,
+  "max_model_len": 8192,
+  "num_blocks": 96,
+  "max_inflight": 32,
+  "cold_between_requests": true,
+  "hybrid_config": {
+    "layers": [
+      "mla",
+      "kda"
+    ],
+    "mla_latent_dim": 48,
+    "mla_rope_dim": 16,
+    "kda_heads": 2,
+    "kda_head_dim": 16,
+    "conv_kernel": 4,
+    "conv_dtype": "float16",
+    "recurrent_dtype": "float32"
+  },
+  "fidelity": {
+    "native_scheduler": true,
+    "native_mooncake": true,
+    "model_forward": false,
+    "femu": true,
+    "vllm_production_http_server": false
+  },
+  "preparation": "per HTTP request before native admission; included in client latency",
+  "storage_device": {
+    "mount": "/mnt/femu",
+    "device": "nvme0n1",
+    "model": "FEMU BlackBox-SSD Controller",
+    "sysfs": "/sys/devices/pci0000:00/0000:00:01.0/nvme/nvme0/nvme0n1",
+    "block_counters": {
+      "reads": 89,
+      "read_sectors": 1690,
+      "read_ms": 4119,
+      "writes": 19,
+      "write_sectors": 82832,
+      "write_ms": 811
+    }
+  }
+}

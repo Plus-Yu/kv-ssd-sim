@@ -99,36 +99,31 @@ def doctor() -> dict:
 
 
 @contextmanager
-def mooncake_master(output_dir: Path):
+def mooncake_master(output_dir: Path, *, pressure=None):
     """Start and stop only the master owned by this experiment."""
     port = free_port()
     binary = Path(sys.prefix) / "bin/mooncake_master"
     log_path = output_dir / "mooncake-master.log"
     config_path = output_dir / "mooncake-master.json"
-    config_path.write_text(
-        json.dumps(
-            {
-                "port": port,
-                "enable_offload": True,
-                "default_kv_lease_ttl": 0,
-                "default_kv_soft_pin_ttl": 0,
-            },
-            indent=2,
-        )
-        + "\n"
-    )
     command = [
         str(binary),
         f"--rpc_port={port}",
         "--rpc_address=127.0.0.1",
         "--enable_offload=true",
-        "--default_kv_lease_ttl=0",
+        f"--default_kv_lease_ttl={pressure.lease_ttl_ms if pressure else 0}",
         "--default_kv_soft_pin_ttl=0",
         "--rpc_thread_num=2",
         "--metrics_host=127.0.0.1",
         f"--metrics_port={free_port()}",
         "--logtostderr=true",
     ]
+    if pressure:
+        command.extend(
+            [
+                f"--eviction_high_watermark_ratio={pressure.high_watermark}",
+                f"--eviction_ratio={pressure.eviction_ratio}",
+            ]
+        )
     config_path.write_text(json.dumps({"command": command}, indent=2) + "\n")
     with log_path.open("w") as log:
         process = subprocess.Popen(

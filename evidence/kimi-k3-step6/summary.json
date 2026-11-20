@@ -1,0 +1,737 @@
+{
+  "status": "passed",
+  "scope": "two original WEKA turns, scaled TP1 hybrid, controlled cold cache",
+  "input_sha256": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896",
+  "order": [
+    "fast01",
+    "slow2ms01",
+    "slow2ms02",
+    "fast02",
+    "fast03",
+    "slow2ms03"
+  ],
+  "trials": [
+    {
+      "trial": "femu-step6-fast01",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 40000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 18980.33537,
+          "client_latency_ms": 20394.416429,
+          "payload_preparation_ms": 6967.656749000014,
+          "ttft_ms": 10810.203291999984,
+          "latency_ms": 12353.417580999974,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 7848.423632000613,
+          "deadline_overrun_ms": 1942.423632004079,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12042.766312,
+          "client_ttft_ms": 9429.987089,
+          "client_latency_ms": 10888.347706999999,
+          "payload_preparation_ms": 6835.249204000036,
+          "ttft_ms": 1851.4618919999748,
+          "latency_ms": 3324.21666099998,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1063.1937750006841,
+          "deadline_overrun_ms": 343.1937749979852,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 828.080509,
+        "cold_end_to_client_start_ms": 12.698894,
+        "prepared_to_admission_ms": 10.168442,
+        "client_start_to_http_arrival_ms": 6.10392,
+        "get_ms": 1242.153804,
+        "ttft_ms": 1851.4618919999748,
+        "aiperf_ttft_ms": 9429.987089,
+        "femu_read_completions_during_get": 1080,
+        "femu_read_bytes_during_get": 12353536,
+        "block_read_latency_ms": {
+          "min": 0.049,
+          "mean": 0.10045740740740741,
+          "max": 0.373
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1083,
+          "bytes": 12374016,
+          "mean_ms": 0.10121421975992613
+        },
+        "W": {
+          "count": 96,
+          "bytes": 14348288,
+          "mean_ms": 1.1449479166666667
+        }
+      },
+      "host_usage": {
+        "window": "launch manifest to guest exit receipt (filesystem timestamps)",
+        "start_unix_ns": 1794985195342196496,
+        "end_unix_ns": 1794985717837152837,
+        "max_rss_kib": null
+      }
+    },
+    {
+      "trial": "femu-step6-slow2ms01",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 2000000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 19805.318095,
+          "client_latency_ms": 21322.855593,
+          "payload_preparation_ms": 7495.28324199997,
+          "ttft_ms": 10983.76351500002,
+          "latency_ms": 12754.527916000028,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 7974.481542000028,
+          "deadline_overrun_ms": 2068.4815420034965,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12046.288199,
+          "client_ttft_ms": 11901.126516,
+          "client_latency_ms": 13361.225348,
+          "payload_preparation_ms": 7359.751928000037,
+          "ttft_ms": 3761.442824000028,
+          "latency_ms": 5224.759569000014,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1047.0429939994688,
+          "deadline_overrun_ms": 327.04299399676984,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 845.534705,
+        "cold_end_to_client_start_ms": 11.705381,
+        "prepared_to_admission_ms": 10.016217,
+        "client_start_to_http_arrival_ms": 5.729245,
+        "get_ms": 3120.419606,
+        "ttft_ms": 3761.442824000028,
+        "aiperf_ttft_ms": 11901.126516,
+        "femu_read_completions_during_get": 1043,
+        "femu_read_bytes_during_get": 12316672,
+        "block_read_latency_ms": {
+          "min": 2.026,
+          "mean": 2.3420632790028764,
+          "max": 7.924
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1046,
+          "bytes": 12337152,
+          "mean_ms": 2.342106118546845
+        },
+        "W": {
+          "count": 101,
+          "bytes": 14405632,
+          "mean_ms": 1.1365049504950495
+        }
+      },
+      "host_usage": {
+        "window": "launcher start to VM exit",
+        "start_unix_ns": 1794986326492672251,
+        "end_unix_ns": 1794986861241447059,
+        "max_rss_kib": 3264728
+      }
+    },
+    {
+      "trial": "femu-step6-slow2ms02",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 2000000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 22096.180266,
+          "client_latency_ms": 23728.530656,
+          "payload_preparation_ms": 9428.304694000019,
+          "ttft_ms": 11496.42963499997,
+          "latency_ms": 13168.767507999974,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 7971.62382299978,
+          "deadline_overrun_ms": 2065.62382300325,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12058.769559,
+          "client_ttft_ms": 11854.523518,
+          "client_latency_ms": 13364.187779,
+          "payload_preparation_ms": 7355.597168999964,
+          "ttft_ms": 3737.438520000012,
+          "latency_ms": 5253.866208000034,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1086.180409999713,
+          "deadline_overrun_ms": 366.18040999701407,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 905.719594,
+        "cold_end_to_client_start_ms": 11.222284,
+        "prepared_to_admission_ms": 5.319794,
+        "client_start_to_http_arrival_ms": 6.823664,
+        "get_ms": 3117.01081,
+        "ttft_ms": 3737.438520000012,
+        "aiperf_ttft_ms": 11854.523518,
+        "femu_read_completions_during_get": 1066,
+        "femu_read_bytes_during_get": 12247040,
+        "block_read_latency_ms": {
+          "min": 2.009,
+          "mean": 2.3440215759849905,
+          "max": 7.833
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1069,
+          "bytes": 12267520,
+          "mean_ms": 2.3440074836295604
+        },
+        "W": {
+          "count": 103,
+          "bytes": 14434304,
+          "mean_ms": 1.1953495145631068
+        }
+      },
+      "host_usage": {
+        "window": "launcher start to VM exit",
+        "start_unix_ns": 1794986861394074397,
+        "end_unix_ns": 1794987410412670705,
+        "max_rss_kib": 3279808
+      }
+    },
+    {
+      "trial": "femu-step6-fast02",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 40000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 19605.261190999998,
+          "client_latency_ms": 21395.323654,
+          "payload_preparation_ms": 7606.649333999996,
+          "ttft_ms": 10990.76663400001,
+          "latency_ms": 12742.062223000004,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 7921.895167999193,
+          "deadline_overrun_ms": 2015.8951680026576,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12052.534851,
+          "client_ttft_ms": 10186.782623,
+          "client_latency_ms": 11678.085603,
+          "payload_preparation_ms": 7401.653256000031,
+          "ttft_ms": 2005.0538400000164,
+          "latency_ms": 3539.2324590000044,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1092.6813319996427,
+          "deadline_overrun_ms": 372.68133199694375,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 972.25138,
+        "cold_end_to_client_start_ms": 12.530891,
+        "prepared_to_admission_ms": 6.28689,
+        "client_start_to_http_arrival_ms": 5.764369,
+        "get_ms": 1311.589305,
+        "ttft_ms": 2005.0538400000164,
+        "aiperf_ttft_ms": 10186.782623,
+        "femu_read_completions_during_get": 1082,
+        "femu_read_bytes_during_get": 12369920,
+        "block_read_latency_ms": {
+          "min": 0.046,
+          "mean": 0.09752587800369686,
+          "max": 0.679
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1085,
+          "bytes": 12390400,
+          "mean_ms": 0.098236866359447
+        },
+        "W": {
+          "count": 103,
+          "bytes": 14393344,
+          "mean_ms": 1.1295825242718447
+        }
+      },
+      "host_usage": {
+        "window": "launcher start to VM exit",
+        "start_unix_ns": 1794987410652582654,
+        "end_unix_ns": 1794987959686631106,
+        "max_rss_kib": 3297288
+      }
+    },
+    {
+      "trial": "femu-step6-fast03",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 40000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 21830.341274,
+          "client_latency_ms": 23300.094706,
+          "payload_preparation_ms": 8936.800892999998,
+          "ttft_ms": 11694.262955999988,
+          "latency_ms": 13324.294751999958,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 8045.396388000883,
+          "deadline_overrun_ms": 2139.396388004343,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12060.019477,
+          "client_ttft_ms": 10824.677024999999,
+          "client_latency_ms": 12317.459963,
+          "payload_preparation_ms": 8168.742793000036,
+          "ttft_ms": 1880.067051000026,
+          "latency_ms": 3382.6108140000315,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1085.3355530001636,
+          "deadline_overrun_ms": 365.3355529974647,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 903.657244,
+        "cold_end_to_client_start_ms": 10.939357,
+        "prepared_to_admission_ms": 12.77296,
+        "client_start_to_http_arrival_ms": 5.660105,
+        "get_ms": 1251.134947,
+        "ttft_ms": 1880.067051000026,
+        "aiperf_ttft_ms": 10824.677024999999,
+        "femu_read_completions_during_get": 1063,
+        "femu_read_bytes_during_get": 12390400,
+        "block_read_latency_ms": {
+          "min": 0.045,
+          "mean": 0.09756255879586077,
+          "max": 0.359
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1066,
+          "bytes": 12410880,
+          "mean_ms": 0.09854596622889306
+        },
+        "W": {
+          "count": 99,
+          "bytes": 14401536,
+          "mean_ms": 1.140060606060606
+        }
+      },
+      "host_usage": {
+        "window": "launcher start to VM exit",
+        "start_unix_ns": 1794987959844681921,
+        "end_unix_ns": 1794988502489958799,
+        "max_rss_kib": 3309720
+      }
+    },
+    {
+      "trial": "femu-step6-slow2ms03",
+      "wire_shared_tokens": 71168,
+      "unique_published_objects": 2272,
+      "unique_published_bytes": 12286976,
+      "nand_read_ns": 2000000,
+      "turns": [
+        {
+          "turn": 0,
+          "input_tokens": 71175,
+          "output_tokens": 169,
+          "external_tokens": 0,
+          "computed_prompt_tokens": 71175,
+          "think_gap_ms": null,
+          "client_ttft_ms": 21180.451165,
+          "client_latency_ms": 22826.613342999997,
+          "payload_preparation_ms": 8178.534545999981,
+          "ttft_ms": 11852.742992000003,
+          "latency_ms": 13584.849699000017,
+          "compute_budget_ms": 5906.0,
+          "compute_window_ms": 8105.652697999185,
+          "deadline_overrun_ms": 2199.6526980026374,
+          "put": {
+            "KDA_objects": 1112,
+            "KDA_bytes": 2917888,
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504
+          },
+          "get": {}
+        },
+        {
+          "turn": 1,
+          "input_tokens": 72762,
+          "output_tokens": 296,
+          "external_tokens": 71168,
+          "computed_prompt_tokens": 1594,
+          "think_gap_ms": 12053.677161,
+          "client_ttft_ms": 12714.972875,
+          "client_latency_ms": 14267.468476,
+          "payload_preparation_ms": 7994.011072999967,
+          "ttft_ms": 3927.984508999998,
+          "latency_ms": 5483.335100000033,
+          "compute_budget_ms": 720.0,
+          "compute_window_ms": 1090.0632920004796,
+          "deadline_overrun_ms": 370.06329199778065,
+          "put": {
+            "KDA_objects": 24,
+            "KDA_bytes": 62976,
+            "MLA_objects": 24,
+            "MLA_bytes": 196608
+          },
+          "get": {
+            "MLA_objects": 1112,
+            "MLA_bytes": 9109504,
+            "KDA_objects": 1,
+            "KDA_bytes": 2624
+          }
+        }
+      ],
+      "restore": {
+        "external_tokens": 71168,
+        "cold_prepare_ms": 932.369388,
+        "cold_end_to_client_start_ms": 14.075632,
+        "prepared_to_admission_ms": 8.942072,
+        "client_start_to_http_arrival_ms": 8.148049,
+        "get_ms": 3291.605325,
+        "ttft_ms": 3927.984508999998,
+        "aiperf_ttft_ms": 12714.972875,
+        "femu_read_completions_during_get": 1040,
+        "femu_read_bytes_during_get": 12406784,
+        "block_read_latency_ms": {
+          "min": 2.022,
+          "mean": 2.447864423076923,
+          "max": 7.934
+        }
+      },
+      "device": {
+        "R": {
+          "count": 1043,
+          "bytes": 12427264,
+          "mean_ms": 2.4475992329817835
+        },
+        "W": {
+          "count": 102,
+          "bytes": 14434304,
+          "mean_ms": 1.119156862745098
+        }
+      },
+      "host_usage": {
+        "window": "launcher start to VM exit",
+        "start_unix_ns": 1794988502644774690,
+        "end_unix_ns": 1794989048172375628,
+        "max_rss_kib": 3300980
+      }
+    }
+  ],
+  "statistics": {
+    "client_ttft_ms": {
+      "fast": {
+        "median": 10186.782623,
+        "min": 9429.987089,
+        "max": 10824.677024999999
+      },
+      "slow": {
+        "median": 11901.126516,
+        "min": 11854.523518,
+        "max": 12714.972875
+      },
+      "paired_difference": {
+        "median": 1890.2958500000004,
+        "min": 1667.7408950000008,
+        "max": 2471.139427
+      }
+    },
+    "native_ttft_ms": {
+      "fast": {
+        "median": 1880.067051000026,
+        "min": 1851.4618919999748,
+        "max": 2005.0538400000164
+      },
+      "slow": {
+        "median": 3761.442824000028,
+        "min": 3737.438520000012,
+        "max": 3927.984508999998
+      },
+      "paired_difference": {
+        "median": 1909.9809320000531,
+        "min": 1732.3846799999956,
+        "max": 2047.9174579999722
+      }
+    },
+    "native_get_ms": {
+      "fast": {
+        "median": 1251.134947,
+        "min": 1242.153804,
+        "max": 1311.589305
+      },
+      "slow": {
+        "median": 3120.419606,
+        "min": 3117.01081,
+        "max": 3291.605325
+      },
+      "paired_difference": {
+        "median": 1878.265802,
+        "min": 1805.4215050000003,
+        "max": 2040.470378
+      }
+    },
+    "block_mean_ms": {
+      "fast": {
+        "median": 0.09756255879586077,
+        "min": 0.09752587800369686,
+        "max": 0.10045740740740741
+      },
+      "slow": {
+        "median": 2.3440215759849905,
+        "min": 2.3420632790028764,
+        "max": 2.447864423076923
+      },
+      "paired_difference": {
+        "median": 2.2464956979812936,
+        "min": 2.241605871595469,
+        "max": 2.3503018642810622
+      }
+    },
+    "get_block_bytes": {
+      "fast": {
+        "median": 12369920,
+        "min": 12353536,
+        "max": 12390400
+      },
+      "slow": {
+        "median": 12316672,
+        "min": 12247040,
+        "max": 12406784
+      },
+      "paired_difference": {
+        "median": -36864,
+        "min": -122880,
+        "max": 16384
+      }
+    },
+    "cold_prepare_ms": {
+      "fast": {
+        "median": 903.657244,
+        "min": 828.080509,
+        "max": 972.25138
+      },
+      "slow": {
+        "median": 905.719594,
+        "min": 845.534705,
+        "max": 932.369388
+      },
+      "paired_difference": {
+        "median": 17.454196000000024,
+        "min": -66.53178600000001,
+        "max": 28.712143999999967
+      }
+    },
+    "request_latency_ms": {
+      "fast": {
+        "median": 11678.085603,
+        "min": 10888.347706999999,
+        "max": 12317.459963
+      },
+      "slow": {
+        "median": 13364.187779,
+        "min": 13361.225348,
+        "max": 14267.468476
+      },
+      "paired_difference": {
+        "median": 1950.0085130000007,
+        "min": 1686.1021760000003,
+        "max": 2472.877641000001
+      }
+    }
+  },
+  "pair_deltas_slow_minus_fast": [
+    {
+      "client_ttft_ms": 2471.139427,
+      "native_ttft_ms": 1909.9809320000531,
+      "native_get_ms": 1878.265802,
+      "block_mean_ms": 2.241605871595469,
+      "get_block_bytes": -36864,
+      "cold_prepare_ms": 17.454196000000024,
+      "request_latency_ms": 2472.877641000001
+    },
+    {
+      "client_ttft_ms": 1667.7408950000008,
+      "native_ttft_ms": 1732.3846799999956,
+      "native_get_ms": 1805.4215050000003,
+      "block_mean_ms": 2.2464956979812936,
+      "get_block_bytes": -122880,
+      "cold_prepare_ms": -66.53178600000001,
+      "request_latency_ms": 1686.1021760000003
+    },
+    {
+      "client_ttft_ms": 1890.2958500000004,
+      "native_ttft_ms": 2047.9174579999722,
+      "native_get_ms": 2040.470378,
+      "block_mean_ms": 2.3503018642810622,
+      "get_block_bytes": 16384,
+      "cold_prepare_ms": 28.712143999999967,
+      "request_latency_ms": 1950.0085130000007
+    }
+  ],
+  "all_pairs_latency_increased": true,
+  "all_get_device_bytes_equal": false
+}

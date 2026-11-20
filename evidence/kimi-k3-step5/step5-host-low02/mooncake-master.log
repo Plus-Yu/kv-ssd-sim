@@ -1,0 +1,688 @@
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I1118 14:41:59.484334 661859 master.cpp:1449] Mooncake master version: 0.3.14 (git: e1ea5d3)
+I1118 14:41:59.484459 661859 master.cpp:1585] Master service started on port 50943, max_threads=2, enable_metric_reporting=1, metrics_port=59359, metrics_host=127.0.0.1, default_kv_lease_ttl=500, default_kv_soft_pin_ttl=0, max_kv_soft_pin_ttl=604800000, allow_evict_soft_pinned_objects=1, eviction_ratio=0.85, eviction_high_watermark_ratio=0.045, tenant_eviction_high_watermark_ratio=0.9, enable_ha=0, enable_oplog=0, weight_management_oplog_capability_confirmed=0, enable_oplog_snapshot=0, snapshot_chunk_object_count=1000000, enable_offload=1, enable_kv_events=0, kv_events_bind_endpoint=, kv_events_backend_id=, offload_on_evict=0, offload_force_evict=0, offloading_queue_limit=50000, offload_cap_ratio=0.5, ha_backend_type=etcd, ha_backend_connstring=, ha_leader_lease_ttl_sec=5, etcd_endpoints=, client_active_ttl_sec=10, client_suspicion_ttl_sec=20, rpc_thread_num=2, handler_worker_thread_num=2, rpc_port=50943, rpc_address=127.0.0.1, rpc_interface=, rpc_conn_timeout_seconds=0, rpc_enable_tcp_no_delay=1, rpc protocol=tcp, cluster_id=mooncake_cluster, root_fs_dir=, global_file_segment_size=9223372036854775807, memory_allocator=offset, enable_http_metadata_server=0, http_metadata_server_port=8080, http_metadata_server_host=0.0.0.0, enable_metadata_cleanup_on_timeout=0, put_start_discard_timeout_sec=30, put_start_release_timeout_sec=600, max_total_finished_tasks=10000, max_total_pending_tasks=10000, max_total_processing_tasks=10000, pending_task_timeout_sec=300, processing_task_timeout_sec=300, max_retry_attempts=10, enable_cxl=0, cxl_path=/dev/dax0.0, cxl_size=8589934592
+I1118 14:41:59.485054 661867 master_service.cpp:2763] Task cleanup thread started
+I1118 14:41:59.485119 661862 client_offboarding.cpp:94] Client offboarding worker started
+I1118 14:41:59.485147 661868 master_service.cpp:2796] Weight reconciliation thread started
+I1118 14:41:59.485483 661859 master_admin_service.cpp:324] Master admin server started on port 59359
+I1118 14:41:59.486007 661859 master_service.cpp:3783] Restore lifecycle -> Ready (non-HA initialization)
+I1118 14:41:59.486027 661859 master_service.cpp:3794] Restore lifecycle -> Serving
+I1118 14:41:59.486128 661874 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=false, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 14:42:03.140010 661879 master_service.cpp:8216] Storage root directory or cluster ID is not set. persisting data is disabled.
+I1118 14:42:03.144218 661880 master_service.cpp:1074] client_id=14576678749538954907-232927897819761551, action=mount_segment, segment_name=127.0.0.1:13224
+W1118 14:42:03.144979 661879 segment.cpp:343] segment_name=127.0.0.1:13224, warn=segment_already_exists
+I1118 14:42:03.157485 661879 rpc_service.cpp:1723] Mount local disk segment with client id is : 14576678749538954907-232927897819761551, enable offloading is: 1
+I1118 14:42:06.011355 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0517197 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.011456 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=5, eviction_base=25, actual_evict_ratio=0.2
+I1118 14:42:06.011516 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.334219 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.334271 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 14:42:06.334276 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.344357 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0557823 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.344412 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=28, actual_evict_ratio=0
+I1118 14:42:06.344417 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.354493 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0597668 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.354540 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=30, actual_evict_ratio=0
+I1118 14:42:06.354544 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.364631 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.364697 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.364703 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.374855 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.374918 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.374924 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.385015 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.385078 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.385084 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.395293 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.395355 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.395361 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.405490 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.405545 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.405550 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.415643 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.415730 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.415736 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.425817 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.425879 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.425886 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.435962 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.436014 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.436019 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.446095 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.446151 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.446156 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.456231 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.456281 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.456297 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.466372 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.466419 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.466424 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.476500 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.476555 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.476560 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.486639 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.486697 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.486702 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.496865 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.496924 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.496930 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.507068 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.507257 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.507361 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.517457 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.517536 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.517542 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.527633 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.527702 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.527709 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.537788 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.537851 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.537856 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.547948 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.548020 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.548026 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.558106 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.558203 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.558219 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.568310 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.568367 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.568373 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.578452 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.578514 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.578521 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.588596 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.588651 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.588657 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.598737 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.598803 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.598809 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.608889 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.608966 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.608982 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.619059 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.619133 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.619149 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.629227 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.629290 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.629307 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.639411 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.639464 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.639469 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.649549 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.649629 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.649634 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.659714 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.659780 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.659785 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.669859 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.669914 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:06.669919 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.679963 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.680094 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=20, eviction_base=36, actual_evict_ratio=0.555556
+I1118 14:42:06.680135 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.710369 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.710451 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 14:42:06.710458 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.720533 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0517979 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.720598 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 14:42:06.720613 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.730701 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0557823 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.730789 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=28, actual_evict_ratio=0
+I1118 14:42:06.730796 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.740873 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.740945 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.740960 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.751037 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.751109 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.751124 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.761240 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.761330 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.761354 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.771436 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.771518 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.771533 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.781612 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.781688 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.781704 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.791785 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.791862 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.791877 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.802052 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.802119 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.802134 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.812217 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.812327 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.812343 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.822422 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.822506 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.822521 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.832600 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.832682 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.832698 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.842777 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.842856 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.842872 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.852946 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.853018 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.853034 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.863114 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.863194 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.863210 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.873289 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.873356 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.873380 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.883454 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.883526 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.883541 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.893759 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.893831 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.893846 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.903926 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.903985 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.903999 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.914078 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.914147 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.914162 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.924242 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.924314 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.924328 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.934406 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.934476 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.934491 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.944582 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.944676 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.944692 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.954773 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.954866 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.954882 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.964960 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.965035 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.965040 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.975131 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.975217 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.975232 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.985316 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.985414 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.985430 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:06.995512 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:06.995594 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:06.995610 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.005688 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.005764 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.005779 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.015882 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.016002 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.016021 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.026108 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.026196 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.026213 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.036303 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.036386 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.036401 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.046612 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.046701 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.046707 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.056782 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.056857 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:07.056886 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.066954 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.067031 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 14:42:07.067046 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.077241 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0797672 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.077319 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=41, actual_evict_ratio=0
+I1118 14:42:07.077337 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.087414 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0836735 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.087489 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=42, actual_evict_ratio=0
+I1118 14:42:07.087504 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.097586 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0876579 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.097695 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=44, actual_evict_ratio=0
+I1118 14:42:07.097711 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.107785 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.107872 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.107887 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.117962 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.118043 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.118058 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.128134 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.128211 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.128226 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.138302 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.138371 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.138386 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.148463 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.148550 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.148566 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.158663 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.158774 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.158792 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.168870 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.168959 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.168975 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.179052 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.179140 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.179155 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.189229 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.189260 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.189265 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.199342 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.199388 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.199393 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.209477 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.209525 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.209530 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.219605 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.219638 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.219643 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.229727 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.229759 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.229763 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.239835 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.239867 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.239872 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.249946 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.249979 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.249982 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.260061 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.260095 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.260100 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.270175 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.270216 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.270221 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.280370 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.280409 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.280414 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.290488 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.290526 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.290531 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.300606 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.300639 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.300644 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.310721 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.310763 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.310768 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.320856 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.320894 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.320900 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.330986 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.331032 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.331037 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.341115 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.341148 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.341152 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.351231 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.351269 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.351274 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.361393 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.361429 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.361434 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.371510 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.371546 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.371551 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.381639 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.381690 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.381696 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.391779 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.391816 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.391820 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.401893 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.401927 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.401932 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.411959 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.412001 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:07.412006 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.422080 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.422122 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 14:42:07.422132 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.432207 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.432252 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 14:42:07.432257 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.442334 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111643 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.442391 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=57, actual_evict_ratio=0
+I1118 14:42:07.442396 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.452472 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.115627 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.452521 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=58, actual_evict_ratio=0
+I1118 14:42:07.452526 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.462605 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.119534 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.462663 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=60, actual_evict_ratio=0
+I1118 14:42:07.462669 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.472743 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.472790 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.472795 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.482882 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.482959 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.482965 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.493047 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.493117 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.493124 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.503198 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.503252 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.503257 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.513336 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.513398 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.513403 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.523479 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.523532 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.523537 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.533612 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.533660 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.533684 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.543766 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.543834 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.543840 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.553952 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.554014 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.554020 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.564092 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.564150 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.564157 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.574231 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.574285 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.574290 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.584367 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.584422 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.584426 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.594504 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.594561 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.594566 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.604646 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.604749 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.604765 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.614854 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.614949 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.614964 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.625039 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.625118 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.625133 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.635210 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.635269 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.635284 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.645362 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.645444 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.645460 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.655544 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.655625 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.655642 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.665771 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.665854 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.665869 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.675974 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.676112 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:07.676159 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.686244 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.686353 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=48, eviction_base=64, actual_evict_ratio=0.75
+I1118 14:42:07.686368 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.797369 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.797446 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 14:42:07.797452 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.807592 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0517979 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.807655 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 14:42:07.807670 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.817751 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0518761 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.817839 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=27, actual_evict_ratio=0
+I1118 14:42:07.817845 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.827941 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0557823 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.828037 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=28, actual_evict_ratio=0
+I1118 14:42:07.828052 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.838136 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.838227 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.838243 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.848337 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.848433 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.848448 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.858530 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.858624 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.858640 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.868724 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.868804 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.868820 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.878906 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.878993 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.879009 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.889092 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.889173 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.889189 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.899271 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.899358 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.899374 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.909467 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.909554 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.909570 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.919700 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.919775 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.919790 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.929874 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.929965 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.929980 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.940058 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.940130 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.940146 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.950229 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.950318 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.950335 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.960419 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.960503 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.960520 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.970592 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.970672 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.970687 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.980773 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.980868 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.980885 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:07.990964 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:07.991044 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:07.991060 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.001137 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.001212 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.001226 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.011309 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.011402 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.011418 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.021548 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.021622 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.021628 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.031759 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.031848 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.031854 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.041941 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.042023 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.042028 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.052105 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.052182 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.052198 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.062285 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.062386 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.062402 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.072531 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.072619 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.072634 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.082739 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.082828 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.082850 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.092939 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.093036 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.093042 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.103116 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.103185 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.103190 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.113272 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.113353 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.113368 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.123445 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.123520 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.123536 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.133615 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.133692 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.133706 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.143803 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.143895 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 14:42:08.143911 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.153992 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.154072 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 14:42:08.154088 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.164167 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.164258 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 14:42:08.164273 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.174350 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0836735 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.174432 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=42, actual_evict_ratio=0
+I1118 14:42:08.174448 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.184574 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0876579 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.184661 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=43, actual_evict_ratio=0
+I1118 14:42:08.184679 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.194759 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0878143 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.194849 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=46, actual_evict_ratio=0
+I1118 14:42:08.194865 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.204943 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.204990 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.204995 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.215077 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.215147 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.215152 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.225229 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.225286 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.225291 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.235365 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.235420 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.235426 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.245508 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.245563 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.245568 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.255646 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.255695 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.255700 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.265785 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.265844 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.265849 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.275949 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.276021 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.276026 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.286154 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.286203 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.286209 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.296288 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.296340 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.296355 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.306429 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.306476 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.306481 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.316563 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.316617 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.316622 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.326752 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.326818 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.326824 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.336906 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.336956 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.336961 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.347072 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.347124 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.347129 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.357249 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.357290 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.357295 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.367439 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.367502 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.367507 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.377599 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.377660 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.377664 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.387749 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.387815 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.387820 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.397897 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.397964 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.397970 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.408041 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.408088 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.408092 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.418171 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.418224 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.418229 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.428313 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.428371 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.428377 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.438460 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.438514 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.438519 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.448603 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.448660 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.448665 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.458750 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.458809 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.458814 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.468891 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.468938 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.468942 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.479068 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.479135 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.479139 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.489305 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.489359 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.489364 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.499481 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.499557 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.499562 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.509639 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.509694 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 14:42:08.509701 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.519801 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.519848 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 14:42:08.519852 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.529927 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.529978 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 14:42:08.529983 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.540053 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.115549 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.540107 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=58, actual_evict_ratio=0
+I1118 14:42:08.540112 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.550186 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.119534 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.550258 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=60, actual_evict_ratio=0
+I1118 14:42:08.550262 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.560338 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.11969 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.560403 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=62, actual_evict_ratio=0
+I1118 14:42:08.560407 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.570518 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.570578 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.570583 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.580664 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.580744 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.580750 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.590826 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.590890 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.590898 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.600976 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.601066 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.601082 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.611166 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.611279 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.611297 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.621430 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.621522 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.621537 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.631620 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.631721 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.631736 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.641836 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.641964 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.641971 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.652078 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.652189 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.652206 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.662292 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.662411 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.662417 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.672500 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.672600 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.672616 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.682713 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.682821 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 14:42:08.682827 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:08.693020 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:08.693153 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=44, eviction_base=64, actual_evict_ratio=0.6875
+I1118 14:42:08.693169 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:09.486315 661874 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 1.28 MB / 32.00 MB (4.0%) | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 8.80 MB / 128.00 MB | Keys: 137 (soft-pinned: 0) | Clients: 1 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.70/0.70, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=8.70/0.00/8.70, Item=13.70/13.70), PutEnd:(Req=8.70/0.00/8.70, Item=13.70/13.70), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.80/0.00/0.80, Item=14.20/14.20), ExistKey:(Req=10.70/0.00/10.70, Item=27.50/27.50), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.70/0.70), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=4/222, AllocFail=0, PartialAlloc=0, keys=117, size=7.52 MB | Mem Eviction: Success/Attempts=4/222, keys=117, size=7.52 MB | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 14:42:10.883811 661864 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478916 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 14:42:10.883898 661864 report_observers.cpp:51] [EVICT-RESULT] evicted_count=20, eviction_base=25, actual_evict_ratio=0.8
+I1118 14:42:10.883903 661864 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 14:42:14.600023 661859 master.cpp:1784] Shutdown signal received, exiting gracefully
+I1118 14:42:14.600644 661867 master_service.cpp:2792] Task cleanup thread stopped
+I1118 14:42:14.600656 661868 master_service.cpp:2813] Weight reconciliation thread stopped
+I1118 14:42:15.486639 661862 client_offboarding.cpp:163] Client offboarding worker stopped

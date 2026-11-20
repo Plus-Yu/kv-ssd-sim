@@ -1,0 +1,12 @@
+{
+  "segment_bytes": 33554432,
+  "staging_bytes": 16777216,
+  "disk_bytes": 134217728,
+  "high_watermark": 0.045,
+  "eviction_ratio": 0.85,
+  "producer": "pressure/main/0",
+  "restore": "pressure/main/4",
+  "incomplete_producer": "pressure/main/1",
+  "recompute": "pressure/main/5",
+  "lease_ttl_ms": 500
+}

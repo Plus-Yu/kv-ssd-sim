@@ -52,10 +52,12 @@ class ObservedStore:
         self.expected: dict[str, tuple[int, str]] = {}
         self.errors: list[str] = []
         self.restore_batches = 0
+        self.on_published = None
         self.femu_device = None
 
-    def trace_request_handler(self, handler):
+    def trace_request_handler(self, handler, rank=None):
         def wrapped(metadata):
+            self._context.rank = rank
             self._context.request_id = metadata.req_id
             try:
                 return handler(metadata)
@@ -91,9 +93,15 @@ class ObservedStore:
             keys=keys,
             result=list(result),
             digests=digests,
+            logical_rank=getattr(self._context, "rank", None),
             object_bytes=[sum(parts) for parts in sizes],
             request_id=getattr(self._context, "request_id", None),
         )
+        if self.on_published:
+            self.on_published(
+                getattr(self._context, "request_id", None),
+                [key for key, code in zip(keys, result, strict=True) if code == 0],
+            )
         return result
 
     def batch_get_into_multi_buffers(self, keys, addresses, sizes):
@@ -144,10 +152,10 @@ class ObservedStore:
         )
         return result
 
-    def disk_barrier(self, *, timeout_s: float = 15) -> list[str]:
+    def disk_barrier(self, keys=None, *, timeout_s: float = 15) -> list[str]:
         """Wait for confirmed LOCAL_DISK metadata, not just successful PUTs."""
         with self._lock:
-            keys = list(self.expected)
+            keys = list(self.expected if keys is None else keys)
         if not keys:
             raise RuntimeError("No objects were saved by the native connector")
         deadline = time.monotonic() + timeout_s

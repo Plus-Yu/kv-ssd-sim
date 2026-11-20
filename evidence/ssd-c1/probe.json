@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "objects": 36,
+  "disk_only_reads": 135,
+  "all_rank_restores": 120,
+  "integrity": {
+    "buffer_entries": 666,
+    "foreign_device_events": 0,
+    "ambiguous_completions": 0,
+    "error_completions": 0
+  },
+  "logical_write_bytes": 470605824,
+  "all_rank_restored_object_bytes": 619241472,
+  "read_sectors_in_full_restore": 919192,
+  "read_ios_in_full_restore": 182,
+  "device": "FEMU BlackBox-SSD Controller",
+  "lookup_tokens": {
+    "rank0_only": 0,
+    "missing_group2_rank7": 0,
+    "all_disk_only": 1536
+  }
+}

@@ -1,0 +1,77 @@
+W1118 14:37:08.993000 660178 .venv/lib/python3.13/site-packages/torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1118 14:37:08.993000 660178 .venv/lib/python3.13/site-packages/torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1118 14:37:08.993000 660178 .venv/lib/python3.13/site-packages/torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I1118 14:37:11.937711 660178 client_metric.cpp:83] Client metrics enabled (default enabled)
+I1118 14:37:11.937758 660178 client_metric.cpp:84] Client bandwidth summary enabled via MC_STORE_CLIENT_METRIC_BANDWIDTH
+I1118 14:37:11.938665 660178 client_service.cpp:471] client_id=13784475315277147769-13987125536028091557
+I1118 14:37:11.938692 660178 client_service.cpp:485] Client metrics enabled but reporting disabled (interval=0)
+I1118 14:37:11.939572 660178 client_service.cpp:1254] Storage root directory is not set. persisting data is disabled.
+I1118 14:37:11.939623 660178 transfer_engine_impl.cpp:1184] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I1118 14:37:11.939656 660178 transfer_engine_impl.cpp:147] Transfer Engine parseHostNameWithPort. server_name: 127.0.0.1 port: 12387
+I1118 14:37:11.939743 660178 transfer_engine_impl.cpp:214] Transfer Engine RPC using P2P handshake, listening on 127.0.0.1:15992
+I1118 14:37:11.939836 660178 client_service.cpp:1023] Transfer engine auto discovery is disabled for protocol: tcp
+E1118 14:37:11.939911 660178 transfer_metadata.cpp:1367] Local segment descriptor not found
+I1118 14:37:11.939975 660178 tcp_transport.cpp:432] TcpTransport: listen on port 15004
+I1118 14:37:11.940142 660178 tcp_transport.cpp:448] TcpTransport: I/O pool started with 1 thread(s)
+I1118 14:37:11.941085 660178 transfer_task.cpp:1096] MC_STORE_MEMCPY not set, auto-detected: TCP-only environment, memcpy enabled
+I1118 14:37:11.941112 660178 real_client.cpp:1179] Successfully created client on port 12387 after 1 attempt(s)
+I1118 14:37:11.942312 660178 real_client.cpp:1234] Registering local memory: 16777216 bytes
+I1118 14:37:11.942365 660178 real_client.cpp:1472] Mounting segment: 33554432 bytes, 33554432 of 33554432
+I1118 14:37:11.943176 660178 real_client.cpp:1600] Offload RPC server started on port 37051
+I1118 14:37:11.949612 660178 aligned_client_buffer.cpp:127] AlignedClientBufferAllocator: allocated 16777216 bytes at address 0x71e5503fc000 (aligned to 4096 bytes)
+I1118 14:37:11.951881 660178 storage_backend.cpp:1600] BucketStorageBackend: Allocated 33554432 bytes aligned buffer at 0x71e51c3fe000
+I1118 14:37:11.952040 660178 storage_backend.cpp:2294] Bucket backend max_total_size not set; using 90% of disk capacity: 972991059148 bytes
+I1118 14:37:11.952064 660178 storage_backend.cpp:2301] Initialized BucketIdGenerator with fresh start. No existing buckets found; starting from ID: 7352253772498
+I1118 14:37:11.952068 660178 file_storage.cpp:151] IsEnableOffloading result: true
+I1118 14:37:11.952708 660340 file_storage.cpp:216] Starting periodic task with interval: 1s, running is: 1
+I1118 14:37:11.952754 660341 file_storage.cpp:1498] action=client_buffer_gc_thread_started
+enable_offload is set in embedded mode without preferred_segment; SSD tier will only see puts that happen to land on the owner segment.
+Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+W1118 14:37:19.374197 660346 client_service.cpp:2022] lease_expired_before_data_transfer_completed key=kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@6d7f5b3d4451da6ae9ce0aecd6d85c14200636d2c4ba2f194b8e377a47451bb9
+W1118 14:37:19.374243 660346 client_service.cpp:2022] lease_expired_before_data_transfer_completed key=kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac
+W1118 14:37:19.374246 660346 client_service.cpp:2022] lease_expired_before_data_transfer_completed key=kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac
+E1118 14:37:19.374251 660346 real_client.cpp:8709] BatchGet failed for key 'kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@6d7f5b3d4451da6ae9ce0aecd6d85c14200636d2c4ba2f194b8e377a47451bb9': LEASE_EXPIRED
+E1118 14:37:19.374264 660346 real_client.cpp:8709] BatchGet failed for key 'kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac': LEASE_EXPIRED
+E1118 14:37:19.374265 660346 real_client.cpp:8709] BatchGet failed for key 'kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac': LEASE_EXPIRED
+Failed to get 3 Mooncake keys from sub-batch (batch_keys=3, first_failures=[('kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@6d7f5b3d4451da6ae9ce0aecd6d85c14200636d2c4ba2f194b8e377a47451bb9', -707), ('kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:attention_head_major@store_schema:a5fb7e3d240863cd@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac', -707), ('kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@798472ba47c00c4bb30ec0dd168bff9cf19824408e3fe7aeab68242f396051ac', -707)])
+I1118 14:37:19.377833 660178 file_storage.cpp:119] Shutdown FileStorage...
+I1118 14:37:20.953549 660341 file_storage.cpp:1519] action=client_buffer_gc_thread_stopped
+I1118 14:37:20.953662 660178 aligned_client_buffer.cpp:161] AlignedClientBufferAllocator: freeing aligned memory at 0x71e5503fc000 (16777216 bytes)
+I1118 14:37:22.947196 660178 transfer_metadata.cpp:829] removeSegmentDesc 127.0.0.1:15992 finish
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 203, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/__main__.py", line 21, in <module>
+[rank0]:     run()
+[rank0]:     ~~~^^
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/__main__.py", line 18, in run
+[rank0]:     raise SystemExit(main())
+[rank0]:                      ~~~~^^
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/cli.py", line 84, in main
+[rank0]:     report = run_replay(
+[rank0]:         args.input,
+[rank0]:     ...<10 lines>...
+[rank0]:         pressure_config=args.pressure_config,
+[rank0]:     )
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/engine.py", line 501, in run_replay
+[rank0]:     rows = asyncio.run(engine.run())
+[rank0]:   File "/home/plusyu/miniconda3/lib/python3.13/asyncio/runners.py", line 196, in run
+[rank0]:     return runner.run(main)
+[rank0]:            ~~~~~~~~~~^^^^^^
+[rank0]:   File "/home/plusyu/miniconda3/lib/python3.13/asyncio/runners.py", line 119, in run
+[rank0]:     return self._loop.run_until_complete(task)
+[rank0]:            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[rank0]:   File "/home/plusyu/miniconda3/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+[rank0]:     return future.result()
+[rank0]:            ~~~~~~~~~~~~~^^
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/engine.py", line 297, in run
+[rank0]:     await self.step()
+[rank0]:   File "/home/plusyu/projects/kv-ssd-sim/src/kv_ssd_sim/engine.py", line 191, in step
+[rank0]:     raise RuntimeError(
+[rank0]:         "Native KV restore failed; inspect load_failure and store_get_end events"
+[rank0]:     )
+[rank0]: RuntimeError: Native KV restore failed; inspect load_failure and store_get_end events

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from collections import defaultdict, deque
@@ -15,6 +16,139 @@ def run_path(path):
     return path / ("joint/server" if launch.get("workload") == "aiperf" else "replay")
 
 
+def verify_inputs(path, launch, manifest):
+    directory = path / "input"
+    names = ["trace.json", "hybrid.json"]
+    if (directory / "pressure.json").exists():
+        names.append("pressure.json")
+        if manifest.get("pressure_config") != json.loads((directory / "pressure.json").read_text()):
+            raise AssertionError("Runtime capacity profile differs")
+    actual = {
+        name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
+        for name in [*names, "config.json"]
+    }
+    receipt = json.loads((path / "guest-input.json").read_text())
+    cfg = json.loads((directory / "config.json").read_text())
+    if actual != launch["guest_inputs_sha256"] or actual != receipt["sha256"]:
+        raise AssertionError("Host and guest input hashes differ")
+    if cfg["files"] != {name: actual[name] for name in names}:
+        raise AssertionError("Inconsistent configuration file hashes")
+    if cfg["workload"] != launch["workload"] or any(
+        manifest[key] != cfg[key]
+        for key in ("num_blocks", "max_model_len", "prefill_ms", "decode_ms")
+    ):
+        raise AssertionError("Runtime did not consume requested settings")
+    supplied = json.loads((directory / "hybrid.json").read_text())
+    if any(manifest["hybrid_config"].get(key) != value for key, value in supplied.items()):
+        raise AssertionError("Runtime hybrid geometry differs from staged config")
+    if launch["workload"] == "aiperf":
+        client = json.loads((path / "joint/launch.json").read_text())
+        source_sha = client["input_sha256"]
+        mode = cfg.get("cache_mode", "cold")
+        if mode not in ("natural", "cold"):
+            raise AssertionError("Invalid cache mode")
+        cold = mode == "cold"
+        if (
+            client.get("prepare_before_send") is not cold
+            or manifest["cold_between_requests"] is not cold
+        ):
+            raise AssertionError("Cache mode differs from staged configuration")
+        for argv, flag in (
+            (receipt["command"], "--prepare-before-send"),
+            (receipt["command"], "--cold-between-requests"),
+            (client["server_command"], "--cold-between-requests"),
+        ):
+            if (flag in argv) != cold:
+                raise AssertionError("Effective cache flags differ from staged configuration")
+    else:
+        source_sha = manifest["input_sha256"]
+    if source_sha != actual["trace.json"]:
+        raise AssertionError("Runtime consumed a different trace")
+    return actual
+
+
+def verify_cold_windows(root, events, origin):
+    def lines(path):
+        return [json.loads(line) for line in path.read_text().splitlines()]
+
+    gates = lines(root / "client-send.jsonl")
+    raw = lines(root / "client/profile_export_raw.jsonl")
+    starts = {row["metadata"]["x_request_id"]: row["start_perf_ns"] for row in raw}
+    reported = {
+        row["metadata"]["x_request_id"]: row["metrics"]["time_to_first_token"]
+        for row in lines(root / "client/profile_export.jsonl")
+    }
+    if (
+        len(starts) != len(raw)
+        or len(gates) != len(raw)
+        or {gate["request_id"] for gate in gates} != set(starts)
+    ):
+        raise AssertionError("Incomplete or duplicate client timing evidence")
+    for row in raw:
+        # This server starts each SSE stream with the first generated content token.
+        first = row["responses"][0]
+        packet = json.loads(first["packets"][0]["value"])
+        if not packet["choices"][0]["delta"]["content"]:
+            raise AssertionError("Expected first SSE packet to contain a token")
+        metric = reported[row["metadata"]["x_request_id"]]
+        if (
+            metric["unit"] != "ms"
+            or round(metric["value"] * 1e6) != first["perf_ns"] - row["start_perf_ns"]
+        ):
+            raise AssertionError("Reported client TTFT differs from raw transport timestamps")
+    windows = {}
+    previous_finish = None
+    finishes = {e["request_id"]: e for e in events if e["event"] == "http_response_finished"}
+    phases = [
+        "disk_replicas_confirmed",
+        "memory_replicas_evicted",
+        "local_prefix_cache_reset",
+        "guest_page_cache_dropped",
+    ]
+    for index, gate in enumerate(gates):
+        cid = gate["request_id"]
+        own = [e for e in events if e.get("client_request_id") == cid]
+
+        def single(name, own=own, cid=cid):
+            matches = [e for e in own if e["event"] == name]
+            if len(matches) != 1:
+                raise AssertionError(f"Expected one {name} for {cid}")
+            return matches[0]
+
+        arrival = single("http_arrival")
+        dispatch = gate["before_native_send_ns"]
+        if not dispatch <= starts[cid] <= origin + arrival["time_ns"]:
+            raise AssertionError("Client send clock does not precede server arrival")
+        finish = finishes.get(single("http_received")["request_id"])
+        if finish is None:
+            raise AssertionError("Missing HTTP response completion")
+        if index == 0:
+            if any(e["event"].startswith("cold_prepare_") for e in own):
+                raise AssertionError("Unexpected cold preparation before first request")
+            previous_finish = finish
+            continue
+        begin, end = single("cold_prepare_begin"), single("cold_prepare_end")
+        if (
+            not previous_finish["time_ns"] <= begin["time_ns"] < end["time_ns"]
+            or origin + end["time_ns"] > dispatch
+        ):
+            raise AssertionError("Cold preparation overlaps the measured request")
+        previous_finish = finish
+        span = [
+            item["event"]
+            for item in events
+            if begin["seq"] < item["seq"] < end["seq"] and item["event"] in phases
+        ]
+        if span != phases:
+            raise AssertionError("Incomplete cold preparation")
+        windows[cid] = {
+            "cold_prepare_ms": (end["time_ns"] - begin["time_ns"]) / 1e6,
+            "cold_end_to_client_start_ms": (starts[cid] - origin - end["time_ns"]) / 1e6,
+            "client_start_to_http_arrival_ms": (origin + arrival["time_ns"] - starts[cid]) / 1e6,
+        }
+    return windows
+
+
 def verify(path):
     launch = json.loads((path / "launch.json").read_text())
     run = run_path(path)
@@ -22,7 +156,10 @@ def verify(path):
     if joint:
         from verify_aiperf import verify as verify_http
 
-        http_evidence = verify_http(path / "joint")
+        if "guest_inputs_sha256" in launch:
+            http_evidence = verify_http(path / "joint", staged_trace=path / "input/trace.json")
+        else:
+            http_evidence = verify_http(path / "joint")
         if not http_evidence["femu_verified"]:
             raise AssertionError("HTTP workload did not verify FEMU")
     summary = json.loads((run / "summary.json").read_text())
@@ -31,6 +168,31 @@ def verify(path):
     if not summary["femu_verified"] or manifest["read_delay_ms"] != 0:
         raise AssertionError("Trial did not verify FEMU without injected receiver delay")
     origin = next(e["monotonic_origin_ns"] for e in events if e["event"] == "clock_sync")
+    staged = (
+        "guest_inputs_sha256" in launch
+        or (path / "guest-input.json").exists()
+        or (path / "input").exists()
+    )
+    if staged and (path / "guest-exit-code.txt").read_text().strip() != "0":
+        raise AssertionError("Guest workload did not finish successfully")
+    inputs = verify_inputs(path, launch, manifest) if staged else None
+    if joint and inputs and not manifest["cold_between_requests"]:
+        from verify_natural import describe
+
+        result = {
+            "status": "passed",
+            "cache_mode": "natural",
+            "accelerator": launch["accelerator"],
+            "guest_inputs_sha256": inputs,
+            "nand_read_ns": launch["nand_read_ns"],
+            "aiperf": http_evidence,
+            "natural": describe(
+                path, events, manifest, summary, http_evidence.get("wire_shared_block_tokens")
+            ),
+        }
+        (path / "verification.json").write_text(json.dumps(result, indent=2) + "\n")
+        return result
+    windows = verify_cold_windows(path / "joint", events, origin) if joint and inputs else {}
     completions = []
     pending = defaultdict(deque)
     trace = (path / "block-trace.txt").read_text()
@@ -104,6 +266,7 @@ def verify(path):
         chains.append(
             {
                 "request_id": rid,
+                **(windows[received["client_request_id"]] if joint and inputs else {}),
                 "external_tokens": row["external_load_tokens"],
                 "get_ms": (end["time_ns"] - begin["time_ns"]) / 1e6,
                 "ttft_ms": row["ttft_ms"],
@@ -152,11 +315,16 @@ def verify(path):
     result = {
         "status": "passed",
         "accelerator": launch["accelerator"],
+        "guest_inputs_sha256": inputs,
         "nand_read_ns": launch["nand_read_ns"],
         "chains": chains,
         "aiperf": http_evidence if joint else None,
         "scope": "functional closed loop; TCG is not hardware-calibrated inference timing",
     }
+    if manifest.get("pressure_config"):
+        from check_pressure import check_pressure
+
+        result["pressure"] = check_pressure(path, events, summary, manifest, chains)
     (path / "verification.json").write_text(json.dumps(result, indent=2) + "\n")
     return result
 

@@ -1,0 +1,304 @@
+{
+  "source": "https://github.com/callanjfox/kv-cache-tester/blob/94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf/traces/trace_0004.json",
+  "source_sha256": "51a7888f72175765f6c2dd7a72eface5bbe7f3ee37bb6e22781344693dcfbb85",
+  "aiperf": "0.13.0",
+  "outer_entries": 184,
+  "aiperf_graph": {
+    "request_count": 215,
+    "requests_per_session": {
+      "trace_0004": 38,
+      "trace_0004::sa:agent_001": 14,
+      "trace_0004::sa:agent_002": 19,
+      "trace_0004::fa:000": 33,
+      "trace_0004::fa:001": 69,
+      "trace_0004::fa:002": 42
+    },
+    "branches": [
+      {
+        "branch_id": "trace_0004:spawn:agent_001",
+        "child_conversation_ids": [
+          "trace_0004::sa:agent_001",
+          "trace_0004::sa:agent_002"
+        ],
+        "mode": "spawn",
+        "dispatch_timing": "post",
+        "is_background": true,
+        "subagent_type": null,
+        "start_timestamp_ms": 440243409.0
+      },
+      {
+        "branch_id": "trace_0004:flatspawn:0",
+        "child_conversation_ids": [
+          "trace_0004::fa:000",
+          "trace_0004::fa:001",
+          "trace_0004::fa:002"
+        ],
+        "mode": "spawn",
+        "dispatch_timing": "post",
+        "is_background": true,
+        "subagent_type": null,
+        "start_timestamp_ms": 44985000.0
+      }
+    ],
+    "scope": "full uncapped offline conversion, no HTTP dispatch"
+  },
+  "branches": [
+    {
+      "outer_idx": 182,
+      "agent_id": "agent_001",
+      "status": "completed",
+      "start_s": 440243.409,
+      "end_s": 440337.526,
+      "requests": [
+        {
+          "inner_idx": 0,
+          "start_s": 440243.409,
+          "end_s": 440245.679,
+          "input": 18251,
+          "output": 181
+        },
+        {
+          "inner_idx": 1,
+          "start_s": 440248.409,
+          "end_s": 440250.88899999997,
+          "input": 48522,
+          "output": 245
+        },
+        {
+          "inner_idx": 2,
+          "start_s": 440254.409,
+          "end_s": 440256.979,
+          "input": 51337,
+          "output": 237
+        },
+        {
+          "inner_idx": 3,
+          "start_s": 440259.409,
+          "end_s": 440261.679,
+          "input": 51656,
+          "output": 210
+        },
+        {
+          "inner_idx": 4,
+          "start_s": 440266.409,
+          "end_s": 440269.089,
+          "input": 54389,
+          "output": 285
+        },
+        {
+          "inner_idx": 5,
+          "start_s": 440273.409,
+          "end_s": 440275.88899999997,
+          "input": 57601,
+          "output": 239
+        },
+        {
+          "inner_idx": 6,
+          "start_s": 440280.409,
+          "end_s": 440282.529,
+          "input": 58299,
+          "output": 231
+        },
+        {
+          "inner_idx": 7,
+          "start_s": 440285.409,
+          "end_s": 440289.63899999997,
+          "input": 58773,
+          "output": 136
+        },
+        {
+          "inner_idx": 8,
+          "start_s": 440292.409,
+          "end_s": 440295.649,
+          "input": 61150,
+          "output": 274
+        },
+        {
+          "inner_idx": 9,
+          "start_s": 440298.409,
+          "end_s": 440300.529,
+          "input": 61532,
+          "output": 249
+        },
+        {
+          "inner_idx": 10,
+          "start_s": 440303.409,
+          "end_s": 440304.87899999996,
+          "input": 62725,
+          "output": 108
+        },
+        {
+          "inner_idx": 11,
+          "start_s": 440307.409,
+          "end_s": 440309.56899999996,
+          "input": 65289,
+          "output": 136
+        },
+        {
+          "inner_idx": 12,
+          "start_s": 440312.409,
+          "end_s": 440314.369,
+          "input": 65649,
+          "output": 143
+        },
+        {
+          "inner_idx": 13,
+          "start_s": 440316.409,
+          "end_s": 440334.349,
+          "input": 67911,
+          "output": 1701
+        }
+      ]
+    },
+    {
+      "outer_idx": 183,
+      "agent_id": "agent_002",
+      "status": "completed",
+      "start_s": 440281.797,
+      "end_s": 440414.302,
+      "requests": [
+        {
+          "inner_idx": 0,
+          "start_s": 440281.797,
+          "end_s": 440284.047,
+          "input": 18259,
+          "output": 184
+        },
+        {
+          "inner_idx": 1,
+          "start_s": 440287.797,
+          "end_s": 440290.19700000004,
+          "input": 36119,
+          "output": 221
+        },
+        {
+          "inner_idx": 2,
+          "start_s": 440293.797,
+          "end_s": 440296.167,
+          "input": 44679,
+          "output": 256
+        },
+        {
+          "inner_idx": 3,
+          "start_s": 440298.797,
+          "end_s": 440300.907,
+          "input": 45084,
+          "output": 144
+        },
+        {
+          "inner_idx": 4,
+          "start_s": 440302.797,
+          "end_s": 440304.917,
+          "input": 45797,
+          "output": 145
+        },
+        {
+          "inner_idx": 5,
+          "start_s": 440306.797,
+          "end_s": 440308.537,
+          "input": 47366,
+          "output": 120
+        },
+        {
+          "inner_idx": 6,
+          "start_s": 440310.797,
+          "end_s": 440312.50700000004,
+          "input": 47799,
+          "output": 123
+        },
+        {
+          "inner_idx": 7,
+          "start_s": 440314.797,
+          "end_s": 440317.837,
+          "input": 48264,
+          "output": 154
+        },
+        {
+          "inner_idx": 8,
+          "start_s": 440319.797,
+          "end_s": 440321.767,
+          "input": 50635,
+          "output": 148
+        },
+        {
+          "inner_idx": 9,
+          "start_s": 440323.797,
+          "end_s": 440325.657,
+          "input": 50820,
+          "output": 102
+        },
+        {
+          "inner_idx": 10,
+          "start_s": 440327.797,
+          "end_s": 440329.43700000003,
+          "input": 51156,
+          "output": 124
+        },
+        {
+          "inner_idx": 11,
+          "start_s": 440331.797,
+          "end_s": 440333.87700000004,
+          "input": 54492,
+          "output": 120
+        },
+        {
+          "inner_idx": 12,
+          "start_s": 440336.797,
+          "end_s": 440338.917,
+          "input": 55036,
+          "output": 200
+        },
+        {
+          "inner_idx": 13,
+          "start_s": 440341.797,
+          "end_s": 440343.99700000003,
+          "input": 56033,
+          "output": 148
+        },
+        {
+          "inner_idx": 14,
+          "start_s": 440364.797,
+          "end_s": 440367.147,
+          "input": 57892,
+          "output": 148
+        },
+        {
+          "inner_idx": 15,
+          "start_s": 440369.797,
+          "end_s": 440370.927,
+          "input": 58297,
+          "output": 114
+        },
+        {
+          "inner_idx": 16,
+          "start_s": 440373.797,
+          "end_s": 440375.897,
+          "input": 59195,
+          "output": 109
+        },
+        {
+          "inner_idx": 17,
+          "start_s": 440378.797,
+          "end_s": 440381.167,
+          "input": 59772,
+          "output": 125
+        },
+        {
+          "inner_idx": 18,
+          "start_s": 440383.797,
+          "end_s": 440412.167,
+          "input": 62813,
+          "output": 3103
+        }
+      ]
+    }
+  ],
+  "recorded_branch_lifetimes": {
+    "peak_distinct_agents": 2,
+    "seconds_with_multiple_agents": 55.729
+  },
+  "recorded_child_api_intervals": {
+    "peak_distinct_agents": 2,
+    "seconds_with_multiple_agents": 17.832
+  }
+}

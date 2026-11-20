@@ -12,6 +12,7 @@ import re
 import stat
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -89,45 +90,131 @@ def main():
     parser.add_argument("--accel", choices=("tcg", "kvm"), default="tcg")
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--prepare-only", action="store_true")
-    parser.add_argument("--workload", choices=("replay", "aiperf"), default="replay")
+    parser.add_argument(
+        "--workload", choices=("replay", "aiperf", "k3-probe", "nand-probe"), default="replay"
+    )
+    parser.add_argument(
+        "--natural-cache", action="store_true", help="Use natural AIPerf cache reuse"
+    )
+    parser.add_argument(
+        "--block-capture",
+        choices=("stream", "buffer"),
+        help="Instrument natural replay with live or control block capture",
+    )
+    parser.add_argument("--input", type=Path)
+    parser.add_argument(
+        "--pressure-config", type=Path, help="Natural-capacity replay with concurrent branches"
+    )
+    parser.add_argument("--hybrid-config", type=Path, default=ROOT / "configs/hybrid-tiny.json")
+    parser.add_argument("--max-model-len", type=int, default=8192)
+    parser.add_argument("--num-blocks", type=int, default=128)
+    parser.add_argument("--prefill-ms", type=float, default=10)
+    parser.add_argument("--decode-ms", type=float, default=2)
+    parser.add_argument("--guest-ram-mib", type=int, default=4096)
+    parser.add_argument("--namespace-mib", type=int, default=384)
+    parser.add_argument("--blocks-per-plane", type=int, default=256)
+    parser.add_argument(
+        "--store-segment-mib", type=int, default=768, help="Embedded Store segment for the K3 probe"
+    )
+    parser.add_argument(
+        "--offload-quota-mib", type=int, default=1024, help="Disk quota for the K3 probe"
+    )
+    parser.add_argument("--bucket-layout", choices=("mixed", "separate"))
+    parser.add_argument(
+        "--nand-stats", action="store_true", help="Collect same-window QMP NAND counters"
+    )
     args = parser.parse_args()
+    if args.workload == "nand-probe":
+        args.nand_stats = True
+        if (args.namespace_mib, args.blocks_per_plane) != (48, 32):
+            parser.error("nand-probe calibration uses --namespace-mib 48 --blocks-per-plane 32")
+    elif args.nand_stats and not (
+        args.block_capture and args.workload == "aiperf" and args.natural_cache
+    ):
+        parser.error("--nand-stats requires natural AIPerf block capture or nand-probe")
+    if args.nand_stats and args.blocks_per_plane > 4096:
+        parser.error("Atomic line inventory supports up to 4096 lines")
+    if args.bucket_layout and (
+        args.block_capture != "stream"
+        or not args.natural_cache
+        or args.workload != "aiperf"
+        or json.loads(args.hybrid_config.read_text()).get("profile") != "k3-tp8"
+    ):
+        parser.error("Layout measurement requires natural K3 AIPerf with stream capture")
+
+    if not (512 <= args.guest_ram_mib and 0 < args.namespace_mib <= 2 * args.blocks_per_plane):
+        parser.error(
+            "Namespace must fit the raw NAND geometry (2 MiB per block per plane across 8 LUNs)"
+        )
+    if args.workload == "k3-probe" and not (
+        0 < args.store_segment_mib < args.guest_ram_mib
+        and 0 < args.offload_quota_mib < args.namespace_mib
+    ):
+        parser.error("K3 Store budgets must fit guest RAM and disk")
     if not re.fullmatch(r"femu-[a-z0-9-]+", args.trial):
         parser.error("trial must match femu-[a-z0-9-]+")
     if not 0 <= args.nand_read_ns <= 1000000000:
         parser.error("nand-read-ns must be between 0 and 1 second")
+    if args.block_capture and not (args.natural_cache and args.workload == "aiperf"):
+        parser.error("Block capture requires a natural AIPerf workload")
     ramdisk = initramfs()
     output = ROOT / "outputs" / args.trial
     output.mkdir(exist_ok=False)
+    from femu_workload import digest, stage
+
+    if args.workload == "k3-probe":
+        bundle = output / "input"
+        bundle.mkdir()
+        (bundle / "resolved.json").write_bytes(
+            (ROOT / "configs/kimi-k3-b300-step2/resolved.json").read_bytes()
+        )
+        (bundle / "config.json").write_text(
+            json.dumps(
+                {
+                    "store_segment_mib": args.store_segment_mib,
+                    "offload_quota_mib": args.offload_quota_mib,
+                    "namespace_mib": args.namespace_mib,
+                    "guest_ram_mib": args.guest_ram_mib,
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+    elif args.workload == "nand-probe":
+        (output / "input").mkdir()
+    else:
+        stage(output / "input", args)
     from kv_ssd_sim.metadata_cache import create
 
     create(output / "package-distributions.json")
-    from kv_ssd_sim.runtime import native_environment
+    if args.workload != "nand-probe":
+        from kv_ssd_sim.runtime import native_environment
 
-    preparation_env = native_environment()
-    preparation_env["VLLM_CACHE_ROOT"] = str(output / "model-cache")
-    with (output / "prepare-model-info.log").open("w") as log:
-        subprocess.run(
-            [
-                sys.executable,
-                "-c",
-                (
-                    "import sys; from vllm.config import ModelConfig; "
-                    "ModelConfig(model=sys.argv[1], skip_tokenizer_init=True, "
-                    "dtype='float16', enforce_eager=True)"
-                ),
-                str(ROOT / "configs/model"),
-            ],
-            env=preparation_env,
-            stdout=log,
-            stderr=subprocess.STDOUT,
-            check=True,
-            timeout=120,
-        )
+        preparation_env = native_environment()
+        preparation_env["VLLM_CACHE_ROOT"] = str(output / "model-cache")
+        with (output / "prepare-model-info.log").open("w") as log:
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-c",
+                    (
+                        "import sys; from vllm.config import ModelConfig; "
+                        "ModelConfig(model=sys.argv[1], skip_tokenizer_init=True, "
+                        "dtype='float16', enforce_eager=True)"
+                    ),
+                    str(ROOT / "configs/model"),
+                ],
+                env=preparation_env,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                check=True,
+                timeout=120,
+            )
     binary = ASSETS / "build/qemu-system-x86_64"
-    # 512 MiB raw NAND, 384 MiB exposed namespace (25% overprovisioning).
+    # Eight LUNs, 256 KiB per erase block.
     device = (
-        "femu,devsz_mb=384,namespaces=1,femu_mode=1,"
-        "secsz=512,secs_per_pg=8,pgs_per_blk=64,blks_per_pl=256,"
+        f"femu,devsz_mb={args.namespace_mib},namespaces=1,femu_mode=1,"
+        f"secsz=512,secs_per_pg=8,pgs_per_blk=64,blks_per_pl={args.blocks_per_plane},"
         "pls_per_lun=1,luns_per_ch=4,nchs=2,"
         f"pg_rd_lat={args.nand_read_ns},pg_wr_lat=200000,blk_er_lat=2000000,"
         "ch_xfer_lat=0,gc_thres_pcent=75,gc_thres_pcent_high=95"
@@ -145,7 +232,7 @@ def main():
         "-smp",
         "2",
         "-m",
-        "4096",
+        str(args.guest_ram_mib),
         "-nodefaults",
         "-no-reboot",
         "-display",
@@ -161,7 +248,10 @@ def main():
         "-initrd",
         str(ramdisk),
         "-append",
-        f"console=ttyS0 quiet panic=1 rdinit=/init kvtrial={args.trial} kvworkload={args.workload}",
+        f"console=ttyS0 quiet panic=1 rdinit=/init kvtrial={args.trial} kvworkload={args.workload}"
+        + (f" kvcapture={args.block_capture}" if args.block_capture else "")
+        + (" kvnand=1" if args.nand_stats else "")
+        + (f" kvlayout={args.bucket_layout}" if args.bucket_layout else ""),
         "-device",
         device,
     ]
@@ -177,18 +267,43 @@ def main():
             "-device",
             f"virtio-9p-pci,fsdev={tag},mount_tag={tag}",
         ]
+    if args.nand_stats:
+        command.extend(["-qmp", "unix:nand-qmp.sock,server=on,wait=off"])
     manifest = {
         "femu_revision": REVISION,
         "command": command,
         "accelerator": args.accel,
+        "block_capture": args.block_capture,
+        "nand_stats": args.nand_stats,
+        "bucket_layout": args.bucket_layout,
         "nand_read_ns": args.nand_read_ns,
         "workload": args.workload,
+        "guest_inputs_sha256": {p.name: digest(p) for p in sorted((output / "input").iterdir())},
         "inputs_sha256": {
             str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in (
                 ASSETS / "alpine-vmlinuz",
                 ramdisk,
                 binary,
+                ROOT / "scripts/femu_workload.py",
+                *(
+                    (
+                        ROOT / "scripts/femu_qmp.py",
+                        ROOT / "src/kv_ssd_sim/nand.py",
+                        ROOT / "scripts/femu_nand_probe.py",
+                        ROOT / "src/kv_ssd_sim/block_capture.py",
+                    )
+                    if args.nand_stats
+                    else ()
+                ),
+                *(
+                    (ROOT / ".native/layout/libbucketlayout.so", ROOT / "native/bucket_layout.cpp")
+                    if args.bucket_layout
+                    else ()
+                ),
+                *((ROOT / "scripts/verify_k3_shards.py",) if args.workload == "k3-probe" else ()),
+                ROOT / "scripts/aiperf_gate/sitecustomize.py",
+                ROOT / "scripts/run_aiperf.py",
                 output / "package-distributions.json",
                 *sorted((output / "model-cache").rglob("*.json")),
             )
@@ -203,19 +318,34 @@ def main():
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = str(ASSETS / "toolchain/lib")
     with (output / "serial.log").open("w") as log:
-        result = subprocess.run(
-            command,
-            cwd=output,
-            env=env,
-            stdin=subprocess.DEVNULL,
-            stdout=log,
-            stderr=subprocess.STDOUT,
-            timeout=args.timeout,
-            check=False,
-        )
+        if args.nand_stats:
+            from femu_qmp import run
+
+            with tempfile.TemporaryDirectory(prefix="kv-nand-") as private:
+                sockpath = Path(private) / "qmp.sock"
+                live_command = command.copy()
+                live_command[live_command.index("-qmp") + 1] = f"unix:{sockpath},server=on,wait=off"
+                manifest["command"] = live_command
+                (output / "launch.json").write_text(json.dumps(manifest, indent=2) + "\n")
+                rc = run(live_command, output, log, env, args.timeout, sockpath)
+        else:
+            rc = subprocess.run(
+                command,
+                cwd=output,
+                env=env,
+                stdin=subprocess.DEVNULL,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                timeout=args.timeout,
+                check=False,
+            ).returncode
     exit_file = output / "guest-exit-code.txt"
-    if result.returncode or not exit_file.exists() or exit_file.read_text().strip() != "0":
+    if rc or not exit_file.exists() or exit_file.read_text().strip() != "0":
         raise RuntimeError(f"FEMU guest failed; inspect {output}/serial.log and replay.log")
+    if args.nand_stats:
+        from analyze_nand import verify
+
+        verify(output)
     print(output)
     return 0
 

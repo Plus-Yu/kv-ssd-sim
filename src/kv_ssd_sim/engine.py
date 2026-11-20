@@ -11,7 +11,9 @@ import json
 import math
 import os
 import time
+from contextlib import nullcontext
 from pathlib import Path
+from unittest.mock import patch
 
 from .events import EventLog
 from .native import HostFence, NativeRuntime
@@ -31,8 +33,9 @@ class ReplayEngine:
         self.specs = requests
         self.prefill_ms, self.decode_ms = prefill_ms, decode_ms
         self.timing, self.cold = timing, cold
+        self.pressure = None
         init_none_hash(sha256)
-        hasher = get_request_block_hasher(runtime.block_size, sha256)
+        hasher = get_request_block_hasher(runtime.hash_unit, sha256)
         self.requests = {}
         self.metrics = {}
         self.hasher = hasher
@@ -128,7 +131,8 @@ class ReplayEngine:
             else 0
         )
         fence = HostFence()
-        native.worker.fence = fence
+        for worker in native.workers:
+            worker.fence = fence
         native.worker_connector.start_load_kv(None)
         # Native store jobs retain native block references and wait on this fence.
         native.worker_connector.wait_for_save()
@@ -140,6 +144,15 @@ class ReplayEngine:
                 step=sid,
                 request_ids=list(ranges),
                 scheduled_tokens=scheduled.num_scheduled_tokens,
+                **(
+                    {
+                        "active_pool_blocks_per_rank": native.num_blocks
+                        - scheduler.kv_cache_manager.block_pool.get_num_free_blocks(),
+                        "prepared_digest_bytes": native.payloads.nbytes,
+                    }
+                    if len(native.workers) > 1
+                    else {}
+                ),
                 planned_compute_ms=delay_ms,
                 kind="mixed"
                 if has_prefill and has_decode
@@ -225,13 +238,15 @@ class ReplayEngine:
             await asyncio.sleep(0.001)
 
     async def drain(self):
-        deadline = time.perf_counter() + 15
+        deadline = time.perf_counter() + (300 if len(self.runtime.workers) > 1 else 15)
         # At least one empty step forwards the last finished_req_ids to the worker.
         for _ in range(3):
             await self.step()
         while time.perf_counter() < deadline:
-            sending = self.runtime.worker.native.kv_send_thread
-            if sending is None or sending.request_queue.unfinished_tasks == 0:
+            if not any(
+                w.native.kv_send_thread and w.native.kv_send_thread.request_queue.unfinished_tasks
+                for w in self.runtime.workers
+            ):
                 await self.step()  # Return completed store-job references to the scheduler.
                 return
             await self.step()
@@ -278,6 +293,8 @@ class ReplayEngine:
                     release_at = item.arrival_s
                 if now < release_at:
                     continue
+                if self.pressure:
+                    self.pressure.before_admission(item.request_id)
                 self.runtime.scheduler.add_request(self.requests[item.request_id])
                 self.admitted.add(item.request_id)
                 self.metrics[item.request_id]["admitted_s"] = now
@@ -315,6 +332,7 @@ def run_replay(
     num_blocks=128,
     hybrid_config_path=None,
     femu_mount=None,
+    pressure_config=None,
 ):
     for name, value in {
         "read_delay_ms": read_delay_ms,
@@ -346,6 +364,29 @@ def run_replay(
     )
     staging_bytes = max(8 * 1024 * 1024, pool_bytes * 2)
     disk_limit_bytes = max(256 * 1024 * 1024, pool_bytes * 4)
+    pressure = None
+    segment_bytes = max(32 * 1024**2, max_model_len * 512 * 2)
+    if pressure_config:
+        from .pressure import PressureConfig
+
+        pressure = PressureConfig.load(pressure_config)
+        if cold_between_turns or read_delay_ms or not hybrid_config or timing != "causal":
+            raise ValueError(
+                "Capacity profile needs causal hybrid replay without artificial cooling or delay"
+            )
+        roles = {
+            pressure.producer,
+            pressure.restore,
+            pressure.incomplete_producer,
+            pressure.recompute,
+        }
+        if not roles <= {r.request_id for r in requests}:
+            raise ValueError("Pressure experiment roles are absent from input trace")
+        segment_bytes, staging_bytes, disk_limit_bytes = (
+            pressure.segment_bytes,
+            pressure.staging_bytes,
+            pressure.disk_bytes,
+        )
     output = output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     disk = output / "disk"
@@ -353,7 +394,7 @@ def run_replay(
     if femu_mount is not None:
         from .femu import FEMUDevice
 
-        if read_delay_ms != 0 or not cold_between_turns:
+        if read_delay_ms != 0 or not (cold_between_turns or pressure):
             raise ValueError("FEMU verification requires cold-between-turns and no injected delay")
         femu_device = FEMUDevice(femu_mount)
         actual_disk = femu_device.mount / output.name
@@ -413,6 +454,9 @@ def run_replay(
             else "native receiver thread, per GET batch",
         },
     }
+    if pressure:
+        manifest["pressure_config"] = dataclasses.asdict(pressure)
+        manifest["offload_use_uring"] = femu_device is not None
     manifest["storage_device"] = femu_device.describe() if femu_device else None
     (output / "run_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     os.environ.update(
@@ -426,13 +470,22 @@ def run_replay(
             "VLLM_MOONCAKE_LOAD_RECV_THREADS": "2",
         }
     )
-    with EventLog(output / "events.jsonl") as events, mooncake_master(output) as master:
+    io_mode = (
+        patch.dict(os.environ, {"MOONCAKE_OFFLOAD_USE_URING": "1" if femu_device else "0"})
+        if pressure
+        else nullcontext()
+    )
+    with (
+        io_mode,
+        EventLog(output / "events.jsonl") as events,
+        mooncake_master(output, pressure=pressure) as master,
+    ):
         events.emit("clock_sync", monotonic_origin_ns=events._start)
         store_config = {
             "mode": "embedded",
             "metadata_server": "P2PHANDSHAKE",
             "master_server_address": master,
-            "global_segment_size": max(32 * 1024 * 1024, max_model_len * 512 * 2),
+            "global_segment_size": segment_bytes,
             "local_buffer_size": staging_bytes,
             "protocol": "tcp",
             "device_name": "",
@@ -460,8 +513,19 @@ def run_replay(
                 timing=timing,
                 cold=cold_between_turns,
             )
+            if pressure:
+                from .pressure import PressureObserver
+
+                engine.pressure = PressureObserver(runtime, pressure, events)
             rows = asyncio.run(engine.run())
-            disk_keys = runtime.store.disk_barrier()
+            required = engine.pressure.published[pressure.producer] if pressure else None
+            disk_keys = runtime.store.disk_barrier(required)
+            if pressure:
+                events.emit(
+                    "final_replica_inventory",
+                    tiers=engine.pressure.tiers(runtime.store.expected),
+                    required_disk_keys=sorted(required),
+                )
             report = {
                 "status": "passed",
                 "requests": len(rows),

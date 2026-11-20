@@ -28,6 +28,7 @@ def main(argv=None):
     replay.add_argument("--max-model-len", type=int, default=8192)
     replay.add_argument("--num-blocks", type=int, default=128)
     replay.add_argument("--hybrid-config", type=Path)
+    replay.add_argument("--pressure-config", type=Path)
     replay.add_argument("--femu-mount", type=Path)
     serve = commands.add_parser(
         "serve", help="Serve synthetic streaming chat with native scheduling"
@@ -92,6 +93,7 @@ def main(argv=None):
             num_blocks=args.num_blocks,
             hybrid_config_path=args.hybrid_config,
             femu_mount=args.femu_mount,
+            pressure_config=args.pressure_config,
         )
     else:
         from .experiment import run_demo

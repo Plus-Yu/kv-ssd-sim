@@ -1,0 +1,5 @@
+{
+  "source": "https://raw.githubusercontent.com/callanjfox/kv-cache-tester/94f6046dfd9c0c8bc0cdb24a5aa6579bac8669bf/traces/trace_0504.json",
+  "sha256": "a902593802a8d08f95e4ad9f08a4a254d6511ad8d72faa403945f61c2cbef58f",
+  "selection": "First two unchanged serial parent turns; candidate chosen for short inputs and 4 s think time before device measurement."
+}

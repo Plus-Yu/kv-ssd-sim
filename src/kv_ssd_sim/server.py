@@ -20,6 +20,7 @@ from pathlib import Path
 
 from aiohttp import web
 
+from .block_capture import mark
 from .engine import ReplayEngine
 from .events import EventLog
 from .hybrid import HybridConfig
@@ -105,6 +106,9 @@ class ServingLoop:
         self.reserved = 0
         self.reserved_bytes = 0
         self.last_cold_count = 0
+        self.external_gate = cold and os.environ.get("KV_SSD_EXTERNAL_GATE") == "1"
+        self.preparing = False
+        self.ready_for = None
         self.failure = None
         self.closing = False
         self.task = None
@@ -174,8 +178,12 @@ class ServingLoop:
             while not self.closing or self.jobs:
                 engine = self.engine
                 active = len(engine.admitted) - len(engine.completed)
+                if self.external_gate and not self.jobs:
+                    await asyncio.sleep(0.005)
+                    continue
                 if (
                     self.cold
+                    and not self.external_gate
                     and not active
                     and not self.pending.empty()
                     and engine.completed
@@ -224,6 +232,15 @@ class ServingLoop:
                 if not active:
                     await asyncio.sleep(0.005)
             await engine.drain()
+            if os.environ.get("KV_SSD_CAPTURE_ROOT"):
+                pending = sum(
+                    w.native.kv_send_thread.request_queue.unfinished_tasks
+                    for w in self.runtime.workers
+                    if w.native.kv_send_thread
+                )
+                if pending:
+                    raise RuntimeError("Native sender still has outstanding jobs")
+                mark("store_sender_drained", unfinished=pending)
         except Exception as error:  # noqa: BLE001 -- propagate native failure to every HTTP waiter
             self.failure = str(error)
             self.events.emit("serving_failure", error=self.failure)
@@ -233,12 +250,28 @@ class ServingLoop:
 
     async def close(self):
         self.closing = True
-        await asyncio.wait_for(self.task, timeout=60)
+        await asyncio.wait_for(self.task, timeout=360 if len(self.runtime.workers) > 1 else 60)
         if self.failure:
             raise RuntimeError(self.failure)
-        keys = (
-            await asyncio.to_thread(self.runtime.store.disk_barrier) if self.engine.metrics else []
-        )
+        device = self.runtime.store.femu_device
+        if device and not self.cold:
+            from .storage import replica_types
+
+            keys = list(self.runtime.store.expected)
+            descriptors = (
+                await asyncio.to_thread(self.runtime.store.batch_get_replica_desc, keys)
+                if keys
+                else {}
+            )
+            tiers = {k: replica_types(descriptors.get(k, [])) for k in keys}
+            self.events.emit("natural_final_replicas", tiers=tiers)
+            keys = [k for k in keys if "LOCAL_DISK" in tiers[k]]
+        else:
+            keys = (
+                await asyncio.to_thread(self.runtime.store.disk_barrier)
+                if self.engine.metrics
+                else []
+            )
         rows = list(self.engine.metrics.values())
         for row in rows:
             row["ttft_ms"] = (row["first_token_s"] - row["admitted_s"]) * 1000
@@ -251,9 +284,7 @@ class ServingLoop:
             "restore_batches": self.runtime.store.restore_batches,
             "checksum_errors": self.runtime.store.errors,
             "femu_verified": self.runtime.store.femu_device is not None,
-            "femu_evidence": (
-                self.runtime.store.femu_device.verify() if self.runtime.store.femu_device else None
-            ),
+            "femu_evidence": (device.verify(require_disk_read=self.cold) if device else None),
         }
 
 
@@ -272,7 +303,28 @@ def create_app(loop, tokenizer, *, model, token_limit):
     async def models(request):
         return web.json_response({"object": "list", "data": [{"id": model, "object": "model"}]})
 
+    async def prepare(request):
+        client_id = request.headers.get("X-Request-ID")
+        if not client_id or loop.preparing or loop.ready_for or loop.jobs or loop.failure:
+            raise web.HTTPConflict(text="Cold validation requires one healthy idle worker")
+        loop.preparing = True
+        try:
+            if loop.engine.completed:
+                loop.events.emit("cold_prepare_begin", client_request_id=client_id)
+                await loop.make_cold()
+                loop.events.emit("cold_prepare_end", client_request_id=client_id)
+            loop.ready_for = client_id
+            return web.json_response({"ready_for": client_id})
+        finally:
+            loop.preparing = False
+
     async def chat(request):
+        if loop.external_gate:
+            client_id = request.headers.get("X-Request-ID")
+            if not client_id or loop.ready_for != client_id:
+                raise web.HTTPConflict(text="Missing pre-send preparation")
+            loop.ready_for = None
+            loop.events.emit("http_arrival", client_request_id=client_id)
         try:
             body = await request.json()
             tokens, count, streaming = parse_chat(
@@ -344,6 +396,7 @@ def create_app(loop, tokenizer, *, model, token_limit):
                 await response.write(b"data: [DONE]\n\n")
                 await response.write_eof()
             loop.events.emit("http_response_finished", request_id=rid, output_tokens=emitted)
+            mark("http_response", request_id=rid)
             return (
                 response
                 if streaming
@@ -372,12 +425,19 @@ def create_app(loop, tokenizer, *, model, token_limit):
             raise
 
     app.router.add_get("/health", health)
+    if loop.external_gate:
+        app.router.add_post("/internal/prepare", prepare)
     app.router.add_get("/v1/models", models)
     app.router.add_post("/v1/chat/completions", chat)
     return app
 
 
 def serve(args):
+    layout_lib = None
+    if os.environ.get("KV_SSD_LAYOUT"):
+        from .layout import load_policy
+
+        layout_lib = load_policy(os.environ["KV_SSD_LAYOUT"])
     from transformers import AutoTokenizer
 
     for value in (args.prefill_ms, args.decode_ms, args.read_delay_ms):
@@ -389,12 +449,20 @@ def serve(args):
         raise ValueError("Invalid admission limit or port")
     tokenizer = AutoTokenizer.from_pretrained(str(args.tokenizer), local_files_only=True)
     hybrid = HybridConfig.load(args.hybrid_config) if args.hybrid_config else None
-    pool = args.num_blocks * (
-        max(hybrid.layers.count(k) for k in ("mla", "kda")) * hybrid.page_bytes
-        if hybrid
-        else 64 * 512
+    from .k3_online import K3Profile
+
+    k3 = isinstance(hybrid, K3Profile)
+    pool = (
+        0
+        if k3
+        else args.num_blocks
+        * (
+            max(hybrid.layers.count(k) for k in ("mla", "kda")) * hybrid.page_bytes
+            if hybrid
+            else 64 * 512
+        )
     )
-    staging = max(8 * 1024**2, pool * 2)
+    staging = hybrid.staging_mib << 20 if k3 else max(8 * 1024**2, pool * 2)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     disk = output / "disk"
@@ -402,10 +470,8 @@ def serve(args):
     if args.femu_mount is not None:
         from .femu import FEMUDevice
 
-        if args.read_delay_ms != 0 or not args.cold_between_requests:
-            raise ValueError(
-                "FEMU verification requires cold-between-requests and no injected delay"
-            )
+        if args.read_delay_ms != 0:
+            raise ValueError("FEMU requires zero injected receiver delay")
         femu_device = FEMUDevice(args.femu_mount)
         actual_disk = femu_device.mount / output.name
         actual_disk.mkdir(exist_ok=False)
@@ -454,7 +520,9 @@ def serve(args):
             "MOONCAKE_OFFLOAD_FLUSH_PARTIAL_BUCKETS": "1",
             "MOONCAKE_OFFLOAD_BUCKET_DIRECT_WRITE": "aligned",
             "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": str(staging),
-            "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": str(max(256 * 1024**2, pool * 4)),
+            "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": str(
+                hybrid.quota_mib << 20 if k3 else max(256 * 1024**2, pool * 4)
+            ),
             "MOONCAKE_OFFLOAD_HEARTBEAT_INTERVAL_SECONDS": "1",
         }
     )
@@ -462,6 +530,10 @@ def serve(args):
         events = stack.enter_context(EventLog(output / "events.jsonl"))
         events.emit("clock_sync", monotonic_origin_ns=events._start)
         master = stack.enter_context(mooncake_master(output))
+        if k3 and femu_device:
+            from .k3_online import CapacitySamples
+
+            stack.enter_context(CapacitySamples(output, femu_device.mount))
         config = output / "mooncake.json"
         config.write_text(
             json.dumps(
@@ -472,7 +544,9 @@ def serve(args):
                     "protocol": "tcp",
                     "device_name": "",
                     "enable_offload": True,
-                    "global_segment_size": max(32 * 1024**2, args.max_model_len * 1024),
+                    "global_segment_size": hybrid.segment_mib << 20
+                    if k3
+                    else max(32 * 1024**2, args.max_model_len * 1024),
                     "local_buffer_size": staging,
                 }
             )
@@ -500,7 +574,7 @@ def serve(args):
             loop,
             tokenizer,
             model=args.model,
-            token_limit=min(args.max_model_len, (args.num_blocks - 2) * 64),
+            token_limit=min(args.max_model_len, (args.num_blocks - 2) * native.block_size),
         )
 
         async def lifecycle(app):
@@ -511,6 +585,14 @@ def serve(args):
             finally:
                 try:
                     report = await loop.close()
+                    if layout_lib and femu_device:
+                        from .layout import verify_layout
+
+                        await asyncio.to_thread(
+                            verify_layout, output, femu_device, native.store, layout_lib
+                        )
+                    elif layout_lib:
+                        report["layout_plans"] = layout_lib.layout_calls()
                 except Exception as error:
                     report = {"status": "failed", "error": str(error)}
                     raise

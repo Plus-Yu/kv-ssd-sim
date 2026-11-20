@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "reference_specification_only_not_runtime_ready",
+  "name": "kimi-k3-dgx-b300-tp8-text-fixed-step-v1",
+  "model": {
+    "id": "moonshotai/Kimi-K3",
+    "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+    "config": "references/kimi-k3-b300/model-config.json",
+    "config_sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213",
+    "weight_format": "mxfp4-pack-quantized",
+    "load_weights": false,
+    "execute_forward": false
+  },
+  "reference_deployment": {
+    "hardware": "single NVIDIA DGX B300",
+    "gpu_count": 8,
+    "gpu_nominal_memory_GB_each": 288,
+    "nominal_host_RAM_TB": 2,
+    "nominal_cache_nvme_count": 8,
+    "nominal_cache_nvme_TB_each": 3.84,
+    "capacity_units": "decimal; nominal values are not usable KV budgets",
+    "recipe_repository": "vllm-project/recipes",
+    "recipe_commit": "3eeceeab6265abdfed2a3aa48c5d76d9e0636e25",
+    "recipe_file": "references/kimi-k3-b300/recipe.yaml",
+    "vllm_source_commit": "935f87de846980dc16c54ac1996595fc12eb3f9e",
+    "container_digest": null,
+    "container_note": "No GPU container selected or launched; source recipe is pinned instead of nightly image tag"
+  },
+  "parallelism": {
+    "tensor_parallel_size": 8,
+    "pipeline_parallel_size": 1,
+    "data_parallel_size": 1,
+    "decode_context_parallel_size": 1,
+    "expert_parallel": false
+  },
+  "cache": {
+    "mla_dtype": "fp8",
+    "kda_convolution_dtype": "bfloat16",
+    "kda_recurrent_dtype": "float32",
+    "dtype_status": "target choices; native mapping, scales and padding require step 2 validation",
+    "enable_prefix_caching": true,
+    "prefix_match_unit": 128,
+    "physical_block_size": null,
+    "per_rank_kv_budget_bytes": null,
+    "mooncake_memory_budget_bytes": null,
+    "ssd_budget_bytes": null
+  },
+  "scheduler": {
+    "max_model_len": 131072,
+    "max_num_seqs": 8,
+    "max_num_batched_tokens": 4096,
+    "enable_chunked_prefill": true,
+    "gpu_memory_utilization": 0.95,
+    "speculative_decoding": false
+  },
+  "compute": {
+    "prefill_step_ms": 10.0,
+    "decode_step_ms": 2.0,
+    "mixed_step_policy": "prefill if any prefill work else decode",
+    "calibrated_to_B300": false
+  },
+  "input": {
+    "slice": "datasets/kimi-k3-b300-step1/slice.json",
+    "slice_sha256": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896",
+    "source_trace_block_size": 64,
+    "tokenizer": "configs/sim-tokenizer",
+    "token_semantics": "synthetic trace lengths and ordered hash prefixes; not original text retokenized with K3",
+    "timing": "causal predecessor completion plus unchanged think time",
+    "max_concurrent_conversations": 1,
+    "random_seed": 42,
+    "truncate_input": false,
+    "truncate_output": false,
+    "vision": false
+  },
+  "overrides_from_recipe": [
+    "context limit 131072 instead of 1048576",
+    "max_num_seqs 8 and max_num_batched_tokens 4096 are controlled experiment choices",
+    "DCP disabled in first baseline",
+    "text only, speculation disabled, fixed compute rather than GPU execution"
+  ],
+  "runtime_gap": {
+    "current_TP": 1,
+    "current_MLA_dtype": "float16",
+    "current_prefix_match_unit": 64,
+    "current_max_num_batched_tokens": 128,
+    "target_profile_consumed_by_runtime": false,
+    "remaining": [
+      "step 2 native cache geometry and capacity mapping",
+      "step 3 multi-rank buffers and objects",
+      "step 4 generic FEMU input and timing",
+      "step 5 lifecycle and pressure",
+      "step 6 paired real-slice experiments"
+    ]
+  }
+}

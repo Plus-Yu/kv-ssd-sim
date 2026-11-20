@@ -1,0 +1,1945 @@
+{
+  "settings": {
+    "inputs": {
+      "config.json": "dfe4165b3f11e4f435b4251d40f2ccb3045e3b0dee24b284387a8e37a95b02f5",
+      "hybrid.json": "fba5251b8959820aed35d99fe6c1db9e4b33bdd76368af9b4dc1bd2fa34ac269",
+      "trace.json": "d123b80995bcba44e7e69b0f3795e0783882e1e4794d838b55e53091f397bdaa"
+    },
+    "runtime_hashes": {
+      ".femu/alpine-vmlinuz": "0c41150f2c75a1edf0456ffeb54880837fd9cba86cbf3a351c4a1c94b6ab7978",
+      ".femu/guest-initramfs-09341b43dc9d7f46.gz": "09341b43dc9d7f465f2b4217e506cbe0fa99234b12f43ea625e053f09b9f3a21",
+      ".femu/build/qemu-system-x86_64": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+      "scripts/femu_workload.py": "8b9af9759882d68748a223d989f3ab9f39242e5a6e37ac8bf27e52349c9fff65",
+      "scripts/aiperf_gate/sitecustomize.py": "e59c1de20ceddecc1bb9ae1693e95b36df753aab07b08f921c4ba621eaa3e1e8",
+      "scripts/run_aiperf.py": "f01991d66c13a3405ab4ba41ab2bc0ec9ae3a510ca9e38f428f4e2281ee054dc",
+      "trial/package-distributions.json": "f7e86ce81f8b994fdf7a063f10a73f6127c7fc1920ca7ee6eb5b69407eb22d3d",
+      "trial/model-cache/modelinfos/vllm-model_executor-models-llama-LlamaForCausalLM.json": "5a70c081c6a3b764d0fae12c1acffdab7cadce0e62f9c59f8ce9f18bb3a6def5"
+    },
+    "server": {
+      "harness_source_sha256": {
+        "__init__.py": "61e261907cad6a033775f6b30308856fd3fcb7632dcb4d9c19c7f6e9c6b993fb",
+        "__main__.py": "ef6dd0ed3e82600907ea1f1239567dcf7a88bf867c603b4568f2ca811ae13ee4",
+        "audit.py": "7156f2760e2172ec8a0072f50ce81095acb2c715ea61a5d08c6ebca77b4a3d9e",
+        "block_capture.py": "96347e2f658ca39db81baf9df15fa391fadc3a666882b2f477b93e8300f57d7c",
+        "cli.py": "a2eb18d88945414b0d4016734c9f6c35cec9bc91857cddc1dcf2c04dacf2fb3d",
+        "deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de",
+        "engine.py": "36e7cadb1a9ef02d1358dea02995ec075814fbc6316a891ab40ce267a41e0f29",
+        "events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+        "experiment.py": "fe254fa2faeb276faf0f842399436668c88d1735e660161ea0ad34e78f1ba390",
+        "femu.py": "c17ae39642dd421f1ddd53fb98bf0a52537d2e1a07d7d4529fd6e327442c96ac",
+        "hybrid.py": "34a88bfca077e9c8bb2624a79dc4b8c38d2f512ecbe8afc24127ba7b8168b9c3",
+        "k3_online.py": "cad1ff028c92e2d50ef9737a8dba98cad7d8ffba0de80f200ef29267b8bee76c",
+        "metadata_cache.py": "ca1a5cdddac39f9c1d59c4c4fc67184deb519861c51bd2fbd1b217d471f552bf",
+        "native.py": "7a13ba1b18f55ef18a43a18873c5277d8c84d2d4ea0b187753afc73540ed0e34",
+        "payload.py": "3a568e830798aa6d48d539ab7b9d24e7b339c74c30299f0a4abe5710d7634f00",
+        "pressure.py": "40c86290ddf4cc6663544578b67565e9dbcf6b88aff74dc33a756be9f6b0f5e1",
+        "runtime.py": "fbcefac7b00ee051745935b22e4d0be7a0c00e1591ae9890272c27706c9b4380",
+        "server.py": "b86ce073d829d83632fe70e0694e2a84713ea4fe80864fd2a82d6127e8d8456a",
+        "smoke.py": "c849e16fde4f74ebbed5cf5947b7020edf33d0946cea885753c2aed7b4c374cb",
+        "storage.py": "dfe9ae519ba78f1e29fdea002d12c3ff19b8b777127f4c0372b055b2a10347cd",
+        "timing.py": "82d8b9c23f5dba551232ac8d54494d92a8cb02a73109bf2291db8d1cf7c12915",
+        "trace.py": "944d9eca9d1b16ea730890669c422b27408b15e433cb82d94c3a62946958478e"
+      },
+      "versions": {
+        "vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+        "torch": "2.14.0+cpu",
+        "mooncake-transfer-engine-non-cuda": "0.3.14",
+        "aiohttp": "3.14.5"
+      },
+      "tokenizer_sha256": {
+        "chat_template.jinja": "c4123e078b4bdc0f5f63fa38eca171496c1d7ee48987353469d9d611d0428e66",
+        "tokenizer.json": "73ba49a1889d80a633cef1e86ea21b66cd7fa2274bd86135d844872aed7fe9b6",
+        "tokenizer_config.json": "a1641d0c19704700109f186096017511cfe5fbf9b08b37f9be65c591a20716d3"
+      },
+      "prefill_ms": 10.0,
+      "decode_ms": 2.0,
+      "read_delay_ms": 0.0,
+      "max_model_len": 12288,
+      "num_blocks": 22,
+      "max_inflight": 32,
+      "hybrid_config": {
+        "profile": "k3-tp8",
+        "segment_mib": 2520,
+        "staging_mib": 96,
+        "quota_mib": 2840
+      },
+      "cold_between_requests": false
+    },
+    "femu_revision": "a898d22b2f894042afe0f4ef21867393c5c78a70",
+    "device": "femu,devsz_mb=3072,namespaces=1,femu_mode=1,secsz=512,secs_per_pg=8,pgs_per_blk=64,blks_per_pl=2048,pls_per_lun=1,luns_per_ch=4,nchs=2,pg_rd_lat=40000,pg_wr_lat=200000,blk_er_lat=2000000,ch_xfer_lat=0,gc_thres_pcent=75,gc_thres_pcent_high=95",
+    "-machine": "q35,accel=tcg",
+    "-cpu": "max",
+    "-m": "8192",
+    "-smp": "2"
+  },
+  "runs": [
+    {
+      "requests": [
+        {
+          "turn": 1,
+          "prompt_tokens": 11133,
+          "output_tokens": 139,
+          "wire_prompt_sha256": "daec54714ab42e9fd184118bdbff643c5d6320f9676d41d7252b720502ba34d0",
+          "shared_prompt_block_tokens": 0,
+          "shared_prompt_tokens_recomputed": 0,
+          "local_reuse_tokens": 0,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 11133,
+          "think_gap_s": null,
+          "get_batches": [],
+          "http_start_ns": 357663229973,
+          "response_end_ns": 451531918738,
+          "device_io_during_request": {
+            "R": 1,
+            "R_bytes": 4096,
+            "W": 390,
+            "W_bytes": 1476026368
+          },
+          "device_io_since_previous_response": null
+        },
+        {
+          "turn": 2,
+          "prompt_tokens": 11300,
+          "output_tokens": 96,
+          "wire_prompt_sha256": "baa6f7b041c214ec747364308920343a4aa993fd6b8407d82044707d7d0a7616",
+          "shared_prompt_block_tokens": 11072,
+          "shared_prompt_tokens_recomputed": 64,
+          "local_reuse_tokens": 11008,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 292,
+          "think_gap_s": 4.020600014,
+          "get_batches": [],
+          "http_start_ns": 455590259288,
+          "response_end_ns": 501644882480,
+          "device_io_during_request": {
+            "R": 1,
+            "R_bytes": 4096,
+            "W": 97,
+            "W_bytes": 319262720
+          },
+          "device_io_since_previous_response": {
+            "R": 0,
+            "R_bytes": 0,
+            "W": 71,
+            "W_bytes": 267579392
+          }
+        }
+      ],
+      "block_trace_integrity": {
+        "buffer_entries": 1362,
+        "foreign_device_events": 0,
+        "ambiguous_completions": 0,
+        "error_completions": 0
+      },
+      "session_io_first_http_send_to_last_response": {
+        "R": 2,
+        "R_bytes": 8192,
+        "W": 558,
+        "W_bytes": 2062868480
+      },
+      "full_trace_io": {
+        "R": 4,
+        "R_bytes": 16384,
+        "W": 677,
+        "W_bytes": 2403786752
+      },
+      "final_replica_states": {
+        "LOCAL_DISK+MEMORY": 197,
+        "LOCAL_DISK": 11
+      },
+      "capture": {
+        "http_boundary_adjustments": [
+          {
+            "marker": 1,
+            "label": "http_send",
+            "http_ns": 357663229973,
+            "sample_before_ns": 357627199090,
+            "sample_after_ns": 357630726850,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 2,
+            "label": "http_response",
+            "http_ns": 451531918738,
+            "sample_before_ns": 451532124893,
+            "sample_after_ns": 451533251422,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 3,
+            "label": "http_send",
+            "http_ns": 455590259288,
+            "sample_before_ns": 455574167573,
+            "sample_after_ns": 455574953334,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 4,
+            "label": "http_response",
+            "http_ns": 501644882480,
+            "sample_before_ns": 501645105872,
+            "sample_after_ns": 501646517373,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "http_aligned_windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 9377753657,
+            "end_ns": 357663229973,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 2,
+              "issued_bytes": 8192,
+              "completions": 2,
+              "sectors": 16,
+              "diskstats_ios": 2,
+              "diskstats_sectors": 16,
+              "last_complete_ns": 90377993000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 250105921000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 357663229973,
+            "end_ns": 451531918738,
+            "inflight_start": 0,
+            "inflight_end": 3,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 450129273000
+            },
+            "W": {
+              "issues": 390,
+              "issued_bytes": 1476026368,
+              "completions": 387,
+              "sectors": 2860736,
+              "diskstats_ios": 387,
+              "diskstats_sectors": 2860736,
+              "last_complete_ns": 451520782000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 451531918738,
+            "end_ns": 455590259288,
+            "inflight_start": 3,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 71,
+              "issued_bytes": 267579392,
+              "completions": 74,
+              "sectors": 544744,
+              "diskstats_ios": 74,
+              "diskstats_sectors": 544744,
+              "last_complete_ns": 455308220000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 455590259288,
+            "end_ns": 501644882480,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 456647616000
+            },
+            "W": {
+              "issues": 97,
+              "issued_bytes": 319262720,
+              "completions": 97,
+              "sectors": 623560,
+              "diskstats_ios": 97,
+              "diskstats_sectors": 623560,
+              "last_complete_ns": 501589466000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 501644882480,
+            "end_ns": 507774799712,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 89,
+              "issued_bytes": 340692992,
+              "completions": 89,
+              "sectors": 665416,
+              "diskstats_ios": 89,
+              "diskstats_sectors": 665416,
+              "last_complete_ns": 505954725000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 507774799712,
+            "end_ns": 676725566518,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 114688,
+              "completions": 15,
+              "sectors": 224,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 224,
+              "last_complete_ns": 575737975000
+            }
+          }
+        ],
+        "mode": "stream",
+        "collector_cpu_s": 4.095800381,
+        "windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 9377753657,
+            "end_ns": 357630726850,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 2,
+              "issued_bytes": 8192,
+              "completions": 2,
+              "sectors": 16,
+              "diskstats_ios": 2,
+              "diskstats_sectors": 16,
+              "last_complete_ns": 90377993000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 250105921000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 357630726850,
+            "end_ns": 451533251422,
+            "inflight_start": 0,
+            "inflight_end": 3,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 450129273000
+            },
+            "W": {
+              "issues": 390,
+              "issued_bytes": 1476026368,
+              "completions": 387,
+              "sectors": 2860736,
+              "diskstats_ios": 387,
+              "diskstats_sectors": 2860736,
+              "last_complete_ns": 451520782000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 451533251422,
+            "end_ns": 455574953334,
+            "inflight_start": 3,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 71,
+              "issued_bytes": 267579392,
+              "completions": 74,
+              "sectors": 544744,
+              "diskstats_ios": 74,
+              "diskstats_sectors": 544744,
+              "last_complete_ns": 455308220000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 455574953334,
+            "end_ns": 501646517373,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 456647616000
+            },
+            "W": {
+              "issues": 97,
+              "issued_bytes": 319262720,
+              "completions": 97,
+              "sectors": 623560,
+              "diskstats_ios": 97,
+              "diskstats_sectors": 623560,
+              "last_complete_ns": 501589466000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 501646517373,
+            "end_ns": 507774799712,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 89,
+              "issued_bytes": 340692992,
+              "completions": 89,
+              "sectors": 665416,
+              "diskstats_ios": 89,
+              "diskstats_sectors": 665416,
+              "last_complete_ns": 505954725000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 507774799712,
+            "end_ns": 676725566518,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 114688,
+              "completions": 15,
+              "sectors": 224,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 224,
+              "last_complete_ns": 575737975000
+            }
+          }
+        ],
+        "last_response_ns": 501644882480,
+        "sender_drained_ns": 507774799712,
+        "device_end_ns": 676725566518,
+        "quiet_seconds": 5,
+        "tail_from_response_s": 74.09309252,
+        "tail_read_bytes": 0,
+        "tail_write_bytes": 340807680,
+        "tail_read_ios": 0,
+        "tail_write_ios": 104
+      },
+      "trial": "femu-c2-natural-01",
+      "session_s": 143.981652507,
+      "request_s": [
+        93.868688765,
+        46.054623192
+      ],
+      "observed_s": 319.062336545,
+      "io_first_send_to_device_end": {
+        "R": {
+          "count": 2,
+          "bytes": 8192,
+          "size_histogram": {
+            "4096": 2
+          },
+          "adjacent_transitions": 0,
+          "transitions": 1,
+          "hottest_1MiB_byte_share": 0.5,
+          "latency_samples": 2,
+          "mean_ms": 373.90450000000004,
+          "p50_ms": 204.965,
+          "p95_ms": 542.844,
+          "count_share": 0.0030120481927710845,
+          "bytes_share": 3.4081013978327883e-06,
+          "adjacent_share": 0.0
+        },
+        "W": {
+          "count": 662,
+          "bytes": 2403676160,
+          "size_histogram": {
+            "4096": 48,
+            "8192": 11,
+            "12288": 2,
+            "16384": 5,
+            "24576": 5,
+            "28672": 3,
+            "36864": 2,
+            "40960": 4,
+            "45056": 2,
+            "49152": 2,
+            "516096": 1,
+            "606208": 1,
+            "1187840": 1,
+            "1437696": 1,
+            "2179072": 1,
+            "2375680": 1,
+            "2940928": 1,
+            "3207168": 1,
+            "3293184": 2,
+            "3596288": 1,
+            "4038656": 1,
+            "4194304": 566
+          },
+          "adjacent_transitions": 582,
+          "transitions": 661,
+          "hottest_1MiB_byte_share": 0.00043623846566752156,
+          "latency_samples": 662,
+          "mean_ms": 436.54509365558914,
+          "p50_ms": 346.514,
+          "p95_ms": 1183.726,
+          "count_share": 0.9969879518072289,
+          "bytes_share": 0.9999965918986021,
+          "adjacent_share": 0.8804841149773072
+        }
+      },
+      "max_qd": 64,
+      "top_1MiB_regions": {
+        "R": [
+          {
+            "start_lba": 2048,
+            "bytes": 4096
+          },
+          {
+            "start_lba": 4194304,
+            "bytes": 4096
+          }
+        ],
+        "W": [
+          {
+            "start_lba": 278528,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 280576,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 282624,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 284672,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 286720,
+            "bytes": 1048576
+          }
+        ]
+      },
+      "objects": {
+        "logical_ranks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "counts_by_object_bytes": {
+          "18723840": 120,
+          "1769472": 88
+        },
+        "unique_keys": 208,
+        "logical_bytes": 2402574336,
+        "complete_kda_boundaries": 5,
+        "max_inflight_put_bytes": 452911104,
+        "key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999"
+      },
+      "capacity": {
+        "pool_reserved_bytes_per_rank": 467140608,
+        "peak_blocks_per_rank_including_null": 18,
+        "peak_digest_bytes": 33914496,
+        "peak_server_rss_bytes": 6797852672,
+        "minimum_guest_available_bytes": 842530816,
+        "peak_fs_used_bytes": 2403532800,
+        "peak_sampled_store_bytes": 2196612096
+      },
+      "native_internal_checkpoints": [
+        [
+          "http-4018b5efd1bb49e9b99d97d69cb02364",
+          2944
+        ],
+        [
+          "http-4018b5efd1bb49e9b99d97d69cb02364",
+          6016
+        ],
+        [
+          "http-4018b5efd1bb49e9b99d97d69cb02364",
+          9088
+        ],
+        [
+          "http-4018b5efd1bb49e9b99d97d69cb02364",
+          11008
+        ]
+      ],
+      "peak_write_MiB_s": 255.06640625,
+      "peak_read_MiB_s": 0.00390625
+    },
+    {
+      "requests": [
+        {
+          "turn": 1,
+          "prompt_tokens": 11133,
+          "output_tokens": 139,
+          "wire_prompt_sha256": "daec54714ab42e9fd184118bdbff643c5d6320f9676d41d7252b720502ba34d0",
+          "shared_prompt_block_tokens": 0,
+          "shared_prompt_tokens_recomputed": 0,
+          "local_reuse_tokens": 0,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 11133,
+          "think_gap_s": null,
+          "get_batches": [],
+          "http_start_ns": 345593431330,
+          "response_end_ns": 431830430622,
+          "device_io_during_request": {
+            "R": 1,
+            "R_bytes": 4096,
+            "W": 388,
+            "W_bytes": 1476026368
+          },
+          "device_io_since_previous_response": null
+        },
+        {
+          "turn": 2,
+          "prompt_tokens": 11300,
+          "output_tokens": 96,
+          "wire_prompt_sha256": "baa6f7b041c214ec747364308920343a4aa993fd6b8407d82044707d7d0a7616",
+          "shared_prompt_block_tokens": 11072,
+          "shared_prompt_tokens_recomputed": 64,
+          "local_reuse_tokens": 11008,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 292,
+          "think_gap_s": 4.025490698,
+          "get_batches": [],
+          "http_start_ns": 435895594714,
+          "response_end_ns": 483046223695,
+          "device_io_during_request": {
+            "R": 1,
+            "R_bytes": 4096,
+            "W": 81,
+            "W_bytes": 269774848
+          },
+          "device_io_since_previous_response": {
+            "R": 0,
+            "R_bytes": 0,
+            "W": 91,
+            "W_bytes": 330530816
+          }
+        }
+      ],
+      "block_trace_integrity": {
+        "buffer_entries": 1360,
+        "foreign_device_events": 0,
+        "ambiguous_completions": 0,
+        "error_completions": 0
+      },
+      "session_io_first_http_send_to_last_response": {
+        "R": 2,
+        "R_bytes": 8192,
+        "W": 560,
+        "W_bytes": 2076332032
+      },
+      "full_trace_io": {
+        "R": 4,
+        "R_bytes": 16384,
+        "W": 676,
+        "W_bytes": 2403766272
+      },
+      "final_replica_states": {
+        "LOCAL_DISK+MEMORY": 197,
+        "LOCAL_DISK": 11
+      },
+      "capture": {
+        "http_boundary_adjustments": [
+          {
+            "marker": 1,
+            "label": "http_send",
+            "http_ns": 345593431330,
+            "sample_before_ns": 345569612844,
+            "sample_after_ns": 345571589907,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 2,
+            "label": "http_response",
+            "http_ns": 431830430622,
+            "sample_before_ns": 431830600028,
+            "sample_after_ns": 431834565046,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 3,
+            "label": "http_send",
+            "http_ns": 435895594714,
+            "sample_before_ns": 435872526067,
+            "sample_after_ns": 435876484957,
+            "signed_events": 1,
+            "delta_stat": [
+              0,
+              0,
+              1,
+              8192,
+              -1
+            ]
+          },
+          {
+            "marker": 4,
+            "label": "http_response",
+            "http_ns": 483046223695,
+            "sample_before_ns": 483046382062,
+            "sample_after_ns": 483049544117,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "http_aligned_windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 9834960544,
+            "end_ns": 345593431330,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 2,
+              "issued_bytes": 8192,
+              "completions": 2,
+              "sectors": 16,
+              "diskstats_ios": 2,
+              "diskstats_sectors": 16,
+              "last_complete_ns": 87540258000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 243930713000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 345593431330,
+            "end_ns": 431830430622,
+            "inflight_start": 0,
+            "inflight_end": 7,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 430669788000
+            },
+            "W": {
+              "issues": 388,
+              "issued_bytes": 1476026368,
+              "completions": 381,
+              "sectors": 2827968,
+              "diskstats_ios": 381,
+              "diskstats_sectors": 2827968,
+              "last_complete_ns": 431818288000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 431830430622,
+            "end_ns": 435895594714,
+            "inflight_start": 7,
+            "inflight_end": 12,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 91,
+              "issued_bytes": 330530816,
+              "completions": 86,
+              "sectors": 602160,
+              "diskstats_ios": 86,
+              "diskstats_sectors": 602160,
+              "last_complete_ns": 435882845000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 435895594714,
+            "end_ns": 483046223695,
+            "inflight_start": 12,
+            "inflight_end": 21,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 436573918000
+            },
+            "W": {
+              "issues": 81,
+              "issued_bytes": 269774848,
+              "completions": 72,
+              "sectors": 453176,
+              "diskstats_ios": 72,
+              "diskstats_sectors": 453176,
+              "last_complete_ns": 483025246000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 483046223695,
+            "end_ns": 489374264395,
+            "inflight_start": 21,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 86,
+              "issued_bytes": 327217152,
+              "completions": 107,
+              "sectors": 811128,
+              "diskstats_ios": 107,
+              "diskstats_sectors": 811128,
+              "last_complete_ns": 486145529000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 489374264395,
+            "end_ns": 651998381906,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 106496,
+              "completions": 15,
+              "sectors": 208,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 208,
+              "last_complete_ns": 556761843000
+            }
+          }
+        ],
+        "mode": "stream",
+        "collector_cpu_s": 3.8218306010000003,
+        "windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 9834960544,
+            "end_ns": 345571589907,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 2,
+              "issued_bytes": 8192,
+              "completions": 2,
+              "sectors": 16,
+              "diskstats_ios": 2,
+              "diskstats_sectors": 16,
+              "last_complete_ns": 87540258000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 243930713000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 345571589907,
+            "end_ns": 431834565046,
+            "inflight_start": 0,
+            "inflight_end": 7,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 430669788000
+            },
+            "W": {
+              "issues": 388,
+              "issued_bytes": 1476026368,
+              "completions": 381,
+              "sectors": 2827968,
+              "diskstats_ios": 381,
+              "diskstats_sectors": 2827968,
+              "last_complete_ns": 431818288000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 431834565046,
+            "end_ns": 435876484957,
+            "inflight_start": 7,
+            "inflight_end": 13,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 91,
+              "issued_bytes": 330530816,
+              "completions": 85,
+              "sectors": 593968,
+              "diskstats_ios": 85,
+              "diskstats_sectors": 593968,
+              "last_complete_ns": 435857317000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 435876484957,
+            "end_ns": 483049544117,
+            "inflight_start": 13,
+            "inflight_end": 21,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 436573918000
+            },
+            "W": {
+              "issues": 81,
+              "issued_bytes": 269774848,
+              "completions": 73,
+              "sectors": 461368,
+              "diskstats_ios": 73,
+              "diskstats_sectors": 461368,
+              "last_complete_ns": 483025246000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 483049544117,
+            "end_ns": 489374264395,
+            "inflight_start": 21,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 86,
+              "issued_bytes": 327217152,
+              "completions": 107,
+              "sectors": 811128,
+              "diskstats_ios": 107,
+              "diskstats_sectors": 811128,
+              "last_complete_ns": 486145529000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 489374264395,
+            "end_ns": 651998381906,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 106496,
+              "completions": 15,
+              "sectors": 208,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 208,
+              "last_complete_ns": 556761843000
+            }
+          }
+        ],
+        "last_response_ns": 483046223695,
+        "sender_drained_ns": 489374264395,
+        "device_end_ns": 651998381906,
+        "quiet_seconds": 5,
+        "tail_from_response_s": 73.715619305,
+        "tail_read_bytes": 0,
+        "tail_write_bytes": 415404032,
+        "tail_read_ios": 0,
+        "tail_write_ios": 122
+      },
+      "trial": "femu-c2-natural-02",
+      "session_s": 137.452792365,
+      "request_s": [
+        86.236999292,
+        47.150628981
+      ],
+      "observed_s": 306.404950576,
+      "io_first_send_to_device_end": {
+        "R": {
+          "count": 2,
+          "bytes": 8192,
+          "size_histogram": {
+            "4096": 2
+          },
+          "adjacent_transitions": 0,
+          "transitions": 1,
+          "hottest_1MiB_byte_share": 0.5,
+          "latency_samples": 2,
+          "mean_ms": 371.69350000000003,
+          "p50_ms": 204.913,
+          "p95_ms": 538.474,
+          "count_share": 0.0030165912518853697,
+          "bytes_share": 3.408130435968045e-06,
+          "adjacent_share": 0.0
+        },
+        "W": {
+          "count": 661,
+          "bytes": 2403655680,
+          "size_histogram": {
+            "4096": 48,
+            "8192": 8,
+            "12288": 5,
+            "16384": 3,
+            "20480": 2,
+            "24576": 5,
+            "32768": 2,
+            "36864": 2,
+            "40960": 1,
+            "45056": 2,
+            "49152": 3,
+            "53248": 1,
+            "516096": 1,
+            "606208": 1,
+            "745472": 1,
+            "1187840": 1,
+            "1437696": 1,
+            "2109440": 1,
+            "2375680": 1,
+            "2461696": 1,
+            "2695168": 1,
+            "2940928": 1,
+            "3207168": 1,
+            "4194304": 568
+          },
+          "adjacent_transitions": 585,
+          "transitions": 660,
+          "hottest_1MiB_byte_share": 0.0004362421825741697,
+          "latency_samples": 661,
+          "mean_ms": 436.65554311649015,
+          "p50_ms": 346.609,
+          "p95_ms": 1158.974,
+          "count_share": 0.9969834087481146,
+          "bytes_share": 0.999996591869564,
+          "adjacent_share": 0.8863636363636364
+        }
+      },
+      "max_qd": 62,
+      "top_1MiB_regions": {
+        "R": [
+          {
+            "start_lba": 2048,
+            "bytes": 4096
+          },
+          {
+            "start_lba": 4194304,
+            "bytes": 4096
+          }
+        ],
+        "W": [
+          {
+            "start_lba": 278528,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 280576,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 282624,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 284672,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 286720,
+            "bytes": 1048576
+          }
+        ]
+      },
+      "objects": {
+        "logical_ranks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "counts_by_object_bytes": {
+          "18723840": 120,
+          "1769472": 88
+        },
+        "unique_keys": 208,
+        "logical_bytes": 2402574336,
+        "complete_kda_boundaries": 5,
+        "max_inflight_put_bytes": 452911104,
+        "key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999"
+      },
+      "capacity": {
+        "pool_reserved_bytes_per_rank": 467140608,
+        "peak_blocks_per_rank_including_null": 18,
+        "peak_digest_bytes": 33914496,
+        "peak_server_rss_bytes": 6799409152,
+        "minimum_guest_available_bytes": 832638976,
+        "peak_fs_used_bytes": 2403528704,
+        "peak_sampled_store_bytes": 2196612096
+      },
+      "native_internal_checkpoints": [
+        [
+          "http-bf84dbb8a0d64cf1b767c50a3448652e",
+          2944
+        ],
+        [
+          "http-bf84dbb8a0d64cf1b767c50a3448652e",
+          6016
+        ],
+        [
+          "http-bf84dbb8a0d64cf1b767c50a3448652e",
+          9088
+        ],
+        [
+          "http-bf84dbb8a0d64cf1b767c50a3448652e",
+          11008
+        ]
+      ],
+      "peak_write_MiB_s": 255.08984375,
+      "peak_read_MiB_s": 0.00390625
+    },
+    {
+      "requests": [
+        {
+          "turn": 1,
+          "prompt_tokens": 11133,
+          "output_tokens": 139,
+          "wire_prompt_sha256": "daec54714ab42e9fd184118bdbff643c5d6320f9676d41d7252b720502ba34d0",
+          "shared_prompt_block_tokens": 0,
+          "shared_prompt_tokens_recomputed": 0,
+          "local_reuse_tokens": 0,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 11133,
+          "think_gap_s": null,
+          "get_batches": [],
+          "http_start_ns": 366564987407,
+          "response_end_ns": 460136738407,
+          "device_io_during_request": {
+            "R": 0,
+            "R_bytes": 0,
+            "W": 381,
+            "W_bytes": 1476055040
+          },
+          "device_io_since_previous_response": null
+        },
+        {
+          "turn": 2,
+          "prompt_tokens": 11300,
+          "output_tokens": 96,
+          "wire_prompt_sha256": "baa6f7b041c214ec747364308920343a4aa993fd6b8407d82044707d7d0a7616",
+          "shared_prompt_block_tokens": 11072,
+          "shared_prompt_tokens_recomputed": 64,
+          "local_reuse_tokens": 11008,
+          "external_load_tokens": 0,
+          "computed_prompt_tokens": 292,
+          "think_gap_s": 4.05981138,
+          "get_batches": [],
+          "http_start_ns": 464220379097,
+          "response_end_ns": 512628250867,
+          "device_io_during_request": {
+            "R": 0,
+            "R_bytes": 0,
+            "W": 58,
+            "W_bytes": 170024960
+          },
+          "device_io_since_previous_response": {
+            "R": 1,
+            "R_bytes": 4096,
+            "W": 122,
+            "W_bytes": 474255360
+          }
+        }
+      ],
+      "block_trace_integrity": {
+        "buffer_entries": 1356,
+        "foreign_device_events": 0,
+        "ambiguous_completions": 0,
+        "error_completions": 0
+      },
+      "session_io_first_http_send_to_last_response": {
+        "R": 1,
+        "R_bytes": 4096,
+        "W": 561,
+        "W_bytes": 2120335360
+      },
+      "full_trace_io": {
+        "R": 11,
+        "R_bytes": 49152,
+        "W": 667,
+        "W_bytes": 2403749888
+      },
+      "final_replica_states": {
+        "LOCAL_DISK+MEMORY": 197,
+        "LOCAL_DISK": 11
+      },
+      "capture": {
+        "http_boundary_adjustments": [
+          {
+            "marker": 1,
+            "label": "http_send",
+            "http_ns": 366564987407,
+            "sample_before_ns": 366539134257,
+            "sample_after_ns": 366541344057,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 2,
+            "label": "http_response",
+            "http_ns": 460136738407,
+            "sample_before_ns": 460136949467,
+            "sample_after_ns": 460141817957,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 3,
+            "label": "http_send",
+            "http_ns": 464220379097,
+            "sample_before_ns": 464210998547,
+            "sample_after_ns": 464212686177,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "marker": 4,
+            "label": "http_response",
+            "http_ns": 512628250867,
+            "sample_before_ns": 512628455657,
+            "sample_after_ns": 512631949107,
+            "signed_events": 0,
+            "delta_stat": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "http_aligned_windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 8705807766,
+            "end_ns": 366564987407,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 10,
+              "issued_bytes": 45056,
+              "completions": 10,
+              "sectors": 88,
+              "diskstats_ios": 10,
+              "diskstats_sectors": 88,
+              "last_complete_ns": 93993153000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 261840842000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 366564987407,
+            "end_ns": 460136738407,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 381,
+              "issued_bytes": 1476055040,
+              "completions": 381,
+              "sectors": 2882920,
+              "diskstats_ios": 381,
+              "diskstats_sectors": 2882920,
+              "last_complete_ns": 458710190000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 460136738407,
+            "end_ns": 464220379097,
+            "inflight_start": 0,
+            "inflight_end": 10,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 463995310000
+            },
+            "W": {
+              "issues": 122,
+              "issued_bytes": 474255360,
+              "completions": 112,
+              "sectors": 850232,
+              "diskstats_ios": 112,
+              "diskstats_sectors": 850232,
+              "last_complete_ns": 464202971000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 464220379097,
+            "end_ns": 512628250867,
+            "inflight_start": 10,
+            "inflight_end": 19,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 58,
+              "issued_bytes": 170024960,
+              "completions": 49,
+              "sectors": 264768,
+              "diskstats_ios": 49,
+              "diskstats_sectors": 264768,
+              "last_complete_ns": 512614012000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 512628250867,
+            "end_ns": 518330999227,
+            "inflight_start": 19,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 76,
+              "issued_bytes": 283189248,
+              "completions": 95,
+              "sectors": 696464,
+              "diskstats_ios": 95,
+              "diskstats_sectors": 696464,
+              "last_complete_ns": 517069134000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 518330999227,
+            "end_ns": 687713189487,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 114688,
+              "completions": 15,
+              "sectors": 224,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 224,
+              "last_complete_ns": 584909707000
+            }
+          }
+        ],
+        "mode": "stream",
+        "collector_cpu_s": 4.976338647,
+        "windows": [
+          {
+            "start": "capture_start",
+            "end": "http_send",
+            "begin_ns": 8705807766,
+            "end_ns": 366541344057,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 10,
+              "issued_bytes": 45056,
+              "completions": 10,
+              "sectors": 88,
+              "diskstats_ios": 10,
+              "diskstats_sectors": 88,
+              "last_complete_ns": 93993153000
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 110592,
+              "completions": 15,
+              "sectors": 216,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 216,
+              "last_complete_ns": 261840842000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 366541344057,
+            "end_ns": 460141817957,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 381,
+              "issued_bytes": 1476055040,
+              "completions": 381,
+              "sectors": 2882920,
+              "diskstats_ios": 381,
+              "diskstats_sectors": 2882920,
+              "last_complete_ns": 458710190000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "http_send",
+            "begin_ns": 460141817957,
+            "end_ns": 464212686177,
+            "inflight_start": 0,
+            "inflight_end": 10,
+            "R": {
+              "issues": 1,
+              "issued_bytes": 4096,
+              "completions": 1,
+              "sectors": 8,
+              "diskstats_ios": 1,
+              "diskstats_sectors": 8,
+              "last_complete_ns": 463995310000
+            },
+            "W": {
+              "issues": 122,
+              "issued_bytes": 474255360,
+              "completions": 112,
+              "sectors": 850232,
+              "diskstats_ios": 112,
+              "diskstats_sectors": 850232,
+              "last_complete_ns": 464202971000
+            }
+          },
+          {
+            "start": "http_send",
+            "end": "http_response",
+            "begin_ns": 464212686177,
+            "end_ns": 512631949107,
+            "inflight_start": 10,
+            "inflight_end": 19,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 58,
+              "issued_bytes": 170024960,
+              "completions": 49,
+              "sectors": 264768,
+              "diskstats_ios": 49,
+              "diskstats_sectors": 264768,
+              "last_complete_ns": 512614012000
+            }
+          },
+          {
+            "start": "http_response",
+            "end": "store_sender_drained",
+            "begin_ns": 512631949107,
+            "end_ns": 518330999227,
+            "inflight_start": 19,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 76,
+              "issued_bytes": 283189248,
+              "completions": 95,
+              "sectors": 696464,
+              "diskstats_ios": 95,
+              "diskstats_sectors": 696464,
+              "last_complete_ns": 517069134000
+            }
+          },
+          {
+            "start": "store_sender_drained",
+            "end": "device_end",
+            "begin_ns": 518330999227,
+            "end_ns": 687713189487,
+            "inflight_start": 0,
+            "inflight_end": 0,
+            "R": {
+              "issues": 0,
+              "issued_bytes": 0,
+              "completions": 0,
+              "sectors": 0,
+              "diskstats_ios": 0,
+              "diskstats_sectors": 0,
+              "last_complete_ns": null
+            },
+            "W": {
+              "issues": 15,
+              "issued_bytes": 114688,
+              "completions": 15,
+              "sectors": 224,
+              "diskstats_ios": 15,
+              "diskstats_sectors": 224,
+              "last_complete_ns": 584909707000
+            }
+          }
+        ],
+        "last_response_ns": 512628250867,
+        "sender_drained_ns": 518330999227,
+        "device_end_ns": 687713189487,
+        "quiet_seconds": 5,
+        "tail_from_response_s": 72.281456133,
+        "tail_read_bytes": 0,
+        "tail_write_bytes": 356704256,
+        "tail_read_ios": 0,
+        "tail_write_ios": 110
+      },
+      "trial": "femu-c2-natural-05",
+      "session_s": 146.06326346,
+      "request_s": [
+        93.571751,
+        48.40787177
+      ],
+      "observed_s": 321.14820208,
+      "io_first_send_to_device_end": {
+        "R": {
+          "count": 1,
+          "bytes": 4096,
+          "size_histogram": {
+            "4096": 1
+          },
+          "adjacent_transitions": 0,
+          "transitions": 0,
+          "hottest_1MiB_byte_share": 1.0,
+          "latency_samples": 1,
+          "mean_ms": 503.675,
+          "p50_ms": 503.675,
+          "p95_ms": 503.675,
+          "count_share": 0.0015313935681470138,
+          "bytes_share": 1.7040797372990676e-06,
+          "adjacent_share": null
+        },
+        "W": {
+          "count": 652,
+          "bytes": 2403639296,
+          "size_histogram": {
+            "4096": 38,
+            "8192": 2,
+            "12288": 7,
+            "16384": 3,
+            "20480": 2,
+            "24576": 3,
+            "28672": 2,
+            "36864": 3,
+            "40960": 4,
+            "45056": 2,
+            "49152": 3,
+            "409600": 2,
+            "868352": 1,
+            "1048576": 1,
+            "1187840": 1,
+            "1613824": 1,
+            "2093056": 1,
+            "2097152": 8,
+            "2920448": 1,
+            "3207168": 1,
+            "3293184": 1,
+            "3596288": 1,
+            "3862528": 1,
+            "4161536": 1,
+            "4194304": 562
+          },
+          "adjacent_transitions": 587,
+          "transitions": 651,
+          "hottest_1MiB_byte_share": 0.0004362451561450924,
+          "latency_samples": 652,
+          "mean_ms": 419.4347760736196,
+          "p50_ms": 326.481,
+          "p95_ms": 1208.664,
+          "count_share": 0.998468606431853,
+          "bytes_share": 0.9999982959202627,
+          "adjacent_share": 0.901689708141321
+        }
+      },
+      "max_qd": 64,
+      "top_1MiB_regions": {
+        "R": [
+          {
+            "start_lba": 4194304,
+            "bytes": 4096
+          }
+        ],
+        "W": [
+          {
+            "start_lba": 278528,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 280576,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 282624,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 284672,
+            "bytes": 1048576
+          },
+          {
+            "start_lba": 286720,
+            "bytes": 1048576
+          }
+        ]
+      },
+      "objects": {
+        "logical_ranks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "counts_by_object_bytes": {
+          "18723840": 120,
+          "1769472": 88
+        },
+        "unique_keys": 208,
+        "logical_bytes": 2402574336,
+        "complete_kda_boundaries": 5,
+        "max_inflight_put_bytes": 452911104,
+        "key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999"
+      },
+      "capacity": {
+        "pool_reserved_bytes_per_rank": 467140608,
+        "peak_blocks_per_rank_including_null": 18,
+        "peak_digest_bytes": 33914496,
+        "peak_server_rss_bytes": 6799151104,
+        "minimum_guest_available_bytes": 814604288,
+        "peak_fs_used_bytes": 2403536896,
+        "peak_sampled_store_bytes": 2196612096
+      },
+      "native_internal_checkpoints": [
+        [
+          "http-2931ce8d469f42f38ef668950ad045c0",
+          2944
+        ],
+        [
+          "http-2931ce8d469f42f38ef668950ad045c0",
+          6016
+        ],
+        [
+          "http-2931ce8d469f42f38ef668950ad045c0",
+          9088
+        ],
+        [
+          "http-2931ce8d469f42f38ef668950ad045c0",
+          11008
+        ]
+      ],
+      "peak_write_MiB_s": 255.0859375,
+      "peak_read_MiB_s": 0.00390625
+    }
+  ],
+  "range": {
+    "issued_read_bytes": {
+      "min": 4096,
+      "median": 8192,
+      "max": 8192
+    },
+    "issued_write_bytes": {
+      "min": 2403639296,
+      "median": 2403655680,
+      "max": 2403676160
+    },
+    "peak_qd": {
+      "min": 62,
+      "median": 64,
+      "max": 64
+    },
+    "peak_write_MiB_s": {
+      "min": 255.06640625,
+      "median": 255.0859375,
+      "max": 255.08984375
+    }
+  }
+}

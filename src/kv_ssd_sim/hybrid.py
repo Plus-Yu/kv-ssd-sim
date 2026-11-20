@@ -29,6 +29,10 @@ class HybridConfig:
     @classmethod
     def load(cls, path: Path):
         values = json.loads(path.read_text())
+        if values.get("profile") == "k3-tp8":
+            from .k3_online import K3Profile
+
+            return K3Profile.load(values)
         if "layers" in values:
             values["layers"] = tuple(values["layers"])
         result = cls(**values)

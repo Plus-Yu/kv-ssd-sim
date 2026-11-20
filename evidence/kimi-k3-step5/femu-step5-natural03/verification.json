@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "accelerator": "tcg",
+  "guest_inputs_sha256": {
+    "trace.json": "01ce44f72d221c00699acd0233d6512bab6e3be94844945b59946b981515bb33",
+    "hybrid.json": "7ed17baf114b64c4cdcdda7f890a6193a5a5dc9be884be222ad0b0aa2692e2a5",
+    "pressure.json": "b08e3b481426fa296a48498543f0cb83a05bd9578d3215acfc8afbbf4634f3d4",
+    "config.json": "c6cb54d4e6378d05ef0fb9f88db1bdf7b63d964d0c1a2dd92a26380800e480a5"
+  },
+  "nand_read_ns": 40000,
+  "chains": [
+    {
+      "request_id": "pressure/main/4",
+      "external_tokens": 128,
+      "get_ms": 162.901251,
+      "ttft_ms": 199.8558550000098,
+      "compute_budget_ms": 14.0,
+      "compute_window_ms": 16.341926999984935,
+      "aiperf_ttft_ms": null,
+      "http_received_to_first_emit_ms": null,
+      "http_first_emit_seq": null,
+      "prepared_to_admission_ms": null,
+      "admission_to_http_first_ms": null,
+      "payload_preparation_ms": null,
+      "source_turn": null,
+      "femu_read_completions_during_get": 2,
+      "femu_read_bytes_during_get": 278528,
+      "block_read_latency_ms": {
+        "min": 0.458,
+        "mean": 0.6005,
+        "max": 0.743
+      },
+      "first_read_completion": {
+        "time_ns": 171809711159,
+        "device": "259,0",
+        "sector": 263168,
+        "sectors": 528,
+        "block_latency_ms": 0.458,
+        "line": "<idle>-0       [001] d.h1.   189.749894: block_rq_complete: 259,0 RS () 263168 + 528 be,0,4 [0]"
+      },
+      "last_read_completion": {
+        "time_ns": 171810033159,
+        "device": "259,0",
+        "sector": 263424,
+        "sectors": 16,
+        "block_latency_ms": 0.743,
+        "line": "<idle>-0       [001] dNh1.   189.750216: block_rq_complete: 259,0 RS () 263424 + 16 be,0,4 [0]"
+      },
+      "ordered_event_sequences": [
+        748,
+        750,
+        751,
+        753,
+        759
+      ]
+    }
+  ],
+  "aiperf": null,
+  "scope": "functional closed loop; TCG is not hardware-calibrated inference timing",
+  "pressure": {
+    "requests": 22,
+    "concurrent_sibling_save_pairs": [
+      [
+        "pressure/subagent/0/2/0",
+        "pressure/subagent/1/3/0"
+      ],
+      [
+        "pressure/subagent/0/2/1",
+        "pressure/subagent/1/3/1"
+      ],
+      [
+        "pressure/subagent/0/2/2",
+        "pressure/subagent/1/3/2"
+      ],
+      [
+        "pressure/subagent/0/2/3",
+        "pressure/subagent/1/3/3"
+      ],
+      [
+        "pressure/subagent/0/2/4",
+        "pressure/subagent/1/3/4"
+      ],
+      [
+        "pressure/subagent/0/2/5",
+        "pressure/subagent/1/3/5"
+      ],
+      [
+        "pressure/subagent/0/2/6",
+        "pressure/subagent/1/3/6"
+      ],
+      [
+        "pressure/subagent/0/2/7",
+        "pressure/subagent/1/3/7"
+      ],
+      [
+        "pressure/subagent/0/2/8",
+        "pressure/subagent/1/3/8"
+      ]
+    ],
+    "objects": 142,
+    "native_save_jobs": 46,
+    "watermark_eviction_cycles": 4,
+    "peak_sampled_memory_ratio": 0.127502,
+    "restored_tokens": 128,
+    "disk_only_get_objects": 3,
+    "object_read_bytes": 264768,
+    "device_read_bytes": 278528,
+    "missing_kda_keys": [
+      "kv-ssd-sim-hybrid-a7837d1f795e3e59@model@store_tp:1@store_pp:1@store_format:mamba_state@store_schema:68a8d65f244c539a@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@d77a83f286a7439a9c4dcebd3bf7edebee880b43d6de56c546ba5b532a76bad0"
+    ],
+    "recomputed_prompt_tokens": 128,
+    "required_final_disk_objects": 4,
+    "final_tiers": {
+      "LOCAL_DISK": 121,
+      "LOCAL_DISK+MEMORY": 16,
+      "MEMORY": 5
+    }
+  }
+}

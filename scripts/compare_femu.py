@@ -24,10 +24,11 @@ def objects(path):
     return result
 
 
-def compare(fast, slow):
-    a, b = verify(fast), verify(slow)
+def require_matched_trials(fast, slow, a, b):
     ma, mb = (read(run_path(p) / "run_manifest.json") for p in (fast, slow))
     joint = a["aiperf"] is not None
+    if a["guest_inputs_sha256"] != b["guest_inputs_sha256"]:
+        raise AssertionError("Staged workload/configuration differs")
     if joint != (b["aiperf"] is not None):
         raise AssertionError("Workload types differ")
     fields = [
@@ -72,8 +73,6 @@ def compare(fast, slow):
                 raise AssertionError(f"AIPerf launch differs in {field}")
     if objects(fast) != objects(slow):
         raise AssertionError("Object keys, sizes or payload digests differ")
-    if a["nand_read_ns"] >= b["nand_read_ns"]:
-        raise AssertionError("Expected fast NAND setting < slow NAND setting")
     la, lb = (read(p / "launch.json") for p in (fast, slow))
     if la["femu_revision"] != lb["femu_revision"]:
         raise AssertionError("FEMU revisions differ")
@@ -98,20 +97,33 @@ def compare(fast, slow):
 
     if hashes(la, fast) != hashes(lb, slow):
         raise AssertionError("Kernel, FEMU binary, initramfs or startup cache contents differ")
-    x, y = a["chains"][0], b["chains"][0]
-    for field in ("external_tokens", "compute_budget_ms", "femu_read_bytes_during_get"):
-        if x[field] != y[field]:
-            raise AssertionError(f"Restore workloads differ in {field}")
-    increases = {
-        "block_mean_ms": y["block_read_latency_ms"]["mean"] - x["block_read_latency_ms"]["mean"],
-        "get_ms": y["get_ms"] - x["get_ms"],
-        "ttft_ms": y["ttft_ms"] - x["ttft_ms"],
-    }
-    if joint:
-        if x["source_turn"] != y["source_turn"]:
-            raise AssertionError("Compared different restored HTTP source turns")
-        increases["aiperf_ttft_ms"] = y["aiperf_ttft_ms"] - x["aiperf_ttft_ms"]
-    passed = all(value > 0 for value in increases.values())
+
+
+def compare(fast, slow):
+    a, b = verify(fast), verify(slow)
+    require_matched_trials(fast, slow, a, b)
+    if a["nand_read_ns"] >= b["nand_read_ns"]:
+        raise AssertionError("Expected fast NAND setting < slow NAND setting")
+    joint = a["aiperf"] is not None
+    deltas = []
+    for x, y in zip(a["chains"], b["chains"], strict=True):
+        for field in ("external_tokens", "compute_budget_ms", "femu_read_bytes_during_get"):
+            if x[field] != y[field]:
+                raise AssertionError(f"Restore workloads differ in {field}")
+        increases = {
+            "block_mean_ms": y["block_read_latency_ms"]["mean"]
+            - x["block_read_latency_ms"]["mean"],
+            "get_ms": y["get_ms"] - x["get_ms"],
+            "ttft_ms": y["ttft_ms"] - x["ttft_ms"],
+        }
+        if joint:
+            if x["source_turn"] != y["source_turn"]:
+                raise AssertionError("Compared different restored HTTP source turns")
+            increases["aiperf_ttft_ms"] = y["aiperf_ttft_ms"] - x["aiperf_ttft_ms"]
+        elif x["request_id"] != y["request_id"]:
+            raise AssertionError("Compared different restored replay requests")
+        deltas.append(increases)
+    passed = all(value > 0 for delta in deltas for value in delta.values())
     return {
         "status": "passed" if passed else "failed",
         "failure_reason": None if passed else "Not all required latency measures increased",
@@ -119,13 +131,16 @@ def compare(fast, slow):
             "individual_causal_chains": True,
             "matched_workload_and_configuration": True,
             "device_get_native_ttft_increased": all(
-                increases[field] > 0 for field in ("block_mean_ms", "get_ms", "ttft_ms")
+                delta[field] > 0
+                for delta in deltas
+                for field in ("block_mean_ms", "get_ms", "ttft_ms")
             ),
             "all_required_latencies_increased": passed,
         },
         "fast": a,
         "slow": b,
-        "increases": increases,
+        "increases": deltas[0],
+        "increases_per_restore": deltas,
         "identical_object_count": len(objects(fast)),
         "scope": "one matched functional pair; not a statistical performance estimate",
     }

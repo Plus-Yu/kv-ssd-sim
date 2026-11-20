@@ -1,0 +1,10 @@
+{
+  "mode": "embedded",
+  "metadata_server": "P2PHANDSHAKE",
+  "master_server_address": "127.0.0.1:51325",
+  "global_segment_size": 33554432,
+  "local_buffer_size": 16777216,
+  "protocol": "tcp",
+  "device_name": "",
+  "enable_offload": true
+}

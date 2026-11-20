@@ -117,7 +117,14 @@ class NativeRuntime:
         self.block_size = 64
         self.num_blocks = num_blocks
         self.hybrid = None
-        if hybrid_config is not None:
+        from .k3_online import K3Buffers, K3Profile, RankConnectors, logical_rank
+
+        k3 = isinstance(hybrid_config, K3Profile)
+        self.hash_unit = 128 if k3 else self.block_size
+        if k3:
+            self.hybrid = K3Buffers(num_blocks)
+            self.block_size = self.hybrid.block
+        elif hybrid_config is not None:
             from .hybrid import HybridBuffers
 
             self.hybrid = HybridBuffers(hybrid_config, num_blocks)
@@ -141,7 +148,7 @@ class NativeRuntime:
             scheduler_config=SchedulerConfig(
                 is_encoder_decoder=False,
                 max_num_seqs=8,
-                max_num_batched_tokens=128,
+                max_num_batched_tokens=4096 if k3 else 128,
                 max_model_len=max_model_len,
                 enable_chunked_prefill=True,
                 async_scheduling=False,
@@ -160,11 +167,13 @@ class NativeRuntime:
                 kv_role="kv_both",
                 kv_connector_extra_config={
                     "cache_prefix": (
-                        "kv-ssd-sim-hybrid-" + hybrid_config.fingerprint
+                        "k3-online-tp8"
+                        if k3
+                        else "kv-ssd-sim-hybrid-" + hybrid_config.fingerprint
                         if self.hybrid
                         else "kv-ssd-sim-v1"
                     ),
-                    **({"store_tp_size": 1} if self.hybrid else {}),
+                    **({"store_tp_size": 8 if k3 else 1} if self.hybrid else {}),
                     "load_async": True,
                     "lookup_async": False,
                     "save_decode_cache": False,
@@ -194,9 +203,9 @@ class NativeRuntime:
         )
         if self.hybrid:
             self.config.cache_config.kv_cache_layout = "LBHNC"
-            self.config.cache_config.prefix_match_unit = 64
-            self.config.cache_config.hash_block_size = 64
-            self.config.cache_config.cache_hit_alignment_tokens = 64
+            self.config.cache_config.prefix_match_unit = self.hash_unit
+            self.config.cache_config.hash_block_size = self.hash_unit
+            self.config.cache_config.cache_hit_alignment_tokens = self.hash_unit
         self.config.cache_config.num_gpu_blocks = self.num_blocks
         register_all_kvcache_specs(self.config)
 
@@ -221,35 +230,58 @@ class NativeRuntime:
             if code:
                 raise RuntimeError(f"Native Mooncake offload setup failed: {code}")
 
-        with patch.object(worker_module, "setup_mooncake_store", setup_cpu_offload):
-            self.worker_connector = MooncakeStoreConnector(
-                self.config,
-                KVConnectorRole.WORKER,
-                self.kv_cache_config,
-            )
-        native_worker = self.worker_connector.connector_worker
-        self.store = ObservedStore(native_worker.store, events, read_delay_ms=read_delay_ms)
-        native_worker.store = self.store
-        self.worker = CPUWorkerAdapter(native_worker)
-        self.worker_connector.connector_worker = self.worker
-        self.caches = {
-            name: torch.zeros((self.num_blocks, 2, self.block_size, 2, 32), dtype=torch.float16)
-            for name in self.layer_names
-        }
-        if self.hybrid:
-            self.caches = self.hybrid.caches
-        self.worker_connector.register_kv_caches(self.caches)
-        if self.hybrid and native_worker.store_tp_size != 1:
-            raise RuntimeError("Native hybrid Store layout unexpectedly fell back")
-        for thread in native_worker.kv_recv_threads:
-            thread._handle_request = self.store.trace_request_handler(thread._handle_request)
-        if native_worker.kv_send_thread is not None:
-            thread = native_worker.kv_send_thread
-            thread._handle_request = self.store.trace_request_handler(thread._handle_request)
+        self.workers = []
+        connectors = []
+        if k3:
+            self.config.parallel_config.world_size = 8
+        self.caches = (
+            self.hybrid.caches
+            if self.hybrid
+            else {
+                name: torch.zeros((self.num_blocks, 2, self.block_size, 2, 32), dtype=torch.float16)
+                for name in self.layer_names
+            }
+        )
+        from contextlib import nullcontext
+
+        for rank in range(8 if k3 else 1):
+            shared = self.store.native if rank else None
+            with (
+                logical_rank(self.config, worker_module, rank, shared) if k3 else nullcontext(),
+                patch.object(
+                    worker_module,
+                    "setup_mooncake_store",
+                    setup_cpu_offload if not rank else lambda *args, **kwargs: None,
+                ),
+            ):
+                connector = MooncakeStoreConnector(
+                    self.config, KVConnectorRole.WORKER, self.kv_cache_config
+                )
+            native_worker = connector.connector_worker
+            if not rank:
+                self.store = ObservedStore(native_worker.store, events, read_delay_ms=read_delay_ms)
+            native_worker.store = self.store
+            worker = CPUWorkerAdapter(native_worker)
+            connector.connector_worker = worker
+            connector.register_kv_caches(self.hybrid.rank_caches[rank] if k3 else self.caches)
+            if self.hybrid and native_worker.store_tp_size != (8 if k3 else 1):
+                raise RuntimeError("Native hybrid Store layout unexpectedly fell back")
+            threads = list(native_worker.kv_recv_threads)
+            if native_worker.kv_send_thread is not None:
+                threads.append(native_worker.kv_send_thread)
+            for thread in threads:
+                thread._handle_request = self.store.trace_request_handler(
+                    thread._handle_request, rank if k3 else None
+                )
+            self.workers.append(worker)
+            connectors.append(connector)
+        self.worker = self.workers[0]
+        self.worker_connector = RankConnectors(connectors) if k3 else connectors[0]
         self.scheduler = Scheduler(
             vllm_config=self.config,
             kv_cache_config=self.kv_cache_config,
             block_size=self.block_size,
+            hash_block_size=self.hash_unit,
             log_stats=False,
             structured_output_manager=StructuredOutputManager(self.config),
         )
@@ -270,7 +302,9 @@ class NativeRuntime:
             scheduler_class=f"{Scheduler.__module__}.{Scheduler.__name__}",
             scheduler_source_sha256=hashlib.sha256(source_path.read_bytes()).hexdigest(),
             vllm_version=installed,
-            cache_bytes=sum(
+            cache_bytes=self.hybrid.describe()["pool_bytes_per_rank"] * 8
+            if k3
+            else sum(
                 t.numel() * t.element_size()
                 for t in (self.hybrid.pools if self.hybrid else self.caches.values())
             ),

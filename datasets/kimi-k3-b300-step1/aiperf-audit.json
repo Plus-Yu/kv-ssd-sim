@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "scope": "offline loader + chat template; no HTTP/runtime/FEMU",
+  "aiperf_version": "0.13.0",
+  "transformers_version": "5.23.0",
+  "random_seed": 42,
+  "source_sha256": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896",
+  "tokenizer_files": {
+    "chat_template.jinja": "c4123e078b4bdc0f5f63fa38eca171496c1d7ee48987353469d9d611d0428e66",
+    "tokenizer.json": "73ba49a1889d80a633cef1e86ea21b66cd7fa2274bd86135d844872aed7fe9b6",
+    "tokenizer_config.json": "a1641d0c19704700109f186096017511cfe5fbf9b08b37f9be65c591a20716d3"
+  },
+  "context_mode": "deltas_with_responses",
+  "conversation_count": 1,
+  "request_count": 2,
+  "requests": [
+    {
+      "source_path": "/requests/0",
+      "input_tokens": 71175,
+      "output_budget": 169,
+      "delay_ms": 0,
+      "reset_context": false,
+      "token_ids_sha256": "349cd564256b95ddd0e359ed83bee5c9a558564e4c14b59f02dee3d012c3f8b7"
+    },
+    {
+      "source_path": "/requests/1",
+      "input_tokens": 72762,
+      "output_budget": 296,
+      "delay_ms": 12000.0,
+      "reset_context": true,
+      "token_ids_sha256": "4ee2f599b678e9926d87a9977a436817f1fdfb70858217189329a0b56aa3a9ab"
+    }
+  ],
+  "shared_prefix_tokens": 71168,
+  "match_unit": 128,
+  "aligned_shared_prefix_tokens": 71168,
+  "timing": "causal think time; timestamps retained as metadata, not fixed arrivals",
+  "synthesis_caps": {
+    "max_isl": null,
+    "max_osl": null
+  },
+  "token_semantics": "synthetic local tokenizer, not K3 tokenizer or original Claude text"
+}

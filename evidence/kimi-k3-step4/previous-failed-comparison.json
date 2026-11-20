@@ -1,0 +1,158 @@
+{
+  "status": "failed",
+  "failure_reason": "Not all required latency measures increased",
+  "checks": {
+    "individual_causal_chains": true,
+    "matched_workload_and_configuration": true,
+    "device_get_native_ttft_increased": true,
+    "all_required_latencies_increased": false
+  },
+  "fast": {
+    "status": "passed",
+    "accelerator": "tcg",
+    "nand_read_ns": 40000,
+    "chains": [
+      {
+        "request_id": "http-173b8d769eea4e90855c11e2aaa213eb",
+        "external_tokens": 256,
+        "get_ms": 146.306507,
+        "ttft_ms": 183.2432300000164,
+        "compute_budget_ms": 16.0,
+        "compute_window_ms": 22.836741000048733,
+        "aiperf_ttft_ms": 1435.5793179999998,
+        "http_received_to_first_emit_ms": 1315.241347,
+        "http_first_emit_seq": 72,
+        "prepared_to_admission_ms": 1126.980369,
+        "admission_to_http_first_ms": 188.260978,
+        "payload_preparation_ms": 100.16745899997659,
+        "source_turn": [
+          1,
+          null
+        ],
+        "femu_read_completions_during_get": 5,
+        "femu_read_bytes_during_get": 49152,
+        "block_read_latency_ms": {
+          "min": 0.086,
+          "mean": 0.11699999999999999,
+          "max": 0.138
+        },
+        "first_read_completion": {
+          "time_ns": 232182176838,
+          "device": "259,0",
+          "sector": 266256,
+          "sectors": 24,
+          "block_latency_ms": 0.129,
+          "line": "<idle>-0       [000] d.h1.   334.512811: block_rq_complete: 259,0 RA () 266256 + 24 be,0,4 [0]"
+        },
+        "last_read_completion": {
+          "time_ns": 232183826838,
+          "device": "259,0",
+          "sector": 266280,
+          "sectors": 8,
+          "block_latency_ms": 0.086,
+          "line": "python-733     [000] d.h1.   334.514461: block_rq_complete: 259,0 RA () 266280 + 8 be,0,4 [0]"
+        },
+        "ordered_event_sequences": [
+          58,
+          60,
+          61,
+          62,
+          67
+        ]
+      }
+    ],
+    "aiperf": {
+      "status": "passed",
+      "requests": 2,
+      "input_tokens": 576,
+      "output_tokens": 8,
+      "shared_prefix_pairs_verified": 1,
+      "external_load_tokens": 256,
+      "restore_batches": 1,
+      "max_native_batch_requests": 1,
+      "aiperf_ttft_avg_ms": 926.9857015,
+      "cold_between_requests": true,
+      "femu_verified": true,
+      "scope": "AIPerf HTTP native scheduler + hybrid Store; synthetic character tokenizer; FEMU device counters verified; block trace verified separately"
+    },
+    "scope": "functional closed loop; TCG is not hardware-calibrated inference timing"
+  },
+  "slow": {
+    "status": "passed",
+    "accelerator": "tcg",
+    "nand_read_ns": 100000000,
+    "chains": [
+      {
+        "request_id": "http-6b820a8a455d44d290dbf5e8725bb2a1",
+        "external_tokens": 256,
+        "get_ms": 559.97769,
+        "ttft_ms": 596.8214630000261,
+        "compute_budget_ms": 16.0,
+        "compute_window_ms": 24.87161100003732,
+        "aiperf_ttft_ms": 1347.557497,
+        "http_received_to_first_emit_ms": 1230.810121,
+        "http_first_emit_seq": 72,
+        "prepared_to_admission_ms": 628.87399,
+        "admission_to_http_first_ms": 601.936131,
+        "payload_preparation_ms": 72.56344899997202,
+        "source_turn": [
+          1,
+          null
+        ],
+        "femu_read_completions_during_get": 5,
+        "femu_read_bytes_during_get": 49152,
+        "block_read_latency_ms": {
+          "min": 100.032,
+          "mean": 100.0924,
+          "max": 100.173
+        },
+        "first_read_completion": {
+          "time_ns": 243528099233,
+          "device": "259,0",
+          "sector": 266256,
+          "sectors": 24,
+          "block_latency_ms": 100.173,
+          "line": "python-552     [001] d.h..   333.922780: block_rq_complete: 259,0 RA () 266256 + 24 be,0,4 [0]"
+        },
+        "last_read_completion": {
+          "time_ns": 243830616233,
+          "device": "259,0",
+          "sector": 266280,
+          "sectors": 8,
+          "block_latency_ms": 100.032,
+          "line": "python-732     [000] d.h1.   334.225297: block_rq_complete: 259,0 RA () 266280 + 8 be,0,4 [0]"
+        },
+        "ordered_event_sequences": [
+          58,
+          60,
+          61,
+          62,
+          67
+        ]
+      }
+    ],
+    "aiperf": {
+      "status": "passed",
+      "requests": 2,
+      "input_tokens": 576,
+      "output_tokens": 8,
+      "shared_prefix_pairs_verified": 1,
+      "external_load_tokens": 256,
+      "restore_batches": 1,
+      "max_native_batch_requests": 1,
+      "aiperf_ttft_avg_ms": 917.9618694999999,
+      "cold_between_requests": true,
+      "femu_verified": true,
+      "scope": "AIPerf HTTP native scheduler + hybrid Store; synthetic character tokenizer; FEMU device counters verified; block trace verified separately"
+    },
+    "scope": "functional closed loop; TCG is not hardware-calibrated inference timing"
+  },
+  "increases": {
+    "block_mean_ms": 99.9754,
+    "get_ms": 413.67118300000004,
+    "ttft_ms": 413.57823300000973,
+    "aiperf_ttft_ms": -88.02182099999982
+  },
+  "identical_object_count": 10,
+  "scope": "one matched functional pair; not a statistical performance estimate"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_sha256": "cfd45b93c58e16b1ae3cb177f91d45bb58590dc592e140e28e4155145746feb3",
+  "source_file": "trace_0001.source.json",
+  "selection": "contiguous parent prefix from index zero",
+  "selected_source_paths": [
+    "/requests/0",
+    "/requests/1"
+  ],
+  "omitted_request_count": 39,
+  "record_fields_changed": [],
+  "top_level_fields_removed": [
+    "totals"
+  ],
+  "dependency_edges": [
+    {
+      "before": "/requests/0",
+      "after": "/requests/1",
+      "kind": "serial_parent_turn"
+    }
+  ],
+  "dependency_closure": true,
+  "dependency_scope": "selected serial parent prefix, not complete tool execution DAG",
+  "token_semantics": "source lengths/hash structure via synthetic tokenizer; not K3 retokenization",
+  "timing": "causal; wait for predecessor completion then unchanged recorded think_time",
+  "recorded_api_time_usage": "audit intervals only; never substitute for K3 compute latency",
+  "runtime_validation": "not performed; no scheduler/Store/FEMU executed by this audit",
+  "slice_sha256": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896"
+}

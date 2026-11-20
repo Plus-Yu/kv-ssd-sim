@@ -1,0 +1,164 @@
+{
+  "status": "diagnostic_only",
+  "trial": "femu-c2-natural-04",
+  "boundaries": [
+    {
+      "label": "capture_start",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 0,
+      "possible_trace_depths": [
+        0
+      ]
+    },
+    {
+      "label": "http_send",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 0,
+      "possible_trace_depths": [
+        0
+      ]
+    },
+    {
+      "label": "http_response",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 15,
+      "possible_trace_depths": [
+        15
+      ]
+    },
+    {
+      "label": "http_send",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 7,
+      "possible_trace_depths": [
+        0
+      ]
+    },
+    {
+      "label": "http_response",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 0,
+      "possible_trace_depths": [
+        0
+      ]
+    },
+    {
+      "label": "store_sender_drained",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 0,
+      "possible_trace_depths": [
+        0
+      ]
+    },
+    {
+      "label": "device_end",
+      "completions_and_sectors_match": true,
+      "diskstats_inflight": 0,
+      "possible_trace_depths": [
+        0
+      ]
+    }
+  ],
+  "http": {
+    "status": "passed",
+    "requests": 2,
+    "input_tokens": 22433,
+    "output_tokens": 235,
+    "shared_prefix_pairs_verified": 1,
+    "wire_shared_block_tokens": {
+      "2bcacbd0-7ddd-4597-89d0-9c81aa54db3d": 0,
+      "88a0327f-eb15-4820-b263-e92a96e15c8a": 11072
+    },
+    "external_load_tokens": 0,
+    "restore_batches": 0,
+    "max_native_batch_requests": 1,
+    "aiperf_ttft_avg_ms": 64988.5543765,
+    "cold_between_requests": false,
+    "femu_verified": true,
+    "scope": "AIPerf HTTP native scheduler + hybrid Store; synthetic character tokenizer; FEMU device counters verified; block trace verified separately"
+  },
+  "block_trace_integrity": {
+    "buffer_entries": 1356,
+    "foreign_device_events": 0,
+    "ambiguous_completions": 0,
+    "error_completions": 0
+  },
+  "objects": {
+    "logical_ranks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "counts_by_object_bytes": {
+      "18723840": 120,
+      "1769472": 88
+    },
+    "unique_keys": 208,
+    "logical_bytes": 2402574336,
+    "complete_kda_boundaries": 5,
+    "max_inflight_put_bytes": 452911104,
+    "key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999"
+  },
+  "io_first_send_to_device_end": {
+    "R": {
+      "count": 2,
+      "bytes": 8192,
+      "size_histogram": {
+        "4096": 2
+      },
+      "adjacent_transitions": 0,
+      "transitions": 1,
+      "hottest_1MiB_byte_share": 0.5,
+      "latency_samples": 2,
+      "mean_ms": 420.56550000000004,
+      "p50_ms": 256.357,
+      "p95_ms": 584.774,
+      "count_share": 0.0030257186081694403,
+      "bytes_share": 3.4081768980137144e-06,
+      "adjacent_share": 0.0
+    },
+    "W": {
+      "count": 659,
+      "bytes": 2403622912,
+      "size_histogram": {
+        "4096": 44,
+        "8192": 8,
+        "12288": 6,
+        "16384": 5,
+        "20480": 1,
+        "24576": 4,
+        "28672": 1,
+        "32768": 1,
+        "40960": 4,
+        "45056": 3,
+        "49152": 2,
+        "516096": 2,
+        "606208": 3,
+        "1437696": 1,
+        "2097152": 2,
+        "2392064": 1,
+        "2920448": 1,
+        "3293184": 1,
+        "3596288": 1,
+        "3788800": 1,
+        "4194304": 567
+      },
+      "adjacent_transitions": 587,
+      "transitions": 658,
+      "hottest_1MiB_byte_share": 0.0004362481297565531,
+      "latency_samples": 659,
+      "mean_ms": 451.18887101669196,
+      "p50_ms": 358.691,
+      "p95_ms": 1158.258,
+      "count_share": 0.9969742813918305,
+      "bytes_share": 0.999996591823102,
+      "adjacent_share": 0.89209726443769
+    }
+  },
+  "max_qd": 64
+}

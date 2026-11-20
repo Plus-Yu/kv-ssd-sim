@@ -1,0 +1,108 @@
+{
+  "trace_id": "trace_0001",
+  "scope": "this trace file only; not the entire WEKA corpus",
+  "top_level_entries": 2,
+  "valid_request_count": 2,
+  "parent_requests": 2,
+  "subagent_requests": 0,
+  "explicit_subagents": 0,
+  "max_explicit_nesting_depth": 0,
+  "request_types": {
+    "n": 2
+  },
+  "source_models": [
+    "claude-opus-4-5-20251101"
+  ],
+  "block_size": 64,
+  "hash_id_scope": "local",
+  "match_unit": 128,
+  "input_tokens": {
+    "count": 2,
+    "min": 71175,
+    "median": 71968.5,
+    "max": 72762,
+    "sum": 143937
+  },
+  "output_tokens": {
+    "count": 2,
+    "min": 169,
+    "median": 232.5,
+    "max": 296,
+    "sum": 465
+  },
+  "context_tokens": {
+    "count": 2,
+    "min": 71344,
+    "median": 72201.0,
+    "max": 73058,
+    "sum": 144402
+  },
+  "think_time_s": {
+    "count": 2,
+    "min": 0.0,
+    "median": 6.0,
+    "max": 12.0,
+    "sum": 12.0
+  },
+  "recorded_parent_peak_inflight": 1,
+  "concurrency_scope": "observed root request intervals [t, t+api_time); not replay concurrency",
+  "context_limit": 131072,
+  "over_context_paths": [],
+  "prepared_payload_estimate": {
+    "layers": 93,
+    "digest_bytes_per_token_layer": 32,
+    "all_requests_bytes": 429740352,
+    "largest_request_bytes": 217420608,
+    "limit_bytes": 536870912,
+    "excludes": "KV buffers, staging, Python/tokenizer memory, and runtime overhead"
+  },
+  "consecutive_prefixes": [
+    {
+      "previous": "/requests/0",
+      "current": "/requests/1",
+      "shared_complete_tokens": 71168,
+      "match_unit_aligned_tokens": 71168,
+      "input_token_reuse_fraction": 0.9780929606113081
+    }
+  ],
+  "records": [
+    {
+      "path": "/requests/0",
+      "stream": "main",
+      "depth": 0,
+      "type": "n",
+      "source_model": "claude-opus-4-5-20251101",
+      "input_tokens": 71175,
+      "output_tokens": 169,
+      "context_tokens": 71344,
+      "recorded_t_s": 0.0,
+      "think_time_s": 0.0,
+      "recorded_api_time_s": 7.34,
+      "hash_count": 1112,
+      "partial_tail_tokens": 7,
+      "partial_tail_hash_recorded": false,
+      "context_limit_exceeded": false
+    },
+    {
+      "path": "/requests/1",
+      "stream": "main",
+      "depth": 0,
+      "type": "n",
+      "source_model": "claude-opus-4-5-20251101",
+      "input_tokens": 72762,
+      "output_tokens": 296,
+      "context_tokens": 73058,
+      "recorded_t_s": 19.0,
+      "think_time_s": 12.0,
+      "recorded_api_time_s": 9.19,
+      "hash_count": 1136,
+      "partial_tail_tokens": 58,
+      "partial_tail_hash_recorded": false,
+      "context_limit_exceeded": false
+    }
+  ],
+  "branches": [],
+  "issues": [],
+  "structural_validation_passed": true,
+  "dependency_scope": "serial parent-prefix selection only; no tool-call DAG reconstruction"
+}

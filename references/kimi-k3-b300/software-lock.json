@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "python": "3.13.17",
+  "local_harness_commit": "35f3fc1e7522ea70ede26580aa98acf14b9dda83",
+  "harness_note": "Base commit before this uncommitted step-1 change; file manifest pins new audit code",
+  "local_packages": {
+    "vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+    "torch": "2.14.0+cpu",
+    "mooncake-transfer-engine-non-cuda": "0.3.14",
+    "transformers": "5.22.2",
+    "aiohttp": "3.14.5"
+  },
+  "local_vllm_commit": "be47189f37f6162991366ff6b91539f6e9d1f432",
+  "reference_vllm_commit": "935f87de846980dc16c54ac1996595fc12eb3f9e",
+  "vllm_version_drift": "intentional inventory; reference recipe compatibility on the CPU harness is unverified",
+  "aiperf_version": "0.13.0",
+  "femu_commit": "a898d22b2f894042afe0f4ef21867393c5c78a70",
+  "femu_status": "existing tiny VM unchanged, not target server capacity",
+  "lock_files": {
+    "requirements.lock.txt": "2ca4f7892abae4a4f138046e43af72f5534a8ef609fc61dce003f45aab420abb",
+    "requirements-aiperf.lock.txt": "969b6c97b0686d952b859cd26025c594df1e871060e0111431312b62a9c36119",
+    "environment-manifest.json": "9bce314ec3f6f08c3bfd0441e06d011d61482e9498a36d39ce263527f3c2d20b"
+  }
+}

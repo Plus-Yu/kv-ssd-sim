@@ -1,0 +1,960 @@
+{
+  "status": "passed",
+  "scope": "one real-size native allocated checkpoint; eight sequential logical TP ranks, one embedded TCP store, host filesystem",
+  "step2_sha256": "5baf48628a17addfdece7714e313b7717425770f12516c9849e55c5dc7fe3b83",
+  "request_tokens": 1537,
+  "checkpoint_position": 1536,
+  "block_tables": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      7,
+      8
+    ]
+  ],
+  "allocated_host_buffer_bytes": 191102976,
+  "lookup_tokens": {
+    "rank0_only": 0,
+    "missing_group2_rank7": 0,
+    "all_disk_only": 1536
+  },
+  "unique_object_bytes": 470605824,
+  "objects": [
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 0,
+      "group": 0,
+      "shard": 0,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "3327ee8ef78d93eeca6546db0ff90c0b82958e4083e955f9bb6c5a224d313533"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 0,
+      "group": 1,
+      "shard": 0,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "2fc13ae3b25ca631da1c4a69cf1ce4a6b982290200fbe22fadb45ff9a5bfcf06"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 0,
+      "group": 2,
+      "shard": 0,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "5179b02d1a25148343a9992366d35513438756ec58b5be9d9b3caf8086bdb904"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 128,
+      "bytes": 1769472,
+      "sha256": "7c322f711ead8fadb1255f99501acc37c563bffd3665c357b3139bc3ce618da8"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 256,
+      "bytes": 1769472,
+      "sha256": "a10710e7afbe3e478e6e1199e042ef39e5cc7911cb0a09c913ea73de8df19bfe"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 384,
+      "bytes": 1769472,
+      "sha256": "4ae33d96df09083e972ad41f344edd7c6d7b986faa6fb36bec11a2f3ab5c6d22"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 512,
+      "bytes": 1769472,
+      "sha256": "620deb280ab2af2d147e6dc4c95207bab661c273a5f6518fbd93cb4206948326"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 640,
+      "bytes": 1769472,
+      "sha256": "ed7c0d78eef7804a6b991c253bdcb4334f4060973e16163ff8dcdc385eb4cfd4"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 768,
+      "bytes": 1769472,
+      "sha256": "c5ad12d75ef23fd67d856edb90eee7084857014f574bf438873f571af3f10181"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 896,
+      "bytes": 1769472,
+      "sha256": "4a9a63c5fa7ea6adc291dc4c2809197b6998d3db1bad194e3bf341f29c5149b7"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 1024,
+      "bytes": 1769472,
+      "sha256": "b7d18c3ac98f59ce0b13e05777a7393be02d3a1c5c7bb17d9cedc081a009f7da"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 1152,
+      "bytes": 1769472,
+      "sha256": "c3d77b44886b13a36d9d785c4165aaec5d737dd1d87e4b0a8f81c06033a1284f"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 1280,
+      "bytes": 1769472,
+      "sha256": "6da04fcd1e2681775e4cf925b740cc8d51ad2306831d5529fd23127ad4bd9cc9"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 1408,
+      "bytes": 1769472,
+      "sha256": "35f039c49de0d71488a3d6e90841354e6a5c52a9172c05c02228870b63af95f9"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 0,
+      "group": 3,
+      "shard": 0,
+      "end_token": 1536,
+      "bytes": 1769472,
+      "sha256": "bd5e8c5437088da74258b2feab3712b998630b9e2c92c4876c78e3419369a1cd"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 1,
+      "group": 0,
+      "shard": 1,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "36b82d2d81a4a21e732fb9e01ef7f68c00dfb8e8105218263bff43ae1e148662"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 1,
+      "group": 1,
+      "shard": 1,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "007493f4a9358ad903d9f1050c2063db51f049337b025da279dad054f1cd725c"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 1,
+      "group": 2,
+      "shard": 1,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "5a148cbbdd6096f4c52e656afd73e40f95ad3656dc717f4c817a71da8be2c829"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 2,
+      "group": 0,
+      "shard": 2,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "d6741758c7f8253dfe914cbeb8ef684281321245dae588e27afe6042eef022c4"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 2,
+      "group": 1,
+      "shard": 2,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "457d2d855da3466f21807f8450e4d12044ecaf977f8fccbe74469d059dbc52c5"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 2,
+      "group": 2,
+      "shard": 2,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "ebca3110f824fc7282e5d05b62d1c189108cf8f14b5968f40002571560cd58e1"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 3,
+      "group": 0,
+      "shard": 3,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "fc961ba3c191b2a28467a35028f8a9a397eda8046e199820eeb9983a924595f4"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 3,
+      "group": 1,
+      "shard": 3,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "6dc83537259635d783d2d58c101000133d3cd95ce8677d51c5e7485f6650c855"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 3,
+      "group": 2,
+      "shard": 3,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "f260dc99b5b2d5285ea9840ffa1f39ed3b45a397e7c16b3f8034de60b8d08b7b"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 4,
+      "group": 0,
+      "shard": 4,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "9619de711dbb64044c29a7c5f36b34e718f4a11170e8319f9b9d3f46df4a9cc9"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 4,
+      "group": 1,
+      "shard": 4,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "3300a98a7c170ab39d37d7bbebc2d91bba4935d10b896b64c8909777510612d8"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 4,
+      "group": 2,
+      "shard": 4,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "75ac08a84702490fb4b7cdb70d55104fce70dad745cd63171eb3f76eadd2a30a"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 5,
+      "group": 0,
+      "shard": 5,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "3ca4ea3097669ca1dcef705047e6a26612f4ebb5e5561913a0bd326f6240ea9d"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 5,
+      "group": 1,
+      "shard": 5,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "92c151cede9b73e90a6297cf13813a57835523cc37141667376aee3d0700dbaf"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 5,
+      "group": 2,
+      "shard": 5,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "a16d01c0afa564d7288487eb6d6f438a998c9730c4eab4d4521e177a60033e2a"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 6,
+      "group": 0,
+      "shard": 6,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "545ba9dff7041ba87ddaf85762d847eec61d919a149efdf14d64e73c292c4ec7"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 6,
+      "group": 1,
+      "shard": 6,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "0248355b62ac2643f1986658a2b0517fa257a57c624548b49f673639fd0c3081"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 6,
+      "group": 2,
+      "shard": 6,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "74e1c71060e6ac9e75f0b81d29fba15c1b748d8f64b742ad3f883ab019423006"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 7,
+      "group": 0,
+      "shard": 7,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "5bbd74054a3c4d558273d42918a4cfc36dbb4b4690f78d9ba88958f12b7090e7"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 7,
+      "group": 1,
+      "shard": 7,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "8bb05b23120a831c7b4dc9a5aa53a776f41d1fbccc6d634e42dcdbbd96b69678"
+    },
+    {
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "rank": 7,
+      "group": 2,
+      "shard": 7,
+      "end_token": 1536,
+      "bytes": 18723840,
+      "sha256": "3e369f043dff67beb2ae08c6465bc7a5eea2c95b3cc0b26f13c28d29d8f024a5"
+    }
+  ],
+  "restores": [
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 0,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 1,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 2,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 3,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 4,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 5,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 6,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:0@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:1@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:2@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 18723840
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@85be9f3f5e29e612e8b0b2efaeb8d549bd7c2756dee5beb47b4cc77299b913cc",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@b3141db66e743125adeb396b906792b6554497b48626f4f8d69d8924bb640896",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4a5d3eaa31a4e655a4bc2c05737799f67ef767d0ae3f33bc6d27c809936dc999",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@8718ce1779926efc581910e3b9e01a2daad1edb0a527dd109e896378c3d97c23",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@75143b7a125a27b17f8a909a4eaaf6810dcdd93f1e44fd0c7a2e4e67f8fd59b4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@a3045e904a9eaf1d5331a89b8b50ebaf4fa424dd43d69dcded667b59a913676d",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ea7a2da4606bdf1717a060b30232ee6649eaaba4a952ccd0b5b389d72ce941a7",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@29e9e8886cf0e7bfd1df25233cc7f6419595c08697e968af61160a8c2ef83c90",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@18b04856d448074f2d7f4ede37d65437516bae64fbc71159bc6fc52e8b215bf6",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@9f4e5ce07bd18e040c2a5d2993882234839efcfdd5a5d80f1874935c72f30bb4",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0e1dc2ac94f16692b87159cf61d6d60920fd36df599eba1a8afa3c1d612e64aa",
+      "bytes": 1769472
+    },
+    {
+      "rank": 7,
+      "key": "step3-k3@Kimi-K3@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@cabaf11de48f926952c0f208aae1d399ea2457280e6446962d8f5cdf641e8443",
+      "bytes": 1769472
+    }
+  ]
+}

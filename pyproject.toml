@@ -27,3 +27,7 @@ markers = ["integration: requires native vLLM and Mooncake runtimes"]
 target-version = "py313"
 line-length = 100
 
+[tool.ruff.lint.per-file-ignores]
+# Record one dispatch marker synchronously before AIPerf starts its native timer.
+"scripts/aiperf_gate/sitecustomize.py" = ["ASYNC230"]
+

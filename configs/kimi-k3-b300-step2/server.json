@@ -1,0 +1,20 @@
+{
+  "profile": "single-node-tp8-planning-v1",
+  "checkpoint_tensor_bytes": 1560860324864,
+  "checkpoint_source": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/model.safetensors.index.json",
+  "checkpoint_field": "metadata.total_size",
+  "weight_policy": "ceil(all checkpoint tensor bytes / TP), plus explicit per-rank reserve for replicated weights, imbalance and materialization; estimate, not device residency",
+  "gpu_reserves_bytes_per_rank": {
+    "weight_replication_imbalance_and_format": 17179869184,
+    "activations_and_workspace": 8589934592,
+    "communication_buffers": 4294967296,
+    "cuda_graphs": 4294967296,
+    "runtime_misc": 4294967296
+  },
+  "host_reserved_non_store_bytes": 500000000000,
+  "reserve_basis": "Unmeasured experiment assumptions: GPU 16/8/4/4/4 GiB; host 500 decimal GB. Utilization headroom is additional.",
+  "layout": "LBHNC",
+  "kda_prefill_backend": "flashkda",
+  "conv_state_layout": "SD",
+  "attention_backend": "TOKENSPEED_MLA"
+}

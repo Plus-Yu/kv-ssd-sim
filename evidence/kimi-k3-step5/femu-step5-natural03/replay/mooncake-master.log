@@ -1,0 +1,677 @@
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I1118 06:41:41.474097   552 master.cpp:1449] Mooncake master version: 0.3.14 (git: e1ea5d3)
+I1118 06:41:41.489758   552 master.cpp:1585] Master service started on port 35317, max_threads=2, enable_metric_reporting=1, metrics_port=34051, metrics_host=127.0.0.1, default_kv_lease_ttl=500, default_kv_soft_pin_ttl=0, max_kv_soft_pin_ttl=604800000, allow_evict_soft_pinned_objects=1, eviction_ratio=0.85, eviction_high_watermark_ratio=0.045, tenant_eviction_high_watermark_ratio=0.9, enable_ha=0, enable_oplog=0, weight_management_oplog_capability_confirmed=0, enable_oplog_snapshot=0, snapshot_chunk_object_count=1000000, enable_offload=1, enable_kv_events=0, kv_events_bind_endpoint=, kv_events_backend_id=, offload_on_evict=0, offload_force_evict=0, offloading_queue_limit=50000, offload_cap_ratio=0.5, ha_backend_type=etcd, ha_backend_connstring=, ha_leader_lease_ttl_sec=5, etcd_endpoints=, client_active_ttl_sec=10, client_suspicion_ttl_sec=20, rpc_thread_num=2, handler_worker_thread_num=2, rpc_port=35317, rpc_address=127.0.0.1, rpc_interface=, rpc_conn_timeout_seconds=0, rpc_enable_tcp_no_delay=1, rpc protocol=tcp, cluster_id=mooncake_cluster, root_fs_dir=, global_file_segment_size=9223372036854775807, memory_allocator=offset, enable_http_metadata_server=0, http_metadata_server_port=8080, http_metadata_server_host=0.0.0.0, enable_metadata_cleanup_on_timeout=0, put_start_discard_timeout_sec=30, put_start_release_timeout_sec=600, max_total_finished_tasks=10000, max_total_pending_tasks=10000, max_total_processing_tasks=10000, pending_task_timeout_sec=300, processing_task_timeout_sec=300, max_retry_attempts=10, enable_cxl=0, cxl_path=/dev/dax0.0, cxl_size=8589934592
+I1118 06:41:41.534265   558 client_offboarding.cpp:94] Client offboarding worker started
+I1118 06:41:41.537082   562 master_service.cpp:2796] Weight reconciliation thread started
+I1118 06:41:41.538717   561 master_service.cpp:2763] Task cleanup thread started
+I1118 06:41:41.578007   552 master_admin_service.cpp:324] Master admin server started on port 34051
+I1118 06:41:41.620880   552 master_service.cpp:3783] Restore lifecycle -> Ready (non-HA initialization)
+I1118 06:41:41.621829   552 master_service.cpp:3794] Restore lifecycle -> Serving
+I1118 06:41:41.637750   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=false, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:41:51.643337   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:01.645167   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:11.647297   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:21.649778   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:31.651871   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:41.654228   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:42:51.656734   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:01.658674   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:11.660790   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:21.663280   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:31.665076   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:41.666762   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:43:51.668546   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:44:01.670199   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:44:11.672011   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:44:21.674152   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 0 B / 0 B | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 0 B / 0 B | Keys: 0 (soft-pinned: 0) | Clients: 0 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.00/0.00, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutEnd:(Req=0.00/0.00/0.00, Item=0.00/0.00), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=0.00/0.00/0.00, Item=0.00/0.00), ExistKey:(Req=0.00/0.00/0.00, Item=0.00/0.00), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.00/0.00), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=0/0, AllocFail=0, PartialAlloc=0, keys=0, size=0 B | Mem Eviction: Success/Attempts=0/0, keys=0, size=0 B | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:44:22.591045   572 master_service.cpp:8216] Storage root directory or cluster ID is not set. persisting data is disabled.
+I1118 06:44:22.706962   573 master_service.cpp:1074] client_id=3551482999100376819-11606180369569945486, action=mount_segment, segment_name=127.0.0.1:14108
+W1118 06:44:22.787286   573 segment.cpp:343] segment_name=127.0.0.1:14108, warn=segment_already_exists
+I1118 06:44:22.840314   572 rpc_service.cpp:1723] Mount local disk segment with client id is : 3551482999100376819-11606180369569945486, enable offloading is: 1
+I1118 06:44:26.508935   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0517197 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.525601   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=5, eviction_base=25, actual_evict_ratio=0.2
+I1118 06:44:26.527231   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.805650   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.807184   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:26.807775   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.818660   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0479698 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.820840   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 06:44:26.821470   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.832511   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0479698 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.833707   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 06:44:26.834671   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.845295   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0557823 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.846866   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=28, actual_evict_ratio=0
+I1118 06:44:26.848608   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.859226   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0558605 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.861339   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=29, actual_evict_ratio=0
+I1118 06:44:26.862675   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.873286   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0597668 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.874778   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=29, actual_evict_ratio=0
+I1118 06:44:26.875140   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.885689   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.059845 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.887645   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=31, actual_evict_ratio=0
+I1118 06:44:26.889158   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.900272   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.902295   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:26.904565   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.915138   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0639076 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.918087   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=34, actual_evict_ratio=0
+I1118 06:44:26.918710   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.929301   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.931653   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.932219   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.942929   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.944145   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.944576   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.955003   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.956104   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.956488   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.966940   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.968163   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.968523   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.978941   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.980130   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.980628   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:26.991258   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:26.992597   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:26.993055   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.005726   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.008306   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.010586   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.021150   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.022221   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.022675   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.033829   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.039207   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.040779   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.051862   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.052497   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.052875   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.064903   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.065588   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.066201   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.076738   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.077289   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.077889   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.088606   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.089121   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.089713   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.100275   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.100832   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.101117   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.111545   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.112093   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.112483   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.122936   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.123494   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.123782   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.134186   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.134766   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.135097   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.145599   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.146166   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.146582   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.157011   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.157589   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.159718   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.170234   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.171005   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.171535   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.181972   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.182600   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:27.182901   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.193480   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0718765 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.194175   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=38, actual_evict_ratio=0
+I1118 06:44:27.194559   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.205040   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.205920   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=38, actual_evict_ratio=0
+I1118 06:44:27.207172   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.218091   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.219707   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:27.221035   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.231902   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0798454 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.232769   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=42, actual_evict_ratio=0
+I1118 06:44:27.233127   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.244175   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0877361 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.246819   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=45, actual_evict_ratio=0
+I1118 06:44:27.247265   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.259143   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0916424 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.260057   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=46, actual_evict_ratio=0
+I1118 06:44:27.261309   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.272143   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0917206 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.273026   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=47, actual_evict_ratio=0
+I1118 06:44:27.273898   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.284454   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.285597   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:27.286612   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.297542   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0957832 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.299567   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=50, actual_evict_ratio=0
+I1118 06:44:27.300031   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.310546   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.311738   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.312304   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.322909   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.323848   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.324200   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.334807   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.335979   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.336333   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.346982   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.347991   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.348362   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.358961   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.359810   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.360095   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.370550   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.371871   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.372332   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.382920   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.384016   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.384352   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.394896   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.396106   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.396780   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.407260   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.408007   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.408509   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.419011   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.419901   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.420204   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.430688   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.431783   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.432094   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.442523   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.443480   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.443960   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.454448   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.455267   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.455628   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.466192   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.467098   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.467537   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.478258   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.479166   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.479699   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.490195   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.491055   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:27.491503   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.501979   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.503808   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=36, eviction_base=52, actual_evict_ratio=0.692308
+I1118 06:44:27.504225   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.638190   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.639846   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:27.640275   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.651032   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478916 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.652127   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=25, actual_evict_ratio=0
+I1118 06:44:27.652661   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.663195   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0517979 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.664672   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 06:44:27.665720   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.677295   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0518761 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.678921   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=27, actual_evict_ratio=0
+I1118 06:44:27.679601   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.691974   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0559387 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.693791   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=30, actual_evict_ratio=0
+I1118 06:44:27.694855   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.705834   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.708654   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.709146   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.719758   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.721508   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.722025   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.732542   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.734359   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.734951   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.745486   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.746704   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.747078   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.757563   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.758688   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.759202   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.770452   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.773041   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.773556   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.784013   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.785238   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.786619   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.797137   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.798530   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.798866   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.809466   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.810622   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.811084   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.821523   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.822721   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.823309   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.833956   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.835114   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.835536   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.846011   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.847688   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.848083   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.858484   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.859359   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.859743   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.870225   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.871465   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.871830   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.882324   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.883606   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.884054   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.894492   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.895855   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.896314   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.906910   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.908218   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.908696   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.919322   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.920641   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.921026   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.931543   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.932816   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.933254   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.943773   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.945071   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.945547   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.956136   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.957278   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.957800   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.968480   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.970279   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.970749   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.981736   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.982963   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:27.983294   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:27.993992   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0639076 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:27.995237   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=34, actual_evict_ratio=0
+I1118 06:44:27.995599   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.006572   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.008610   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=34, actual_evict_ratio=0
+I1118 06:44:28.009968   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.020740   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.022046   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=36, actual_evict_ratio=0
+I1118 06:44:28.022370   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.033028   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0718765 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.034323   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=38, actual_evict_ratio=0
+I1118 06:44:28.034804   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.046074   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.047922   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.050315   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.065598   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0836735 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.067204   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=42, actual_evict_ratio=0
+I1118 06:44:28.068693   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.079464   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0837517 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.081523   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=43, actual_evict_ratio=0
+I1118 06:44:28.081995   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.093236   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0876579 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.095098   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=44, actual_evict_ratio=0
+I1118 06:44:28.097157   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.108199   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0878143 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.109118   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=46, actual_evict_ratio=0
+I1118 06:44:28.110227   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.120857   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.121742   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.122110   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.132675   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.133559   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.134179   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.145007   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.145824   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.146548   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.158468   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.159209   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.160744   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.171343   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.172147   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.172654   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.183102   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.183810   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.184120   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.194551   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.195360   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.195822   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.206311   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.207201   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.207613   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.218343   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.219201   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.219677   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.230472   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.231366   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.232004   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.242537   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.243086   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.243503   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.254055   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.254685   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.254948   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.265475   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.266368   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.267025   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.277642   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.278683   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.279071   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.289634   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.290194   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.290635   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.301153   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.301903   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.302210   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.312899   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.313731   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.314039   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.324517   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.325497   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.325909   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.336453   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.337353   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.337827   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.348465   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.349152   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.349731   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.360263   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.361236   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.361640   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.372267   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.373288   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.373934   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.384460   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.385154   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:28.385577   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.396162   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0957832 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.397020   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=50, actual_evict_ratio=0
+I1118 06:44:28.398274   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.410036   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.411288   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:28.412001   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.422533   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103752 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.425355   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=54, actual_evict_ratio=0
+I1118 06:44:28.425913   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.436548   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.437541   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=54, actual_evict_ratio=0
+I1118 06:44:28.437922   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.448535   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.449807   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:28.450546   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.461465   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111643 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.462649   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=57, actual_evict_ratio=0
+I1118 06:44:28.463088   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.473685   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.115549 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.475770   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=58, actual_evict_ratio=0
+I1118 06:44:28.476233   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.486929   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.115627 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.488081   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=59, actual_evict_ratio=0
+I1118 06:44:28.488590   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.499451   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.119534 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.501498   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=60, actual_evict_ratio=0
+I1118 06:44:28.502846   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.514868   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.11969 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.516224   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=62, actual_evict_ratio=0
+I1118 06:44:28.517722   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.528298   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.529762   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 06:44:28.530364   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.541028   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.542222   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=64, actual_evict_ratio=0
+I1118 06:44:28.542783   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.553257   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.127502 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.555054   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=40, eviction_base=64, actual_evict_ratio=0.625
+I1118 06:44:28.555521   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.566179   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.567307   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.567785   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.578191   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.579293   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.579663   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.590107   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.590947   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.591317   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.601924   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.602990   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.603513   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.614015   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.615132   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.615533   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.626053   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.627183   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.627703   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.638432   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.639616   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.640110   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.650633   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.652027   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.652576   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.663074   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.664232   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.664780   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.675334   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.676877   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.677314   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.687835   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.689030   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.689481   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.699962   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.701081   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.701553   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.712071   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.713284   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.713794   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.724309   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.725586   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.726006   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.736654   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.737793   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.738207   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.748698   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.749891   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.750485   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.761092   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.762212   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.762791   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.773298   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.774485   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.774953   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.786995   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0478134 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.787953   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=24, actual_evict_ratio=0
+I1118 06:44:28.788290   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.798799   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0479698 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.799989   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=26, actual_evict_ratio=0
+I1118 06:44:28.801266   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.811964   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0557823 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.813489   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=28, actual_evict_ratio=0
+I1118 06:44:28.814499   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.825214   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0559387 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.826789   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=30, actual_evict_ratio=0
+I1118 06:44:28.827625   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.838337   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0637512 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.839609   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=32, actual_evict_ratio=0
+I1118 06:44:28.840382   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.851037   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0638294 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.852901   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=33, actual_evict_ratio=0
+I1118 06:44:28.853557   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.864730   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0677357 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.867081   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=33, actual_evict_ratio=0
+I1118 06:44:28.867620   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.878616   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0677357 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.881359   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=34, actual_evict_ratio=0
+I1118 06:44:28.883167   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.894359   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0717201 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.896230   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=35, actual_evict_ratio=0
+I1118 06:44:28.896804   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.907557   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0718765 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.910300   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=38, actual_evict_ratio=0
+I1118 06:44:28.912727   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.923542   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.925280   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.925819   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.936509   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.937915   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.938375   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.948972   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.950315   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.950714   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.961150   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.963008   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.963564   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.974042   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.975313   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.975757   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.986197   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:28.987699   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:28.988119   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:28.998759   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.000214   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.000705   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.011276   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.012734   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.013154   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.023614   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.025019   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.025441   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.035899   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.037353   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.037925   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.049041   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.050618   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.051139   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.061740   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.063057   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.063545   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.074100   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.075475   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.075996   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.086478   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.087931   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.088367   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.099190   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.102327   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.104622   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.115549   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.117460   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.119217   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.129796   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.130944   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.131312   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.141901   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.142576   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.143631   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.154227   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.154920   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.155263   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.165819   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.166837   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.167187   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.177742   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.179034   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.179527   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.190026   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.079689 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.191917   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=40, actual_evict_ratio=0
+I1118 06:44:29.192471   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.204032   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0798454 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.205209   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=42, actual_evict_ratio=0
+I1118 06:44:29.206625   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.218166   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0876579 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.219193   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=44, actual_evict_ratio=0
+I1118 06:44:29.219619   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.230182   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0878143 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.231314   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=46, actual_evict_ratio=0
+I1118 06:44:29.231948   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.242992   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0956268 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.243779   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=48, actual_evict_ratio=0
+I1118 06:44:29.244165   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.254685   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.095705 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.255679   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=49, actual_evict_ratio=0
+I1118 06:44:29.257697   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.268292   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0996113 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.269371   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=50, actual_evict_ratio=0
+I1118 06:44:29.269949   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.280515   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.0996895 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.281347   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=51, actual_evict_ratio=0
+I1118 06:44:29.281783   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.292493   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103596 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.293349   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=52, actual_evict_ratio=0
+I1118 06:44:29.294734   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.306098   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.103752 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.306991   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=54, actual_evict_ratio=0
+I1118 06:44:29.308063   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.318661   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.319742   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.321372   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.332109   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.333321   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.333981   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.344484   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.345733   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.346195   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.356703   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.357731   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.358345   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.368914   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.370029   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.370486   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.380935   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.381922   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.382316   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.392910   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.393913   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.394275   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.404721   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.405599   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.406008   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.416909   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.417872   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.418383   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.428944   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.430124   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.430660   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.441172   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.441947   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.442350   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.452966   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.453938   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.454348   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.464980   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.465904   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.466310   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.476774   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.477989   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.478528   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.488988   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.489863   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.490247   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.500908   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.502234   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.502732   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.513285   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.514356   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.514786   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.525187   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.526054   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.526515   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.537043   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.537909   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.538328   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.548840   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.550212   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.550621   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.561146   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.562479   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.563019   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.573647   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.574528   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.574873   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.585330   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.586495   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.586885   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.597486   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.598508   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=0, eviction_base=56, actual_evict_ratio=0
+I1118 06:44:29.598906   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:29.609570   559 master_service.cpp:9672] [EVICT-TRIGGER] memory_ratio=0.111565 high_watermark=0.045 need_mem_eviction=0 eviction_ratio=0.85
+I1118 06:44:29.611193   559 report_observers.cpp:51] [EVICT-RESULT] evicted_count=40, eviction_base=56, actual_evict_ratio=0.714286
+I1118 06:44:29.611620   559 master_service.cpp:9683] [EVICT-DONE] BatchEvict execution completed.
+I1118 06:44:31.679055   571 master_admin_service.cpp:315] Master Admin Metrics: role=leader, state=serving, service_ready=true, master={Mem Storage: 1.15 MB / 32.00 MB (3.6%) | NVMe-oF SSD: 0 B / 0 B | SSD Storage: 8.80 MB / 128.00 MB | Keys: 139 (soft-pinned: 0) | Clients: 1 | Requests (Success/Total per sec): PutStart=0.00/0.00, PutEnd=0.00/0.00, PutRevoke=0.00/0.00, Get=0.00/0.00, Exist=0.00/0.00, Del=0.00/0.00, DelAll=0.00/0.00, Ping=0.90/0.90, CopyStart=0.00/0.00, CopyEnd=0.00/0.00, CopyRevoke=0.00/0.00, MoveStart=0.00/0.00, MoveEnd=0.00/0.00, MoveRevoke=0.00/0.00, EvictDiskReplica=0.00/0.00 | Batch Requests (per sec, Req=Success/PartialSuccess/Total, Item=Success/Total): PutStart:(Req=8.90/0.00/8.90, Item=13.90/13.90), PutEnd:(Req=8.90/0.00/8.90, Item=13.90/13.90), PutRevoke:(Req=0.00/0.00/0.00, Item=0.00/0.00), Get:(Req=1.20/0.00/1.20, Item=15.20/15.20), ExistKey:(Req=11.00/0.00/11.00, Item=28.59/28.59), QueryIp:(Req=0.00/0.00/0.00, Item=0.00/0.00), Clear:(Req=0.00/0.00/0.00, Item=0.00/0.00), CreateMoveTask:(Req=0.00/0.00), CreateCopyTask:(Req=0.00/0.00), QueryTask:(Req=0.00/0.00), FetchTasks:(Req=0.90/0.90), MarkTaskToComplete:(Req=0.00/0.00) | Eviction: Success/Attempts=4/214, AllocFail=0, PartialAlloc=0, keys=121, size=7.78 MB | Mem Eviction: Success/Attempts=4/214, keys=121, size=7.78 MB | NoF Eviction: Success/Attempts=0/0, keys=0, size=0 B | Discard: Released/Total=0/0, StagingSize=0 B | Promotion: in_flight=0, admitted=0, completed=0, failed=0, cancelled=0, expired=0, bytes=0 B, rejected(freq/wm/cap)=0/0/0}, ha={HA Metrics Summary: last_seq=0, applied_seq=0, lag=0, pending=0, mutation_queue=0, batch_commits=0, sync_commits=0, skipped=0, checksum_fail=0, etcd_fail=0, watch_disconn=0, state=0, writer_accepting=false, writer_retry_count=0, writer_retry_delay_ms=0, writer_waiting_slots=0, writer_committed_queue=0, writer_callback_queue=0, writer_durable_batch=0, writer_durable_seq=0, writer_last_error=0}
+I1118 06:44:35.118029   552 master.cpp:1784] Shutdown signal received, exiting gracefully
+I1118 06:44:35.130481   561 master_service.cpp:2792] Task cleanup thread stopped
+I1118 06:44:35.130617   562 master_service.cpp:2813] Weight reconciliation thread stopped
+I1118 06:44:35.615305   558 client_offboarding.cpp:163] Client offboarding worker stopped

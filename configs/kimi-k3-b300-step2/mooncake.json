@@ -1,0 +1,11 @@
+{
+  "profile": "target-logical-embedded-per-rank",
+  "store_tp_size": 8,
+  "client_count": 8,
+  "global_segment_size_bytes_per_client": 128000000000,
+  "local_buffer_size_bytes_per_client": 4294967296,
+  "disk_staging_size_bytes_per_client": 4294967296,
+  "offload_enabled": true,
+  "store_chunk_size_tokens": 128,
+  "basis": "Each embedded client contributes one segment. Transfer buffers and disk staging are budgeted separately. Experiment assumptions."
+}

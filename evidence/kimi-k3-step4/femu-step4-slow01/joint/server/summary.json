@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "requests": 2,
+  "request_metrics": [
+    {
+      "request_id": "http-2294d9e2387847bd91892f937c632227",
+      "source_model": "http",
+      "input_tokens": 256,
+      "target_output_tokens": 4,
+      "planned_arrival_s": 0,
+      "admitted_s": 124.600900997,
+      "first_token_s": 124.77330185400001,
+      "finished_s": 124.80462633799999,
+      "output_tokens": 4,
+      "external_load_tokens": 0,
+      "compute_steps": 5,
+      "compute_budget_ms": 26.0,
+      "materialize_ms": 76.91764200006901,
+      "compute_window_ms": 89.71897099991111,
+      "deadline_overrun_ms": 63.71897099990065,
+      "ttft_ms": 172.40085700001373,
+      "latency_ms": 203.72534099999484
+    },
+    {
+      "request_id": "http-209f0b2d77fb4b6a93bfb8b8da04aabe",
+      "source_model": "http",
+      "input_tokens": 320,
+      "target_output_tokens": 4,
+      "planned_arrival_s": 0,
+      "admitted_s": 125.83435821199998,
+      "first_token_s": 126.441065966,
+      "finished_s": 126.46480029100002,
+      "output_tokens": 4,
+      "external_load_tokens": 256,
+      "compute_steps": 4,
+      "compute_budget_ms": 16.0,
+      "materialize_ms": 5.269565999981296,
+      "compute_window_ms": 26.062114000069414,
+      "deadline_overrun_ms": 10.06211400004986,
+      "ttft_ms": 606.7077540000128,
+      "latency_ms": 630.4420790000336
+    }
+  ],
+  "verified_disk_objects": 10,
+  "restore_batches": 1,
+  "checksum_errors": [],
+  "femu_verified": true,
+  "femu_evidence": {
+    "mount": "/mnt/femu",
+    "device": "nvme0n1",
+    "model": "FEMU BlackBox-SSD Controller",
+    "sysfs": "/sys/devices/pci0000:00/0000:00:01.0/nvme/nvme0/nvme0n1",
+    "block_counters": {
+      "reads": 94,
+      "read_sectors": 1786,
+      "read_ms": 4620,
+      "writes": 49,
+      "write_sectors": 83400,
+      "write_ms": 825
+    },
+    "get_io_samples": [
+      {
+        "request_id": "http-209f0b2d77fb4b6a93bfb8b8da04aabe",
+        "device": "nvme0n1",
+        "delta": {
+          "reads": 5,
+          "read_sectors": 96,
+          "read_ms": 501,
+          "writes": 0,
+          "write_sectors": 0,
+          "write_ms": 0
+        }
+      }
+    ],
+    "verification": "native disk restore with observed FEMU namespace reads"
+  }
+}

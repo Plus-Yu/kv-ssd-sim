@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "cache_mode": "natural",
+  "accelerator": "tcg",
+  "guest_inputs_sha256": {
+    "trace.json": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896",
+    "hybrid.json": "69122acbfac60d1541c08e8e10f61e8924dbd301355415a5407bc2401ae6990e",
+    "config.json": "1c4ce9cbc5b792dffc7ab3ede3a7c6117e04c98cb557042a935e54a90cb59e67"
+  },
+  "nand_read_ns": 40000,
+  "aiperf": {
+    "status": "passed",
+    "requests": 2,
+    "input_tokens": 143937,
+    "output_tokens": 465,
+    "shared_prefix_pairs_verified": 1,
+    "external_load_tokens": 0,
+    "restore_batches": 0,
+    "max_native_batch_requests": 1,
+    "aiperf_ttft_avg_ms": 15357.240710999999,
+    "cold_between_requests": false,
+    "femu_verified": true,
+    "scope": "AIPerf HTTP native scheduler + hybrid Store; synthetic character tokenizer; FEMU device counters verified; block trace verified separately"
+  },
+  "natural": {
+    "requests": [
+      {
+        "turn": 1,
+        "prompt_tokens": 71175,
+        "output_tokens": 169,
+        "wire_prompt_sha256": "8e5caac6df2240e55fbb418b15bbf5dc54a007b06e074820360803d47e5394b5",
+        "shared_prompt_block_tokens": 0,
+        "shared_prompt_tokens_recomputed": 0,
+        "local_reuse_tokens": 0,
+        "external_load_tokens": 0,
+        "computed_prompt_tokens": 71175,
+        "think_gap_s": null,
+        "get_batches": [],
+        "http_start_ns": 333577291078,
+        "response_end_ns": 356431952415,
+        "device_io_during_request": {
+          "R": 0,
+          "R_bytes": 0,
+          "W": 36,
+          "W_bytes": 7110656
+        },
+        "device_io_since_previous_response": null
+      },
+      {
+        "turn": 2,
+        "prompt_tokens": 72762,
+        "output_tokens": 296,
+        "wire_prompt_sha256": "d199c74741463af795bd5937f0b692c3ac3f1c2ce14d8fd7ff1a4cf1c684f603",
+        "shared_prompt_block_tokens": 71168,
+        "shared_prompt_tokens_recomputed": 0,
+        "local_reuse_tokens": 71168,
+        "external_load_tokens": 0,
+        "computed_prompt_tokens": 1594,
+        "think_gap_s": 12.050519333,
+        "get_batches": [],
+        "http_start_ns": 368498362747,
+        "response_end_ns": 379600225240,
+        "device_io_during_request": {
+          "R": 0,
+          "R_bytes": 0,
+          "W": 11,
+          "W_bytes": 380928
+        },
+        "device_io_since_previous_response": {
+          "R": 0,
+          "R_bytes": 0,
+          "W": 24,
+          "W_bytes": 6139904
+        }
+      }
+    ],
+    "block_trace_integrity": {
+      "buffer_entries": 226,
+      "foreign_device_events": 0,
+      "ambiguous_completions": 0,
+      "error_completions": 0
+    },
+    "session_io_first_http_send_to_last_response": {
+      "R": 0,
+      "R_bytes": 0,
+      "W": 71,
+      "W_bytes": 13631488
+    },
+    "full_trace_io": {
+      "R": 3,
+      "R_bytes": 20480,
+      "W": 110,
+      "W_bytes": 14503936
+    },
+    "final_replica_states": {
+      "LOCAL_DISK+MEMORY": 2272
+    }
+  }
+}

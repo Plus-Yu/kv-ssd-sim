@@ -1,0 +1,1333 @@
+{
+  "schema_version": 1,
+  "scope": "CPU native metadata only; no device residency, forward, Store I/O or FEMU measurement",
+  "source_sha256": {
+    "reference": "80f38f8131653ad50ba9bff797f05c7ee045892fa1d78b449c314f0ab2f5468d",
+    "model": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213",
+    "server": "c4899c8c5ecbef6550029787073a3bbf10c016bcecb84433506f69f8ee56a3b7",
+    "mooncake": "6bda4924639d062c8e82dca45c6631d5a553a28db0c1c99308da6a7d35fd91da",
+    "ssd": "f09ebe43e31937bddb95577262a3bd762b90ab59a5c6d8a555105af83838df01",
+    "slice": "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896"
+  },
+  "native_vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+  "reference_vllm_commit": "935f87de846980dc16c54ac1996595fc12eb3f9e",
+  "geometry": {
+    "mla_components": [
+      512,
+      64
+    ],
+    "mla_bytes_per_token": 576,
+    "mla_native_storage_dtype": "torch.uint8",
+    "mla_quant_mode": "FP8_PER_TENSOR",
+    "mla_shape_per_page": [
+      1,
+      1536,
+      576
+    ],
+    "kda_shapes": [
+      [
+        3,
+        4608
+      ],
+      [
+        12,
+        128,
+        128
+      ]
+    ],
+    "kda_dtypes": [
+      "torch.bfloat16",
+      "torch.float32"
+    ],
+    "kda_component_bytes": [
+      27648,
+      786432
+    ],
+    "kda_state_bytes": 814080,
+    "kda_internal_state_alignment_bytes": 1,
+    "kernel_block_options": [
+      32,
+      64
+    ],
+    "manager_block_tokens": 1536,
+    "hash_tokens": 128,
+    "hit_alignment_tokens": 128,
+    "prefill_checkpoint_alignment_tokens": 16,
+    "num_prefill_checkpoint_blocks": 1,
+    "common_page_bytes": 884736,
+    "shared_pool_bytes_per_block": 21233664
+  },
+  "layers": [
+    {
+      "index": 0,
+      "name": "language_model.model.layers.0.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 1,
+      "name": "language_model.model.layers.1.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 2,
+      "name": "language_model.model.layers.2.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 3,
+      "name": "language_model.model.layers.3.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 4,
+      "name": "language_model.model.layers.4.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 5,
+      "name": "language_model.model.layers.5.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 6,
+      "name": "language_model.model.layers.6.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 7,
+      "name": "language_model.model.layers.7.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 8,
+      "name": "language_model.model.layers.8.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 9,
+      "name": "language_model.model.layers.9.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 10,
+      "name": "language_model.model.layers.10.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 11,
+      "name": "language_model.model.layers.11.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 12,
+      "name": "language_model.model.layers.12.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 13,
+      "name": "language_model.model.layers.13.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 14,
+      "name": "language_model.model.layers.14.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 15,
+      "name": "language_model.model.layers.15.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 16,
+      "name": "language_model.model.layers.16.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 17,
+      "name": "language_model.model.layers.17.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 18,
+      "name": "language_model.model.layers.18.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 19,
+      "name": "language_model.model.layers.19.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 20,
+      "name": "language_model.model.layers.20.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 21,
+      "name": "language_model.model.layers.21.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 22,
+      "name": "language_model.model.layers.22.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 23,
+      "name": "language_model.model.layers.23.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 24,
+      "name": "language_model.model.layers.24.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 25,
+      "name": "language_model.model.layers.25.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 26,
+      "name": "language_model.model.layers.26.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 27,
+      "name": "language_model.model.layers.27.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 28,
+      "name": "language_model.model.layers.28.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 29,
+      "name": "language_model.model.layers.29.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 30,
+      "name": "language_model.model.layers.30.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 31,
+      "name": "language_model.model.layers.31.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 32,
+      "name": "language_model.model.layers.32.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 33,
+      "name": "language_model.model.layers.33.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 34,
+      "name": "language_model.model.layers.34.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 35,
+      "name": "language_model.model.layers.35.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 36,
+      "name": "language_model.model.layers.36.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 37,
+      "name": "language_model.model.layers.37.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 38,
+      "name": "language_model.model.layers.38.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 39,
+      "name": "language_model.model.layers.39.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 40,
+      "name": "language_model.model.layers.40.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 41,
+      "name": "language_model.model.layers.41.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 42,
+      "name": "language_model.model.layers.42.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 43,
+      "name": "language_model.model.layers.43.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 44,
+      "name": "language_model.model.layers.44.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 45,
+      "name": "language_model.model.layers.45.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 46,
+      "name": "language_model.model.layers.46.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 47,
+      "name": "language_model.model.layers.47.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 48,
+      "name": "language_model.model.layers.48.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 49,
+      "name": "language_model.model.layers.49.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 50,
+      "name": "language_model.model.layers.50.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 51,
+      "name": "language_model.model.layers.51.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 52,
+      "name": "language_model.model.layers.52.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 53,
+      "name": "language_model.model.layers.53.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 54,
+      "name": "language_model.model.layers.54.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 55,
+      "name": "language_model.model.layers.55.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 56,
+      "name": "language_model.model.layers.56.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 57,
+      "name": "language_model.model.layers.57.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 58,
+      "name": "language_model.model.layers.58.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 59,
+      "name": "language_model.model.layers.59.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 60,
+      "name": "language_model.model.layers.60.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 61,
+      "name": "language_model.model.layers.61.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 62,
+      "name": "language_model.model.layers.62.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 63,
+      "name": "language_model.model.layers.63.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 64,
+      "name": "language_model.model.layers.64.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 65,
+      "name": "language_model.model.layers.65.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 66,
+      "name": "language_model.model.layers.66.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 67,
+      "name": "language_model.model.layers.67.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 68,
+      "name": "language_model.model.layers.68.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 69,
+      "name": "language_model.model.layers.69.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 70,
+      "name": "language_model.model.layers.70.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 71,
+      "name": "language_model.model.layers.71.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 72,
+      "name": "language_model.model.layers.72.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 73,
+      "name": "language_model.model.layers.73.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 74,
+      "name": "language_model.model.layers.74.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 75,
+      "name": "language_model.model.layers.75.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 76,
+      "name": "language_model.model.layers.76.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 77,
+      "name": "language_model.model.layers.77.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 78,
+      "name": "language_model.model.layers.78.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 79,
+      "name": "language_model.model.layers.79.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 80,
+      "name": "language_model.model.layers.80.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 81,
+      "name": "language_model.model.layers.81.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 82,
+      "name": "language_model.model.layers.82.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 83,
+      "name": "language_model.model.layers.83.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 84,
+      "name": "language_model.model.layers.84.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 85,
+      "name": "language_model.model.layers.85.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 86,
+      "name": "language_model.model.layers.86.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 87,
+      "name": "language_model.model.layers.87.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 88,
+      "name": "language_model.model.layers.88.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 0
+    },
+    {
+      "index": 89,
+      "name": "language_model.model.layers.89.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 1
+    },
+    {
+      "index": 90,
+      "name": "language_model.model.layers.90.self_attn",
+      "kind": "kda",
+      "native_spec": "MambaSpec",
+      "content_bytes": 814080,
+      "page_bytes": 884736,
+      "padding_bytes": 70656,
+      "group": 2
+    },
+    {
+      "index": 91,
+      "name": "language_model.model.layers.91.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    },
+    {
+      "index": 92,
+      "name": "language_model.model.layers.92.self_attn",
+      "kind": "mla",
+      "native_spec": "MLAAttentionSpec",
+      "content_bytes": 884736,
+      "page_bytes": 884736,
+      "padding_bytes": 0,
+      "group": 3
+    }
+  ],
+  "groups": [
+    {
+      "group": 0,
+      "spec": "MambaSpec",
+      "layers": 23,
+      "tp_replicas": 1,
+      "store_shards": 8,
+      "store_chunk_tokens": null,
+      "logical_bytes_per_object_per_shard": 18723840,
+      "schema_fingerprint": "7167693a1fc69203"
+    },
+    {
+      "group": 1,
+      "spec": "MambaSpec",
+      "layers": 23,
+      "tp_replicas": 1,
+      "store_shards": 8,
+      "store_chunk_tokens": null,
+      "logical_bytes_per_object_per_shard": 18723840,
+      "schema_fingerprint": "7167693a1fc69203"
+    },
+    {
+      "group": 2,
+      "spec": "MambaSpec",
+      "layers": 23,
+      "tp_replicas": 1,
+      "store_shards": 8,
+      "store_chunk_tokens": null,
+      "logical_bytes_per_object_per_shard": 18723840,
+      "schema_fingerprint": "7167693a1fc69203"
+    },
+    {
+      "group": 3,
+      "spec": "MLAAttentionSpec",
+      "layers": 24,
+      "tp_replicas": 8,
+      "store_shards": 1,
+      "store_chunk_tokens": 128,
+      "logical_bytes_per_object_per_shard": 1769472,
+      "schema_fingerprint": "1ef8899f7324c9ad"
+    }
+  ],
+  "ranks": [
+    {
+      "rank": 0,
+      "kda_heads_half_open": [
+        0,
+        12
+      ],
+      "store_shard_by_group": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-0"
+      }
+    },
+    {
+      "rank": 1,
+      "kda_heads_half_open": [
+        12,
+        24
+      ],
+      "store_shard_by_group": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-1"
+      }
+    },
+    {
+      "rank": 2,
+      "kda_heads_half_open": [
+        24,
+        36
+      ],
+      "store_shard_by_group": [
+        2,
+        2,
+        2,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-2"
+      }
+    },
+    {
+      "rank": 3,
+      "kda_heads_half_open": [
+        36,
+        48
+      ],
+      "store_shard_by_group": [
+        3,
+        3,
+        3,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-3"
+      }
+    },
+    {
+      "rank": 4,
+      "kda_heads_half_open": [
+        48,
+        60
+      ],
+      "store_shard_by_group": [
+        4,
+        4,
+        4,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-4"
+      }
+    },
+    {
+      "rank": 5,
+      "kda_heads_half_open": [
+        60,
+        72
+      ],
+      "store_shard_by_group": [
+        5,
+        5,
+        5,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-5"
+      }
+    },
+    {
+      "rank": 6,
+      "kda_heads_half_open": [
+        72,
+        84
+      ],
+      "store_shard_by_group": [
+        6,
+        6,
+        6,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-6"
+      }
+    },
+    {
+      "rank": 7,
+      "kda_heads_half_open": [
+        84,
+        96
+      ],
+      "store_shard_by_group": [
+        7,
+        7,
+        7,
+        0
+      ],
+      "budget_bytes": 39837753728,
+      "native_pool_bytes": 39834353664,
+      "rounding_remainder_bytes": 3400064,
+      "native_pool_blocks": 1876,
+      "store_client_config": {
+        "global_segment_size": 128000000000,
+        "local_buffer_size": 4294967296
+      },
+      "offload_environment": {
+        "MOONCAKE_OFFLOAD_LOCAL_BUFFER_SIZE_BYTES": "4294967296",
+        "MOONCAKE_OFFLOAD_TOTAL_SIZE_LIMIT_BYTES": "375000000000",
+        "MOONCAKE_OFFLOAD_FILE_STORAGE_PATH": "/mnt/kv-ssd/rank-7"
+      }
+    }
+  ],
+  "checkpoint_probes": [
+    {
+      "start": 0,
+      "end": 1536,
+      "internal_checkpoint_position": null,
+      "column": -1
+    },
+    {
+      "start": 0,
+      "end": 1665,
+      "internal_checkpoint_position": 1664,
+      "column": 0
+    },
+    {
+      "start": 69632,
+      "end": 71175,
+      "internal_checkpoint_position": null,
+      "column": -1
+    },
+    {
+      "start": 69632,
+      "end": 72762,
+      "internal_checkpoint_position": 72704,
+      "column": 46
+    }
+  ],
+  "capacity_bytes": {
+    "gpu_per_rank": {
+      "nominal": 288000000000,
+      "utilization_envelope": 273600000000,
+      "outside_envelope": 14400000000,
+      "checkpoint_average_rounded_up": 195107540608,
+      "reserves": {
+        "weight_replication_imbalance_and_format": 17179869184,
+        "activations_and_workspace": 8589934592,
+        "communication_buffers": 4294967296,
+        "cuda_graphs": 4294967296,
+        "runtime_misc": 4294967296
+      },
+      "kv_pool_budget": 39837753728
+    },
+    "host_node": {
+      "nominal": 2000000000000,
+      "non_store_reserve": 500000000000,
+      "store_node_totals_by_per_client_setting": {
+        "global_segment_size_bytes_per_client": 1024000000000,
+        "local_buffer_size_bytes_per_client": 34359738368,
+        "disk_staging_size_bytes_per_client": 34359738368
+      },
+      "unassigned": 407280523264
+    },
+    "ssd_node": {
+      "selected_capacity": 3840000000000,
+      "reserved": 384000000000,
+      "quota_total": 3000000000000,
+      "unassigned": 456000000000,
+      "client_paths": [
+        "/mnt/kv-ssd/rank-0",
+        "/mnt/kv-ssd/rank-1",
+        "/mnt/kv-ssd/rank-2",
+        "/mnt/kv-ssd/rank-3",
+        "/mnt/kv-ssd/rank-4",
+        "/mnt/kv-ssd/rank-5",
+        "/mnt/kv-ssd/rank-6",
+        "/mnt/kv-ssd/rank-7"
+      ]
+    }
+  },
+  "mooncake": {
+    "profile": "target-logical-embedded-per-rank",
+    "store_tp_size": 8,
+    "client_count": 8,
+    "global_segment_size_bytes_per_client": 128000000000,
+    "local_buffer_size_bytes_per_client": 4294967296,
+    "disk_staging_size_bytes_per_client": 4294967296,
+    "offload_enabled": true,
+    "store_chunk_size_tokens": 128,
+    "basis": "Each embedded client contributes one segment. Transfer buffers and disk staging are budgeted separately. Experiment assumptions."
+  },
+  "ssd": {
+    "profile": "target-single-logical-drive",
+    "selected_drive_count": 1,
+    "drive_reserved_bytes": 384000000000,
+    "offload_quota_bytes_per_client": 375000000000,
+    "offload_path_template": "/mnt/kv-ssd/rank-{rank}",
+    "basis": "Eight client directories on ONE 3.84 TB drive; quotas sum to 3 TB. No striping or latency calibration. Target paths only.",
+    "existing_femu_guest_visible_bytes": 402653184,
+    "apply_target_capacity_to_guest": false
+  }
+}

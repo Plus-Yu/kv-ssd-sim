@@ -1,0 +1,4 @@
+[FEMU] Err: cannot pin the 384 MiB memory backend (Cannot allocate memory); latencies may jitter until RLIMIT_MEMLOCK allows it
+FEMU_GUEST_REPLAY_BEGIN
+FEMU_GUEST_REPLAY_DONE exit=0
+[  198.326187] reboot: Power down

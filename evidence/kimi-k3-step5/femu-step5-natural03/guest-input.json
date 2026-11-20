@@ -1,0 +1,31 @@
+{
+  "sha256": {
+    "trace.json": "01ce44f72d221c00699acd0233d6512bab6e3be94844945b59946b981515bb33",
+    "hybrid.json": "7ed17baf114b64c4cdcdda7f890a6193a5a5dc9be884be222ad0b0aa2692e2a5",
+    "pressure.json": "b08e3b481426fa296a48498543f0cb83a05bd9578d3215acfc8afbbf4634f3d4",
+    "config.json": "c6cb54d4e6378d05ef0fb9f88db1bdf7b63d964d0c1a2dd92a26380800e480a5"
+  },
+  "command": [
+    "/home/plusyu/projects/kv-ssd-sim/.venv/bin/python",
+    "-m",
+    "kv_ssd_sim",
+    "replay",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/input/trace.json",
+    "--output",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/replay",
+    "--pressure-config",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/input/pressure.json",
+    "--hybrid-config",
+    "/home/plusyu/projects/kv-ssd-sim/outputs/femu-step5-natural03/input/hybrid.json",
+    "--femu-mount",
+    "/mnt/femu",
+    "--num-blocks",
+    "24",
+    "--max-model-len",
+    "1024",
+    "--prefill-ms",
+    "10",
+    "--decode-ms",
+    "2"
+  ]
+}
