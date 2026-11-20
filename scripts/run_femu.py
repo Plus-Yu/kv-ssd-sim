@@ -41,9 +41,14 @@ def initramfs():
     if not busybox.exists():
         busybox = ASSETS / "guest-tools/bin/busybox"
     output.extend(cpio_entry("bootstrap/busybox", busybox.read_bytes(), stat.S_IFREG | 0o755))
-    kernel_root = next(p for p in modules.iterdir() if p.is_dir())
+    indexes = sorted(p for p in modules.glob("*/modules.dep") if p.is_file())
+    if not indexes:
+        raise FileNotFoundError(f"No kernel dependency index matching {modules}/*/modules.dep")
+    if len(indexes) > 1:
+        raise ValueError(f"Expected one kernel version in {modules}, found: {indexes}")
+    index = indexes[0]
     dependencies = {}
-    for line in (kernel_root / "modules.dep").read_text().splitlines():
+    for line in index.read_text().splitlines():
         name, deps = line.split(":", 1)
         dependencies[name] = deps.split()
     needed = set()
@@ -58,8 +63,9 @@ def initramfs():
     for name in dependencies:
         if Path(name).stem in {"virtio_pci", "9pnet_virtio", "9p", "nvme", "ext4"}:
             include(name)
+    needed_files = {index.parent / name for name in needed}
     for path in sorted(modules.rglob("*")):
-        if path.suffix == ".ko" and str(path.relative_to(kernel_root)) not in needed:
+        if path.suffix == ".ko" and path not in needed_files:
             continue
         name = "usr/lib/modules/" + str(path.relative_to(modules))
         mode = path.lstat().st_mode
