@@ -11,8 +11,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from .object_master import NativeMaster, read_key, wire_key
-
-MIB = 1 << 20
+from .simulation.storage.device import MIB, FifoSSD
 
 
 @dataclass(frozen=True)
@@ -197,8 +196,7 @@ class ObjectStore:
         self.allocating = {}
         self.counts = Counter()
         self.bytes = Counter()
-        self.disk_free_at = 0
-        self.io_ids = itertools.count(1)
+        self.device = FifoSSD(config.device_read_mib_s or config.device_mib_s, config.device_mib_s)
         self.restore_ids = itertools.count(1)
         self.h2d_waiters = [deque() for _ in range(8)]
         self.ready_order = itertools.count()
@@ -339,13 +337,10 @@ class ObjectStore:
             self._disk_read(obj, transfer.origin, owner, transfer)
 
     def _disk_read(self, obj, origin, staging_client, transfer=None):
-        start = max(self.disk_free_at, self.clock.now)
-        rate = self.config.device_read_mib_s or self.config.device_mib_s
-        end = start + math.ceil(obj.size * 1e9 / (rate * MIB))
-        self.disk_free_at = end
+        io = self.device.submit("read", obj.size, self.clock.now)
         fields = {
             "staging_client": staging_client,
-            "io_id": next(self.io_ids),
+            "io_id": io.io_id,
             "bucket_id": obj.bucket_id,
         }
         self.record("disk_read_submit", obj, origin, **fields)
@@ -366,9 +361,9 @@ class ObjectStore:
             else:
                 self._ready_h2d(transfer)
 
-        self.clock.at(start, begin)
-        self.clock.at(end, complete)
-        return end
+        self.clock.at(io.start_ns, begin)
+        self.clock.at(io.complete_ns, complete)
+        return io.complete_ns
 
     def _ready_h2d(self, transfer):
         self.record("h2d_ready", transfer.obj, transfer.origin, tier=transfer.tier)
@@ -516,15 +511,9 @@ class ObjectStore:
             return
         client.disk_bytes += size
         client.peak_disk_bytes = max(client.peak_disk_bytes, client.disk_bytes)
-        start = max(self.disk_free_at, self.clock.now)
-        if stamp:
-            if stamp.write_start_ns < start:
-                raise ValueError("Recorded write conflicts with an occupied drive or pending read")
-            start, end = stamp.write_start_ns, stamp.publish_ns
-        else:
-            end = start + math.ceil(size * 1e9 / (self.config.device_mib_s * MIB))
-        self.disk_free_at = end
-        fields = {"staging_client": owner, "io_id": next(self.io_ids)}
+        observed = (stamp.write_start_ns, stamp.publish_ns) if stamp else None
+        io = self.device.submit("write", size, self.clock.now, observed_write=observed)
+        fields = {"staging_client": owner, "io_id": io.io_id}
         for obj, origin in group:
             self.record("disk_write_submit", obj, origin, **fields)
 
@@ -541,8 +530,8 @@ class ObjectStore:
                 owner=owner,
                 keys=[obj.key for obj, _ in group],
                 source_query_ns=source_ns,
-                write_start_ns=start,
-                publish_ns=end,
+                write_start_ns=io.start_ns,
+                publish_ns=io.complete_ns,
             )
             for obj, origin in group:
                 obj.disk = True
@@ -557,8 +546,8 @@ class ObjectStore:
                 )
             self._next_bucket(owner, remaining)
 
-        self.clock.at(start, begin)
-        self.clock.at(end, publish)
+        self.clock.at(io.start_ns, begin)
+        self.clock.at(io.complete_ns, publish)
 
     def _reclaim_to(self, owner, target_bytes, resume):
         client = self.clients[owner]

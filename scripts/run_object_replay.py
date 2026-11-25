@@ -502,6 +502,7 @@ def main():
             ROOT / "scripts/prepare_object_trace.py",
             ROOT / "scripts/prepare_kvlab.py",
             ROOT / "src/kv_ssd_sim/kvlab.py",
+            ROOT / "src/kv_ssd_sim/simulation/storage/device.py",
             ROOT / "scripts/audit_aiperf_input.py",
             *(
                 ROOT / "src/kv_ssd_sim" / name
