@@ -15,6 +15,7 @@ from tempfile import TemporaryDirectory
 from fetch_kvlab import BLOB, LAYER_SIZE, NAME, SIZE
 
 from kv_ssd_sim.kvlab import REVISION, SHA256, dump
+from kv_ssd_sim.simulation.provenance import REPLAY_SOURCES
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -136,11 +137,10 @@ def archive(study, out):
             for name in ("events.jsonl", "summary.json"):
                 tar.add(native / name, arcname="controlled/" + name)
         dependencies = (
+            *REPLAY_SOURCES,
             "scripts/build_object_master.py",
             "scripts/build_object_observer.py",
             "scripts/fetch_kvlab.py",
-            "scripts/prepare_kvlab.py",
-            "scripts/run_object_replay.py",
             "scripts/run_object_holdout.py",
             "scripts/analyze_kvlab_native.py",
             "scripts/compare_object_replay.py",
@@ -148,21 +148,8 @@ def archive(study, out):
             "scripts/summarize_kvlab.py",
             "scripts/archive_kvlab.py",
             "scripts/reproduce_kvlab_n15.sh",
-            "scripts/audit_aiperf_input.py",
-            "scripts/prepare_object_trace.py",
-            "src/kv_ssd_sim/kvlab.py",
-            "src/kv_ssd_sim/object_traffic.py",
-            "src/kv_ssd_sim/object_timing.py",
-            "src/kv_ssd_sim/object_store.py",
-            "src/kv_ssd_sim/object_worker.py",
-            "src/kv_ssd_sim/object_master.py",
-            "src/kv_ssd_sim/native.py",
-            "src/kv_ssd_sim/k3_online.py",
             "src/kv_ssd_sim/engine.py",
             "src/kv_ssd_sim/server.py",
-            "src/kv_ssd_sim/storage.py",
-            "src/kv_ssd_sim/runtime.py",
-            "src/kv_ssd_sim/deployment.py",
             "native/object_replay_master.cpp",
             "native/object_replay_observer.cpp",
             "tests/test_kvlab.py",

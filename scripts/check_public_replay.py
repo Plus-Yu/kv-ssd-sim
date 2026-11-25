@@ -4,10 +4,12 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 from collections import Counter
 from pathlib import Path
 
-from check_staged_restores import audit as audit_restores
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from kv_ssd_sim.analysis.restore import audit as audit_restores
 
 
 def verify(folder):

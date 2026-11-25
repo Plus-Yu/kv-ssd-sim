@@ -3,11 +3,14 @@
 import argparse
 import gzip
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from check_staged_restores import audit as audit_restores
 from compare_volume_replay import load, read_counts, read_identity
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from kv_ssd_sim.analysis.restore import audit as audit_restores
 
 
 def traffic(folder):
