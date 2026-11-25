@@ -1,0 +1,74 @@
+{
+  "host": "n15",
+  "case": "35 s prefix return, one native host-filesystem comparison",
+  "parameter_sweep": "retrospective metadata replays, save_ms = 1, 10, 100",
+  "input_sha256": "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924",
+  "replay_executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+  "source_paths_from_project_root": {
+    "sweep": ".object-replay-build/trials/put-timing-a495t0w7",
+    "online_server": ".object-replay-build/trials/20261123-native-metadata/verified/online/server",
+    "frozen_comparison": "evidence/object-replay-mooncake-native-20261123/comparisons/frozen.json",
+    "online_archive": "evidence/object-replay-mooncake-native-20261123/run-records.tar.gz"
+  },
+  "total_rank_key_gets": 120,
+  "total_get_payload_bytes": 619241472,
+  "online": {
+    "femu": false,
+    "memory_ratio_at_round": 0.914596,
+    "indexed_keys": 72,
+    "released_keys": 5,
+    "disk_only_gets": 12,
+    "disk_only_get_bytes": 89051136,
+    "events_sha256": "936cd3c4e0347709b39360fd4325cd5371168dd21c3a6ac19f89f20f54b751dd"
+  },
+  "replays": [
+    {
+      "save_ms": 1,
+      "elapsed_ns_at_round": 9830000000,
+      "used_bytes_at_round": 1411817472,
+      "store_capacity_bytes": 1520435200,
+      "indexed_keys": 108,
+      "released_keys": 9,
+      "third_batch_put_start_ns": 9826000000,
+      "third_batch_put_end_ns": 9827000000,
+      "disk_only_gets": 37,
+      "disk_only_get_bytes": 150242304,
+      "disk_only_gets_matching_online": 1,
+      "mismatched_get_tiers": 47,
+      "events_sha256": "97af89b8b71673b3812d45f8bc010aad47be1d55f945b85c5bae3e220e46a0a6",
+      "comparison_sha256": "6dd3ef4d904785a63e8b6f619528e99c6f74bb70b0ad2e41e362f068a0f6a472"
+    },
+    {
+      "save_ms": 10,
+      "elapsed_ns_at_round": 9830000000,
+      "used_bytes_at_round": 1411817472,
+      "store_capacity_bytes": 1520435200,
+      "indexed_keys": 72,
+      "released_keys": 6,
+      "third_batch_put_start_ns": 9826000000,
+      "third_batch_put_end_ns": 9836000000,
+      "disk_only_gets": 20,
+      "disk_only_get_bytes": 103206912,
+      "disk_only_gets_matching_online": 1,
+      "mismatched_get_tiers": 30,
+      "events_sha256": "c310eef81c4cb9f9140702eb20b67588fe868fbe02167496f5634be82abe6846",
+      "comparison_sha256": "1aa70169138395f6c9de30b032d93ee2ff507f08a3f0f93eae07c643de81b54d"
+    },
+    {
+      "save_ms": 100,
+      "elapsed_ns_at_round": 9830000000,
+      "used_bytes_at_round": 1411817472,
+      "store_capacity_bytes": 1520435200,
+      "indexed_keys": 72,
+      "released_keys": 6,
+      "third_batch_put_start_ns": 9826000000,
+      "third_batch_put_end_ns": 9926000000,
+      "disk_only_gets": 20,
+      "disk_only_get_bytes": 103206912,
+      "disk_only_gets_matching_online": 1,
+      "mismatched_get_tiers": 30,
+      "events_sha256": "466ec3b3afbdd04377c87d3ae260c54f96038c3a20b6a791218a6dfef6d4f88c",
+      "comparison_sha256": "1aa70169138395f6c9de30b032d93ee2ff507f08a3f0f93eae07c643de81b54d"
+    }
+  ]
+}

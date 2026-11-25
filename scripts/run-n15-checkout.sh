@@ -11,7 +11,7 @@ repo=$(git -C "$repo" rev-parse --show-toplevel)
 commit=$(git -C "$repo" rev-parse HEAD)
 test -f "$repo/scripts/analyze_nand.py" || { echo "Missing baseline code in $repo; pull main first." >&2; exit 1; }
 printf 'Using checkout %s at %s\n' "$repo" "$commit"
-image=kv-ssd-n15:baseline
+image=kv-ssd-n15:baseline-v2
 python3 - <<'PY'
 import fcntl
 import os
@@ -26,7 +26,7 @@ docker info >/dev/null
 if ! docker image inspect "$image" >/dev/null 2>&1; then
   docker build -t "$image" - <<'IMAGE'
 FROM ubuntu:26.04
-RUN apt-get update && apt-get install -y --no-install-recommends e2fsprogs libstdc++6 libgomp1 libnuma1 util-linux procps ca-certificates
+RUN apt-get update && apt-get install -y --no-install-recommends e2fsprogs libstdc++6 libgomp1 libnuma1 libcurl4t64 util-linux procps ca-certificates
 IMAGE
 fi
 

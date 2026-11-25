@@ -1,0 +1,496 @@
+[
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/calibration/base",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 1970,
+    "local_reuse_tokens": 73728,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 15108886492,
+    "write_submitted_after_foreground_bytes": 2434424832,
+    "read_bytes": 0,
+    "write_bytes": 20575862784,
+    "end_ns": 23870000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "62bc791fc458762b486960d122b75f9b9e1565f7c2414ba9cb6b637733ffee82",
+      "events.jsonl": "4bb12aa923ba82baa8191876953aabe8fb7a8b7f66a1bce407eeba708352af90",
+      "summary.json": "347f618bba1258a90f279531a31c032de1ea7ebf8eb15e4c8a07b03930ceba24",
+      "ssd-summary.json": "2b32dccee52ee47f8f732c9b49ec6b5ab5a74898576c09f2b1ae5b5bd39c4f4b",
+      "requests.json": "8c878a302ea3c94dd5966eebd4c9f9d0755c28ff364e0e4b508ef236fb99180e"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/calibration/compute-fast",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 1970,
+    "local_reuse_tokens": 73728,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 7720537792,
+    "write_submitted_after_foreground_bytes": 20575862784,
+    "read_bytes": 0,
+    "write_bytes": 20575862784,
+    "end_ns": 14120000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "4e34adafc4816c0c249ce689ca78e9cf3165b75319bc3cc89b7e78fa2a3631f1",
+      "events.jsonl": "93a34c9047aa2c5761b54551b52c520d57ea70c7e3526030907f39c95daf265d",
+      "summary.json": "6503c146a414aeaca4f32cbf53e022704708c9ec943977d8e3fe95188d777e2d",
+      "ssd-summary.json": "ce78f1687643d1ee05a959685849de689978d4ffcae4a0b2c5b152fdb8bc4291",
+      "requests.json": "a03dd7ee31c5a17f1c7f10c5a84697254846060e5455f62ef26d354c7620db50"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/calibration/compute-slow",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 1970,
+    "local_reuse_tokens": 73728,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 29885583868,
+    "write_submitted_after_foreground_bytes": 2434424832,
+    "read_bytes": 0,
+    "write_bytes": 20575862784,
+    "end_ns": 33870000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "fc66e7c915d105f9db98265397af344d313a248eb32ae17d87f6b68869fab074",
+      "events.jsonl": "00b684809833f82c3f9e26db2d612f6c4513b8ab3811c667f325f20f79adfe69",
+      "summary.json": "8633191e0cb6aca92ba027c63840c5f852076b6ea3bcbef16d0d2752cb37ea81",
+      "ssd-summary.json": "ed995662d8d2c2624002be1ba79a00d6bbe3b6ad1d11b8975cfdeaade748dd10",
+      "requests.json": "914141bc6bba9443120aa2928e70b4426bd17604ba6254c08bd4d48bb20844fc"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/calibration/ssd-half-bandwidth",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 1970,
+    "local_reuse_tokens": 73728,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 15108886492,
+    "write_submitted_after_foreground_bytes": 5923885056,
+    "read_bytes": 0,
+    "write_bytes": 20575862784,
+    "end_ns": 27740000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "58dbed9f13568631fe8e726072a77066336183c143e4b9c5b5b8222f5b320c2b",
+      "events.jsonl": "f806c7ed53b6f6b2f978b41371ac040837bacce32b4487949fe07e23042d24a6",
+      "summary.json": "2afcc8c84ac75a9f0c09f80370b6c4ee36cb0b82d4a3b4fc845ce71febce30b0",
+      "ssd-summary.json": "b18ad5cad4cdebfc106edc07550e5076337d876a6b51e7beebd3257ff4071121",
+      "requests.json": "8c878a302ea3c94dd5966eebd4c9f9d0755c28ff364e0e4b508ef236fb99180e"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/calibration/ssd-quarter-bandwidth",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 1970,
+    "local_reuse_tokens": 73728,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 15108886492,
+    "write_submitted_after_foreground_bytes": 12217101312,
+    "read_bytes": 0,
+    "write_bytes": 20575862784,
+    "end_ns": 35480000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "8f5dde13ced5329a5d193e5dfb59550d205956b2ce0881f0b0747fe885bafed5",
+      "events.jsonl": "78594b16adb24cbc0c1c540125e9604af655b82a72c62da818ac2007da7c555d",
+      "summary.json": "72e3e06d776f3a5e47527396a493bad32545480a387a20e24cb4906578fe8a05",
+      "ssd-summary.json": "f63cd35ed1ed61b955e22e049fef103481840f034672f5abfb5423e0e32a2403",
+      "requests.json": "8c878a302ea3c94dd5966eebd4c9f9d0755c28ff364e0e4b508ef236fb99180e"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/holdout/base",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 17213715705,
+    "write_submitted_after_foreground_bytes": 0,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 17220000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "72e3aa0b6f5361e6240148840779c7f77e24322117806f3ef2b8a84e745a1e05",
+      "events.jsonl": "1ce4bbd27d675b098ae7e1e3b4dc6dfa0f3a901fc21c6a6cdceb2c576f8f0afe",
+      "summary.json": "5eb9b559b7a3fbaf7aa1b44baa8bef05492c5564dae3cdd587f8bf8dc545750a",
+      "ssd-summary.json": "78258334156e1235f3e6b045e49caa1cb173a54048038b1946001553c0077d0b",
+      "requests.json": "ddba25b310438b681482bc0e71bfeab8eb0dfa98ceeaa1581fe39a5d9a4d96fc"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/holdout/compute-fast",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 8916407266,
+    "write_submitted_after_foreground_bytes": 25515491328,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 15110000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "b48740398605b123c5057fd5f7155f932c901936aff1ac07a8a58acf28280ee8",
+      "events.jsonl": "6bda1b633c32b182463df5f9775d9d91aa815d6bc6f7e3291eaad90f445ecf0a",
+      "summary.json": "197ad5be1705d0e4e8d5eb86c02bfd839c6ccc178a61462a81151ecdc8d7142b",
+      "ssd-summary.json": "13d78ac16d8e99222da9dfbb3c4dc3dafe5a81db2866aeae06108b527ba9ba28",
+      "requests.json": "dd9490037a55b7664c1ae25f0909b33a018a148f456dbe1a3b8c35427f5df353"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/holdout/compute-slow",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 33808332557,
+    "write_submitted_after_foreground_bytes": 0,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 33810000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "3a5738659899a81c5321a291a6047d03d6a998bcc8de88e4eb3bf37793029d7c",
+      "events.jsonl": "2eaa5e52f26d560580fa43595fab920882c5c49599e4a41344a3e12d70cd6e95",
+      "summary.json": "8bba6c1b89b23c20142da89591cc3684cf723cd431f088db3c67e40e5bf8fb85",
+      "ssd-summary.json": "a4ee7173f33cec67bf730a7d450ad6727ebd66d99d178d75d3f6c262fef2b696",
+      "requests.json": "5e2ef9cf5834863bb5b7c1ad265fdbddc595fa5a764ce54a1904ce047fc5798d"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/holdout/ssd-half-bandwidth",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 17213715705,
+    "write_submitted_after_foreground_bytes": 5455500288,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 20210000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "3b48bccc9ae2e681068a6a6a860d0560dce2b6979edb07f52a559665e2ae2b10",
+      "events.jsonl": "85670009146f349ce8163e4541a48b7888ecde94062344a5e44d4a451c6c64d8",
+      "summary.json": "d87f10d428903f0ffe560df61c8790adf9d6ce40a1985859200e458b93b446f9",
+      "ssd-summary.json": "05f93e76a8c74cb85c224565ff86484822fb8338010d2ebdbcc819b7bd57717f",
+      "requests.json": "ddba25b310438b681482bc0e71bfeab8eb0dfa98ceeaa1581fe39a5d9a4d96fc"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/matrix/holdout/ssd-quarter-bandwidth",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 131072,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 17213715705,
+    "write_submitted_after_foreground_bytes": 14563215360,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 30420000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "84c410e1bb1b3c66146811299dc04b25e42ca69c2d636e6e8a17555525efbc0b",
+      "events.jsonl": "9e2331819d391f02eda2b62b70b03ce6b312764135afd67fd8e5df39aa73d92f",
+      "summary.json": "d4110e5e0d8de984a3b8ce4860543362d4e14ed1bbed99ffc6701fb83cc79f1d",
+      "ssd-summary.json": "d674faf06171f8d808b8e18c4446b86cea7296ed393054ce726ad586cea05804",
+      "requests.json": "ddba25b310438b681482bc0e71bfeab8eb0dfa98ceeaa1581fe39a5d9a4d96fc"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/pressure",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 12288,
+    "requests": 4,
+    "unique_keys": 108,
+    "local_reuse_tokens": 0,
+    "natural_disk_gets": 24,
+    "natural_disk_keys": 3,
+    "memory_gets": 96,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 35162608676,
+    "write_submitted_after_foreground_bytes": 0,
+    "read_bytes": 42467328,
+    "write_bytes": 1411817472,
+    "end_ns": 35170000000,
+    "disk_read_events": [
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 0,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 0,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 0,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 1,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 1,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 1,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 2,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 2,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 2,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 3,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 3,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 3,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 4,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 4,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 4,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 5,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 5,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 5,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 6,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 6,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 6,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 7,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 7,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "bytes": 1769472
+      },
+      {
+        "time_ns": 35105173636,
+        "request": "unseen-prefix-return/1",
+        "rank": 7,
+        "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "bytes": 1769472
+      }
+    ],
+    "sha256": {
+      "launch.json": "2bfa95fe5a64b01818f8cc90f6e54f3b3aa70a6e6a6f8683630aa7fd6cdc6da5",
+      "events.jsonl": "660e3cc67fee38ecfa16e5613e013bb13481537694ebb98eca9b05fea301fc06",
+      "summary.json": "4ff1f58d380a8ce60498275caced0f6df79a68449ef7e3f91623d9991422cb45",
+      "ssd-summary.json": "0b2cdfd080f7da4b498fd7be9259854e61796cd18b2396d55c9419b2b337c9c3",
+      "requests.json": "fef42bd463d05af2eedcd9518b0e65c3d7c9f5590c2f202c4a0f606738adf661"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/over-128k",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 1048576,
+    "requests": 1,
+    "unique_keys": 5226,
+    "local_reuse_tokens": 0,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 21518487312,
+    "write_submitted_after_foreground_bytes": 18679283712,
+    "read_bytes": 0,
+    "write_bytes": 53599887360,
+    "end_ns": 30460000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "882eed55ae3f200258e2b1e1c246ff41d38e7316b0fc7f4a3c3441fe69d37757",
+      "events.jsonl": "4022220419e97027075ecc4e2cdd706e88eba718100c4b9894d83bb3a179d5ac",
+      "summary.json": "4b4488066cbb7f4949a1630ef4d1c63ed64123ad289fc3e53fdebf930d8b4aa0",
+      "ssd-summary.json": "1d636c87bc8bb3f8f04557d57b0d433cfa7604382c26af9f9a622d5dadbbd223",
+      "requests.json": "0fca62f2d4fe75e9dde361d663a299d20641a6c5314b94c8fd3ea2dac2419ce7"
+    }
+  },
+  {
+    "directory": ".object-replay-build/trials/tp8-public-20261125-xsttQx/one-million-holdout",
+    "profile_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "max_model_len": 1048576,
+    "requests": 3,
+    "unique_keys": 2462,
+    "local_reuse_tokens": 3072,
+    "natural_disk_gets": 0,
+    "natural_disk_keys": 0,
+    "memory_gets": 0,
+    "first_write_submit_ns": 10000000000,
+    "last_request_finished_ns": 17213715705,
+    "write_submitted_after_foreground_bytes": 0,
+    "read_bytes": 0,
+    "write_bytes": 25515491328,
+    "end_ns": 17220000000,
+    "disk_read_events": [],
+    "sha256": {
+      "launch.json": "4bf04be4b23742ab392a145d18748eb4f08d16a65de3b5e91614e4be24ef1cf2",
+      "events.jsonl": "1ce4bbd27d675b098ae7e1e3b4dc6dfa0f3a901fc21c6a6cdceb2c576f8f0afe",
+      "summary.json": "85c9a02f7d32960778646000d437d14d8710e6664f79670a20d95eb127c01200",
+      "ssd-summary.json": "78258334156e1235f3e6b045e49caa1cb173a54048038b1946001553c0077d0b",
+      "requests.json": "ddba25b310438b681482bc0e71bfeab8eb0dfa98ceeaa1581fe39a5d9a4d96fc"
+    }
+  }
+]

@@ -98,10 +98,10 @@ def online(path):
     )
     check(not read(path / "joint/server/summary.json")["checksum_errors"], "Checksum errors")
     ledger = transfer_ledger(events, plan)
+    disk_keys = sum(v for k, v in run["final_replica_states"].items() if "LOCAL_DISK" in k)
     check(
-        sum(v for k, v in run["final_replica_states"].items() if "LOCAL_DISK" in k)
-        == ledger["unique_keys"],
-        "Final disk replicas incomplete",
+        disk_keys == ledger["unique_keys"],
+        f"Final disk replicas incomplete: {disk_keys}/{ledger['unique_keys']} keys have LOCAL_DISK",
     )
     capacities = read_jsonl(path / "joint/server/capacity.jsonl")
     check(len(capacities) > 1, "Missing resource measurements")

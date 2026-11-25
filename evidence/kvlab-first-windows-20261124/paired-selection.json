@@ -1,0 +1,61 @@
+{
+  "limit": 12288,
+  "max_span_s": 300,
+  "max_requests": 24,
+  "candidates_by_quality": {
+    "(0, 0, 0, 0)": 5
+  },
+  "quality_order": [
+    "return_after_other_session",
+    "multiple_sessions",
+    "overlapping_api",
+    "same_instance_return"
+  ],
+  "windows": [
+    {
+      "quality": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "start": 1790209400070926320,
+      "end": 1790209401582926320,
+      "anchor": "9b301da4-f030-42cb-a0ef-2d0986b24f0f/2184714",
+      "calls": 1,
+      "sessions": [
+        "9b301da4-f030-42cb-a0ef-2d0986b24f0f"
+      ],
+      "first_index": 194571,
+      "last_index": 194571,
+      "last_order": [
+        1790209400070926320,
+        "9b301da4-f030-42cb-a0ef-2d0986b24f0f",
+        0
+      ]
+    },
+    {
+      "quality": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "start": 1790358788809966394,
+      "end": 1790358790503966394,
+      "anchor": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+      "calls": 1,
+      "sessions": [
+        "8dccf4e6-d242-4c9e-896e-5803a53a867d"
+      ],
+      "first_index": 217631,
+      "last_index": 217631,
+      "last_order": [
+        1790358788809966394,
+        "8dccf4e6-d242-4c9e-896e-5803a53a867d",
+        0
+      ]
+    }
+  ],
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61"
+}

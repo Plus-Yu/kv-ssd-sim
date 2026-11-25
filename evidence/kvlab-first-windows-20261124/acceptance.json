@@ -1,0 +1,18 @@
+{
+  "full_corpus_verified": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "n15_uncapped_search": {
+    "cold_complete_prefixes_with_object": 5,
+    "maximum_calls": 1,
+    "return_after_competitor_candidates": 0
+  },
+  "paired_frozen_write_identity_all_three": true,
+  "natural_read_validation": "no native positive examples",
+  "0504_required_object_regression": true,
+  "0504_full_comparison": "failed",
+  "0504_final_memory_keys": {
+    "prediction": 195,
+    "native": 197
+  },
+  "reference_scenarios": 20,
+  "scope": "object arrivals at the file backend; hardware and whole-corpus rates are uncalibrated"
+}

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="642" viewBox="0 0 1080 642" role="img" aria-labelledby="title desc">
+  <title id="title">对象回放器、n15 FEMU 闭环与目标 K3 服务器的存储路径</title>
+  <desc id="desc">三列独立运行。左列以真实调度和 Mooncake 决策产生虚拟对象读写。中列以真实 CPU 数据、文件系统和块请求驱动 FEMU 的闪存模型。右列是待校准的真实 agent、GPU、多客户端和物理 SSD 路径。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/>
+    </marker>
+    <g id="links" fill="none" stroke="#64748b" stroke-width="1.7" marker-end="url(#arrow)">
+      <path d="M180 234 V254"/>
+      <path d="M180 328 V348"/>
+      <path d="M180 422 V442"/>
+      <path d="M180 516 V536"/>
+    </g>
+    <style>
+      text { font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", "DejaVu Sans", "Droid Sans Fallback", sans-serif; fill: #152b3e; }
+      .heading { font-size: 26px; font-weight: 700; }
+      .intro { font-size: 16px; fill: #475569; }
+      .lane-title { font-size: 22px; font-weight: 700; }
+      .lane-note { font-size: 15px; fill: #475569; }
+      .box { fill: #fff; stroke: #a7b8c5; stroke-width: 1.4; }
+      .timed { fill: #fff6e5; stroke: #af7424; stroke-width: 1.5; stroke-dasharray: 5 3; }
+      .measured { fill: #e6f6f1; stroke: #31816e; stroke-width: 1.6; }
+      .label { font-size: 18px; font-weight: 600; }
+      .detail { font-size: 15px; fill: #374c5a; }
+    </style>
+  </defs>
+  <rect width="1080" height="642" fill="#fff"/>
+  <text x="24" y="38" class="heading">从 agent 会话到 SSD</text>
+  <text x="24" y="67" class="intro">逐列从上往下读。橙色虚线框含参数近似，绿色框标出对象与主机块请求的观测位置。</text>
+
+  <g text-anchor="middle">
+    <rect x="12" y="91" width="336" height="535" rx="10" fill="#f3f7fa"/>
+    <text x="180" y="123" class="lane-title">对象回放器</text>
+    <text x="180" y="148" class="lane-note">虚拟时钟 · 对象级</text>
+    <use href="#links"/>
+    <rect x="26" y="166" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="193" class="label">编译后的 WEKA 会话</text>
+    <text x="180" y="218" class="detail">按请求依赖与等待推进虚拟时钟</text>
+    <rect x="26" y="260" width="308" height="68" rx="6" class="timed"/>
+    <text x="180" y="287" class="label">原生 vLLM 调度 ＋ 定时计算</text>
+    <text x="180" y="312" class="detail">KV 张量仅记录形状和布局</text>
+    <rect x="26" y="354" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="381" class="label">原生 Mooncake master</text>
+    <text x="180" y="406" class="detail">按虚拟时刻处理分配、续租与回执</text>
+    <rect x="26" y="448" width="308" height="68" rx="6" class="timed"/>
+    <text x="180" y="475" class="label">虚拟磁盘队列</text>
+    <text x="180" y="500" class="detail">按载荷字节、带宽与排队算完成时间</text>
+    <rect x="26" y="542" width="308" height="68" rx="6" class="measured"/>
+    <text x="180" y="569" class="label">对象级结果</text>
+    <text x="180" y="594" class="detail">对象键、可用副本与读写需求</text>
+  </g>
+
+  <g transform="translate(360 0)" text-anchor="middle">
+    <rect x="12" y="91" width="336" height="535" rx="10" fill="#f3f7fa"/>
+    <text x="180" y="123" class="lane-title">n15 FEMU 在线闭环</text>
+    <text x="180" y="148" class="lane-note">KVM 客体 · 真实软件栈与模拟 SSD</text>
+    <use href="#links"/>
+    <rect x="26" y="166" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="193" class="label">AIPerf 发送 HTTP 请求</text>
+    <text x="180" y="218" class="detail">按 WEKA 依赖在客体内发送</text>
+    <rect x="26" y="260" width="308" height="68" rx="6" class="timed"/>
+    <text x="180" y="287" class="label">原生 vLLM 调度 ＋ 定时计算</text>
+    <text x="180" y="312" class="detail">实际分配并填充 CPU KV</text>
+    <rect x="26" y="354" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="381" class="label">Mooncake 客户端与 master</text>
+    <text x="180" y="406" class="detail">八个逻辑 rank 共用一个 TCP 客户端</text>
+    <rect x="26" y="448" width="308" height="68" rx="6" class="measured"/>
+    <text x="180" y="475" class="label">ext4 → Linux 块层 → NVMe</text>
+    <text x="180" y="500" class="detail">实际文件、页缓存与块请求</text>
+    <rect x="26" y="542" width="308" height="68" rx="6" class="timed"/>
+    <text x="180" y="569" class="label">FEMU FTL 与模拟 NAND</text>
+    <text x="180" y="594" class="detail">RAM 后端，模型产生 GC 和擦除计数</text>
+  </g>
+
+  <g transform="translate(720 0)" text-anchor="middle">
+    <rect x="12" y="91" width="336" height="535" rx="10" fill="#f3f7fa"/>
+    <text x="180" y="123" class="lane-title">目标 K3 服务器</text>
+    <text x="180" y="148" class="lane-note">参考部署 · 待实机校准</text>
+    <use href="#links"/>
+    <rect x="26" y="166" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="193" class="label">实际 agent 与工具交互</text>
+    <text x="180" y="218" class="detail">上下文、并发与等待随会话演化</text>
+    <rect x="26" y="260" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="287" class="label">K3 推理与显存 KV</text>
+    <text x="180" y="312" class="detail">B300 上执行 prefill 与 decode</text>
+    <rect x="26" y="354" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="381" class="label">多客户端 Mooncake</text>
+    <text x="180" y="406" class="detail">规划八个客户端使用同一块 SSD</text>
+    <rect x="26" y="448" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="475" class="label">生产文件系统与 NVMe 栈</text>
+    <text x="180" y="500" class="detail">实际块请求、地址与完成时间</text>
+    <rect x="26" y="542" width="308" height="68" rx="6" class="box"/>
+    <text x="180" y="569" class="label">物理 SSD 固件与 NAND</text>
+    <text x="180" y="594" class="detail">设备自身的缓存、GC 与盘态</text>
+  </g>
+</svg>

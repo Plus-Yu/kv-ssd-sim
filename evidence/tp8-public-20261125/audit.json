@@ -1,0 +1,177 @@
+{
+  "sessions": 3190,
+  "requests": 370658,
+  "recorded_input_tokens": 91591785836,
+  "nonempty_instances": 17349,
+  "missing_usage": 44907,
+  "zero_input": 44903,
+  "zero_output": 44907,
+  "structural_issues": {},
+  "observed_overlaps": 33972,
+  "clamped_whole_ms": 33967,
+  "timing_refs": {
+    "prev": 353309,
+    "session_start": 3195,
+    "spawn": 14154
+  },
+  "limits": {
+    "12288": {
+      "over_context": {
+        "requests": 323235,
+        "input_tokens": 91587050311
+      },
+      "direct": {
+        "requests": 2519,
+        "input_tokens": 4732702
+      },
+      "dependency_closed": {
+        "requests": 1962,
+        "input_tokens": 3286172
+      },
+      "direct_but_unclosed": {
+        "requests": 557,
+        "input_tokens": 1446530
+      },
+      "complete_sessions": 6
+    },
+    "131072": {
+      "over_context": {
+        "requests": 259275,
+        "input_tokens": 85686076391
+      },
+      "direct": {
+        "requests": 66478,
+        "input_tokens": 5905690867
+      },
+      "dependency_closed": {
+        "requests": 30760,
+        "input_tokens": 2589159147
+      },
+      "direct_but_unclosed": {
+        "requests": 35718,
+        "input_tokens": 3316531720
+      },
+      "complete_sessions": 680
+    },
+    "1048576": {
+      "over_context": {
+        "requests": 0,
+        "input_tokens": 0
+      },
+      "direct": {
+        "requests": 325751,
+        "input_tokens": 91591487511
+      },
+      "dependency_closed": {
+        "requests": 241219,
+        "input_tokens": 60668778793
+      },
+      "direct_but_unclosed": {
+        "requests": 84532,
+        "input_tokens": 30922708718
+      },
+      "complete_sessions": 1787
+    }
+  },
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "source_size": 8816390440,
+  "header": {
+    "_schema": "replay-v5",
+    "name": "replay18-oct-40d-weka",
+    "generated_at": "2026-10-19T14:09:57Z",
+    "source": "from-scalar",
+    "summary": {
+      "sessions": 3190,
+      "instances": 17349,
+      "requests": 370658,
+      "spawns": 0,
+      "matched_spawns": 0,
+      "fan_out_turns": 0,
+      "max_fan_out_in_one_turn": 18,
+      "repaired_parents": 0,
+      "cycles_broken": 0,
+      "start_ts": "2026-09-05T16:09:30Z",
+      "end_ts": "2026-10-14T15:39:33Z",
+      "timing": {
+        "requests_with_timing": 370658,
+        "requests_with_think": 370658,
+        "think_clamped": 33967,
+        "think_clamped_percent": 9.163973258367552,
+        "think_ms": {
+          "n": 370658,
+          "p50": 1097,
+          "p90": 73865,
+          "p99": 2930866,
+          "max": 3281865971,
+          "mean": 635282
+        },
+        "think_ms_by_ref": {
+          "prev": {
+            "n": 353309,
+            "p50": 1176,
+            "p90": 81228,
+            "p99": 3041180,
+            "max": 2406150239,
+            "mean": 639070
+          },
+          "session_start": {
+            "n": 3195,
+            "p50": 0,
+            "p90": 0,
+            "p99": 0,
+            "max": 496195,
+            "mean": 349
+          },
+          "spawn": {
+            "n": 14154,
+            "p50": 257,
+            "p90": 2808,
+            "p99": 442889,
+            "max": 3281865971,
+            "mean": 684042
+          }
+        },
+        "total_ms": {
+          "n": 370658,
+          "p50": 5689,
+          "p90": 22013,
+          "p99": 76583,
+          "max": 991351,
+          "mean": 10509
+        }
+      }
+    }
+  },
+  "source_concurrency": {
+    "peak": 26,
+    "duration_ns_by_in_flight": {
+      "0": 1703797741311619,
+      "1": 731763811709074,
+      "2": 385264544664667,
+      "3": 228972229622107,
+      "4": 135577479261845,
+      "5": 77632910309672,
+      "6": 44459856966560,
+      "7": 25051923179382,
+      "8": 14262922280280,
+      "9": 8510682743670,
+      "10": 5169228835050,
+      "11": 3015752868471,
+      "12": 1830255229736,
+      "13": 1019841598601,
+      "14": 588440168548,
+      "15": 354973113695,
+      "16": 251082970752,
+      "17": 112817329908,
+      "18": 68902950449,
+      "19": 46015726968,
+      "20": 25550655128,
+      "21": 11504208549,
+      "22": 8727825926,
+      "23": 3809110129,
+      "24": 1099453154,
+      "25": 133382772,
+      "26": 92088863
+    }
+  }
+}

@@ -22,9 +22,6 @@ def run(output, *, mount=None, segment_mib=768, quota_mib=1024):
     from vllm.distributed.kv_transfer.kv_connector.v1.mooncake_store.coordinator import (
         MooncakeStoreCoordinator,
     )
-    from vllm.distributed.kv_transfer.kv_connector.v1.mooncake_store.layout import (
-        HeadMajorStoreLayout,
-    )
     from vllm.model_executor.layers.mamba.checkpoint import compute_mamba_prefill_checkpoints
     from vllm.sampling_params import SamplingParams
     from vllm.utils.hashing import sha256
@@ -84,33 +81,11 @@ def run(output, *, mount=None, segment_mib=768, quota_mib=1024):
             "MOONCAKE_OFFLOAD_HEARTBEAT_INTERVAL_SECONDS": "1",
         }
     )
-    rank_workers = []
-    for rank in range(8):
-        worker = upstream.MooncakeStoreWorker.__new__(upstream.MooncakeStoreWorker)
-        (
-            worker.tp_rank,
-            worker.tp_size,
-            worker.pp_rank,
-            worker.pp_size,
-            worker.dcp_size,
-            worker.pcp_size,
-        ) = rank, 8, 0, 1, 1, 1
-        worker._kv_cache_groups, worker.hash_block_size, worker.requested_store_chunk_size = (
-            groups,
-            unit,
-            unit,
-        )
-        worker.store_tp_size = 8
-        worker._group_tp_replication_factors = worker._compute_group_tp_replication_factors()
-        plans = tuple(
-            worker._make_store_group_plan(group, 8, HeadMajorStoreLayout, factor)
-            for group, factor in zip(groups, worker._group_tp_replication_factors, strict=True)
-        )
-        worker.token_dbs = worker._build_token_databases(
-            upstream.KeyMetadata("Kimi-K3", rank, 0, 0, 0, cache_prefix="step3-k3"), plans
-        )
-        worker._init_lookup_key_prefixes()
-        rank_workers.append(worker)
+    from kv_ssd_sim.k3_online import metadata_rank_worker
+
+    rank_workers = [
+        metadata_rank_worker(groups, unit, rank, "Kimi-K3", "step3-k3") for rank in range(8)
+    ]
     reader = rank_workers[0]
     reader.coord = MooncakeStoreCoordinator(groups, block, unit, enable_partial_hash_hits=True)
     reader._capacity_only = False

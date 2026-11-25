@@ -1,0 +1,70 @@
+{
+  "run_time_records": {
+    "host": "n15",
+    "tag_utc": "20261120-074735",
+    "checkout_commit": "775c8ce6d2ec810dcc5f0ec60cab8b07b62ee4eb",
+    "image_id_from_launcher_shared_file": "sha256:9bab62b63e7271b4dc1625e411bdafd8a2c178c6639adde11553193d5751b700",
+    "trials": {
+      "femu-n15-probe-20261120-074735": {
+        "command_binary": "/home/plusyu/projects/kv-ssd-sim/.femu/build/qemu-system-x86_64",
+        "binary_sha256": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+        "declared_femu_revision": "a898d22b2f894042afe0f4ef21867393c5c78a70",
+        "guest_inputs_sha256": {},
+        "namespace_bytes": 50331648,
+        "raw_nand_bytes": 67108864,
+        "geometry": {
+          "pages-per-block": 64,
+          "pages-per-line": 512,
+          "luns-per-channel": 4,
+          "page-size": 4096,
+          "planes-per-lun": 1,
+          "blocks-per-plane": 32,
+          "channels": 2
+        }
+      },
+      "femu-n15-0504-20261120-074735": {
+        "command_binary": "/home/plusyu/projects/kv-ssd-sim/.femu/build/qemu-system-x86_64",
+        "binary_sha256": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+        "declared_femu_revision": "a898d22b2f894042afe0f4ef21867393c5c78a70",
+        "guest_inputs_sha256": {
+          "config.json": "2024b75fdca33791a96cb8354d50aecc94d56022e8589c2df3c22c33fd211b33",
+          "hybrid.json": "fba5251b8959820aed35d99fe6c1db9e4b33bdd76368af9b4dc1bd2fa34ac269",
+          "trace.json": "d123b80995bcba44e7e69b0f3795e0783882e1e4794d838b55e53091f397bdaa"
+        },
+        "namespace_bytes": 3221225472,
+        "raw_nand_bytes": 4294967296,
+        "geometry": {
+          "pages-per-block": 64,
+          "pages-per-line": 512,
+          "luns-per-channel": 4,
+          "page-size": 4096,
+          "planes-per-lun": 1,
+          "blocks-per-plane": 2048,
+          "channels": 2
+        }
+      }
+    }
+  },
+  "postrun_inspection": {
+    "git_head": "775c8ce6d2ec810dcc5f0ec60cab8b07b62ee4eb",
+    "working_tree_diff_at_archive_time": "checkout-postrun.patch",
+    "runtime_harness_source_hashes_match_checkout": true,
+    "working_tree_femu_sha256": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+    "checked_bundle_sha256": "26c7905404149c94a72350ded5f6f25d66807e4e1d723df7e434c920639d6cfd",
+    "binary_sha256_from_checked_bundle": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+    "runtime_femu_mount_source_from_launcher": "/home/yzh/projects/kv-ssd-sim/.runtime/n15/runtime-26c7905404149c94a72350ded5f6f25d66807e4e1d723df7e434c920639d6cfd/projects/kv-ssd-sim/.femu",
+    "container_femu_mount_destination": "/home/plusyu/projects/kv-ssd-sim/.femu",
+    "docker_inspect_postrun": "permission denied",
+    "runtime_root_mode": "0700 root:root",
+    "bundle_source_tree_children": [
+      "pc-bios"
+    ],
+    "bundle_toolchain_children": [
+      "lib"
+    ],
+    "missing_from_archive_due_to_original_mode": [
+      "femu-n15-0504-20261120-074735/joint/client/.aiperf_results_ready.json",
+      "femu-n15-0504-20261120-074735/model-cache/modelinfos/vllm-model_executor-models-llama-LlamaForCausalLM.json"
+    ]
+  }
+}

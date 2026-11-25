@@ -13,13 +13,16 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
-    source = root / "datasets/kimi-k3-b300-step1/slice.json"
-    tokenizer_dir = root / "configs/sim-tokenizer"
+def load_conversations(
+    source,
+    tokenizer_dir,
+    artifacts,
+    *,
+    context_limit=131072,
+    request_count=2,
+    synthesis=None,
+    wire=False,
+):
     # Installed AIPerf mishandles absolute local paths with HF_HUB_OFFLINE.
     # Both calls below use the existing absolute tokenizer directory.
     os.environ.pop("HF_HUB_OFFLINE", None)
@@ -35,11 +38,8 @@ def main():
 
     if version("aiperf") != "0.13.0":
         raise ValueError("This audit is pinned to AIPerf 0.13.0")
-    raw = json.loads(source.read_text())
-    WekaTrace.model_validate(raw)
-    WekaTrace.model_validate(
-        json.loads((root / "references/kimi-k3-b300/trace_0001.source.json").read_text())
-    )
+    WekaTrace.model_validate(json.loads(source.read_bytes()))
+    rng.reset()  # each compiled trace is a fresh AIPerf run with the same seed
     rng.init(42)
     cfg = BenchmarkConfig(
         models=["kv-ssd-sim"],
@@ -50,24 +50,53 @@ def main():
                 "type": "file",
                 "path": str(source),
                 "format": "weka_trace",
-                "max_context_length": 131072,
+                "max_context_length": context_limit,
+                **({"synthesis": synthesis} if synthesis else {}),
                 "use_think_time_only": True,
             }
         ],
-        phases=[{"name": "profiling", "type": "concurrency", "requests": 2, "concurrency": 1}],
+        phases=[
+            {
+                "name": "profiling",
+                "type": "concurrency",
+                "requests": request_count,
+                "concurrency": 1,
+            }
+        ],
         tokenizer={"name": str(tokenizer_dir)},
     )
     run = BenchmarkRun(
         benchmark_id="offline-input-audit",
         cfg=cfg,
-        artifact_dir=args.output.parent,
+        artifact_dir=artifacts,
         random_seed=42,
     )
     hf = AutoTokenizer.from_pretrained(tokenizer_dir, local_files_only=True)
     tokenizer = Tokenizer.from_pretrained(str(tokenizer_dir))
+    if wire:
+        from aiperf.dataset.composer.custom import CustomDatasetComposer
+
+        return CustomDatasetComposer(run=run, tokenizer=tokenizer).create_dataset(), hf
     generator = PromptGenerator(prompts=None, prefix_prompts=None, tokenizer=tokenizer)
     loader = WekaTraceLoader(filename=str(source), run=run, prompt_generator=generator)
     conversations = loader.convert_to_conversations(loader.load_dataset())
+    return conversations, hf
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parents[1]
+    source = root / "datasets/kimi-k3-b300-step1/slice.json"
+    tokenizer_dir = root / "configs/sim-tokenizer"
+    raw = json.loads(source.read_text())
+    from aiperf.dataset.loader.weka_trace_models import WekaTrace
+
+    WekaTrace.model_validate(
+        json.loads((root / "references/kimi-k3-b300/trace_0001.source.json").read_text())
+    )
+    conversations, hf = load_conversations(source, tokenizer_dir, args.output.parent)
     if len(conversations) != 1 or len(conversations[0].turns) != 2:
         raise ValueError("AIPerf changed the selected conversation/request coverage")
     rows, token_lists = [], []

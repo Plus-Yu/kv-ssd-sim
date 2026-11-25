@@ -92,7 +92,7 @@ def main():
         prompt = (
             args.prompt_file.read_text()
             if args.prompt_file
-            else "继续完成 projects/kv-ssd-sim 的已授权任务：先阅读 docs/续接状态.md，"
+            else "继续完成 projects/kv-ssd-sim 的已授权任务：先阅读 docs/项目维护/续接状态.md，"
             "完成可配置 MLA＋KDA、FEMU SSD 闭环和验证报告。检查现有成果后继续，"
             "不要重复已完成实验，不要启动第二个额度恢复监视器。"
         )

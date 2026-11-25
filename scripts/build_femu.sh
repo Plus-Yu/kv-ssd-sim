@@ -6,7 +6,7 @@ revision=a898d22b2f894042afe0f4ef21867393c5c78a70
 toolchain="$project_dir/.femu/toolchain"
 source_dir="$project_dir/.femu/FEMU-sparse"
 if [ ! -x "$toolchain/bin/x86_64-conda-linux-gnu-cc" ]; then
-  echo "Missing private toolchain. See docs/FEMU-next.md for installation."
+  echo "Missing private toolchain. See docs/01-原型与闭环接入/FEMU-next.md for installation."
   exit 1
 fi
 actual_revision=$(git -C "$source_dir" rev-parse HEAD)

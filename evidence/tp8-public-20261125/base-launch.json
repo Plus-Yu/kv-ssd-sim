@@ -1,0 +1,157 @@
+{
+  "profile": "reference",
+  "num_blocks": 2781,
+  "max_model_len": 131072,
+  "store": {
+    "clients": 8,
+    "segment_bytes": 128000000000,
+    "staging_bytes": 4294967296,
+    "quota_bytes": 375000000000,
+    "offload_delay_ms": 10000,
+    "device_mib_s": 4768.37158203125,
+    "memory_mib_s": 53119.659423828125,
+    "lease_ms": 10000,
+    "save_ms": 0,
+    "high_watermark": 0.9,
+    "eviction_ratio": 0.05,
+    "put_allocation_ms": 0,
+    "first_offload_ms": 0,
+    "device_read_mib_s": 6484.9853515625,
+    "put_mib_s": 54645.538330078125,
+    "disk_high_watermark": 0.9,
+    "disk_low_watermark": 0.8
+  },
+  "prefill_ms": null,
+  "decode_ms": null,
+  "step_timing": {
+    "prefill_ms": null,
+    "decode_ms": 11.77,
+    "decode_ms_batch_8": 14.1,
+    "prefill_tokens_s": 22000,
+    "scale": 1
+  },
+  "ssd_time_scale": 1,
+  "root_offsets_s": [
+    0
+  ],
+  "vllm_version": "0.34.0rc1.dev302+gbe47189f3.cpu",
+  "pythonhashseed": null,
+  "geometry_sha256": "5baf48628a17addfdece7714e313b7717425770f12516c9849e55c5dc7fe3b83",
+  "compiled_inputs": [
+    {
+      "file": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/kvlab-20261124/reference/holdout/input.json",
+      "sha256": "3ced43b501423983554f54fa321ad140abb1e9ce927928bdcd79a93abce19e5c"
+    }
+  ],
+  "service_profile": null,
+  "reference_settings": {
+    "file": "configs/kimi-k3-b300-object-replay.json",
+    "sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "baseline": {
+      "id": "tp8-b300-public-20261125",
+      "kv_gib_per_rank": 55.0,
+      "max_model_len": 131072,
+      "topology": "Eight logical embedded rank clients feed one shared drive. Per-client segment, staging and quota use the project budgets in kimi-k3-b300-step2/resolved.json.",
+      "natural_restore": "Use native prefix lookup, leases and BatchEvict. Prefer a memory replica on GET. A disk replica becomes readable on successful bucket publication.",
+      "store": {
+        "lease_ms": 10000,
+        "offload_delay_ms": 10000,
+        "first_offload_ms": 0,
+        "high_watermark": 0.9,
+        "eviction_ratio": 0.05,
+        "disk_high_watermark": 0.9,
+        "disk_low_watermark": 0.8,
+        "put_allocation_ms": 0,
+        "save_ms": 0
+      },
+      "compute": {
+        "prefill_tokens_s": 22000,
+        "decode_ms_batch_1": 11.77,
+        "decode_ms_batch_8": 14.1
+      },
+      "bandwidth": {
+        "put_d2h_GB_s": 57.3,
+        "get_h2d_GB_s": 55.7,
+        "ssd_write_MB_s": 5000,
+        "ssd_read_MB_s": 6800
+      },
+      "sources": {
+        "kv": {
+          "url": "https://github.com/aws-samples/sample-llm-inference-on-eks/blob/main/docs/KIMI-K3-B300-PERFORMANCE.md",
+          "basis": "Single B300 TP8 node, K3 MXFP4, FP8 KV, utilization 0.95, max length 1048576. Reported 55.0 GiB per GPU, rounded. Convert with the pinned local hybrid geometry. Endpoint latency is a separate comparator."
+        },
+        "topology": {
+          "url": "https://docs.vllm.ai/en/v0.34.0/features/mooncake_store_connector_usage/",
+          "hardware_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+          "basis": "Embedded rank-local segments are a supported deployment. Eight clients, one SSD and the space assigned to them describe the chosen deployment."
+        },
+        "leases_eviction": {
+          "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/types.h",
+          "basis": "Pinned Mooncake 0.3.14 defaults for ordinary read leases, memory high watermark and eviction ratio."
+        },
+        "offload": {
+          "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp",
+          "defaults_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/storage_backend.h",
+          "bucket_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/storage_backend.cpp",
+          "basis": "Eager offload, initial poll at service start, then a 10 s wait after work. Virtual clients start together. At heartbeat completion, reclaim above 90% to at most 80% of the per-client disk quota using native FIFO bucket selection. Usage is accounted in payload bytes."
+        },
+        "prefill": {
+          "url": "https://github.com/whn09/kimi-k3-sglang",
+          "basis": "K3 2P+2D, eight B300 per prefill node, EP8, SGLang. Per-node active prefill throughput about 22k tokens/s with an 8192-token chunk. Cross-engine proxy for fresh tokens."
+        },
+        "decode": {
+          "url": "https://github.com/pegainfer-project/kern-k3-pp-prefill/blob/main/roofline/decode.md",
+          "basis": "K3 CUDA graph step p50, eight GB300, 8192-token context, TP8/EP8/DCP8, synthetic routing. Interpolate batches 1 through 8. Context scaling and mixed steps are uncalibrated."
+        },
+        "host_copy": {
+          "url": "https://github.com/ricardojacomini/b300-benchmarks/blob/main/report/b300_benchmark_report.md",
+          "basis": "Pinned 1024 MB cudaMemcpy, per GPU, 20 iterations. Optimistic local-copy proxy. Fixed control time is set to zero. NUMA, cross-rank contention, RPC and filesystem overhead need calibration."
+        },
+        "ssd": {
+          "url": "https://assets.micron.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad133a40b-b36c-4b17-b768-659acc4d4bca/renditions/original/as/7450-nvme-ssd-tech-prod-spec.pdf",
+          "part_number": "MTFDKCE3T8TFR-1BC15ABYY",
+          "table_url": "https://www.micron.com/products/storage/ssd/data-center-ssd/7450-ssd/part-catalog",
+          "basis": "One Micron 7450 PRO E1.S 3.84 TB as a same-form-factor surrogate for one DGX drive. Table 1, E1.S 15/25 mm, 128 KB sequential, steady state, QD32, power state 0. Separate decimal MB/s directions share one virtual FIFO. Small and mixed I/O require measurement."
+        }
+      }
+    },
+    "overrides": {}
+  },
+  "source_sha256": {
+    "scripts/run_object_replay.py": "6993d3888bb5297a3933109b0db075d83ff3cbc828d979bf7bc3b3fb82629770",
+    "scripts/prepare_object_trace.py": "c71c4807f5acd18cfe43dcaf8a75865afd0b5985b55a4c32fab8f18b2bec2b10",
+    "scripts/prepare_kvlab.py": "7620e77bcbc298f760cfed435ed6034cc25cdcd07fa2779da2014bc42ecde0b9",
+    "src/kv_ssd_sim/kvlab.py": "a711bd63d9ebcecde9a4a71ca585dc3b929022a61f053b4787552c13787b79d5",
+    "scripts/audit_aiperf_input.py": "b917bd757614367fd134d5f297e223596dcfcaa2cf8c1076c1653f32cc1fe99b",
+    "src/kv_ssd_sim/object_traffic.py": "d7616a73dab421b9943981e1c1e697e0636c534dc41909f7c1d0c3d339a0f2c0",
+    "src/kv_ssd_sim/object_store.py": "f6342c41718f0774d277bcd4f72480dd414bebc2767eb599231a42977b8a3cc9",
+    "src/kv_ssd_sim/object_timing.py": "d956a9fb726aa860982074812019626664a0255092c834d1cabc51b983a46304",
+    "src/kv_ssd_sim/object_master.py": "385fc7615d4021bfb442602eafcb97c53206cc0a5bc879da922289cf6e36fc63",
+    "src/kv_ssd_sim/object_worker.py": "bfa0f2ebc904cf099ad356bcc377183987d7aca3ab4d68377834738b119cb517",
+    "src/kv_ssd_sim/native.py": "f51ae92b558e87af0d1e1b2b0fcc00fd967fcc549a61ef2e113b597f3a8b6183",
+    "src/kv_ssd_sim/k3_online.py": "2f5b892e8f0c21514f5ec041a4f1b32377b94eac4895f0b75baaa29fcfb530a9",
+    "src/kv_ssd_sim/deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de"
+  },
+  "service_model": "Native offset allocators, writer-preferred segments, global MasterService.BatchEvict, eager offload with periodic client heartbeats, native bucket grouping and source leases, one shared virtual FIFO drive, native FIFO bucket selection at the virtual payload quota, one memory read port per client.",
+  "clock": {
+    "epoch_unix_ns": 1700000000000000000,
+    "same_time_order": "native maintenance, then external events in enqueue order",
+    "final_boundary": "first native maintenance boundary strictly after the last event"
+  },
+  "offload_timing_input": null,
+  "native_master": {
+    "backend": "mooncake.MasterService.BatchEvict",
+    "mooncake_version": "0.3.14",
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_url": "https://codeload.github.com/kvcache-ai/Mooncake/tar.gz/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_sha256": "482df63a230655e2210789179110a6bcf581360cb577acda5b941939d33709a7",
+    "wheel_dso": "/home/yzh/projects/kv-ssd-sim/.venv/lib/python3.13/site-packages/mooncake/_store.cpython-313-x86_64-linux-gnu.so",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92",
+    "master_source_sha256": "40899db810afcb48b6dc9bc6c6ad08b70005b688362dd7f58ec531a115c84a5b",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "builder_sha256": "7c62d48c63c5ab5ca5a36abbaeb5f1269f6809427546afbe3d02b0060d6a73ea",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "compiler": "g++-12 (Ubuntu 12.3.0-1ubuntu1~22.04.2) 12.3.0"
+  }
+}

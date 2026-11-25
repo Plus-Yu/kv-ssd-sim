@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 def native_environment() -> dict[str, str]:
     env = os.environ.copy()
     libs = PROJECT_ROOT / ".native/usr/lib/x86_64-linux-gnu"
-    if libs.is_dir():
+    if libs.is_dir() and env.get("KV_SSD_USE_SYSTEM_LIBRARIES") != "1":
         env["LD_LIBRARY_PATH"] = str(libs) + (
             ":" + env["LD_LIBRARY_PATH"] if env.get("LD_LIBRARY_PATH") else ""
         )
@@ -99,8 +99,10 @@ def doctor() -> dict:
 
 
 @contextmanager
-def mooncake_master(output_dir: Path, *, pressure=None):
+def mooncake_master(output_dir: Path, *, pressure=None, lease_ms=0):
     """Start and stop only the master owned by this experiment."""
+    if type(lease_ms) is not int or lease_ms < 0:
+        raise ValueError("Expected a nonnegative integer master lease TTL in ms")
     port = free_port()
     binary = Path(sys.prefix) / "bin/mooncake_master"
     log_path = output_dir / "mooncake-master.log"
@@ -110,7 +112,7 @@ def mooncake_master(output_dir: Path, *, pressure=None):
         f"--rpc_port={port}",
         "--rpc_address=127.0.0.1",
         "--enable_offload=true",
-        f"--default_kv_lease_ttl={pressure.lease_ttl_ms if pressure else 0}",
+        f"--default_kv_lease_ttl={pressure.lease_ttl_ms if pressure else lease_ms}",
         "--default_kv_soft_pin_ttl=0",
         "--rpc_thread_num=2",
         "--metrics_host=127.0.0.1",

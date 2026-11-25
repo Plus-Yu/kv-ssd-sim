@@ -1,0 +1,74 @@
+{
+  "quality": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "start": 1790358788809966394,
+  "end": 1790358790503966394,
+  "anchor": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+  "calls": 1,
+  "sessions": [
+    "8dccf4e6-d242-4c9e-896e-5803a53a867d"
+  ],
+  "first_index": 217631,
+  "last_index": 217631,
+  "last_order": [
+    1790358788809966394,
+    "8dccf4e6-d242-4c9e-896e-5803a53a867d",
+    0
+  ],
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "revision": "5afaa89882fc2c24a3dcb8bcdcd0485770c5021d",
+  "context_limit": 12288,
+  "input_sha256": "7755830a98d1b98afd10ae3bbaf0ea9531c651b04aa653343f6a996e9e4a589e",
+  "initial_state": "cold at recording idle boundary; complete history of contributing sessions",
+  "root_routing": "all recorded arrivals on one simulated server",
+  "prefix_method": "kvlab BuildReplayRequestPrefix order; fix each (role, hash) to its first observed length in this window; isolate unobserved tail per request",
+  "prefix_accounting": [
+    {
+      "id": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+      "max_previous_shared_tokens": 0,
+      "previous_request": null,
+      "fingerprinted_tokens": 1950,
+      "unshared_tail_tokens": 38,
+      "unidentified_block_tokens": 0,
+      "clipped_representation_tokens": 0,
+      "blocks_using_prior_length": 0,
+      "canonical_minus_reported_tokens": 0
+    }
+  ],
+  "recorded_arrival_check": "all arrivals reproduced from roots, edges and source durations at UTC nanosecond precision",
+  "source_requests": [
+    {
+      "id": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+      "session": "8dccf4e6-d242-4c9e-896e-5803a53a867d",
+      "source_index": [
+        0,
+        0
+      ],
+      "source_request_id": 2210394,
+      "source_utc_ns": 1790358788809966394,
+      "source_end_utc_ns": 1790358790503966394,
+      "think_ref": "session_start",
+      "think_ms": 0,
+      "total_ms": 1694,
+      "input_tokens": 1988,
+      "source_usage": {
+        "model": "claude-opus-5-5",
+        "max_tokens": 128000,
+        "prefill_tokens": 1988,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 0
+      },
+      "observed_overlap_ns": 0,
+      "dependencies": [],
+      "root_arrival_ms": 0.0,
+      "source_ms": 0.0,
+      "measurement_anchor": true,
+      "output_tokens": 14,
+      "prompt_sha256": "71c33cfd184a0941a91edfe283a9a3a4b02a9d8c82014814aa7c8bdd1b190116"
+    }
+  ]
+}

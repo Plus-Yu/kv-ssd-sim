@@ -1,0 +1,125 @@
+{
+  "status": "failed",
+  "checks": {
+    "native_completed": true,
+    "requests_and_tokens": true,
+    "inventory_key_size": true,
+    "put_request_rank_key_bytes": true,
+    "get_request_rank_key_bytes": true,
+    "get_available_tier_request_rank_key": true,
+    "final_disk_keys": true,
+    "save_fences_all_ranks": true,
+    "final_memory_keys": false
+  },
+  "differences": {
+    "final_memory": {
+      "prediction_only": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@1a20dc83e2d3fa35e5ee0cc91d5c214d06feee2e5880992278d174e3d5eaaedd"
+      ],
+      "native_only": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@25c0b7dd6a19fa638eee191fa9c43775c2093ba15dbef4d6dfd63509171e1650",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2b28ad9fa1b1b1176fdaf4470c4e003d562211d59aee115958f0dd7af703250a",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4821e46aae913ddbf70fb44be5343ccbde5f694e77296ecd46c08ed4d8836f72",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66af1ff3b402de5e61fa142d4f9391877734fadd94fca3e97424b78d9c0bbae7",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@92e8161da2587663debdb47cdbf312d7d989dba0d024fc0907e218ba02f94feb",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f44654dd227cc651e99b286dd0a4c1991b35ed5fb8230b649f160616870e1bd8",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@430f002cbe358717c70c2bcc3af67a1615127879a6320e8292f7e68a71897694"
+      ]
+    }
+  },
+  "requests": [
+    {
+      "id": "trace_0504/0",
+      "prediction": {
+        "prompt_tokens": 11133,
+        "prompt_sha256": "daec54714ab42e9fd184118bdbff643c5d6320f9676d41d7252b720502ba34d0",
+        "output_tokens": 139,
+        "computed_prompt_tokens": 11133,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": {
+        "prompt_tokens": 11133,
+        "prompt_sha256": "daec54714ab42e9fd184118bdbff643c5d6320f9676d41d7252b720502ba34d0",
+        "output_tokens": 139,
+        "computed_prompt_tokens": 11133,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      }
+    },
+    {
+      "id": "trace_0504/1",
+      "prediction": {
+        "prompt_tokens": 11300,
+        "prompt_sha256": "baa6f7b041c214ec747364308920343a4aa993fd6b8407d82044707d7d0a7616",
+        "output_tokens": 96,
+        "computed_prompt_tokens": 292,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 11008
+      },
+      "native": {
+        "prompt_tokens": 11300,
+        "prompt_sha256": "baa6f7b041c214ec747364308920343a4aa993fd6b8407d82044707d7d0a7616",
+        "output_tokens": 96,
+        "computed_prompt_tokens": 292,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 11008
+      }
+    }
+  ],
+  "prediction": {
+    "unique_keys": 208,
+    "unique_bytes": 2402574336,
+    "counts_by_object_bytes": {
+      "1769472": 88,
+      "18723840": 120
+    },
+    "puts": 208,
+    "gets": 0,
+    "get_bytes": 0,
+    "get_counts_by_available_tier": {},
+    "get_bytes_by_available_tier": {},
+    "key_size_sha256": "fb502467d86029a2e999c63946adf6a66b1622985e7617efbb3009aa7b85c0bc"
+  },
+  "native": {
+    "unique_keys": 208,
+    "unique_bytes": 2402574336,
+    "counts_by_object_bytes": {
+      "1769472": 88,
+      "18723840": 120
+    },
+    "puts": 208,
+    "gets": 0,
+    "get_bytes": 0,
+    "get_counts_by_available_tier": {},
+    "get_bytes_by_available_tier": {},
+    "key_size_sha256": "fb502467d86029a2e999c63946adf6a66b1622985e7617efbb3009aa7b85c0bc"
+  },
+  "native_key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999",
+  "native_error": null,
+  "native_rejected_puts": {},
+  "native_failed_gets": {},
+  "save_jobs": 6,
+  "final_memory_keys": {
+    "prediction": 195,
+    "native": 197
+  },
+  "unmatched_tier_gets": 0,
+  "native_events_sha256": "686a2f17aa7670e9f3ba0584757d0a14d28a80fb20e7d9607902c9e2eb8902c0"
+}

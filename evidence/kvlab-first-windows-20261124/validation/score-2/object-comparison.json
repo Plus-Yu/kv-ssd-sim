@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "comparison": "frozen",
+  "matches_original_freeze": true,
+  "checks": {
+    "native_completed": true,
+    "requests_and_tokens": true,
+    "inventory_key_size": true,
+    "put_request_rank_key_bytes": true,
+    "get_request_rank_key_bytes": true,
+    "get_available_tier_request_rank_key": true,
+    "final_disk_keys": true,
+    "save_fences_all_ranks": true,
+    "final_memory_keys": true
+  },
+  "differences": {},
+  "requests": [
+    {
+      "id": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+      "prediction": {
+        "prompt_tokens": 1988,
+        "prompt_sha256": "71c33cfd184a0941a91edfe283a9a3a4b02a9d8c82014814aa7c8bdd1b190116",
+        "output_tokens": 14,
+        "computed_prompt_tokens": 1988,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": {
+        "prompt_tokens": 1988,
+        "prompt_sha256": "71c33cfd184a0941a91edfe283a9a3a4b02a9d8c82014814aa7c8bdd1b190116",
+        "output_tokens": 14,
+        "computed_prompt_tokens": 1988,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      }
+    }
+  ],
+  "prediction": {
+    "unique_keys": 39,
+    "unique_bytes": 475914240,
+    "counts_by_object_bytes": {
+      "1769472": 15,
+      "18723840": 24
+    },
+    "puts": 39,
+    "gets": 0,
+    "get_bytes": 0,
+    "get_counts_by_available_tier": {},
+    "get_bytes_by_available_tier": {},
+    "key_size_sha256": "d18f86702d0c40422ddb9adaa1997ea835c83d0740d892c54829fc20b04bb459"
+  },
+  "native": {
+    "unique_keys": 39,
+    "unique_bytes": 475914240,
+    "counts_by_object_bytes": {
+      "1769472": 15,
+      "18723840": 24
+    },
+    "puts": 39,
+    "gets": 0,
+    "get_bytes": 0,
+    "get_counts_by_available_tier": {},
+    "get_bytes_by_available_tier": {},
+    "key_size_sha256": "d18f86702d0c40422ddb9adaa1997ea835c83d0740d892c54829fc20b04bb459"
+  },
+  "native_key_content_sha256": "02b785397bda13b223e7df355f11af49bf5c2fe64a689a1b3f7259224a72c2e1",
+  "native_error": null,
+  "native_rejected_puts": {},
+  "native_failed_gets": {},
+  "save_jobs": 1,
+  "final_memory_keys": {
+    "prediction": 39,
+    "native": 39
+  },
+  "unmatched_tier_gets": 0,
+  "native_events_sha256": "9c16848dede5dc4da88325b2518935edced7207440be3c8c02a51c1bf7444d28"
+}

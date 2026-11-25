@@ -90,6 +90,7 @@ class Job:
 class ServingLoop:
     def __init__(self, runtime, events, *, prefill_ms, decode_ms, cold, max_inflight):
         self.runtime, self.events = runtime, events
+        self.measurement_ids = set(json.loads(os.environ.get("KV_SSD_MEASUREMENT_IDS", "[]")))
         self.engine = ReplayEngine(
             runtime,
             [],
@@ -155,6 +156,17 @@ class ServingLoop:
                 preparation_ms=(time.perf_counter() - started) * 1000,
                 prepared_bytes=size,
             )
+            if received_id in self.measurement_ids and self.runtime.store.admin_endpoint:
+                keys = list(self.runtime.store.expected)
+                tiers = self.runtime.store.tiers(keys)
+                self.events.emit(
+                    "measurement_anchor",
+                    request_id=rid,
+                    keys=len(keys),
+                    memory_keys=sum("MEMORY" in t for t in tiers.values()),
+                    disk_keys=sum("LOCAL_DISK" in t for t in tiers.values()),
+                    local_pool_usage=self.runtime.scheduler.kv_cache_manager.usage,
+                )
             self.pending.put_nowait(job)
             return job
         except BaseException:
@@ -248,22 +260,24 @@ class ServingLoop:
                 job.chunks.put_nowait(error)
             self.jobs.clear()
 
-    async def close(self):
+    async def close(self, *, require_local_disk=False):
         self.closing = True
         await asyncio.wait_for(self.task, timeout=360 if len(self.runtime.workers) > 1 else 60)
         if self.failure:
             raise RuntimeError(self.failure)
         device = self.runtime.store.femu_device
-        if device and not self.cold:
-            from .storage import replica_types
-
-            keys = list(self.runtime.store.expected)
-            descriptors = (
-                await asyncio.to_thread(self.runtime.store.batch_get_replica_desc, keys)
-                if keys
-                else {}
+        if getattr(self.runtime.store, "admin_endpoint", None) and not self.cold:
+            keys = await asyncio.to_thread(
+                self.runtime.store.final_observation, Path(os.environ["KV_SSD_OBSERVER_LOG"])
             )
-            tiers = {k: replica_types(descriptors.get(k, [])) for k in keys}
+        elif device and not self.cold:
+            keys = list(self.runtime.store.expected)
+            tiers = await asyncio.to_thread(
+                self.runtime.store.replica_snapshot,
+                keys,
+                disk_types={"LOCAL_DISK"} if require_local_disk else set(),
+                timeout_s=120,
+            )
             self.events.emit("natural_final_replicas", tiers=tiers)
             keys = [k for k in keys if "LOCAL_DISK" in tiers[k]]
         else:
@@ -272,6 +286,8 @@ class ServingLoop:
                 if self.engine.metrics
                 else []
             )
+        if self.runtime.store.errors:
+            raise RuntimeError("; ".join(self.runtime.store.errors))
         rows = list(self.engine.metrics.values())
         for row in rows:
             row["ttft_ms"] = (row["first_token_s"] - row["admitted_s"]) * 1000
@@ -501,6 +517,7 @@ def serve(args):
         "max_model_len": args.max_model_len,
         "num_blocks": args.num_blocks,
         "max_inflight": args.max_inflight,
+        "master_lease_ms": args.master_lease_ms,
         "cold_between_requests": args.cold_between_requests,
         "hybrid_config": dataclasses.asdict(hybrid) if hybrid else None,
         "fidelity": {
@@ -529,7 +546,7 @@ def serve(args):
     with ExitStack() as stack:
         events = stack.enter_context(EventLog(output / "events.jsonl"))
         events.emit("clock_sync", monotonic_origin_ns=events._start)
-        master = stack.enter_context(mooncake_master(output))
+        master = stack.enter_context(mooncake_master(output, lease_ms=args.master_lease_ms))
         if k3 and femu_device:
             from .k3_online import CapacitySamples
 
@@ -562,6 +579,10 @@ def serve(args):
         )
         stack.callback(native.close)
         native.store.femu_device = femu_device
+        if os.environ.get("KV_SSD_OBSERVER_LOG"):
+            flags = json.loads((output / "mooncake-master.json").read_bytes())["command"]
+            metrics_port = next(s.split("=")[1] for s in flags if s.startswith("--metrics_port="))
+            native.store.admin_endpoint = f"http://127.0.0.1:{metrics_port}"
         loop = ServingLoop(
             native,
             events,
@@ -584,7 +605,7 @@ def serve(args):
                 yield
             finally:
                 try:
-                    report = await loop.close()
+                    report = await loop.close(require_local_disk=k3)
                     if layout_lib and femu_device:
                         from .layout import verify_layout
 

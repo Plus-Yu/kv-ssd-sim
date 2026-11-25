@@ -8,9 +8,13 @@ from __future__ import annotations
 
 import ctypes
 import hashlib
+import json
+import os
 import threading
 import time
 from typing import Any
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 from .events import EventLog
 
@@ -54,14 +58,32 @@ class ObservedStore:
         self.restore_batches = 0
         self.on_published = None
         self.femu_device = None
+        self.admin_endpoint = None
+        self.observed = bool(os.environ.get("KV_SSD_OBSERVER_LOG"))
 
-    def trace_request_handler(self, handler, rank=None):
+    def trace_request_handler(self, handler, rank=None, operation=None):
         def wrapped(metadata):
             self._context.rank = rank
             self._context.request_id = metadata.req_id
+            self._context.job = getattr(metadata, "store_job_id", None)
+            if self.observed:
+                fields = {
+                    "request_id": metadata.req_id,
+                    "job": self._context.job,
+                    "logical_rank": rank,
+                    "operation": operation,
+                }
+                self.events.emit("native_worker_begin", **fields)
             try:
                 return handler(metadata)
             finally:
+                if self.observed:
+                    fence = getattr(metadata, "current_event", None)
+                    self.events.emit(
+                        "native_worker_end",
+                        fence_released_mono_ns=getattr(fence, "released_ns", None),
+                        **fields,
+                    )
                 self._context.request_id = None
 
         return wrapped
@@ -73,6 +95,8 @@ class ObservedStore:
         digests = [buffers_digest(a, s) for a, s in zip(addresses, sizes, strict=True)]
         self.events.emit(
             "store_put_begin",
+            logical_rank=getattr(self._context, "rank", None),
+            job=getattr(self._context, "job", None),
             keys=keys,
             bytes=sum(map(sum, sizes)),
             request_id=getattr(self._context, "request_id", None),
@@ -90,6 +114,7 @@ class ObservedStore:
                     self.errors.append(f"Native PUT failed for {key}: {code}")
         self.events.emit(
             "store_put_end",
+            job=getattr(self._context, "job", None),
             keys=keys,
             result=list(result),
             digests=digests,
@@ -105,10 +130,11 @@ class ObservedStore:
         return result
 
     def batch_get_into_multi_buffers(self, keys, addresses, sizes):
-        tiers = self.native.batch_get_replica_desc(keys)
-        tier_map = {key: replica_types(tiers.get(key, [])) for key in keys}
+        tier_map = self.tiers(keys)
         self.events.emit(
             "store_get_begin",
+            object_bytes=[sum(parts) for parts in sizes],
+            logical_rank=getattr(self._context, "rank", None),
             keys=keys,
             tiers=tier_map,
             bytes=sum(map(sum, sizes)),
@@ -145,6 +171,7 @@ class ObservedStore:
             self.restore_batches += 1
         self.events.emit(
             "store_get_end",
+            logical_rank=getattr(self._context, "rank", None),
             keys=keys,
             result=list(result),
             checksum_ok=checks,
@@ -152,30 +179,88 @@ class ObservedStore:
         )
         return result
 
+    def tiers(self, keys):
+        if not self.admin_endpoint:
+            descriptors = self.native.batch_get_replica_desc(keys)
+            return {key: replica_types(descriptors.get(key, [])) for key in keys}
+        # The pinned admin API calls BatchGetReplicaListForAdmin and grants no GET lease.
+        result = {}
+        for offset in range(0, len(keys), 16):
+            batch = keys[offset : offset + 16]
+            query = urlencode({"keys": ",".join(batch)})
+            with urlopen(self.admin_endpoint + "/batch_query_keys?" + query, timeout=5) as reply:
+                body = json.load(reply)
+            if not body["success"] or set(body["data"]) != set(batch):
+                raise ValueError("Incomplete Mooncake admin observation")
+            for key, row in body["data"].items():
+                if not row["ok"] and "OBJECT_NOT_FOUND" not in str(row.get("error")).upper():
+                    raise RuntimeError(f"Admin query failed for {key}: {row}")
+                result[key] = [
+                    tier
+                    for field, tier in (
+                        ("values", "MEMORY"),
+                        ("disk_values", "DISK"),
+                        ("local_disk_values", "LOCAL_DISK"),
+                    )
+                    if row.get(field)
+                ]
+        return result
+
+    def final_observation(self, path, timeout_s=20):
+        # Wait for client acknowledgments. Previously published and later evicted keys
+        # need not all be present on disk at the same instant.
+        keys = list(self.expected)
+        unresolved = set(keys)
+        deadline = time.monotonic() + timeout_s
+        with path.open() as ledger:
+            while unresolved:
+                for line in ledger:
+                    _, stage, key, _, _, _ = line.rstrip("\n").split("\t")
+                    if stage == "disk_ack":
+                        unresolved.discard(key)
+                if not unresolved or time.monotonic() >= deadline:
+                    break
+                time.sleep(0.025)
+        tiers = self.tiers(keys)
+        self.events.emit(
+            "natural_final_replicas", tiers=tiers, unresolved_offloads=sorted(unresolved)
+        )
+        return [key for key, kinds in tiers.items() if "LOCAL_DISK" in kinds]
+
     def disk_barrier(self, keys=None, *, timeout_s: float = 15) -> list[str]:
-        """Wait for confirmed LOCAL_DISK metadata, not just successful PUTs."""
+        """Wait for confirmed disk metadata for every key."""
         with self._lock:
             keys = list(self.expected if keys is None else keys)
         if not keys:
             raise RuntimeError("No objects were saved by the native connector")
+        self.replica_snapshot(keys, disk_types={"LOCAL_DISK", "DISK"}, timeout_s=timeout_s)
+        return keys
+
+    def replica_snapshot(self, keys, *, disk_types=frozenset(), timeout_s: float = 15):
+        """Read all tiers together, optionally waiting for a listed disk type on every key."""
+        if not keys:
+            return {}
         deadline = time.monotonic() + timeout_s
-        tiers = {key: [] for key in keys}
-        while time.monotonic() < deadline:
-            descriptors = self.native.batch_get_replica_desc(keys)
-            tiers = {key: replica_types(descriptors.get(key, [])) for key in keys}
-            if all(any("DISK" in kind for kind in kinds) for kinds in tiers.values()):
+        while True:
+            tiers = self.tiers(keys)
+            if not disk_types:
+                return tiers
+            missing = [key for key, kinds in tiers.items() if disk_types.isdisjoint(kinds)]
+            if not missing:
                 self.events.emit("disk_replicas_confirmed", keys=keys)
-                return keys
+                return tiers
+            if time.monotonic() >= deadline:
+                break
             time.sleep(0.025)
         self.events.emit(
             "disk_barrier_timeout",
             timeout_s=timeout_s,
-            missing_disk_keys=[
-                key for key, kinds in tiers.items() if not any("DISK" in kind for kind in kinds)
-            ],
+            missing_disk_keys=missing,
             tiers=tiers,
         )
-        raise TimeoutError("Mooncake did not establish all disk replicas")
+        raise TimeoutError(
+            f"Mooncake did not establish all disk replicas ({len(missing)}/{len(keys)} missing)"
+        )
 
     def evict_memory_replicas(self, keys: list[str]) -> None:
         """Use the Store's replica API and retain the disk replicas."""

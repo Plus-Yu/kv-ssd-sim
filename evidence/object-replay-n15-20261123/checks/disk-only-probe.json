@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": {
+    "archived_passed": true,
+    "missing_one_of_36": true,
+    "lookup": true,
+    "writes_by_rank_group_key_boundary_size": true,
+    "reads_by_rank_key_size_multiplicity": true,
+    "complete_disk_reads": true,
+    "all_disk_only": true
+  },
+  "reference_sha256": "15e1771fe1ae37f94b2249516ae262f56e8267e618c77e02a8ed042c366fe09d",
+  "lookup_tokens": {
+    "rank0_only": 0,
+    "missing_group2_rank7": 0,
+    "all_disk_only": 1536
+  },
+  "unique_objects": 36,
+  "unique_bytes": 470605824,
+  "rank_gets": 120,
+  "restore_bytes": 619241472
+}

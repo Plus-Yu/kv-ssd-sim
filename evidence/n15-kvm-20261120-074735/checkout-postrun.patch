@@ -1,0 +1,240 @@
+diff --git a/scripts/analyze_k3_ssd.py b/scripts/analyze_k3_ssd.py
+index 04402b4..70e9cd9 100644
+--- a/scripts/analyze_k3_ssd.py
++++ b/scripts/analyze_k3_ssd.py
+@@ -98,10 +98,10 @@ def online(path):
+     )
+     check(not read(path / "joint/server/summary.json")["checksum_errors"], "Checksum errors")
+     ledger = transfer_ledger(events, plan)
++    disk_keys = sum(v for k, v in run["final_replica_states"].items() if "LOCAL_DISK" in k)
+     check(
+-        sum(v for k, v in run["final_replica_states"].items() if "LOCAL_DISK" in k)
+-        == ledger["unique_keys"],
+-        "Final disk replicas incomplete",
++        disk_keys == ledger["unique_keys"],
++        f"Final disk replicas incomplete: {disk_keys}/{ledger['unique_keys']} keys have LOCAL_DISK",
+     )
+     capacities = read_jsonl(path / "joint/server/capacity.jsonl")
+     check(len(capacities) > 1, "Missing resource measurements")
+diff --git a/scripts/run-n15-checkout.sh b/scripts/run-n15-checkout.sh
+index e74e995..b51a8f5 100755
+--- a/scripts/run-n15-checkout.sh
++++ b/scripts/run-n15-checkout.sh
+@@ -11,7 +11,7 @@ repo=$(git -C "$repo" rev-parse --show-toplevel)
+ commit=$(git -C "$repo" rev-parse HEAD)
+ test -f "$repo/scripts/analyze_nand.py" || { echo "Missing baseline code in $repo; pull main first." >&2; exit 1; }
+ printf 'Using checkout %s at %s\n' "$repo" "$commit"
+-image=kv-ssd-n15:baseline
++image=kv-ssd-n15:baseline-v2
+ python3 - <<'PY'
+ import fcntl
+ import os
+@@ -26,7 +26,7 @@ docker info >/dev/null
+ if ! docker image inspect "$image" >/dev/null 2>&1; then
+   docker build -t "$image" - <<'IMAGE'
+ FROM ubuntu:26.04
+-RUN apt-get update && apt-get install -y --no-install-recommends e2fsprogs libstdc++6 libgomp1 libnuma1 util-linux procps ca-certificates
++RUN apt-get update && apt-get install -y --no-install-recommends e2fsprogs libstdc++6 libgomp1 libnuma1 libcurl4t64 util-linux procps ca-certificates
+ IMAGE
+ fi
+ 
+diff --git a/scripts/run_aiperf.py b/scripts/run_aiperf.py
+index 127f006..13df21a 100644
+--- a/scripts/run_aiperf.py
++++ b/scripts/run_aiperf.py
+@@ -16,14 +16,14 @@ from pathlib import Path
+ ROOT = Path(__file__).resolve().parents[1]
+ 
+ 
+-def stop(process, *, whole_group=True):
++def stop(process, *, whole_group=True, timeout=80):
+     if process.poll() is None:
+         if whole_group:
+             os.killpg(process.pid, signal.SIGTERM)
+         else:
+             process.terminate()
+         try:
+-            process.wait(timeout=600 if os.environ.get("KV_SSD_LAYOUT") else 80)
++            process.wait(timeout=600 if os.environ.get("KV_SSD_LAYOUT") else timeout)
+         except subprocess.TimeoutExpired:
+             os.killpg(process.pid, signal.SIGKILL)
+             process.wait(timeout=5)
+@@ -61,9 +61,8 @@ def main():
+         parser.error(
+             "This harness requires positive lengths; it does not rewrite zero-output turns"
+         )
+-    manager_block = (
+-        1536 if json.loads(args.hybrid_config.read_text()).get("profile") == "k3-tp8" else 64
+-    )
++    k3 = json.loads(args.hybrid_config.read_text()).get("profile") == "k3-tp8"
++    manager_block = 1536 if k3 else 64
+     if any(
+         r["in"] + r["out"] > min(args.max_model_len, (args.num_blocks - 2) * manager_block)
+         for r in records
+@@ -246,7 +245,8 @@ def main():
+         finally:
+             if client is not None:
+                 stop(client)
+-            stop(server, whole_group=False)
++            # K3 can spend 360 s draining senders and 120 s confirming disk replicas.
++            stop(server, whole_group=False, timeout=600 if k3 else 80)
+     subprocess.run(
+         [str(ROOT / ".venv/bin/python"), str(ROOT / "scripts/verify_aiperf.py"), str(output)],
+         check=True,
+diff --git a/src/kv_ssd_sim/server.py b/src/kv_ssd_sim/server.py
+index 7b4f071..a1cdb30 100644
+--- a/src/kv_ssd_sim/server.py
++++ b/src/kv_ssd_sim/server.py
+@@ -248,22 +248,20 @@ class ServingLoop:
+                 job.chunks.put_nowait(error)
+             self.jobs.clear()
+ 
+-    async def close(self):
++    async def close(self, *, require_local_disk=False):
+         self.closing = True
+         await asyncio.wait_for(self.task, timeout=360 if len(self.runtime.workers) > 1 else 60)
+         if self.failure:
+             raise RuntimeError(self.failure)
+         device = self.runtime.store.femu_device
+         if device and not self.cold:
+-            from .storage import replica_types
+-
+             keys = list(self.runtime.store.expected)
+-            descriptors = (
+-                await asyncio.to_thread(self.runtime.store.batch_get_replica_desc, keys)
+-                if keys
+-                else {}
++            tiers = await asyncio.to_thread(
++                self.runtime.store.replica_snapshot,
++                keys,
++                disk_types={"LOCAL_DISK"} if require_local_disk else set(),
++                timeout_s=120,
+             )
+-            tiers = {k: replica_types(descriptors.get(k, [])) for k in keys}
+             self.events.emit("natural_final_replicas", tiers=tiers)
+             keys = [k for k in keys if "LOCAL_DISK" in tiers[k]]
+         else:
+@@ -584,7 +582,7 @@ def serve(args):
+                 yield
+             finally:
+                 try:
+-                    report = await loop.close()
++                    report = await loop.close(require_local_disk=k3)
+                     if layout_lib and femu_device:
+                         from .layout import verify_layout
+ 
+diff --git a/src/kv_ssd_sim/storage.py b/src/kv_ssd_sim/storage.py
+index a942f4a..1cac000 100644
+--- a/src/kv_ssd_sim/storage.py
++++ b/src/kv_ssd_sim/storage.py
+@@ -153,29 +153,40 @@ class ObservedStore:
+         return result
+ 
+     def disk_barrier(self, keys=None, *, timeout_s: float = 15) -> list[str]:
+-        """Wait for confirmed LOCAL_DISK metadata, not just successful PUTs."""
++        """Wait for confirmed disk metadata for every key."""
+         with self._lock:
+             keys = list(self.expected if keys is None else keys)
+         if not keys:
+             raise RuntimeError("No objects were saved by the native connector")
++        self.replica_snapshot(keys, disk_types={"LOCAL_DISK", "DISK"}, timeout_s=timeout_s)
++        return keys
++
++    def replica_snapshot(self, keys, *, disk_types=frozenset(), timeout_s: float = 15):
++        """Read all tiers together, optionally waiting for a listed disk type on every key."""
++        if not keys:
++            return {}
+         deadline = time.monotonic() + timeout_s
+-        tiers = {key: [] for key in keys}
+-        while time.monotonic() < deadline:
++        while True:
+             descriptors = self.native.batch_get_replica_desc(keys)
+             tiers = {key: replica_types(descriptors.get(key, [])) for key in keys}
+-            if all(any("DISK" in kind for kind in kinds) for kinds in tiers.values()):
++            if not disk_types:
++                return tiers
++            missing = [key for key, kinds in tiers.items() if disk_types.isdisjoint(kinds)]
++            if not missing:
+                 self.events.emit("disk_replicas_confirmed", keys=keys)
+-                return keys
++                return tiers
++            if time.monotonic() >= deadline:
++                break
+             time.sleep(0.025)
+         self.events.emit(
+             "disk_barrier_timeout",
+             timeout_s=timeout_s,
+-            missing_disk_keys=[
+-                key for key, kinds in tiers.items() if not any("DISK" in kind for kind in kinds)
+-            ],
++            missing_disk_keys=missing,
+             tiers=tiers,
+         )
+-        raise TimeoutError("Mooncake did not establish all disk replicas")
++        raise TimeoutError(
++            f"Mooncake did not establish all disk replicas ({len(missing)}/{len(keys)} missing)"
++        )
+ 
+     def evict_memory_replicas(self, keys: list[str]) -> None:
+         """Use the Store's replica API and retain the disk replicas."""
+diff --git a/tests/test_storage.py b/tests/test_storage.py
+index 44f7e4f..a8b7751 100644
+--- a/tests/test_storage.py
++++ b/tests/test_storage.py
+@@ -1,6 +1,9 @@
+ import ctypes
++from unittest.mock import Mock
+ 
+-from kv_ssd_sim.events import EventLog
++import pytest
++
++from kv_ssd_sim.events import EventLog, load_events
+ from kv_ssd_sim.storage import ObservedStore
+ 
+ 
+@@ -9,6 +12,45 @@ class MemoryDescriptor:
+         return True
+ 
+ 
++def test_final_snapshot_waits_for_every_local_disk_replica(tmp_path):
++    memory = MemoryDescriptor()
++    local = Mock()
++    local.is_memory_replica.return_value = False
++    local.is_local_disk_replica.return_value = True
++    partial = {"a": [local], "b": [memory]}
++    complete = {"a": [local], "b": [memory, local]}
++    native = Mock()
++    native.batch_get_replica_desc.side_effect = [partial, partial, complete]
++    with EventLog(tmp_path / "events.jsonl") as events:
++        store = ObservedStore(native, events)
++        keys = ["a", "b"]
++        assert store.replica_snapshot(keys)["b"] == ["MEMORY"]
++        assert store.replica_snapshot(keys, disk_types={"LOCAL_DISK"}) == {
++            "a": ["LOCAL_DISK"],
++            "b": ["MEMORY", "LOCAL_DISK"],
++        }
++    assert native.batch_get_replica_desc.call_count == 3
++
++
++def test_local_disk_snapshot_timeout_records_unconfirmed_keys(tmp_path):
++    remote = Mock()
++    remote.is_memory_replica.return_value = False
++    remote.is_local_disk_replica.return_value = False
++    remote.is_disk_replica.return_value = True
++    native = Mock()
++    native.batch_get_replica_desc.return_value = {"a": [remote]}
++    path = tmp_path / "events.jsonl"
++    with EventLog(path) as events:
++        store = ObservedStore(native, events)
++        with pytest.raises(TimeoutError, match="2/2 missing"):
++            store.replica_snapshot(["a", "b"], disk_types={"LOCAL_DISK"}, timeout_s=0)
++        assert store.disk_barrier(["a"]) == ["a"]
++    timeout, confirmed = load_events(path)
++    assert timeout["missing_disk_keys"] == ["a", "b"]
++    assert timeout["tiers"] == {"a": ["DISK"], "b": []}
++    assert confirmed["keys"] == ["a"]
++
++
+ class CorruptingStore:
+     def batch_put_from_multi_buffers(self, keys, addresses, sizes, config):
+         return [0] * len(keys)

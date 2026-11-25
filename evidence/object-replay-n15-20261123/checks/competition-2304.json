@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "checks": {
+    "native_completed": true,
+    "requests_and_tokens": true,
+    "inventory_key_size": true,
+    "put_request_rank_key_bytes": true,
+    "get_request_rank_key_bytes": true,
+    "get_available_tier_request_rank_key": true,
+    "final_disk_keys": true,
+    "save_fences_all_ranks": true
+  },
+  "differences": {},
+  "requests": [
+    {
+      "id": "reuse-after-worker/0",
+      "prediction": {
+        "prompt_tokens": 1537,
+        "prompt_sha256": "ebbfd3c12ecd0836d9c31e709e1f1f2223f7b45a4fa738319aabf41ba582e833",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 1537,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": {
+        "prompt_tokens": 1537,
+        "prompt_sha256": "ebbfd3c12ecd0836d9c31e709e1f1f2223f7b45a4fa738319aabf41ba582e833",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 1537,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      }
+    },
+    {
+      "id": "reuse-after-worker::sa:pressure/0",
+      "prediction": {
+        "prompt_tokens": 4609,
+        "prompt_sha256": "b56c32473c9f326a950ea4dadf60f51dd021937ed0c38e905f2a9ed77a3c7c3d",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 4609,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": {
+        "prompt_tokens": 4609,
+        "prompt_sha256": "b56c32473c9f326a950ea4dadf60f51dd021937ed0c38e905f2a9ed77a3c7c3d",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 4609,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      }
+    },
+    {
+      "id": "reuse-after-worker/1",
+      "prediction": {
+        "prompt_tokens": 1665,
+        "prompt_sha256": "2e78dc1461068f25ffd6491e807695121f662fa5ea5b6b2e94173638b1ed8266",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 129,
+        "external_load_tokens": 1536,
+        "local_reuse_tokens": 0
+      },
+      "native": {
+        "prompt_tokens": 1665,
+        "prompt_sha256": "2e78dc1461068f25ffd6491e807695121f662fa5ea5b6b2e94173638b1ed8266",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 129,
+        "external_load_tokens": 1536,
+        "local_reuse_tokens": 0
+      }
+    }
+  ],
+  "prediction": {
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "counts_by_object_bytes": {
+      "1769472": 49,
+      "18723840": 96
+    },
+    "puts": 145,
+    "gets": 120,
+    "get_bytes": 619241472,
+    "get_counts_by_available_tier": {
+      "memory": 120
+    },
+    "get_bytes_by_available_tier": {
+      "memory": 619241472
+    },
+    "key_size_sha256": "a1f7b7e84ea82cb8118116aa455707b5be61fcdb386196b7105c717408bf937d"
+  },
+  "native": {
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "counts_by_object_bytes": {
+      "1769472": 49,
+      "18723840": 96
+    },
+    "puts": 145,
+    "gets": 120,
+    "get_bytes": 619241472,
+    "get_counts_by_available_tier": {
+      "memory": 120
+    },
+    "get_bytes_by_available_tier": {
+      "memory": 619241472
+    },
+    "key_size_sha256": "a1f7b7e84ea82cb8118116aa455707b5be61fcdb386196b7105c717408bf937d"
+  },
+  "native_key_content_sha256": "1cf62446216aaf04b3e5e5ffc9fb55fae3762994d65bad689fa12d4f4195b693",
+  "native_error": null,
+  "native_rejected_puts": {},
+  "native_failed_gets": {},
+  "save_jobs": 5,
+  "final_memory_keys": {
+    "prediction": 145,
+    "native": null
+  },
+  "unmatched_tier_gets": 0,
+  "native_events_sha256": "004be8b2940630e42e5f250fe18e9dac0e1b766c71c7866cd594f5f25d99323d"
+}

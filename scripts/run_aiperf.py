@@ -16,14 +16,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def stop(process, *, whole_group=True):
+def stop(process, *, whole_group=True, timeout=80):
     if process.poll() is None:
         if whole_group:
             os.killpg(process.pid, signal.SIGTERM)
         else:
             process.terminate()
         try:
-            process.wait(timeout=600 if os.environ.get("KV_SSD_LAYOUT") else 80)
+            process.wait(timeout=600 if os.environ.get("KV_SSD_LAYOUT") else timeout)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             process.wait(timeout=5)
@@ -61,9 +61,8 @@ def main():
         parser.error(
             "This harness requires positive lengths; it does not rewrite zero-output turns"
         )
-    manager_block = (
-        1536 if json.loads(args.hybrid_config.read_text()).get("profile") == "k3-tp8" else 64
-    )
+    k3 = json.loads(args.hybrid_config.read_text()).get("profile") == "k3-tp8"
+    manager_block = 1536 if k3 else 64
     if any(
         r["in"] + r["out"] > min(args.max_model_len, (args.num_blocks - 2) * manager_block)
         for r in records
@@ -246,7 +245,8 @@ def main():
         finally:
             if client is not None:
                 stop(client)
-            stop(server, whole_group=False)
+            # K3 can spend 360 s draining senders and 120 s confirming disk replicas.
+            stop(server, whole_group=False, timeout=600 if k3 else 80)
     subprocess.run(
         [str(ROOT / ".venv/bin/python"), str(ROOT / "scripts/verify_aiperf.py"), str(output)],
         check=True,

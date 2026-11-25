@@ -2,29 +2,31 @@
 
 这版直接运行 **vLLM 原生 Scheduler、KVCacheManager、MooncakeStoreConnector，以及 Mooncake 原生磁盘 offload**。不加载模型权重，不执行 forward；使用真实 CPU KV 缓冲区和固定计算等待时间。
 
-默认单盘现可用 `--nand-stats` 同窗口采集 NAND 编程、GC 搬迁、块擦除、页占用率和字节写放大。真实尺寸 K3 两轮样本写入 2,403,700,736 B，实测 WAF 为 1.0000；独立覆写探针已验证非零 GC 和擦除。[阶段 E 的统计与用法](docs/阶段E-NAND统计验收.md)
+按研究阶段查找实施计划、验收报告、系统架构图和实机校准边界，见[研究文档导航](docs/README.md)。
 
-阶段 D 已完成 K3 单盘布局配对。混放与按类分放各回放同一真实 WEKA 切片一次，每组从磁盘恢复并验证全部 208 个对象。在自然流量窗口中，同时涉及两种载荷的写请求由 65 笔降到 0 笔。[逐字节归因与复现](docs/阶段D-对象到LBA与布局对照.md)
+默认单盘现可用 `--nand-stats` 同窗口采集 NAND 编程、GC 搬迁、块擦除、页占用率和字节写放大。真实尺寸 K3 两轮样本写入 2,403,700,736 B，实测 WAF 为 1.0000；独立覆写探针已验证非零 GC 和擦除。[阶段 E 的统计与用法](docs/03-SSD负载与NAND实验/阶段E-NAND统计验收.md)
 
-K3 真实尺寸在线存取和 SSD 负载测量已完成。8 GiB 客体、3 GiB FEMU 上对真实 WEKA 两轮做了三次严格对账的独立回放，设备每次写入约 2.24 GiB。[C1 容量与存取验收](docs/阶段C1-K3真实尺寸与容量验收.md) · [C2 负载报告与图表](docs/阶段C2-K3真实尺寸SSD负载报告.md)
+阶段 D 已完成 K3 单盘布局配对。混放与按类分放各回放同一真实 WEKA 切片一次，每组从磁盘恢复并验证全部 208 个对象。在自然流量窗口中，同时涉及两种载荷的写请求由 65 笔降到 0 笔。[逐字节归因与复现](docs/03-SSD负载与NAND实验/阶段D-对象到LBA与布局对照.md)
 
-SSD 负载阶段 B2 已完成两轮自然回放的流式块采集，并按设备计数验收了请求、轮间与后台尾部。配置、图表及复核命令见[B2 报告](docs/阶段B2-完整采集验收.md)。
+K3 真实尺寸在线存取和 SSD 负载测量已完成。8 GiB 客体、3 GiB FEMU 上对真实 WEKA 两轮做了三次严格对账的独立回放，设备每次写入约 2.24 GiB。[C1 容量与存取验收](docs/03-SSD负载与NAND实验/阶段C1-K3真实尺寸与容量验收.md) · [C2 负载报告与图表](docs/03-SSD负载与NAND实验/阶段C2-K3真实尺寸SSD负载报告.md)
 
-已完成的实验、实测数据和测试记录见 [第一版验收报告](docs/验收报告.md)。
+SSD 负载阶段 B2 已完成两轮自然回放的流式块采集，并按设备计数验收了请求、轮间与后台尾部。配置、图表及复核命令见[B2 报告](docs/03-SSD负载与NAND实验/阶段B2-完整采集验收.md)。
 
-按 [Kimi K3＋八卡 B300 仿真实施计划](docs/KimiK3-B300仿真实施计划.md)，已完成 [输入审计](docs/KimiK3-B300步骤1验收报告.md)、[缓存与容量转换](docs/KimiK3-B300步骤2验收报告.md) 和 [步骤 3：真实尺寸分片存取](docs/KimiK3-B300步骤3验收报告.md)。离线复核步骤 3：`.venv/bin/python scripts/check_k3_shard_evidence.py evidence/kimi-k3-step3`。
+已完成的实验、实测数据和测试记录见 [第一版验收报告](docs/01-原型与闭环接入/验收报告.md)。
 
-已补齐可配置 MLA＋KDA 混合状态，见 [混合注意力验收报告](docs/混合注意力验收报告.md)。AIPerf 0.13.0 HTTP 接入已完成，见 [接入与验收](docs/AIPerf接入验收报告.md)；额度后续接脚本见 [使用说明](docs/额度恢复脚本.md)。
+按 [Kimi K3＋八卡 B300 仿真实施计划](docs/02-K3参考部署与验证/KimiK3-B300仿真实施计划.md)，已完成 [输入审计](docs/KimiK3-B300步骤1验收报告.md)、[缓存与容量转换](docs/02-K3参考部署与验证/KimiK3-B300步骤2验收报告.md) 和 [步骤 3：真实尺寸分片存取](docs/02-K3参考部署与验证/KimiK3-B300步骤3验收报告.md)。离线复核步骤 3：`.venv/bin/python scripts/check_k3_shard_evidence.py evidence/kimi-k3-step3`。
 
-**步骤 6 已完成真实 WEKA 两轮的本机缩放对照。** 保留 71,168-token 共享前缀，以 tiny MLA/KDA 和实际 FEMU 各运行三次。第二轮客户端 TTFT 中位数为 10.19 / 11.90 s（40 µs / 2 ms NAND 页读）。另保留一次触发 Mooncake 暂存缓冲区超时的 10 ms 失败样本。[步骤 6 报告与复现命令](docs/KimiK3-B300步骤6验收报告.md)
+已补齐可配置 MLA＋KDA 混合状态，见 [混合注意力验收报告](docs/01-原型与闭环接入/混合注意力验收报告.md)。AIPerf 0.13.0 HTTP 接入已完成，见 [接入与验收](docs/01-原型与闭环接入/AIPerf接入验收报告.md)；额度后续接脚本见 [使用说明](docs/项目维护/额度恢复脚本.md)。
 
-**步骤 5 已通过自然容量压力验收。** 在 22 请求的原生 replay 中，Mooncake 按内存水位驱逐副本，后续请求从 FEMU 读取 272 KiB，恢复 128 个前缀 tokens。独立缺片探针验证了完整重算。配置、复现命令与宿主水位对照见[步骤 5 报告](docs/KimiK3-B300步骤5验收报告.md)。
+**步骤 6 已完成真实 WEKA 两轮的本机缩放对照。** 保留 71,168-token 共享前缀，以 tiny MLA/KDA 和实际 FEMU 各运行三次。第二轮客户端 TTFT 中位数为 10.19 / 11.90 s（40 µs / 2 ms NAND 页读）。另保留一次触发 Mooncake 暂存缓冲区超时的 10 ms 失败样本。[步骤 6 报告与复现命令](docs/02-K3参考部署与验证/KimiK3-B300步骤6验收报告.md)
 
-**步骤 4 已通过 AIPerf＋FEMU 端到端配对验收。** 客体读取指定的 trace 和模型缓存配置，AIPerf 等待人工冷准备完成后再发送第二个请求。调慢 NAND 读后，Mooncake GET 从 162.1 增至 565.8 ms，客户端原始 TTFT 从 252.1 增至 654.9 ms。此次使用 tiny MLA/KDA，两组各运行一次。复现命令及原始证据见[步骤 4 报告](docs/KimiK3-B300步骤4验收报告.md)。早期客户端计时受冷准备干扰的结果保存在[历史联合验收报告](docs/AIPerf-FEMU联合验收报告.md)。
+**步骤 5 已通过自然容量压力验收。** 在 22 请求的原生 replay 中，Mooncake 按内存水位驱逐副本，后续请求从 FEMU 读取 272 KiB，恢复 128 个前缀 tokens。独立缺片探针验证了完整重算。配置、复现命令与宿主水位对照见[步骤 5 报告](docs/02-K3参考部署与验证/KimiK3-B300步骤5验收报告.md)。
 
-占位 KV 开销已优化，新的前后对照见 [开销缩减报告](docs/开销缩减报告.md)。原有验收结果保留原始记录，不覆盖历史测量。
+**步骤 4 已通过 AIPerf＋FEMU 端到端配对验收。** 客体读取指定的 trace 和模型缓存配置，AIPerf 等待人工冷准备完成后再发送第二个请求。调慢 NAND 读后，Mooncake GET 从 162.1 增至 565.8 ms，客户端原始 TTFT 从 252.1 增至 654.9 ms。此次使用 tiny MLA/KDA，两组各运行一次。复现命令及原始证据见[步骤 4 报告](docs/02-K3参考部署与验证/KimiK3-B300步骤4验收报告.md)。早期客户端计时受冷准备干扰的结果保存在[历史联合验收报告](docs/01-原型与闭环接入/AIPerf-FEMU联合验收报告.md)。
 
-**FEMU 在线闭环已通过本机 TCG 验证。** 在相同 16 ms 计算预算下，只把 NAND 页读从 40 μs 改为 100 ms，Mooncake GET 从 178 ms 增至 566 ms，请求 TTFT 从 218 ms 增至 608 ms；两组混合状态均校验成功。见 [FEMU 验收报告](docs/FEMU验收报告.md) 和 [构建与复现](docs/FEMU-next.md)。这是无 GPU / 无 KVM 的功能验收，不能把 TCG 的绝对时延当作真实 GPU 性能。
+占位 KV 开销已优化，新的前后对照见 [开销缩减报告](docs/01-原型与闭环接入/开销缩减报告.md)。原有验收结果保留原始记录，不覆盖历史测量。
+
+**FEMU 在线闭环已通过本机 TCG 验证。** 在相同 16 ms 计算预算下，只把 NAND 页读从 40 μs 改为 100 ms，Mooncake GET 从 178 ms 增至 566 ms，请求 TTFT 从 218 ms 增至 608 ms；两组混合状态均校验成功。见 [FEMU 验收报告](docs/01-原型与闭环接入/FEMU验收报告.md) 和 [构建与复现](docs/01-原型与闭环接入/FEMU-next.md)。这是无 GPU / 无 KVM 的功能验收，不能把 TCG 的绝对时延当作真实 GPU 性能。
 
 普通 `demo` / `replay` 仍默认使用本机文件系统和可选 receiver 等待；实际 FEMU 实验由 `scripts/run_femu.py` 启动客体，使用 `--femu-mount`。
 
@@ -58,6 +60,8 @@ ruff check src tests
 
 ## 哪些流程是真实的
 
+对象回放器和 n15 FEMU 分别在对象层和设备层观测读写。两条路径使用的原生组件、虚拟化参数以及与目标 K3 服务器的差距见[分层架构与回读实例](docs/05-对象回放与外推/对象回放器-FEMU-真实服务器差距说明.md)。
+
 | 环节 | 实现与范围 |
 |---|---|
 | 输入 | 直接 replay 使用 token ID；AIPerf 模式使用官方 WEKA loader 合成文本，经本地可逆 tokenizer 和 HTTP 输入，并核对长度与共享前缀 |
@@ -69,7 +73,7 @@ ruff check src tests
 | Store 初始化 | 局部适配：显式向原生 setup 传递 offload 开关与目录；固定版本上游 helper 未转发这两个参数 |
 | 安放 | vLLM 原生 KV 块与 Mooncake 原生内存/磁盘副本；demo 额外强制冷缓存，属于实验干预 |
 | 存储 | 原生 Mooncake embedded real client / TCP / offload；支持实际 FEMU BlackBox NVMe，或默认本机文件模式 |
-| 未覆盖 | GPU/DMA/RDMA、模型 forward、HTTP serving、多卡、长期 GC / 耐久性统计、逐对象到 LBA 映射 |
+| 在线与硬件边界 | 客体运行项目 HTTP 服务。GPU forward、真实多卡及 DMA/RDMA、物理盘长期 GC 和耐久性仍需目标机校准。K3 FEMU 样本已完成[对象到 LBA 的归因](docs/03-SSD负载与NAND实验/阶段D-对象到LBA与布局对照.md)。 |
 
 ```mermaid
 flowchart LR

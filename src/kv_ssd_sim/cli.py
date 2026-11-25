@@ -46,6 +46,7 @@ def main(argv=None):
     serve.add_argument("--read-delay-ms", type=float, default=0)
     serve.add_argument("--max-model-len", type=int, default=8192)
     serve.add_argument("--num-blocks", type=int, default=128)
+    serve.add_argument("--master-lease-ms", type=int, default=0)
     serve.add_argument("--max-inflight", type=int, default=32)
     serve.add_argument("--hybrid-config", type=Path)
     serve.add_argument("--femu-mount", type=Path)

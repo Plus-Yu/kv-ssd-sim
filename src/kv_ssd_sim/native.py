@@ -32,6 +32,7 @@ class HostFence:
         self._error: BaseException | None = None
 
     def release(self) -> None:
+        self.released_ns = time.perf_counter_ns()
         self._ready.set()
 
     def fail(self, error: BaseException) -> None:
@@ -69,6 +70,68 @@ class CPUWorkerAdapter:
             self.native.kv_send_thread.add_request(request)
 
 
+def scheduler_config(max_model_len, block_size, hybrid_config=None, *, k3=False):
+    """Common scheduler, prefix and connector settings for payload and metadata workers."""
+    from vllm.config import (
+        CacheConfig,
+        DeviceConfig,
+        KVTransferConfig,
+        ModelConfig,
+        ParallelConfig,
+        SchedulerConfig,
+        VllmConfig,
+    )
+
+    hybrid = k3 or hybrid_config is not None
+    model_path = PROJECT_ROOT / "configs/model"
+    return VllmConfig(
+        model_config=ModelConfig(
+            model=str(model_path),
+            skip_tokenizer_init=True,
+            dtype="float16",
+            max_model_len=max_model_len,
+            hf_overrides={"max_position_embeddings": max_model_len},
+            seed=0,
+            enforce_eager=True,
+        ),
+        device_config=DeviceConfig(device="cpu"),
+        scheduler_config=SchedulerConfig(
+            is_encoder_decoder=False,
+            max_num_seqs=8,
+            max_num_batched_tokens=4096 if k3 else 128,
+            max_model_len=max_model_len,
+            enable_chunked_prefill=True,
+            async_scheduling=False,
+            watermark=0.0,
+        ),
+        cache_config=CacheConfig(
+            block_size=block_size,
+            enable_prefix_caching=True,
+            cache_dtype="auto",
+            gpu_memory_utilization=0.5,
+            mamba_cache_mode="align" if hybrid else "none",
+        ),
+        parallel_config=ParallelConfig(tensor_parallel_size=1, pipeline_parallel_size=1),
+        kv_transfer_config=KVTransferConfig(
+            kv_connector="MooncakeStoreConnector",
+            kv_role="kv_both",
+            kv_connector_extra_config={
+                "cache_prefix": (
+                    "k3-online-tp8"
+                    if k3
+                    else "kv-ssd-sim-hybrid-" + hybrid_config.fingerprint
+                    if hybrid_config
+                    else "kv-ssd-sim-v1"
+                ),
+                **({"store_tp_size": 8 if k3 else 1} if hybrid else {}),
+                "load_async": True,
+                "lookup_async": False,
+                "save_decode_cache": False,
+            },
+        ),
+    )
+
+
 class NativeRuntime:
     def __init__(
         self,
@@ -84,16 +147,7 @@ class NativeRuntime:
         if installed != VLLM_VERSION:
             raise RuntimeError(f"This adapter requires vllm=={VLLM_VERSION}, found {installed}")
         import torch
-        from vllm.config import (
-            CacheConfig,
-            DeviceConfig,
-            KVTransferConfig,
-            ModelConfig,
-            ParallelConfig,
-            SchedulerConfig,
-            VllmConfig,
-            set_current_vllm_config,
-        )
+        from vllm.config import set_current_vllm_config
         from vllm.distributed import (
             init_distributed_environment,
             initialize_model_parallel,
@@ -133,53 +187,7 @@ class NativeRuntime:
             if self.hybrid
             else [f"model.layers.{i}.self_attn.attn" for i in range(2)]
         )
-        model_path = PROJECT_ROOT / "configs/model"
-        self.config = VllmConfig(
-            model_config=ModelConfig(
-                model=str(model_path),
-                skip_tokenizer_init=True,
-                dtype="float16",
-                max_model_len=max_model_len,
-                hf_overrides={"max_position_embeddings": max_model_len},
-                seed=0,
-                enforce_eager=True,
-            ),
-            device_config=DeviceConfig(device="cpu"),
-            scheduler_config=SchedulerConfig(
-                is_encoder_decoder=False,
-                max_num_seqs=8,
-                max_num_batched_tokens=4096 if k3 else 128,
-                max_model_len=max_model_len,
-                enable_chunked_prefill=True,
-                async_scheduling=False,
-                watermark=0.0,
-            ),
-            cache_config=CacheConfig(
-                block_size=self.block_size,
-                enable_prefix_caching=True,
-                cache_dtype="auto",
-                gpu_memory_utilization=0.5,
-                mamba_cache_mode="align" if self.hybrid else "none",
-            ),
-            parallel_config=ParallelConfig(tensor_parallel_size=1, pipeline_parallel_size=1),
-            kv_transfer_config=KVTransferConfig(
-                kv_connector="MooncakeStoreConnector",
-                kv_role="kv_both",
-                kv_connector_extra_config={
-                    "cache_prefix": (
-                        "k3-online-tp8"
-                        if k3
-                        else "kv-ssd-sim-hybrid-" + hybrid_config.fingerprint
-                        if self.hybrid
-                        else "kv-ssd-sim-v1"
-                    ),
-                    **({"store_tp_size": 8 if k3 else 1} if self.hybrid else {}),
-                    "load_async": True,
-                    "lookup_async": False,
-                    "save_decode_cache": False,
-                },
-            ),
-        )
+        self.config = scheduler_config(max_model_len, self.block_size, hybrid_config, k3=k3)
         self._stack.enter_context(set_current_vllm_config(self.config))
         init_distributed_environment(
             world_size=1,
@@ -271,7 +279,9 @@ class NativeRuntime:
                 threads.append(native_worker.kv_send_thread)
             for thread in threads:
                 thread._handle_request = self.store.trace_request_handler(
-                    thread._handle_request, rank if k3 else None
+                    thread._handle_request,
+                    rank if k3 else None,
+                    "save" if thread is native_worker.kv_send_thread else "load",
                 )
             self.workers.append(worker)
             connectors.append(connector)

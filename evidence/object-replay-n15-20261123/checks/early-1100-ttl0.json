@@ -1,0 +1,1991 @@
+{
+  "status": "failed",
+  "checks": {
+    "native_completed": false,
+    "requests_and_tokens": false,
+    "inventory_key_size": false,
+    "put_request_rank_key_bytes": false,
+    "get_request_rank_key_bytes": false,
+    "get_available_tier_request_rank_key": false,
+    "final_disk_keys": false,
+    "save_fences_all_ranks": true
+  },
+  "differences": {
+    "put": {
+      "prediction_only": [
+        {
+          "request": "reuse-after-worker::sa:pressure/0",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@febdd0193334082c6b5892a02d7085499a91ff78a9ec2453ceb508d76a5c4a8f",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker::sa:pressure/0",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@25f7ae46a685fbcfa5dcbe3fdc136f9d3db85b231e7bc6feb7b43184a7a1b1a1",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker::sa:pressure/0",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@febdd0193334082c6b5892a02d7085499a91ff78a9ec2453ceb508d76a5c4a8f",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:0@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:1@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:2@2249bd648b20a3d05645be2fe23388c9f0560d0eead4d3beeedd77cfdf001ddc",
+          "bytes": 18723840,
+          "occurrences": 1
+        }
+      ],
+      "native_only": []
+    },
+    "get": {
+      "prediction_only": [
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "bytes": 18723840,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "bytes": 1769472,
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "bytes": 1769472,
+          "occurrences": 1
+        }
+      ],
+      "native_only": []
+    },
+    "get_available_tier": {
+      "prediction_only": [
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 0,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 1,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 2,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 3,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:3@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 4,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:5@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 5,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:6@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 6,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@5a3d51ff411dfffff65cd6a6e699943e6956c0413c7a5eeb90b2578b5c837193",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@ed8167e610b0f3b8cb3dab639b1313cf20f0d1a2581d899caabc85b8faf392a9",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2ef3193942030db48422fb4cc46459d92c1fc8c2d7cbd1eb9f458a338ee42c84",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f35c7886f9c55f25b9394baf20ec7988e098448de456742329573a240cb89219",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@db57372ff22a746304b7ba165296dd04edfae8f9d78a8224553748c80289726e",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@66ea4ea4a10d9752cc3747aaa7831071116d1bbe22fdaf8d4c71bde248760a0d",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@4e0213a184c63b083999a7481ca049e98ef470e717b41bef153c4380bcbfd361",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "disk",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:0@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:1@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:7@pcp0@dcp0@pp_rank:0@group:2@fcb433ed506ac239c9152ddae5569e3a134ff569959aab7cbc695a8999d29dad",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c5182834278f766c7bf392730f7a843ba9fbf692a3658ca81174af96a29609d4",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@c181666bcca0c35909e4d19114c70167d3901bc1c5f0ea7ee4aa8387f5d0c57c",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@0d8db9f4cbeca3bda93fe9e5765f90cc38bdaddaf8f8170a72650fa70a52ac8a",
+          "tier": "memory",
+          "occurrences": 1
+        },
+        {
+          "request": "reuse-after-worker/1",
+          "rank": 7,
+          "key": "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@16b4cc97a2eef1c4edefca9d61089bb964cf3ee6d42ea43a7a0886764c62aa6d",
+          "tier": "disk",
+          "occurrences": 1
+        }
+      ],
+      "native_only": []
+    }
+  },
+  "requests": [
+    {
+      "id": "reuse-after-worker/0",
+      "prediction": {
+        "prompt_tokens": 1537,
+        "prompt_sha256": "ebbfd3c12ecd0836d9c31e709e1f1f2223f7b45a4fa738319aabf41ba582e833",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 1537,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": null
+    },
+    {
+      "id": "reuse-after-worker::sa:pressure/0",
+      "prediction": {
+        "prompt_tokens": 4609,
+        "prompt_sha256": "b56c32473c9f326a950ea4dadf60f51dd021937ed0c38e905f2a9ed77a3c7c3d",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 4609,
+        "external_load_tokens": 0,
+        "local_reuse_tokens": 0
+      },
+      "native": null
+    },
+    {
+      "id": "reuse-after-worker/1",
+      "prediction": {
+        "prompt_tokens": 1665,
+        "prompt_sha256": "2e78dc1461068f25ffd6491e807695121f662fa5ea5b6b2e94173638b1ed8266",
+        "output_tokens": 4,
+        "computed_prompt_tokens": 129,
+        "external_load_tokens": 1536,
+        "local_reuse_tokens": 0
+      },
+      "native": null
+    }
+  ],
+  "prediction": {
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "counts_by_object_bytes": {
+      "1769472": 49,
+      "18723840": 96
+    },
+    "puts": 145,
+    "gets": 120,
+    "get_bytes": 619241472,
+    "get_counts_by_available_tier": {
+      "disk": 55,
+      "memory": 65
+    },
+    "get_bytes_by_available_tier": {
+      "disk": 351636480,
+      "memory": 267604992
+    },
+    "key_size_sha256": "a1f7b7e84ea82cb8118116aa455707b5be61fcdb386196b7105c717408bf937d"
+  },
+  "native": {
+    "unique_keys": 117,
+    "unique_bytes": 1410788352,
+    "counts_by_object_bytes": {
+      "1769472": 46,
+      "18723840": 71
+    },
+    "puts": 117,
+    "gets": 0,
+    "get_bytes": 0,
+    "get_counts_by_available_tier": {},
+    "get_bytes_by_available_tier": {},
+    "key_size_sha256": "c438b65491ebd950290c054e8c658e7d9208d64855b15bd6edf82be006abd28d"
+  },
+  "native_key_content_sha256": "9791d15e6e99fd808335cedf414e2a6706c07c4f5e59145753ed393117c47836",
+  "native_error": "Native PUT failed for k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:2@febdd0193334082c6b5892a02d7085499a91ff78a9ec2453ceb508d76a5c4a8f: -200",
+  "native_rejected_puts": {
+    "-200": 1
+  },
+  "native_failed_gets": {},
+  "save_jobs": 5,
+  "final_memory_keys": {
+    "prediction": 82,
+    "native": null
+  },
+  "unmatched_tier_gets": 120,
+  "native_events_sha256": "c7b990361629608c1df91c542538a17b7eae11dc49d63963b7b4c6ca7d50184f"
+}

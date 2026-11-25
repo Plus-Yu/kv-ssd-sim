@@ -1,0 +1,4 @@
+trial,frozen,all_object_checks,all_ssd_keys,read_bytes,write_bytes,read_false_positive_bytes,read_missed_bytes,per_key_median_allocation_error_ms,per_key_median_memory_ready_error_ms,per_key_median_submit_error_ms,per_key_median_disk_ack_error_ms,submit_after_last_request_bytes
+1,True,True,True,0,475914240,0,0,-61.667321,36.760314,-0.930013,-0.41745,475914240
+2,True,True,True,0,475914240,0,0,-21.229202,33.751581,-63.517503,-155.681849,475914240
+3,True,True,True,0,475914240,0,0,-35.023984,24.345314,-89.526178,-174.782904,475914240

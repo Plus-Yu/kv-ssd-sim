@@ -1,0 +1,760 @@
+{
+  "host": "n15",
+  "checkout_base": "775c8ce6d2ec810dcc5f0ec60cab8b07b62ee4eb",
+  "raw_trial": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/20261123-native-metadata/verified",
+  "build": {
+    "backend": "mooncake.MasterService.BatchEvict",
+    "mooncake_version": "0.3.14",
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_url": "https://codeload.github.com/kvcache-ai/Mooncake/tar.gz/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_sha256": "482df63a230655e2210789179110a6bcf581360cb577acda5b941939d33709a7",
+    "wheel_dso": "/home/yzh/projects/kv-ssd-sim/.venv/lib/python3.13/site-packages/mooncake/_store.cpython-313-x86_64-linux-gnu.so",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92",
+    "master_source_sha256": "40899db810afcb48b6dc9bc6c6ad08b70005b688362dd7f58ec531a115c84a5b",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "builder_sha256": "7c62d48c63c5ab5ca5a36abbaeb5f1269f6809427546afbe3d02b0060d6a73ea",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "compiler": "g++-12 (Ubuntu 12.3.0-1ubuntu1~22.04.2) 12.3.0"
+  },
+  "trials": {
+    "baseline": {
+      "summary": {
+        "status": "complete",
+        "cross_request_store_reuses": 0,
+        "virtual_end_ns": 5240000000,
+        "requests": 2,
+        "native_master": {
+          "used_bytes": 2159164416,
+          "resident_payload_bytes": 2159164416,
+          "process_peak_rss_kib": 41188,
+          "capacity_bytes": 2642411520,
+          "period_ns": 10000000,
+          "rounds": 1,
+          "reclaiming_rounds": 1,
+          "admin_verified_keys": 208
+        },
+        "unique_keys": 208,
+        "unique_logical_bytes": 2402574336,
+        "counts": {
+          "put_allocated": 208,
+          "put_complete": 208,
+          "disk_write_submit": 208,
+          "disk_write_start": 208,
+          "disk_publish": 208,
+          "evict_memory": 13
+        },
+        "bytes": {
+          "put_allocated": 2402574336,
+          "put_complete": 2402574336,
+          "disk_write_submit": 2402574336,
+          "disk_write_start": 2402574336,
+          "disk_publish": 2402574336,
+          "evict_memory": 243409920
+        },
+        "clients": [
+          {
+            "id": 0,
+            "memory_bytes": 2159164416,
+            "disk_bytes": 2402574336,
+            "peak_memory_bytes": 2402574336,
+            "peak_disk_bytes": 2402574336,
+            "peak_staging_bytes": 18723840
+          }
+        ]
+      },
+      "buckets": 10,
+      "native_round_statistics": {
+        "reported_rounds": 1,
+        "evicted_total": 13,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 13,
+            "eviction_base": 208
+          }
+        ],
+        "first": [
+          [
+            13,
+            208
+          ]
+        ]
+      },
+      "peak_allocated_payload": 2402574336
+    },
+    "short": {
+      "summary": {
+        "status": "complete",
+        "cross_request_store_reuses": 36,
+        "virtual_end_ns": 10420000000,
+        "requests": 4,
+        "native_master": {
+          "used_bytes": 1311120384,
+          "resident_payload_bytes": 1311120384,
+          "process_peak_rss_kib": 40532,
+          "capacity_bytes": 1520435200,
+          "period_ns": 10000000,
+          "rounds": 1,
+          "reclaiming_rounds": 1,
+          "admin_verified_keys": 108
+        },
+        "unique_keys": 108,
+        "unique_logical_bytes": 1411817472,
+        "counts": {
+          "put_allocated": 108,
+          "put_complete": 108,
+          "disk_write_submit": 108,
+          "disk_write_start": 108,
+          "disk_publish": 108,
+          "evict_memory": 9,
+          "get_memory": 83,
+          "get_disk": 37,
+          "disk_read_submit": 37,
+          "disk_read_start": 37,
+          "get_complete": 120
+        },
+        "bytes": {
+          "put_allocated": 1411817472,
+          "put_complete": 1411817472,
+          "disk_write_submit": 1411817472,
+          "disk_write_start": 1411817472,
+          "disk_publish": 1411817472,
+          "evict_memory": 100697088,
+          "get_memory": 468999168,
+          "get_disk": 150242304,
+          "disk_read_submit": 150242304,
+          "disk_read_start": 150242304,
+          "get_complete": 619241472
+        },
+        "clients": [
+          {
+            "id": 0,
+            "memory_bytes": 1311120384,
+            "disk_bytes": 1411817472,
+            "peak_memory_bytes": 1411817472,
+            "peak_disk_bytes": 1411817472,
+            "peak_staging_bytes": 18723840
+          }
+        ]
+      },
+      "buckets": 6,
+      "native_round_statistics": {
+        "reported_rounds": 1,
+        "evicted_total": 9,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 9,
+            "eviction_base": 108
+          }
+        ],
+        "first": [
+          [
+            9,
+            108
+          ]
+        ]
+      },
+      "peak_allocated_payload": 1411817472
+    },
+    "idle": {
+      "summary": {
+        "status": "complete",
+        "cross_request_store_reuses": 36,
+        "virtual_end_ns": 35180000000,
+        "requests": 4,
+        "native_master": {
+          "used_bytes": 1311120384,
+          "resident_payload_bytes": 1311120384,
+          "process_peak_rss_kib": 41184,
+          "capacity_bytes": 1520435200,
+          "period_ns": 10000000,
+          "rounds": 1,
+          "reclaiming_rounds": 1,
+          "admin_verified_keys": 108
+        },
+        "unique_keys": 108,
+        "unique_logical_bytes": 1411817472,
+        "counts": {
+          "put_allocated": 108,
+          "put_complete": 108,
+          "disk_write_submit": 108,
+          "disk_write_start": 108,
+          "disk_publish": 108,
+          "evict_memory": 9,
+          "get_memory": 83,
+          "get_disk": 37,
+          "disk_read_submit": 37,
+          "disk_read_start": 37,
+          "get_complete": 120
+        },
+        "bytes": {
+          "put_allocated": 1411817472,
+          "put_complete": 1411817472,
+          "disk_write_submit": 1411817472,
+          "disk_write_start": 1411817472,
+          "disk_publish": 1411817472,
+          "evict_memory": 100697088,
+          "get_memory": 468999168,
+          "get_disk": 150242304,
+          "disk_read_submit": 150242304,
+          "disk_read_start": 150242304,
+          "get_complete": 619241472
+        },
+        "clients": [
+          {
+            "id": 0,
+            "memory_bytes": 1311120384,
+            "disk_bytes": 1411817472,
+            "peak_memory_bytes": 1411817472,
+            "peak_disk_bytes": 1411817472,
+            "peak_staging_bytes": 18723840
+          }
+        ]
+      },
+      "buckets": 6,
+      "native_round_statistics": {
+        "reported_rounds": 1,
+        "evicted_total": 9,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 9,
+            "eviction_base": 108
+          }
+        ],
+        "first": [
+          [
+            9,
+            108
+          ]
+        ]
+      },
+      "peak_allocated_payload": 1411817472
+    },
+    "reference": {
+      "summary": {
+        "status": "complete",
+        "cross_request_store_reuses": 0,
+        "virtual_end_ns": 3063830000000,
+        "requests": 5,
+        "native_master": {
+          "used_bytes": 15545991168,
+          "resident_payload_bytes": 15545991168,
+          "process_peak_rss_kib": 60552,
+          "capacity_bytes": 1024000000000,
+          "period_ns": 10000000,
+          "rounds": 0,
+          "reclaiming_rounds": 0,
+          "admin_verified_keys": 1427
+        },
+        "unique_keys": 1427,
+        "unique_logical_bytes": 15545991168,
+        "counts": {
+          "put_allocated": 1427,
+          "put_complete": 1427,
+          "disk_write_submit": 1427,
+          "disk_write_start": 1427,
+          "disk_publish": 1427
+        },
+        "bytes": {
+          "put_allocated": 15545991168,
+          "put_complete": 15545991168,
+          "disk_write_submit": 15545991168,
+          "disk_write_start": 15545991168,
+          "disk_publish": 15545991168
+        },
+        "clients": [
+          {
+            "id": 0,
+            "memory_bytes": 1942585344,
+            "disk_bytes": 1942585344,
+            "peak_memory_bytes": 1942585344,
+            "peak_disk_bytes": 1942585344,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 1,
+            "memory_bytes": 1942585344,
+            "disk_bytes": 1942585344,
+            "peak_memory_bytes": 1942585344,
+            "peak_disk_bytes": 1942585344,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 2,
+            "memory_bytes": 1944354816,
+            "disk_bytes": 1944354816,
+            "peak_memory_bytes": 1944354816,
+            "peak_disk_bytes": 1944354816,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 3,
+            "memory_bytes": 1944354816,
+            "disk_bytes": 1944354816,
+            "peak_memory_bytes": 1944354816,
+            "peak_disk_bytes": 1944354816,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 4,
+            "memory_bytes": 1944354816,
+            "disk_bytes": 1944354816,
+            "peak_memory_bytes": 1944354816,
+            "peak_disk_bytes": 1944354816,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 5,
+            "memory_bytes": 1942585344,
+            "disk_bytes": 1942585344,
+            "peak_memory_bytes": 1942585344,
+            "peak_disk_bytes": 1942585344,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 6,
+            "memory_bytes": 1942585344,
+            "disk_bytes": 1942585344,
+            "peak_memory_bytes": 1942585344,
+            "peak_disk_bytes": 1942585344,
+            "peak_staging_bytes": 18723840
+          },
+          {
+            "id": 7,
+            "memory_bytes": 1942585344,
+            "disk_bytes": 1942585344,
+            "peak_memory_bytes": 1942585344,
+            "peak_disk_bytes": 1942585344,
+            "peak_staging_bytes": 18723840
+          }
+        ]
+      },
+      "buckets": 72,
+      "native_round_statistics": {
+        "reported_rounds": 0,
+        "evicted_total": 0,
+        "nonempty_rounds": [],
+        "first": []
+      },
+      "peak_allocated_payload": 15545991168
+    },
+    "timed-idle": {
+      "summary": {
+        "status": "complete",
+        "cross_request_store_reuses": 36,
+        "virtual_end_ns": 35180000000,
+        "requests": 4,
+        "native_master": {
+          "used_bytes": 1311120384,
+          "resident_payload_bytes": 1311120384,
+          "process_peak_rss_kib": 40936,
+          "capacity_bytes": 1520435200,
+          "period_ns": 10000000,
+          "rounds": 1,
+          "reclaiming_rounds": 1,
+          "admin_verified_keys": 108
+        },
+        "unique_keys": 108,
+        "unique_logical_bytes": 1411817472,
+        "counts": {
+          "put_allocated": 108,
+          "put_complete": 108,
+          "disk_write_submit": 108,
+          "disk_write_start": 108,
+          "disk_publish": 108,
+          "evict_memory": 9,
+          "get_memory": 83,
+          "get_disk": 37,
+          "disk_read_submit": 37,
+          "disk_read_start": 37,
+          "get_complete": 120
+        },
+        "bytes": {
+          "put_allocated": 1411817472,
+          "put_complete": 1411817472,
+          "disk_write_submit": 1411817472,
+          "disk_write_start": 1411817472,
+          "disk_publish": 1411817472,
+          "evict_memory": 100697088,
+          "get_memory": 468999168,
+          "get_disk": 150242304,
+          "disk_read_submit": 150242304,
+          "disk_read_start": 150242304,
+          "get_complete": 619241472
+        },
+        "clients": [
+          {
+            "id": 0,
+            "memory_bytes": 1311120384,
+            "disk_bytes": 1411817472,
+            "peak_memory_bytes": 1411817472,
+            "peak_disk_bytes": 1411817472,
+            "peak_staging_bytes": 18723840
+          }
+        ]
+      },
+      "buckets": 6,
+      "native_round_statistics": {
+        "reported_rounds": 1,
+        "evicted_total": 9,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 9,
+            "eviction_base": 108
+          }
+        ],
+        "first": [
+          [
+            9,
+            108
+          ]
+        ]
+      },
+      "peak_allocated_payload": 1411817472
+    }
+  },
+  "comparisons": {
+    "baseline": {
+      "comparison": "retrospective",
+      "checks": {
+        "native_completed": true,
+        "requests_and_tokens": true,
+        "inventory_key_size": true,
+        "put_request_rank_key_bytes": true,
+        "get_request_rank_key_bytes": true,
+        "get_available_tier_request_rank_key": true,
+        "final_disk_keys": true,
+        "save_fences_all_ranks": true,
+        "final_memory_keys": false
+      },
+      "mismatched_tier_gets": 0,
+      "prediction": {
+        "unique_keys": 208,
+        "unique_bytes": 2402574336,
+        "counts_by_object_bytes": {
+          "1769472": 88,
+          "18723840": 120
+        },
+        "puts": 208,
+        "gets": 0,
+        "get_bytes": 0,
+        "get_counts_by_available_tier": {},
+        "get_bytes_by_available_tier": {},
+        "key_size_sha256": "fb502467d86029a2e999c63946adf6a66b1622985e7617efbb3009aa7b85c0bc"
+      },
+      "native": {
+        "unique_keys": 208,
+        "unique_bytes": 2402574336,
+        "counts_by_object_bytes": {
+          "1769472": 88,
+          "18723840": 120
+        },
+        "puts": 208,
+        "gets": 0,
+        "get_bytes": 0,
+        "get_counts_by_available_tier": {},
+        "get_bytes_by_available_tier": {},
+        "key_size_sha256": "fb502467d86029a2e999c63946adf6a66b1622985e7617efbb3009aa7b85c0bc"
+      },
+      "native_key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999",
+      "final_memory_keys": {
+        "prediction": 195,
+        "native": 197
+      },
+      "online_rounds": {
+        "reported_rounds": 1,
+        "evicted_total": 11,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 11,
+            "eviction_base": 182
+          }
+        ],
+        "first": [
+          [
+            11,
+            182
+          ]
+        ]
+      },
+      "online_put_batch_durations": {
+        "n": 72,
+        "min_ms": 5.822835,
+        "median_ms": 191.66950200000002,
+        "max_ms": 559.89253
+      }
+    },
+    "short": {
+      "comparison": "retrospective",
+      "checks": {
+        "native_completed": true,
+        "requests_and_tokens": true,
+        "inventory_key_size": true,
+        "put_request_rank_key_bytes": true,
+        "get_request_rank_key_bytes": true,
+        "get_available_tier_request_rank_key": false,
+        "final_disk_keys": true,
+        "save_fences_all_ranks": true
+      },
+      "mismatched_tier_gets": 37,
+      "prediction": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 83,
+          "disk": 37
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 468999168,
+          "disk": 150242304
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 120
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 619241472
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native_key_content_sha256": "321cb9032dd0443d699e01a80efca022bdc6f29152f7a45f8ec75c9d520703ad",
+      "final_memory_keys": {
+        "prediction": 99,
+        "native": null
+      },
+      "online_rounds": {
+        "reported_rounds": 675,
+        "evicted_total": 0,
+        "nonempty_rounds": [],
+        "first": [
+          [
+            0,
+            81
+          ]
+        ]
+      },
+      "online_put_batch_durations": {
+        "n": 48,
+        "min_ms": 1.445081,
+        "median_ms": 109.9589675,
+        "max_ms": 251.045397
+      }
+    },
+    "idle": {
+      "comparison": "retrospective",
+      "checks": {
+        "native_completed": true,
+        "requests_and_tokens": true,
+        "inventory_key_size": true,
+        "put_request_rank_key_bytes": true,
+        "get_request_rank_key_bytes": true,
+        "get_available_tier_request_rank_key": false,
+        "final_disk_keys": true,
+        "save_fences_all_ranks": true
+      },
+      "mismatched_tier_gets": 31,
+      "prediction": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 83,
+          "disk": 37
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 468999168,
+          "disk": 150242304
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 108,
+          "disk": 12
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 530190336,
+          "disk": 89051136
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native_key_content_sha256": "321cb9032dd0443d699e01a80efca022bdc6f29152f7a45f8ec75c9d520703ad",
+      "final_memory_keys": {
+        "prediction": 99,
+        "native": null
+      },
+      "online_rounds": {
+        "reported_rounds": 1,
+        "evicted_total": 5,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 5,
+            "eviction_base": 72
+          }
+        ],
+        "first": [
+          [
+            5,
+            72
+          ]
+        ]
+      },
+      "online_put_batch_durations": {
+        "n": 48,
+        "min_ms": 1.382132,
+        "median_ms": 123.47038,
+        "max_ms": 254.574549
+      }
+    },
+    "frozen": {
+      "comparison": "frozen",
+      "checks": {
+        "native_completed": true,
+        "requests_and_tokens": true,
+        "inventory_key_size": true,
+        "put_request_rank_key_bytes": true,
+        "get_request_rank_key_bytes": true,
+        "get_available_tier_request_rank_key": false,
+        "final_disk_keys": true,
+        "save_fences_all_ranks": true
+      },
+      "mismatched_tier_gets": 47,
+      "prediction": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 83,
+          "disk": 37
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 468999168,
+          "disk": 150242304
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native": {
+        "unique_keys": 108,
+        "unique_bytes": 1411817472,
+        "counts_by_object_bytes": {
+          "1769472": 36,
+          "18723840": 72
+        },
+        "puts": 108,
+        "gets": 120,
+        "get_bytes": 619241472,
+        "get_counts_by_available_tier": {
+          "memory": 108,
+          "disk": 12
+        },
+        "get_bytes_by_available_tier": {
+          "memory": 530190336,
+          "disk": 89051136
+        },
+        "key_size_sha256": "ee972276066b3858ed0e9ef4ed5c9123e6dd006bbd1378ea35ae9ea676c273b9"
+      },
+      "native_key_content_sha256": "321cb9032dd0443d699e01a80efca022bdc6f29152f7a45f8ec75c9d520703ad",
+      "final_memory_keys": {
+        "prediction": 99,
+        "native": null
+      },
+      "online_rounds": {
+        "reported_rounds": 1,
+        "evicted_total": 5,
+        "nonempty_rounds": [
+          {
+            "evicted_count": 5,
+            "eviction_base": 72
+          }
+        ],
+        "first": [
+          [
+            5,
+            72
+          ]
+        ]
+      },
+      "online_put_batch_durations": {
+        "n": 48,
+        "min_ms": 1.450554,
+        "median_ms": 132.3282205,
+        "max_ms": 276.697458
+      }
+    }
+  },
+  "original_servers": {
+    "baseline": "/home/yzh/projects/kv-ssd-sim/outputs/femu-n15-0504-20261120-074735/joint/server",
+    "short": "/tmp/kv-object-replay-R2Cr8SZQ/online-unseen/server",
+    "idle": "/tmp/kv-object-replay-R2Cr8SZQ/online-idle/server",
+    "frozen": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/20261123-native-metadata/verified/online/server"
+  },
+  "timing_round_trip_identical": {
+    "events.jsonl": true,
+    "bucket-timing.jsonl": true,
+    "objects.json": true,
+    "requests.json": true,
+    "reuse.jsonl": true
+  },
+  "test_result": "104 passed, 6 deselected in 29.18s",
+  "controlled_probe": {
+    "status": "passed",
+    "checks": {
+      "archived_passed": true,
+      "missing_one_of_36": true,
+      "lookup": true,
+      "writes_by_rank_group_key_boundary_size": true,
+      "reads_by_rank_key_size_multiplicity": true,
+      "complete_disk_reads": true,
+      "all_disk_only": true
+    },
+    "reference_sha256": "15e1771fe1ae37f94b2249516ae262f56e8267e618c77e02a8ed042c366fe09d",
+    "lookup_tokens": {
+      "rank0_only": 0,
+      "missing_group2_rank7": 0,
+      "all_disk_only": 1536
+    },
+    "unique_objects": 36,
+    "unique_bytes": 470605824,
+    "rank_gets": 120,
+    "restore_bytes": 619241472
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "freeze": true,
+  "object_checks": {
+    "native_completed": true,
+    "requests_and_tokens": true,
+    "inventory_key_size": true,
+    "put_request_rank_key_bytes": true,
+    "get_request_rank_key_bytes": true,
+    "get_available_tier_request_rank_key": true,
+    "final_disk_keys": true,
+    "save_fences_all_ranks": true,
+    "final_memory_keys": true
+  },
+  "ssd_counts": {
+    "read": {
+      "matched": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "false_positive": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "missed": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "prediction": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "native": {
+        "objects": 0,
+        "bytes": 0
+      }
+    },
+    "write": {
+      "matched": {
+        "objects": 39,
+        "bytes": 475914240
+      },
+      "false_positive": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "missed": {
+        "objects": 0,
+        "bytes": 0
+      },
+      "prediction": {
+        "objects": 39,
+        "bytes": 475914240
+      },
+      "native": {
+        "objects": 39,
+        "bytes": 475914240
+      }
+    }
+  },
+  "object_sets_match": true,
+  "positive_native_disk_read": false,
+  "boundary_model_minus_native_ms": {
+    "allocated": {
+      "n": 39,
+      "min": -278.384736,
+      "median": -21.229202,
+      "max": -5.160024
+    },
+    "memory_ready": {
+      "n": 39,
+      "min": -15.017621,
+      "median": 33.751581,
+      "max": 221.478177
+    },
+    "write_submit": {
+      "n": 39,
+      "min": -1711.812006,
+      "median": -63.517503,
+      "max": 1627.272648
+    },
+    "write_start": {
+      "n": 39,
+      "min": -1711.988702,
+      "median": -63.875206,
+      "max": 1626.914945
+    },
+    "disk_ack": {
+      "n": 39,
+      "min": -1589.030984,
+      "median": -155.681849,
+      "max": 1412.82738
+    },
+    "read_submit": {
+      "n": 0,
+      "min": null,
+      "median": null,
+      "max": null
+    },
+    "read_complete": {
+      "n": 0,
+      "min": null,
+      "median": null,
+      "max": null
+    }
+  },
+  "foreground": [
+    {
+      "request": "8dccf4e6-d242-4c9e-896e-5803a53a867d/2210394",
+      "model_start_ns": 0,
+      "native_start_ns": 0,
+      "model_finish_ns": 540423224,
+      "native_finish_ns": 556927561
+    }
+  ],
+  "final_observed_ns": 4611474380,
+  "last_request_finished_ns": 556927561,
+  "submitted_after_foreground_bytes": 475914240,
+  "peak_10s_bytes": {
+    "read": {
+      "model": 0,
+      "native": 0
+    },
+    "write": {
+      "model": 475914240,
+      "native": 475914240
+    }
+  },
+  "inventory": {
+    "memory_keys": 39,
+    "disk_keys": 39,
+    "committed_keys": 39
+  },
+  "clock_source": "Python perf_counter and C++ CLOCK_MONOTONIC aligned at first admission",
+  "native_sha256": {
+    "server/events.jsonl": "9c16848dede5dc4da88325b2518935edced7207440be3c8c02a51c1bf7444d28",
+    "store-boundaries.tsv": "7f5b172bb5dc46b26e752fb38dc549c9fd82e65e8368d57aeec41eab0c70844a",
+    "native-launch.json": "59be6c12799d69c2ba691d0e28134567f7e317777b9c6c7aed7a361d40c9632b"
+  }
+}

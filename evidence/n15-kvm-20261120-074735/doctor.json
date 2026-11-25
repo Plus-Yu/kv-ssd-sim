@@ -1,0 +1,28 @@
+{
+  "python": "3.13.17",
+  "python_executable": "/home/plusyu/projects/kv-ssd-sim/.venv/bin/python",
+  "platform": "Linux-5.15.0-140-generic-x86_64-with-glibc2.43",
+  "packages": {
+    "kv-ssd-sim": "0.1.0",
+    "torch": "2.14.0+cpu",
+    "vllm": "0.34.0rc1.dev302+gbe47189f3.cpu",
+    "mooncake-transfer-engine-non-cuda": "0.3.14"
+  },
+  "imports": {
+    "mooncake": {
+      "ok": true,
+      "detail": ""
+    },
+    "vllm_scheduler": {
+      "ok": true,
+      "detail": ""
+    }
+  },
+  "kvm_available": true,
+  "qemu": "/home/plusyu/projects/kv-ssd-sim/.femu/build/qemu-system-x86_64",
+  "gpu_required": false,
+  "storage_delay_model": "default receiver delay; --femu-mount uses actual FEMU BlackBox",
+  "femu_verified": null,
+  "femu_validation_scope": "doctor checks availability; it does not run the VM experiment",
+  "saved_femu_comparison": null
+}

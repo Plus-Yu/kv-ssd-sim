@@ -1,0 +1,74 @@
+{
+  "quality": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "start": 1788704202221878979,
+  "end": 1788704217597878979,
+  "anchor": "a7e9db79-a8e2-4cbb-bd12-833fb336fef1/1971819",
+  "calls": 1,
+  "sessions": [
+    "a7e9db79-a8e2-4cbb-bd12-833fb336fef1"
+  ],
+  "first_index": 8826,
+  "last_index": 8826,
+  "last_order": [
+    1788704202221878979,
+    "a7e9db79-a8e2-4cbb-bd12-833fb336fef1",
+    0
+  ],
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "revision": "5afaa89882fc2c24a3dcb8bcdcd0485770c5021d",
+  "context_limit": 1048576,
+  "input_sha256": "e033a99760f543b86b743efbecf75cf18af29e0c7c7cc037ba81a7ff391185d5",
+  "initial_state": "cold at recording idle boundary; complete history of contributing sessions",
+  "root_routing": "all recorded arrivals on one simulated server",
+  "prefix_method": "kvlab BuildReplayRequestPrefix order; fix each (role, hash) to its first observed length in this window; isolate unobserved tail per request",
+  "prefix_accounting": [
+    {
+      "id": "a7e9db79-a8e2-4cbb-bd12-833fb336fef1/1971819",
+      "max_previous_shared_tokens": 0,
+      "previous_request": null,
+      "fingerprinted_tokens": 334032,
+      "unshared_tail_tokens": 65,
+      "unidentified_block_tokens": 0,
+      "clipped_representation_tokens": 0,
+      "blocks_using_prior_length": 0,
+      "canonical_minus_reported_tokens": 0
+    }
+  ],
+  "recorded_arrival_check": "all arrivals reproduced from roots, edges and source durations at UTC nanosecond precision",
+  "source_requests": [
+    {
+      "id": "a7e9db79-a8e2-4cbb-bd12-833fb336fef1/1971819",
+      "session": "a7e9db79-a8e2-4cbb-bd12-833fb336fef1",
+      "source_index": [
+        0,
+        0
+      ],
+      "source_request_id": 1971819,
+      "source_utc_ns": 1788704202221878979,
+      "source_end_utc_ns": 1788704217597878979,
+      "think_ref": "session_start",
+      "think_ms": 0,
+      "total_ms": 15376,
+      "input_tokens": 334097,
+      "source_usage": {
+        "model": "claude-fable-5-1",
+        "max_tokens": 64000,
+        "prefill_tokens": 2,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 334095
+      },
+      "observed_overlap_ns": 0,
+      "dependencies": [],
+      "root_arrival_ms": 0.0,
+      "source_ms": 0.0,
+      "measurement_anchor": true,
+      "output_tokens": 539,
+      "prompt_sha256": "cf1b666f775fa6ba6a78338b0dc91f7986936b91314020a73ec22d2c69545b2c"
+    }
+  ]
+}

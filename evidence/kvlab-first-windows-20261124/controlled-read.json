@@ -1,0 +1,7 @@
+{
+  "fixture": "two_requests.weka.json, --cold-between-turns, --read-delay-ms 30",
+  "objects": 4,
+  "bytes": 131072,
+  "matches_successful_native_gets_by_key_and_bytes": true,
+  "classification": "controlled instrumentation test"
+}

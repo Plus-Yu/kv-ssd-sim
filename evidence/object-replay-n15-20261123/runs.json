@@ -1,0 +1,140 @@
+{
+  "baseline": {
+    "prediction_dir": "prediction/baseline",
+    "unique_keys": 208,
+    "unique_bytes": 2402574336,
+    "compiled_inputs_sha256": [
+      "3eff5ff22f424172a1a05ac1367ed9b554f5fee2ebb1dbcde8fdbab9345f8045"
+    ],
+    "native_dir": "outputs/femu-n15-0504-20261120-074735/joint/server",
+    "comparison": "failed",
+    "failing_checks": [
+      "final_memory_keys"
+    ]
+  },
+  "early-1100-ttl0": {
+    "prediction_dir": "prediction/early-1100-ttl0",
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "compiled_inputs_sha256": [
+      "e4ecad268859a944b5b0e8b483e36b9bc185a24a108c9facdfb9698f665eb6f6"
+    ],
+    "native_dir": "native/early-1100-ttl0",
+    "comparison": "failed",
+    "failing_checks": [
+      "native_completed",
+      "requests_and_tokens",
+      "inventory_key_size",
+      "put_request_rank_key_bytes",
+      "get_request_rank_key_bytes",
+      "get_available_tier_request_rank_key",
+      "final_disk_keys"
+    ]
+  },
+  "early-1550-ttl0": {
+    "prediction_dir": "prediction/early-1550-ttl0",
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "compiled_inputs_sha256": [
+      "e4ecad268859a944b5b0e8b483e36b9bc185a24a108c9facdfb9698f665eb6f6"
+    ],
+    "native_dir": "native/early-1550-ttl0",
+    "comparison": "failed",
+    "failing_checks": [
+      "native_completed",
+      "requests_and_tokens",
+      "inventory_key_size",
+      "put_request_rank_key_bytes",
+      "get_request_rank_key_bytes",
+      "final_disk_keys"
+    ]
+  },
+  "early-2304-ttl0": {
+    "prediction_dir": "prediction/early-2304-ttl0",
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "compiled_inputs_sha256": [
+      "e4ecad268859a944b5b0e8b483e36b9bc185a24a108c9facdfb9698f665eb6f6"
+    ],
+    "native_dir": "native/early-2304-ttl0",
+    "comparison": "failed",
+    "failing_checks": [
+      "native_completed",
+      "requests_and_tokens",
+      "inventory_key_size",
+      "put_request_rank_key_bytes",
+      "get_request_rank_key_bytes",
+      "final_disk_keys"
+    ]
+  },
+  "competition-2304": {
+    "prediction_dir": "prediction/competition-2304",
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "compiled_inputs_sha256": [
+      "e4ecad268859a944b5b0e8b483e36b9bc185a24a108c9facdfb9698f665eb6f6"
+    ],
+    "native_dir": "native/competition-2304",
+    "comparison": "passed",
+    "failing_checks": []
+  },
+  "competition-1550": {
+    "prediction_dir": "prediction/competition-1550",
+    "unique_keys": 145,
+    "unique_bytes": 1884192768,
+    "compiled_inputs_sha256": [
+      "e4ecad268859a944b5b0e8b483e36b9bc185a24a108c9facdfb9698f665eb6f6"
+    ],
+    "native_dir": "native/competition-1550",
+    "comparison": "failed",
+    "failing_checks": [
+      "native_completed",
+      "inventory_key_size",
+      "put_request_rank_key_bytes",
+      "final_disk_keys"
+    ]
+  },
+  "unseen": {
+    "prediction_dir": "prediction/unseen",
+    "unique_keys": 108,
+    "unique_bytes": 1411817472,
+    "compiled_inputs_sha256": [
+      "edfb7110a18a4fb9e54cb15fd49fb00a6b721362324fda99b86480fdcf1168d6"
+    ],
+    "native_dir": "native/unseen",
+    "comparison": "failed",
+    "failing_checks": [
+      "get_available_tier_request_rank_key"
+    ]
+  },
+  "long-idle": {
+    "prediction_dir": "prediction/long-idle",
+    "unique_keys": 108,
+    "unique_bytes": 1411817472,
+    "compiled_inputs_sha256": [
+      "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+    ],
+    "native_dir": "native/long-idle",
+    "comparison": "failed",
+    "failing_checks": [
+      "get_available_tier_request_rank_key"
+    ]
+  },
+  "reference": {
+    "prediction_dir": "prediction/reference",
+    "unique_keys": 1427,
+    "unique_bytes": 15545991168,
+    "compiled_inputs_sha256": [
+      "1510e97815043abf77b0f0883f4766198bad84a0f1ae5f648f984579d2ab7f51",
+      "106fc8813455cb1270d0603dea5929c85cbeca4be755bc35d6cd49350e1eb994"
+    ]
+  },
+  "forked-example": {
+    "prediction_dir": "prediction/forked-example",
+    "unique_keys": 25,
+    "unique_bytes": 451141632,
+    "compiled_inputs_sha256": [
+      "d4f7b5428bc4ca752e8d181afe226d45a032c5e39674c64734249b84a5489ab6"
+    ]
+  }
+}

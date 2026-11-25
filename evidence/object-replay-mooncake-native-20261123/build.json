@@ -1,0 +1,15 @@
+{
+  "backend": "mooncake.MasterService.BatchEvict",
+  "mooncake_version": "0.3.14",
+  "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+  "archive_url": "https://codeload.github.com/kvcache-ai/Mooncake/tar.gz/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+  "archive_sha256": "482df63a230655e2210789179110a6bcf581360cb577acda5b941939d33709a7",
+  "wheel_dso": "/home/yzh/projects/kv-ssd-sim/.venv/lib/python3.13/site-packages/mooncake/_store.cpython-313-x86_64-linux-gnu.so",
+  "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+  "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92",
+  "master_source_sha256": "40899db810afcb48b6dc9bc6c6ad08b70005b688362dd7f58ec531a115c84a5b",
+  "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+  "builder_sha256": "7c62d48c63c5ab5ca5a36abbaeb5f1269f6809427546afbe3d02b0060d6a73ea",
+  "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+  "compiler": "g++-12 (Ubuntu 12.3.0-1ubuntu1~22.04.2) 12.3.0"
+}
