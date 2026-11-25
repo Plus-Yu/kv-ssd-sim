@@ -27,6 +27,7 @@ REPLAY_SOURCES = (
     "src/kv_ssd_sim/simulation/provenance.py",
     "src/kv_ssd_sim/simulation/clock.py",
     "src/kv_ssd_sim/simulation/storage/device.py",
+    "src/kv_ssd_sim/simulation/storage/offload.py",
     "src/kv_ssd_sim/simulation/storage/state.py",
     "src/kv_ssd_sim/simulation/storage/restore.py",
 )

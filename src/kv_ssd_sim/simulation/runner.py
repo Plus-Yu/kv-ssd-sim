@@ -6,12 +6,13 @@ import os
 from pathlib import Path
 
 from ..analysis.restore import audit as audit_restores
-from ..object_store import ObjectStore, OffloadTimeline
+from ..object_store import ObjectStore
 from ..object_traffic import describe_traffic, export_demand
 from ..runtime import PROJECT_ROOT as ROOT
 from .clock import Clock
 from .engine import Admissions, simulate
 from .settings import PUBLIC_PROFILES, apply_calibration, resolve_settings
+from .storage.offload import OffloadTimeline
 
 
 def build_parser():

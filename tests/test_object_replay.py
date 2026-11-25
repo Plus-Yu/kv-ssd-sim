@@ -139,6 +139,8 @@ def test_recorded_completion_keeps_sources_pinned_after_lease_expires(tmp_path):
     with ObjectStore(
         clock, cfg, lambda op, **e: events.append((op, clock.now)), timeline=OffloadTimeline(path)
     ) as store:
+        with pytest.raises(ValueError, match="Unused offload timing"):
+            store.summary()
         for key in "abcdef":
             assert store.put(key, MIB, {"rank": 0}) == 0
         clock.advance(999_999_999)
@@ -304,6 +306,40 @@ def test_disk_eviction_waits_for_staging_waiter_to_read_but_can_overlap_its_h2d(
         assert evicted == [12_000_000]
         assert ends == [11_000_000, 22_000_000]
         assert store.summary()["clients"][0]["restore_staging_bytes"] == 0
+
+
+def test_reclaim_waits_for_all_bucket_readers_and_preserves_newly_queued_put():
+    clock, events = Clock(), []
+    cfg = StoreConfig(
+        1, 16 * MIB, 2 * MIB, 2 * MIB, offload_delay_ms=0, device_mib_s=1000, h2d_mib_s=100
+    )
+    with ObjectStore(clock, cfg, lambda op, **e: events.append((op, clock.now, e))) as store:
+        for key in ("a", "b"):
+            assert store.put(key, MIB, {"rank": 0}) == 0
+        clock.advance(5_000_000)
+        assert store.objects["a"].bucket_id == store.objects["b"].bucket_id
+        store.drop_published_memory({})
+        start = clock.now
+        store.get("a", MIB, {"rank": 0})
+        store.get("b", MIB, {"rank": 1})
+        assert store.put("c", MIB, {"rank": 0}) == 0
+        clock.advance(start + 1_000_000)
+        assert store.counts["evict_disk"] == 0
+        assert store.put("d", MIB, {"rank": 0}) == 0
+        clock.advance(start + 12_000_000)
+
+        def timings(operation):
+            return [(e["key"], t - start) for op, t, e in events if op == operation]
+
+        assert timings("disk_read_complete") == [("a", 1_000_000), ("b", 2_000_000)]
+        assert sorted(timings("evict_disk")) == [("a", 2_000_000), ("b", 2_000_000)]
+        assert [(k, t) for k, t in timings("disk_publish") if k in ("c", "d")] == [
+            ("c", 3_000_000),
+            ("d", 4_000_000),
+        ]
+        assert timings("get_complete") == [("a", 11_000_000), ("b", 12_000_000)]
+        assert set(store.objects) == {"c", "d"}
+        assert store.summary()["clients"][0]["disk_bytes"] == 2 * MIB
 
 
 def test_exact_reuse_distance_in_bytes(tmp_path):
