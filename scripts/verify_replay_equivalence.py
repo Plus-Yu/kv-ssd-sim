@@ -27,11 +27,14 @@ def compare(before, after, source_root=None):
     reference, _ = settings(before)
     candidate, sources = settings(after)
     if reference != candidate:
-        differing = [
-            k for k in reference.keys() | candidate.keys() if reference.get(k) != candidate.get(k)
-        ]
+        differing = reference.keys() ^ candidate.keys()
+        differing.update(
+            k for k in reference.keys() & candidate.keys() if reference[k] != candidate[k]
+        )
         raise ValueError(f"Effective launch settings differ: {sorted(differing)}")
     if source_root:
+        if not sources:
+            raise ValueError("Candidate has no recorded runtime source hashes")
         for name, expected in sources.items():
             if digest(source_root / name) != expected:
                 raise ValueError(f"Recorded runtime source differs from checkout: {name}")
