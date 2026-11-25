@@ -1,0 +1,89 @@
+{
+  "host": "n15",
+  "git_base_with_worktree_changes": "f27459eb56889c492649affd0fd76e00a8a735c7",
+  "n15_trial": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/large-ssd-restore-20261125-3SXptE",
+  "matrix_entrypoint": "scripts/run_kvlab_matrix.py --profile reference --window warm",
+  "case_output_layout": "accepted/matrix/warm and accepted/<diagnostic>; raw probe at trial root",
+  "nominal_and_service_recorded_at_run": {
+    "members": 1,
+    "nominal_bytes_per_member": 30720000000000,
+    "nominal_bytes": 30720000000000,
+    "kv_quota_bytes": 24000000000000,
+    "quota_scope": "per storage client",
+    "fifo_queues": 1,
+    "service_scenario": "1x",
+    "service_rate_multiplier": 1,
+    "effective_read_bytes_s": 6800000000.0,
+    "effective_write_bytes_s": 5000000000.0,
+    "io_scope": "logical volume; owner identifies a storage client, not a physical drive"
+  },
+  "restore_model_recorded_at_run": {
+    "destination_h2d_ports": 8,
+    "h2d_bytes_s_per_rank": 55700000000.0,
+    "staging_scope": "payload bytes at the disk replica owner, reserved before SSD submit through H2D completion",
+    "granularity": "object pipeline within a native vLLM GET sub-batch; one sequential receiver per rank",
+    "memory_get": "one copy occupies both the owner's memory-read port and the destination H2D port",
+    "disk_get": "SSD completion releases the file pin; H2D completion releases staging",
+    "request_ack": "all objects in all receiver sub-batches on all TP ranks complete"
+  },
+  "native_master_recorded_at_run": {
+    "backend": "mooncake.MasterService.BatchEvict",
+    "mooncake_version": "0.3.14",
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_url": "https://codeload.github.com/kvcache-ai/Mooncake/tar.gz/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_sha256": "482df63a230655e2210789179110a6bcf581360cb577acda5b941939d33709a7",
+    "wheel_dso": "/home/yzh/projects/kv-ssd-sim/.venv/lib/python3.13/site-packages/mooncake/_store.cpython-313-x86_64-linux-gnu.so",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92",
+    "master_source_sha256": "40899db810afcb48b6dc9bc6c6ad08b70005b688362dd7f58ec531a115c84a5b",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "builder_sha256": "7c62d48c63c5ab5ca5a36abbaeb5f1269f6809427546afbe3d02b0060d6a73ea",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "compiler": "g++-12 (Ubuntu 12.3.0-1ubuntu1~22.04.2) 12.3.0"
+  },
+  "vllm_recorded_at_run": "0.34.0rc1.dev302+gbe47189f3.cpu",
+  "recorded_config_sha256": "7fe9750dc707f2a65f9a94a47c74ef0cda3ce79139952b49e4e257cf6ffe35fc",
+  "recorded_source_sha256": {
+    "scripts/run_object_replay.py": "ccdec311f44e86e6a2bedd047c058239a0b8e61da6c55af42f80103e30310ee3",
+    "scripts/check_staged_restores.py": "e4468d2b53d3ee8141e1dd5d6629e474b27de0b2069c26cdc5447c241227b354",
+    "scripts/prepare_object_trace.py": "c71c4807f5acd18cfe43dcaf8a75865afd0b5985b55a4c32fab8f18b2bec2b10",
+    "scripts/prepare_kvlab.py": "df4676ff370bd8cfea8292a79134eb14c027c7853ac9ba784452c35dd54d90e9",
+    "src/kv_ssd_sim/kvlab.py": "e39f0889424dae233474f59916f930c508a7b3e52419d9307d0bb70722373871",
+    "scripts/audit_aiperf_input.py": "b917bd757614367fd134d5f297e223596dcfcaa2cf8c1076c1653f32cc1fe99b",
+    "src/kv_ssd_sim/object_traffic.py": "68815ef97778b2d18e5006b62db94ba2b793fd450514ace2a9039795065b65cf",
+    "src/kv_ssd_sim/object_store.py": "819332b8005a738b5048d7d16f17ec7670fe08c8c5e3661ec0ec2bf0f66e897e",
+    "src/kv_ssd_sim/object_timing.py": "d956a9fb726aa860982074812019626664a0255092c834d1cabc51b983a46304",
+    "src/kv_ssd_sim/object_master.py": "385fc7615d4021bfb442602eafcb97c53206cc0a5bc879da922289cf6e36fc63",
+    "src/kv_ssd_sim/object_worker.py": "9aa0973aaa526fc131f8c1651aedaa80e4086024ad4afaafdaf984c843925ca2",
+    "src/kv_ssd_sim/native.py": "f51ae92b558e87af0d1e1b2b0fcc00fd967fcc549a61ef2e113b597f3a8b6183",
+    "src/kv_ssd_sim/k3_online.py": "2f5b892e8f0c21514f5ec041a4f1b32377b94eac4895f0b75baaa29fcfb530a9",
+    "src/kv_ssd_sim/deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de"
+  },
+  "warm_source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "warm_compiled_sha256": "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997",
+  "warm_pythonhashseed": "0",
+  "return_compiled_sha256": "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924",
+  "child_compiled_sha256": "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1",
+  "diagnostic_pythonhashseed": null,
+  "natural_repeat_identical_sha256": {
+    "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+    "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+    "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+    "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29"
+  },
+  "former_volume_4x_reproduction_identical_sha256": {
+    "events.jsonl": "c85a4cbf29f689d4520cc1e3ddc30693906aa4a6f217e9b45c7d465f7070966c",
+    "requests.json": "fef42bd463d05af2eedcd9518b0e65c3d7c9f5590c2f202c4a0f606738adf661",
+    "ssd-summary.json": "0b2cdfd080f7da4b498fd7be9259854e61796cd18b2396d55c9419b2b337c9c3"
+  },
+  "analysis_files_post_run_sha256": {
+    "scripts/run_kvlab_matrix.py": "db225a8c151a82290f6ab5f715db172412ca25cc33808682184d413f1245bd4f",
+    "scripts/check_staged_restores.py": "e4468d2b53d3ee8141e1dd5d6629e474b27de0b2069c26cdc5447c241227b354",
+    "scripts/check_public_replay.py": "229098a16f9ff79b241a0a9ef83fcf82fc2297943703e5d55b0a3edc289e6be6",
+    "scripts/compare_volume_replay.py": "8d7ad7cce7f91f79b0134387ea67cb630bf6f82c1374d8b6ac566e15f5fcb33a",
+    "scripts/compare_restore_paths.py": "fb5cb34437f8798875517665cd7737cd004c87132db1b725bf7f981ecd5a51f0",
+    "scripts/check_object_probe.py": "06151e91f2b3f94fc97383c395b19ef15dfdd3c3b6df156a858a847f7b66f68e"
+  },
+  "controlled_probe_file_reference": "evidence/ssd-c1/femu-c1-probe01.tar.gz",
+  "scope": "SSD payload and virtual timing. No physical SSD blocks or flash counters in this trial."
+}

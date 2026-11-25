@@ -10,10 +10,18 @@ from dataclasses import asdict
 from importlib.metadata import version
 from pathlib import Path
 
+from check_staged_restores import audit as audit_restores
+
 from kv_ssd_sim.object_store import MIB, Clock, ObjectStore, OffloadTimeline, StoreConfig
 from kv_ssd_sim.object_timing import StepTiming
 from kv_ssd_sim.object_traffic import describe_traffic, export_demand
 from kv_ssd_sim.runtime import PROJECT_ROOT as ROOT
+
+PUBLIC_PROFILES = {
+    "reference": ROOT / "configs/kimi-k3-b300-large-ssd.json",
+    "reference-volume-20261125": ROOT / "configs/kimi-k3-b300-logical-volume.json",
+    "reference-single-ssd": ROOT / "configs/kimi-k3-b300-object-replay.json",
+}
 
 
 def sha(path):
@@ -215,7 +223,14 @@ def main():
     p.add_argument(
         "--offset-s", type=float, action="append", help="One root offset per input (seconds)"
     )
-    p.add_argument("--profile", choices=("n15", "reference", "reference-20261124"), default="n15")
+    p.add_argument(
+        "--profile", choices=("n15", *PUBLIC_PROFILES, "reference-20261124"), default="n15"
+    )
+    p.add_argument(
+        "--volume-service",
+        choices=("1x", "4x", "8x"),
+        help="Scale the service rate of the same shared SSD FIFO",
+    )
     p.add_argument(
         "--offload-timeline",
         type=Path,
@@ -253,6 +268,12 @@ def main():
     )
     p.add_argument("--device-read-mib-s", type=float)
     p.add_argument("--memory-mib-s", type=float)
+    p.add_argument(
+        "--restore-path",
+        choices=("host-staged", "legacy"),
+        help="Bounded file-owner staging and a destination H2D port, or archived GET timing",
+    )
+    p.add_argument("--h2d-mib-s", type=float, help="H2D bandwidth per destination rank (MiB/s)")
     p.add_argument("--put-mib-s", type=float, help="Per-rank rate for newly allocated PUT payloads")
     p.add_argument(
         "--prefill-ms", type=float, help="Use a fixed duration instead of a token-rate estimate"
@@ -263,6 +284,8 @@ def main():
         "--ssd-time-scale", type=float, default=1, help="Multiply virtual SSD service time"
     )
     args = p.parse_args()
+    if args.volume_service and args.profile not in ("reference", "reference-volume-20261125"):
+        p.error("--volume-service requires a reference volume profile")
     fit = None
     if args.service_profile:
         fit = json.loads(args.service_profile.read_bytes())
@@ -292,14 +315,15 @@ def main():
     if json.loads(json.dumps(plan)) != json.loads((folder / "resolved.json").read_bytes()):
         raise ValueError("Pinned native K3 geometry changed")
     reference = args.profile != "n15"
-    profile_path = ROOT / "configs/kimi-k3-b300-object-replay.json"
-    public = json.loads(profile_path.read_bytes()) if args.profile == "reference" else None
+    profile_path = PUBLIC_PROFILES.get(args.profile)
+    public = json.loads(profile_path.read_bytes()) if profile_path else None
+    volume = public.get("volume") if public else None
     online = json.loads((ROOT / "configs/k3-c1-online.json").read_bytes())
     mc = plan["mooncake"]
     budgets = {
         "segment": mc["global_segment_size_bytes_per_client"],
         "staging": mc["disk_staging_size_bytes_per_client"],
-        "quota": plan["ssd"]["offload_quota_bytes_per_client"],
+        "quota": (volume or plan["ssd"])["offload_quota_bytes_per_client"],
     }
     for name in budgets:
         override = getattr(args, name + "_mib")
@@ -333,10 +357,14 @@ def main():
             // plan["geometry"]["shared_pool_bytes_per_block"]
         )
         b = public["bandwidth"]
+        rate_multiplier = 1
+        if volume:
+            scenario = args.volume_service or volume["default_service"]
+            rate_multiplier = volume["service_rate_multipliers"][scenario]
         store_args.update(
             public["store"],
-            device_mib_s=b["ssd_write_MB_s"] * 1e6 / MIB,
-            device_read_mib_s=b["ssd_read_MB_s"] * 1e6 / MIB,
+            device_mib_s=b["ssd_write_MB_s"] * rate_multiplier * 1e6 / MIB,
+            device_read_mib_s=b["ssd_read_MB_s"] * rate_multiplier * 1e6 / MIB,
             memory_mib_s=b["get_h2d_GB_s"] * 1e9 / MIB,
             put_mib_s=b["put_d2h_GB_s"] * 1e9 / MIB,
         )
@@ -349,6 +377,21 @@ def main():
         )
     overrides = {k: getattr(args, k) for k in store_flags if getattr(args, k) is not None}
     store_args.update(overrides)
+    default_restore = (public or {}).get(
+        "restore_path", "host-staged" if not reference else "legacy"
+    )
+    restore_path = args.restore_path or default_restore
+    if args.h2d_mib_s is not None and restore_path != "host-staged":
+        p.error("--h2d-mib-s requires --restore-path host-staged")
+    if restore_path == "host-staged":
+        reference_h2d = (
+            public["bandwidth"]["get_h2d_GB_s"] * 1e9 / MIB
+            if public
+            else store_args.get("memory_mib_s", StoreConfig.memory_mib_s)
+        )
+        store_args["h2d_mib_s"] = reference_h2d if args.h2d_mib_s is None else args.h2d_mib_s
+    else:
+        store_args["h2d_mib_s"] = None
     if not math.isfinite(args.ssd_time_scale) or args.ssd_time_scale <= 0:
         p.error("--ssd-time-scale must be finite and positive")
     if args.ssd_time_scale != 1:
@@ -364,6 +407,11 @@ def main():
         budgets["quota"],
         **store_args,
     )
+    if volume:
+        nominal = volume["member_count"] * volume["nominal_bytes_per_member"]
+        total_quota = config.clients * config.quota_bytes
+        if total_quota > nominal:
+            p.error("Sum of client quotas exceeds the nominal logical volume capacity")
     if args.prefill_ms is not None:
         prefill, prefill_rate = args.prefill_ms, None
     if args.decode_ms is not None:
@@ -390,6 +438,7 @@ def main():
         "decode_ms": timing.decode_ms if timing.decode_ms == timing.decode_ms_batch_8 else None,
         "step_timing": asdict(timing),
         "ssd_time_scale": args.ssd_time_scale,
+        "restore_path": restore_path,
         "root_offsets_s": offsets,
         "vllm_version": version("vllm"),
         "pythonhashseed": os.environ.get("PYTHONHASHSEED"),
@@ -409,6 +458,8 @@ def main():
             "quota_mib",
             "prefill_ms",
             "decode_ms",
+            "restore_path",
+            "h2d_mib_s",
         )
         manifest["reference_settings"] = {
             "file": str(profile_path.relative_to(ROOT)),
@@ -419,10 +470,35 @@ def main():
                 **{k: getattr(args, k) for k in override_fields if getattr(args, k) is not None},
             },
         }
+    if volume:
+        manifest["logical_volume"] = {
+            "members": volume["member_count"],
+            "nominal_bytes_per_member": volume["nominal_bytes_per_member"],
+            "nominal_bytes": nominal,
+            "kv_quota_bytes": total_quota,
+            "quota_scope": "per storage client",
+            "fifo_queues": 1,
+            "service_scenario": scenario,
+            "service_rate_multiplier": rate_multiplier,
+            "effective_read_bytes_s": config.device_read_mib_s * MIB,
+            "effective_write_bytes_s": config.device_mib_s * MIB,
+            "io_scope": "logical volume; owner identifies a storage client, not a physical drive",
+        }
+    if restore_path == "host-staged":
+        manifest["restore_model"] = {
+            "destination_h2d_ports": 8,
+            "h2d_bytes_s_per_rank": config.h2d_mib_s * MIB,
+            "staging_scope": "payload bytes at the disk replica owner, reserved before SSD submit through H2D completion",
+            "granularity": "object pipeline within a native vLLM GET sub-batch; one sequential receiver per rank",
+            "memory_get": "one copy occupies both the owner's memory-read port and the destination H2D port",
+            "disk_get": "SSD completion releases the file pin; H2D completion releases staging",
+            "request_ack": "all objects in all receiver sub-batches on all TP ranks complete",
+        }
     manifest["source_sha256"] = {
         str(p.relative_to(ROOT)): sha(p)
         for p in (
             Path(__file__).resolve(),
+            ROOT / "scripts/check_staged_restores.py",
             ROOT / "scripts/prepare_object_trace.py",
             ROOT / "scripts/prepare_kvlab.py",
             ROOT / "src/kv_ssd_sim/kvlab.py",
@@ -445,7 +521,7 @@ def main():
     manifest["service_model"] = (
         "Native offset allocators, writer-preferred segments, global MasterService.BatchEvict, "
         "eager offload with periodic client heartbeats, native bucket grouping and source leases, "
-        "one shared virtual FIFO drive, native FIFO bucket selection at the virtual payload quota, "
+        "one shared virtual FIFO for storage service, native FIFO bucket selection at the virtual payload quota, "
         "one memory read port per client."
     )
     manifest["clock"] = {
@@ -519,6 +595,8 @@ def main():
         requests=len(requests),
         **store_summary,
     )
+    if restore_path == "host-staged":
+        write("restore-summary.json", audit_restores(args.output, result))
     write("summary.json", result)
     print(json.dumps(result))
 

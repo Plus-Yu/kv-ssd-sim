@@ -444,6 +444,28 @@ def select_windows(db, limit, max_span_s=300, max_calls=24):
     return choices[:1], counts
 
 
+def select_warm_window(db, limit, max_span_s, max_calls, warmup_requests):
+    """Longest complete window with a return after a competing session, on source data alone."""
+    if warmup_requests < 1:
+        raise ValueError("A warm window requires at least one preceding request")
+    choices = candidates(db, limit, max_span_s, max_calls)
+    eligible = (w for w in choices if w["quality"][0] and w["calls"] > warmup_requests)
+    window = max(eligible, key=lambda w: (w["calls"], -w["start"]), default=None)
+    if window is None:
+        raise ValueError("No complete interleaved window longer than the requested warmup")
+    sid, rid = db.execute(
+        "SELECT sid,request_id FROM calls WHERE at>=? ORDER BY at,sid,seq LIMIT 1 OFFSET ?",
+        (window["start"], warmup_requests),
+    ).fetchone()
+    return dict(
+        window,
+        first_interleaved_return=window["anchor"],
+        anchor=f"{sid}/{rid}",
+        warmup_source_requests=warmup_requests,
+        selection_rule="longest complete interleaved-return window, earliest start on ties",
+    )
+
+
 def synthetic_tokens(n, seed):
     # Reversible single-character vocabulary; avoid tokenizer control/special token spellings.
     raw = hashlib.shake_256(seed.encode()).digest(2 * n)

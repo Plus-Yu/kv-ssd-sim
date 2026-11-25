@@ -1,0 +1,77 @@
+{
+  "input_sha256": "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1",
+  "writes_same_key_owner_bytes_multiplicity": true,
+  "disk_gets_only_legacy": {
+    "occurrences": 0,
+    "unique_keys": 0,
+    "bytes": 0
+  },
+  "disk_gets_only_staged": {
+    "occurrences": 0,
+    "unique_keys": 0,
+    "bytes": 0
+  },
+  "legacy_ssd_bytes": {
+    "read": 42467328,
+    "write": 1411817472
+  },
+  "staged_ssd_bytes": {
+    "read": 42467328,
+    "write": 1411817472
+  },
+  "request_times": {
+    "unseen-prefix-return/0": {
+      "legacy_last_event_ns": {},
+      "staged_last_event_ns": {},
+      "staged_minus_legacy_ns": {
+        "arrival_ns": 0,
+        "admitted_ns": 0,
+        "finished_ns": 0
+      }
+    },
+    "unseen-prefix-return::aux:000/0": {
+      "legacy_last_event_ns": {},
+      "staged_last_event_ns": {},
+      "staged_minus_legacy_ns": {
+        "arrival_ns": 0,
+        "admitted_ns": 0,
+        "finished_ns": 0
+      }
+    },
+    "unseen-prefix-return::aux:001/0": {
+      "legacy_last_event_ns": {},
+      "staged_last_event_ns": {},
+      "staged_minus_legacy_ns": {
+        "arrival_ns": 0,
+        "admitted_ns": 0,
+        "finished_ns": 0
+      }
+    },
+    "unseen-prefix-return/1": {
+      "legacy_last_event_ns": {
+        "disk_read_complete": 35111418844,
+        "get_complete": 35115528676
+      },
+      "staged_last_event_ns": {
+        "disk_read_complete": 35111418844,
+        "get_complete": 35115623980,
+        "disk_h2d_complete": 35115623980,
+        "load_complete": 35115623980
+      },
+      "staged_minus_legacy_ns": {
+        "arrival_ns": 0,
+        "admitted_ns": 0,
+        "finished_ns": 95304
+      }
+    },
+    "controlled-finish-child": {
+      "legacy_last_event_ns": {},
+      "staged_last_event_ns": {},
+      "staged_minus_legacy_ns": {
+        "arrival_ns": 95304,
+        "admitted_ns": 95304,
+        "finished_ns": 95304
+      }
+    }
+  }
+}

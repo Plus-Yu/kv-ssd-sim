@@ -1,0 +1,45 @@
+{
+  "limit": 1048576,
+  "max_span_s": 3456000,
+  "max_requests": 370658,
+  "quality_order": [
+    "return_after_other_session",
+    "multiple_sessions",
+    "overlapping_api",
+    "same_instance_return"
+  ],
+  "windows": [
+    {
+      "quality": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "start": 1788669440551599263,
+      "end": 1788670827075075142,
+      "anchor": "01cbca8f-1cdd-4727-9d21-3b5205b51306/1960811",
+      "calls": 136,
+      "sessions": [
+        "01cbca8f-1cdd-4727-9d21-3b5205b51306",
+        "1c739dc3-a0a9-4065-b065-e182a8409a2a",
+        "39cf690a-8520-4dbe-942a-5e6fe3d4682e",
+        "715d099e-84ae-499a-b6af-3ce7e7ed4d1a",
+        "92e22e94-a763-407d-8504-745821a2865f",
+        "b030845b-21de-45b0-a79d-3d4f02a2b1a8",
+        "e3326a46-e97b-4cf0-81b0-d83613b55515"
+      ],
+      "first_index": 1391,
+      "last_index": 1526,
+      "last_order": [
+        1788670824461075142,
+        "39cf690a-8520-4dbe-942a-5e6fe3d4682e",
+        27
+      ],
+      "first_interleaved_return": "1c739dc3-a0a9-4065-b065-e182a8409a2a/1960778",
+      "warmup_source_requests": 32,
+      "selection_rule": "longest complete interleaved-return window, earliest start on ties"
+    }
+  ],
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61"
+}

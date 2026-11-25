@@ -114,6 +114,7 @@ def export_demand(folder, events, end_ns, requests):
                     "bytes": e["bytes"],
                     "owner": e["owner"],
                     "staging_client": e["staging_client"],
+                    **({"group": e["group"]} if "group" in e else {}),
                     "io_id": e["io_id"],
                     "submit_ns": e["time_ns"],
                 }

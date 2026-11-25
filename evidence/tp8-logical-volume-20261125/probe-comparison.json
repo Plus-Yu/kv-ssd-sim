@@ -1,0 +1,381 @@
+{
+  "scope": "one-client 35-second return mechanism test",
+  "cases": {
+    "1x": {
+      "profile": "reference",
+      "client_quota_bytes": 2977955840,
+      "total_quota_bytes": 2977955840,
+      "effective_bytes_s": {
+        "write": 5000000000.0,
+        "read": 6800000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 42467328,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 42467328,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 42467328,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 42467328,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 24,
+            "unique_keys": 3,
+            "bytes": 42467328
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 42467328,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 42467328,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 42467328,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 42467328,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 24,
+            "unique_keys": 3,
+            "bytes": 42467328
+          }
+        }
+      },
+      "unique_objects": 108,
+      "write_identity_sha256": "f99942d5e3e9f2c81bf83a92d5b844f8c77a0e26d4b5127944f85195c152141b",
+      "memory_gets": 96,
+      "evicted_memory_objects": 9,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        1411817472
+      ],
+      "anchor": null,
+      "requests_admitted_before_anchor": 0,
+      "requests_finished_before_anchor": 0,
+      "last_request_finished_ns": 35162608676,
+      "last_io_complete_ns": 35111418844,
+      "drain_after_last_finish_ns": 0,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 257565696,
+      "volume_ios": {
+        "read": 24,
+        "write": 6
+      },
+      "first_publish_ns": 10050451456,
+      "eviction_times_ns": [
+        20000000000
+      ],
+      "disk_get_keys": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3"
+      ],
+      "read_identity_difference_vs_4x": {
+        "only_here": {
+          "occurrences": 0,
+          "unique_keys": 0,
+          "bytes": 0
+        },
+        "only_4x": {
+          "occurrences": 0,
+          "unique_keys": 0,
+          "bytes": 0
+        }
+      },
+      "evicted_keys_only_here_vs_4x": [],
+      "evicted_keys_only_4x": []
+    },
+    "4x": {
+      "profile": "reference",
+      "client_quota_bytes": 2977955840,
+      "total_quota_bytes": 2977955840,
+      "effective_bytes_s": {
+        "write": 20000000000.0,
+        "read": 27200000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 42467328,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 42467328,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 42467328,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 42467328,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 24,
+            "unique_keys": 3,
+            "bytes": 42467328
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 42467328,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 42467328,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 42467328,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 42467328,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 24,
+            "unique_keys": 3,
+            "bytes": 42467328
+          }
+        }
+      },
+      "unique_objects": 108,
+      "write_identity_sha256": "f99942d5e3e9f2c81bf83a92d5b844f8c77a0e26d4b5127944f85195c152141b",
+      "memory_gets": 96,
+      "evicted_memory_objects": 9,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        1411817472
+      ],
+      "anchor": null,
+      "requests_admitted_before_anchor": 0,
+      "requests_finished_before_anchor": 0,
+      "last_request_finished_ns": 35162608676,
+      "last_io_complete_ns": 35106734956,
+      "drain_after_last_finish_ns": 0,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 257565696,
+      "volume_ios": {
+        "read": 24,
+        "write": 6
+      },
+      "first_publish_ns": 10012612864,
+      "eviction_times_ns": [
+        20000000000
+      ],
+      "disk_get_keys": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3"
+      ],
+      "read_identity_difference_vs_4x": {
+        "only_here": {
+          "occurrences": 0,
+          "unique_keys": 0,
+          "bytes": 0
+        },
+        "only_4x": {
+          "occurrences": 0,
+          "unique_keys": 0,
+          "bytes": 0
+        }
+      },
+      "evicted_keys_only_here_vs_4x": [],
+      "evicted_keys_only_4x": []
+    },
+    "8x": {
+      "profile": "reference",
+      "client_quota_bytes": 2977955840,
+      "total_quota_bytes": 2977955840,
+      "effective_bytes_s": {
+        "write": 40000000000.0,
+        "read": 54400000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 14155776,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 14155776,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 14155776,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 14155776,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 8,
+            "unique_keys": 1,
+            "bytes": 14155776
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 14155776,
+              "write": 1411817472
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 14155776,
+              "write": 63700992
+            },
+            "KDA": {
+              "read": 0,
+              "write": 1348116480
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 35170000000,
+          "bins": 4,
+          "read_bytes": 14155776,
+          "write_bytes": 1411817472,
+          "read_peak_10s_bytes": 14155776,
+          "write_peak_10s_bytes": 1411817472,
+          "disk_reads": {
+            "occurrences": 8,
+            "unique_keys": 1,
+            "bytes": 14155776
+          }
+        }
+      },
+      "unique_objects": 108,
+      "write_identity_sha256": "f99942d5e3e9f2c81bf83a92d5b844f8c77a0e26d4b5127944f85195c152141b",
+      "memory_gets": 112,
+      "evicted_memory_objects": 9,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        1411817472
+      ],
+      "anchor": null,
+      "requests_admitted_before_anchor": 0,
+      "requests_finished_before_anchor": 0,
+      "last_request_finished_ns": 35163116964,
+      "last_io_complete_ns": 35105433860,
+      "drain_after_last_finish_ns": 0,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 257565696,
+      "volume_ios": {
+        "read": 8,
+        "write": 6
+      },
+      "first_publish_ns": 10006306432,
+      "eviction_times_ns": [
+        20000000000
+      ],
+      "disk_get_keys": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@68a1817e354e7683db3d06fa38c1744f07db580740b39b93729881e5c574afcd"
+      ],
+      "read_identity_difference_vs_4x": {
+        "only_here": {
+          "occurrences": 0,
+          "unique_keys": 0,
+          "bytes": 0
+        },
+        "only_4x": {
+          "occurrences": 16,
+          "unique_keys": 2,
+          "bytes": 28311552
+        }
+      },
+      "evicted_keys_only_here_vs_4x": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:0@3bded9844537cb2d30a72d834fa345b8b3f27f0dda22b08a1942cbf1cf172480",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:0@pcp0@dcp0@pp_rank:0@group:1@3bded9844537cb2d30a72d834fa345b8b3f27f0dda22b08a1942cbf1cf172480",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@b58830fa0be19d7d2ea50d9c346c7e9d5456091a86c14a989cb3a125b80e919d",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:4@pcp0@dcp0@pp_rank:0@group:2@3bded9844537cb2d30a72d834fa345b8b3f27f0dda22b08a1942cbf1cf172480"
+      ],
+      "evicted_keys_only_4x": [
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@2a55594188d4082f4d483020b17e889b42c2e9d4e7d36a8a194882f4dfb073dc",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:attention_head_major@store_schema:1ef8899f7324c9ad@tp_rank:0@pcp0@dcp0@pp_rank:0@group:3@f2ec120339d7f6ab4917ad4ffab542005bd26846d94ac92011e687ceb6a5d2e3",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:1@pcp0@dcp0@pp_rank:0@group:0@3bded9844537cb2d30a72d834fa345b8b3f27f0dda22b08a1942cbf1cf172480",
+        "k3-online-tp8@model@store_tp:8@store_pp:1@store_format:mamba_state@store_schema:7167693a1fc69203@tp_rank:2@pcp0@dcp0@pp_rank:0@group:0@3bded9844537cb2d30a72d834fa345b8b3f27f0dda22b08a1942cbf1cf172480"
+      ]
+    }
+  },
+  "repeat_8x_identical_sha256": {
+    "events.jsonl": "66ad05d9efdaa28b6fd5044868dfe91d588f9c893fdb81d058495085f99ee7e4",
+    "ssd-summary.json": "c1b948387a6819e7e33d4d0aaeffd5e57b0216fb24295136b80f1da4243f1602",
+    "requests.json": "39456c963cda98203d39e869c52aebf66d0c2074f8d5cebd728d977d3cfa8186"
+  }
+}

@@ -7,6 +7,8 @@ import math
 from collections import Counter
 from pathlib import Path
 
+from check_staged_restores import audit as audit_restores
+
 
 def verify(folder):
     def load(name):
@@ -88,6 +90,10 @@ def verify(folder):
         or full["read_bytes"] != sum(item[-1] * n for item, n in reads.items())
     ):
         raise ValueError(f"GET, PUT or SSD accounting failed in {folder}")
+    if launch.get("restore_path") == "host-staged" and audit_restores(folder) != load(
+        "restore-summary.json"
+    ):
+        raise ValueError(f"Restore stage audit differs from the recorded report in {folder}")
     return {
         "directory": str(folder),
         "profile_sha256": reference["sha256"],

@@ -1,0 +1,15 @@
+{
+  "archive": "evidence/tp8-public-20261125/runs.tar.gz",
+  "member_prefix": "matrix/holdout/base",
+  "identical_files": {
+    "events.jsonl": "1ce4bbd27d675b098ae7e1e3b4dc6dfa0f3a901fc21c6a6cdceb2c576f8f0afe",
+    "requests.json": "ddba25b310438b681482bc0e71bfeab8eb0dfa98ceeaa1581fe39a5d9a4d96fc",
+    "ssd-summary.json": "78258334156e1235f3e6b045e49caa1cb173a54048038b1946001553c0077d0b"
+  },
+  "original_rss_kib": 62504,
+  "rerun_rss_kib": 62688,
+  "all_other_summary_fields_equal": true,
+  "old_profile": "reference",
+  "new_profile": "reference-single-ssd",
+  "config_sha256": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300"
+}

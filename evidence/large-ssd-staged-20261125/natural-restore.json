@@ -1,0 +1,49 @@
+{
+  "gets": {
+    "memory": 96,
+    "disk": 24
+  },
+  "h2d_bytes": {
+    "memory": 576774144,
+    "disk": 42467328
+  },
+  "ssd_read_bytes": 42467328,
+  "peak_concurrent_h2d_ranks": 2,
+  "h2d_service_ns_sum": {
+    "memory": 10355040,
+    "disk": 762432
+  },
+  "h2d_queue_ns_sum": {
+    "memory": 480906432,
+    "disk": 62490372
+  },
+  "staging_capacity_bytes_per_client": 100663296,
+  "staging_peak_bytes_by_client": [
+    42467328
+  ],
+  "staging_final_bytes_by_client": [
+    0
+  ],
+  "staging_wait_objects": 0,
+  "staging_wait_ns_sum": 0,
+  "disk_complete_to_get_ns_sum": 63252804,
+  "disk_complete_to_get_ns_max": 4662034,
+  "loads": [
+    {
+      "request": "unseen-prefix-return/1",
+      "start_ns": 35105173636,
+      "last_disk_complete_ns": 35111418844,
+      "complete_ns": 35115623980,
+      "rank_done_ns": [
+        35106563320,
+        35107857700,
+        35109152080,
+        35110446460,
+        35111740840,
+        35113035220,
+        35114329600,
+        35115623980
+      ]
+    }
+  ]
+}

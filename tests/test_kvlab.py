@@ -11,6 +11,7 @@ from kv_ssd_sim.kvlab import (
     compile_window,
     insert_session,
     render,
+    select_warm_window,
     select_windows,
     session_calls,
     utc_ns,
@@ -101,6 +102,13 @@ def test_joined_window_preserves_competing_root_and_prior_call(tmp_path):
         a, b, c = manifest["source_requests"]
         assert b["root_arrival_ms"] == 250 and c["dependencies"] == [["a/1", "finish", 2000]]
         assert c["measurement_anchor"] and not a["measurement_anchor"]
+        warm = select_warm_window(db, 12288, 300, 24, 1)
+        assert (warm["calls"], warm["anchor"], warm["first_interleaved_return"]) == (
+            4,
+            "b/3",
+            "a/2",
+        )
+        assert warm["first_index"] == choice["first_index"]
         db.execute("UPDATE calls SET closed=0 WHERE sid='b'")
         assert all(p["quality"][0] == 0 for p in candidates(db, 12288, 300, 24))
 
@@ -123,15 +131,15 @@ def test_submit_bins_span_drain_and_only_disk_gets(tmp_path):
     def event(t, name, **attrs):
         events.append(dict(event=name, time_ns=t, **attrs))
 
-    fields = {"request": "a", "rank": 0, "key": "same", "bytes": 7, "owner": 0, "staging_client": 0}
-    event(9 * NS, "disk_write_submit", **fields, io_id=1)
-    event(10 * NS, "disk_write_start", **fields, io_id=1)
-    event(12 * NS, "disk_publish", **fields, io_id=1, bucket_id=8)
+    fields = {"request": "a", "rank": 2, "key": "same", "bytes": 7, "owner": 0, "group": 3}
+    event(9 * NS, "disk_write_submit", **fields, staging_client=0, io_id=1)
+    event(10 * NS, "disk_write_start", **fields, staging_client=0, io_id=1)
+    event(12 * NS, "disk_publish", **fields, staging_client=0, io_id=1, bucket_id=8)
     event(15 * NS, "measurement_anchor", request="b")
     event(16 * NS, "get_memory", **fields)
-    event(30 * NS, "disk_read_submit", **fields, io_id=2, bucket_id=8)
-    event(31 * NS, "disk_read_start", **fields, io_id=2, bucket_id=8)
-    event(32 * NS, "disk_read_complete", **fields, io_id=2, bucket_id=8)
+    event(30 * NS, "disk_read_submit", **fields, staging_client=2, io_id=2, bucket_id=8)
+    event(31 * NS, "disk_read_start", **fields, staging_client=2, io_id=2, bucket_id=8)
+    event(32 * NS, "disk_read_complete", **fields, staging_client=2, io_id=2, bucket_id=8)
     path = tmp_path / "events.jsonl"
     path.write_text("".join(json.dumps(e) + "\n" for e in events))
     s = export_demand(tmp_path, path, 33 * NS, [{"arrival_ns": 0, "finished_ns": 29 * NS}])
@@ -141,9 +149,11 @@ def test_submit_bins_span_drain_and_only_disk_gets(tmp_path):
         full = [r for r in csv.DictReader(f) if r["scope"] == "full"]
     assert [int(r["write_bytes"]) for r in full] == [7, 0, 0, 0]
     with gzip.open(tmp_path / "ssd-demand.jsonl.gz", "rt") as f:
-        assert [(r["op"], r["bucket_id"]) for r in map(json.loads, f)] == [
-            ("write", 8),
-            ("read", 8),
+        assert [
+            (r["op"], r["owner"], r["rank"], r["group"], r["bucket_id"]) for r in map(json.loads, f)
+        ] == [
+            ("write", 0, 2, 3, 8),
+            ("read", 0, 2, 3, 8),
         ]
 
 

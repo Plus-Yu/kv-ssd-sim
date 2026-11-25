@@ -59,9 +59,10 @@ def test_native_source_pin_leases_and_eviction_during_idle():
         # A real native eviction left this published key on disk. No tier override.
         key = evicted[0][1]
         assert store.batch_is_exist([key]) == [1]
-        end = store.get(key, MIB, {"rank": 0})
-        assert end - clock.now == 3_906_250
-        clock.advance(end)
+        start = clock.now
+        restore = store.get(key, MIB, {"rank": 0})
+        clock.advance(restore)
+        assert clock.now - start == 3_906_250 + 122_071
         assert store.bytes["disk_read_complete"] == store.bytes["get_disk"] == MIB
 
 
@@ -209,6 +210,102 @@ def test_file_heartbeat_reclaims_whole_native_buckets_at_disk_watermarks():
         assert store.bytes["evict_disk"] == 2 * MIB
 
 
+def test_shared_volume_keeps_independent_client_watermarks():
+    clock = Clock()
+    cfg = StoreConfig(
+        8,
+        16 * MIB,
+        4 * MIB,
+        5 * MIB,
+        offload_delay_ms=0,
+        disk_high_watermark=0.75,
+        disk_low_watermark=0.50,
+    )
+    with ObjectStore(clock, cfg, lambda *a, **k: None) as store:
+        store.put("other-client", MIB, {"rank": 7})
+        for i in range(4):
+            store.put(str(i), MIB, {"rank": 0})
+            clock.advance(clock.now + 5_000_000)
+        assert {k for k, r in store.objects.items() if r.disk} == {"other-client", "2", "3"}
+        assert [c.disk_bytes for c in store.clients] == [2 * MIB, 0, 0, 0, 0, 0, 0, MIB]
+
+
+def test_owner_staging_backpressure_and_two_stage_pipeline_across_target_ranks():
+    clock, events = Clock(), []
+    cfg = StoreConfig(
+        8, 16 * MIB, 2 * MIB, 16 * MIB, offload_delay_ms=0, device_read_mib_s=1000, h2d_mib_s=100
+    )
+    with ObjectStore(clock, cfg, lambda op, **e: events.append((op, clock.now, e))) as store:
+        for key in "abc":
+            store.put(key, MIB, {"rank": 0})
+        clock.advance(10_000_000)
+        store.drop_published_memory({})
+        start = clock.now
+        for key, rank in (("a", 3), ("b", 3), ("c", 7)):
+            store.get(key, MIB, {"rank": rank})
+        assert store.clients[0].restore_staging_bytes == 2 * MIB
+        clock.advance(start + 25_000_000)
+
+        def times(event):
+            return {e["key"]: (t - start) // 1_000_000 for op, t, e in events if op == event}
+
+        assert times("staging_wait") == {"c": 0}
+        assert times("disk_read_complete") == {"a": 1, "b": 2, "c": 12}
+        assert times("h2d_start") == {"a": 1, "b": 11, "c": 12}
+        assert times("get_complete") == {"a": 11, "b": 21, "c": 22}
+        assert times("staging_release") == times("h2d_complete") == times("get_complete")
+        clients = store.summary()["clients"]
+        assert [c["peak_restore_staging_bytes"] for c in clients] == [2 * MIB] + [0] * 7
+        assert all(c["restore_staging_bytes"] == 0 for c in clients)
+
+
+def test_memory_and_disk_share_destination_only_once_and_do_not_reserve_an_unready_port():
+    clock, events = Clock(), []
+    cfg = StoreConfig(
+        8,
+        8 * MIB,
+        4 * MIB,
+        8 * MIB,
+        offload_delay_ms=0,
+        device_read_mib_s=100,
+        memory_mib_s=500,
+        h2d_mib_s=1000,
+    )
+    with ObjectStore(clock, cfg, lambda op, **e: events.append((op, clock.now, e))) as store:
+        store.put("disk", MIB, {"rank": 0})
+        clock.advance(2_000_000)
+        store.drop_published_memory({})
+        for key, owner in (("m1", 1), ("m2", 1), ("m3", 3)):
+            store.put(key, MIB, {"rank": owner})
+        start = clock.now
+        for key, rank in (("disk", 6), ("m1", 6), ("m2", 2), ("m3", 7)):
+            store.get(key, MIB, {"rank": rank})
+        clock.advance(start + 15_000_000)
+        ends = {e["key"]: t - start for op, t, e in events if op == "get_complete"}
+        assert ends == {"m1": 2_000_000, "m3": 2_000_000, "m2": 4_000_000, "disk": 11_000_000}
+
+
+def test_disk_eviction_waits_for_staging_waiter_to_read_but_can_overlap_its_h2d():
+    clock, events = Clock(), []
+    cfg = StoreConfig(
+        1, 8 * MIB, MIB, MIB, offload_delay_ms=0, device_read_mib_s=1000, h2d_mib_s=100
+    )
+    with ObjectStore(clock, cfg, lambda op, **e: events.append((op, clock.now, e))) as store:
+        store.put("old", MIB, {"rank": 0})
+        clock.advance(2_000_000)
+        store.drop_published_memory({})
+        start = clock.now
+        store.get("old", MIB, {"rank": 0})
+        store.get("old", MIB, {"rank": 1})
+        store.put("new", MIB, {"rank": 0})
+        clock.advance(start + 25_000_000)
+        evicted = [t - start for op, t, e in events if op == "evict_disk" and e["key"] == "old"]
+        ends = [t - start for op, t, _ in events if op == "get_complete"]
+        assert evicted == [12_000_000]
+        assert ends == [11_000_000, 22_000_000]
+        assert store.summary()["clients"][0]["restore_staging_bytes"] == 0
+
+
 def test_exact_reuse_distance_in_bytes(tmp_path):
     source = tmp_path / "events.jsonl"
     rows = [("a", "r1", 100), ("b", "r1", 20), ("c", "r2", 30), ("b", "r2", 20), ("a", "r3", 100)]
@@ -242,6 +339,7 @@ def test_load_ack_survives_multiple_scheduler_polls():
     clock = Clock()
     rank = SimpleNamespace(
         clock=clock,
+        store=SimpleNamespace(config=SimpleNamespace(h2d_mib_s=None)),
         worker=SimpleNamespace(_close_ended_store_requests=lambda *a: None),
         completed_saves={},
         load=lambda _: 100,
@@ -263,6 +361,60 @@ def test_load_ack_survives_multiple_scheduler_polls():
     clock.advance(100)
     assert transfers.output().finished_recving == {"r"}
     assert not transfers.output().finished_recving
+
+
+def test_staged_subbatches_and_rank_receiver_wait_for_actual_get_callbacks():
+    pytest.importorskip("vllm")
+    from kv_ssd_sim.object_worker import MetadataRank, MetadataTransfers
+
+    clock, issued = Clock(), []
+    store = SimpleNamespace(config=SimpleNamespace(h2d_mib_s=100), emit=lambda *a, **k: None)
+
+    def get(key, size, origin, *, on_complete):
+        issued.append((clock.now, origin["request"], origin["rank"], key))
+        duration = (10 if key == "slow" else 1) + origin["rank"]
+        clock.at(clock.now + duration, on_complete)
+
+    store.get = get
+    ranks = []
+    for i in range(8):
+        rank = MetadataRank.__new__(MetadataRank)
+        rank.clock, rank.store, rank.port = clock, store, SimpleNamespace(rank=i)
+        rank.worker = SimpleNamespace(_close_ended_store_requests=lambda *a: None)
+        rank.completed_saves, rank.pending_loads = {}, deque()
+
+        def describe(meta, rank=rank):
+            origin = {"request": meta.req_id, "rank": rank.port.rank}
+            rank.port.load_batches.extend(
+                [
+                    [("slow", 10, origin), ("fast", 1, origin)],
+                    [("next", 1, origin)],
+                ]
+            )
+
+        rank._describe_load = describe
+        ranks.append(rank)
+    transfers = MetadataTransfers(ranks)
+    requests = [
+        SimpleNamespace(
+            req_id=rid,
+            can_save=False,
+            load_spec=SimpleNamespace(can_load=True, kvpool_cached_tokens=8, vllm_cached_tokens=0),
+        )
+        for rid in ("first", "second")
+    ]
+    transfers.submit(SimpleNamespace(requests=requests), set(), 0)
+    clock.advance(24)
+    assert not transfers.output().finished_recving
+    clock.advance(25)
+    assert transfers.output().finished_recving == {"first"}
+    clock.advance(50)
+    assert transfers.output().finished_recving == {"second"}
+    assert not transfers.output().finished_recving
+    assert [t for t, job, rank, key in issued if job == "first" and key == "next"] == list(
+        range(10, 18)
+    )
+    assert (25, "second", 7, "slow") in issued
 
 
 def test_native_shutdown_detects_errors_from_last_async_put():

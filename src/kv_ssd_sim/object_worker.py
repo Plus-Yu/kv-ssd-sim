@@ -7,6 +7,7 @@ import threading
 from collections import Counter, deque
 from contextlib import contextmanager
 from dataclasses import dataclass, field
+from itertools import count
 from unittest.mock import patch
 
 import torch
@@ -33,6 +34,20 @@ class SaveBatch:
     acknowledgements: dict = field(default_factory=dict)
 
 
+def after_all(pending, done):
+    """One acknowledgement for each issued descriptor (or each participating rank)."""
+
+    def acknowledge():
+        nonlocal pending
+        pending -= 1
+        if pending == 0:
+            done()
+        elif pending < 0:
+            raise RuntimeError("Duplicate restore acknowledgement")
+
+    return acknowledge
+
+
 class RankPort:
     """Descriptor-only Store API. Addresses returned by meta tensors are never dereferenced."""
 
@@ -41,6 +56,8 @@ class RankPort:
         self.rank = rank
         self.done_at = 0
         self.saving = None
+        self.load_batches = None
+        self.load_id = None
 
     def bind(self, meta):
         self.meta = meta
@@ -71,13 +88,16 @@ class RankPort:
         return result
 
     def batch_get_into_multi_buffers(self, keys, addresses, sizes):
-        result = []
-        for k, s in zip(keys, sizes, strict=True):
-            size = sum(s)
-            end = self.store.get(k, size, self.origin(k))
-            self.done_at = max(self.done_at, end)
-            result.append(size)
-        return result
+        batch = [(k, sum(s), self.origin(k)) for k, s in zip(keys, sizes, strict=True)]
+        if self.load_batches is None:
+            for key, size, origin in batch:
+                self.done_at = max(self.done_at, self.store.get(key, size, origin))
+        elif batch:
+            for _, _, origin in batch:
+                origin["load_id"] = self.load_id
+                origin["load_batch"] = len(self.load_batches)
+            self.load_batches.append(batch)
+        return [size for _, size, _ in batch]
 
 
 class MetadataRank:
@@ -123,6 +143,7 @@ class MetadataRank:
         self.save_tail = 0
         self.pending_saves = deque()
         self.completed_saves = Counter()
+        self.pending_loads = deque()
 
     def enqueue_save(self, meta, compute_end):
         self.sender.add_request(meta)
@@ -193,7 +214,7 @@ class MetadataRank:
         self.completed_saves.update(batch.acknowledgements)
         self.store.emit("save_ack", request=meta.req_id, rank=self.port.rank, job=meta.store_job_id)
 
-    def load(self, meta):
+    def _describe_load(self, meta):
         meta.load_spec.token_len = meta.load_spec.kvpool_cached_tokens
         self.port.bind(meta)
         self.receiver.add_request(meta)
@@ -204,13 +225,65 @@ class MetadataRank:
             or self.receiver.get_and_clear_failed_requests()
         ):
             raise ValueError(f"Native load failed for {meta.req_id}")
-        return self.port.done_at
+
+    def load(self, meta, done=None, load_id=None):
+        if self.store.config.h2d_mib_s is None:
+            self._describe_load(meta)
+            return self.port.done_at
+        self.pending_loads.append((meta, done, load_id))
+        if len(self.pending_loads) == 1:
+            self._start_next_load()
+
+    def _start_next_load(self):
+        meta, done, load_id = self.pending_loads[0]
+        batches = deque()
+        self.port.load_batches, self.port.load_id = batches, load_id
+        try:
+            self._describe_load(meta)
+        finally:
+            self.port.load_batches = self.port.load_id = None
+
+        def next_batch():
+            if batches:
+                batch = batches.popleft()
+                acknowledged = after_all(len(batch), next_batch)
+                for key, size, origin in batch:
+                    self.store.get(key, size, origin, on_complete=acknowledged)
+                return
+            self.store.emit(
+                "rank_load_complete", request=meta.req_id, rank=self.port.rank, load_id=load_id
+            )
+            self.pending_loads.popleft()
+            if self.pending_loads:
+                self.clock.at(self.clock.now, self._start_next_load)
+            if done:
+                done()
+
+        next_batch()
 
 
 class MetadataTransfers:
     def __init__(self, ranks):
         self.ranks = ranks
         self.receive_acks = set()
+        self.load_ids = count(1)
+
+    def _load(self, meta):
+        store = self.ranks[0].store
+        if store.config.h2d_mib_s is None:
+            last = max(rank.load(meta) for rank in self.ranks)
+            self.ranks[0].clock.at(last, self.receive_acks.add, meta.req_id)
+            return
+        load_id = next(self.load_ids)
+        store.emit("load_start", request=meta.req_id, load_id=load_id, ranks=len(self.ranks))
+
+        def complete():
+            store.emit("load_complete", request=meta.req_id, load_id=load_id)
+            self.receive_acks.add(meta.req_id)
+
+        rank_done = after_all(len(self.ranks), complete)
+        for rank in self.ranks:
+            rank.load(meta, rank_done, load_id)
 
     def submit(self, metadata, finished, compute_end):
         for rank in self.ranks:
@@ -224,8 +297,7 @@ class MetadataTransfers:
                 external[meta.req_id] += (
                     meta.load_spec.kvpool_cached_tokens - meta.load_spec.vllm_cached_tokens
                 )
-                last = max(rank.load(meta) for rank in self.ranks)
-                self.ranks[0].clock.at(last, self.receive_acks.add, meta.req_id)
+                self._load(meta)
         return external
 
     def output(self):

@@ -7,6 +7,7 @@ import itertools
 import json
 import math
 from collections import Counter, deque
+from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from .object_master import NativeMaster, read_key, wire_key
@@ -73,6 +74,12 @@ class Clock:
         heapq.heappush(self.events, (when, next(self._sequence), callback, args))
 
     def advance(self, until):
+        if isinstance(until, Restore):
+            while until.complete_ns is None:
+                if not self.events:
+                    raise RuntimeError("Restore stalled without a scheduled completion")
+                self.advance(self.events[0][0])
+            return
         if until < self.now:
             raise ValueError("Clock moved backwards")
         while self.events and self.events[0][0] <= until:
@@ -106,6 +113,7 @@ class StoreConfig:
     put_mib_s: float | None = None
     disk_high_watermark: float | None = None
     disk_low_watermark: float | None = None
+    h2d_mib_s: float | None = 8192  # None explicitly selects the historical completion clock.
 
     def __post_init__(self):
         if self.clients not in (1, 8) or any(
@@ -131,7 +139,9 @@ class StoreConfig:
         if (low, high) != (None, None) and (low is None or high is None or not 0 < low < high <= 1):
             raise ValueError("Expected both disk watermarks with 0 < low < high <= 1")
         rates = [self.device_mib_s, self.memory_mib_s]
-        rates.extend(v for v in (self.device_read_mib_s, self.put_mib_s) if v is not None)
+        rates.extend(
+            v for v in (self.device_read_mib_s, self.put_mib_s, self.h2d_mib_s) if v is not None
+        )
         for v in rates:
             if not math.isfinite(v) or v <= 0:
                 raise ValueError("Service rates must be finite and positive")
@@ -144,6 +154,9 @@ class Client:
     peak_memory_bytes: int = 0
     peak_disk_bytes: int = 0
     peak_staging_bytes: int = 0
+    restore_staging_bytes: int = 0
+    peak_restore_staging_bytes: int = 0
+    staging_waiters: deque = field(default_factory=deque)
     memory_free_at: int = 0
     next_poll_ns: int | None = None
     offload_busy: bool = False
@@ -159,8 +172,18 @@ class Replica:
     memory: bool = True
     disk: bool = False
     readers: int = 0
-    disk_read_until: int = 0
+    disk_readers: int = 0
+    on_disk_idle: Callable[[], None] | None = None
     bucket_id: int | None = None
+
+
+@dataclass
+class Restore:
+    obj: Replica
+    origin: dict
+    tier: str
+    done: Callable[[], None] | None
+    complete_ns: int | None = None
 
 
 class ObjectStore:
@@ -176,6 +199,11 @@ class ObjectStore:
         self.bytes = Counter()
         self.disk_free_at = 0
         self.io_ids = itertools.count(1)
+        self.restore_ids = itertools.count(1)
+        self.h2d_waiters = [deque() for _ in range(8)]
+        self.ready_order = itertools.count()
+        self.busy_ranks = set()
+        self.busy_memory_ports = set()
         self.poll_interval = round(config.offload_delay_ms * 1e6)
         self.timeline = timeline
         self.rounds = 0
@@ -288,7 +316,29 @@ class ObjectStore:
         self.clients[obj.owner].pending[obj.key] = (obj, origin)
         self._schedule_poll(obj.owner)
 
-    def _disk_read(self, obj, origin, staging_client):
+    def _admit_staged_reads(self, owner):
+        client = self.clients[owner]
+        while client.staging_waiters:
+            transfer = client.staging_waiters[0]
+            obj = transfer.obj
+            if obj.size > self.config.staging_bytes - client.restore_staging_bytes:
+                break
+            client.staging_waiters.popleft()
+            client.restore_staging_bytes += obj.size
+            client.peak_restore_staging_bytes = max(
+                client.peak_restore_staging_bytes, client.restore_staging_bytes
+            )
+            client.peak_staging_bytes = max(client.peak_staging_bytes, client.restore_staging_bytes)
+            self.record(
+                "staging_reserve",
+                obj,
+                transfer.origin,
+                staging_client=owner,
+                used_bytes=client.restore_staging_bytes,
+            )
+            self._disk_read(obj, transfer.origin, owner, transfer)
+
+    def _disk_read(self, obj, origin, staging_client, transfer=None):
         start = max(self.disk_free_at, self.clock.now)
         rate = self.config.device_read_mib_s or self.config.device_mib_s
         end = start + math.ceil(obj.size * 1e9 / (rate * MIB))
@@ -307,11 +357,70 @@ class ObjectStore:
 
         def complete():
             self.record("disk_read_complete", obj, origin, **fields)
-            self._finish_get(obj, origin)
+            obj.disk_readers -= 1
+            if not obj.disk_readers and obj.on_disk_idle:
+                self.clock.at(self.clock.now, obj.on_disk_idle)
+                obj.on_disk_idle = None
+            if transfer is None:
+                self._finish_get(obj, origin)
+            else:
+                self._ready_h2d(transfer)
 
         self.clock.at(start, begin)
         self.clock.at(end, complete)
         return end
+
+    def _ready_h2d(self, transfer):
+        self.record("h2d_ready", transfer.obj, transfer.origin, tier=transfer.tier)
+        self.h2d_waiters[transfer.origin["rank"]].append((next(self.ready_order), transfer))
+        self._dispatch_h2d()
+
+    def _dispatch_h2d(self):
+        # FIFO among ready copies for each rank. A busy source port need not idle other ranks.
+        heads = sorted(
+            (q[0][0], rank)
+            for rank, q in enumerate(self.h2d_waiters)
+            if q and rank not in self.busy_ranks
+        )
+        for _, rank in heads:
+            queue = self.h2d_waiters[rank]
+            transfer = queue[0][1]
+            owner = transfer.obj.owner
+            memory = transfer.tier == "memory"
+            if memory and owner in self.busy_memory_ports:
+                continue
+            queue.popleft()
+            self.busy_ranks.add(rank)
+            rate = self.config.h2d_mib_s
+            if memory:
+                self.busy_memory_ports.add(owner)
+                rate = min(rate, self.config.memory_mib_s)
+            self.record("h2d_start", transfer.obj, transfer.origin, tier=transfer.tier)
+            duration = math.ceil(transfer.obj.size * 1e9 / (rate * MIB))
+            self.clock.at(self.clock.now + duration, self._complete_h2d, transfer)
+
+    def _complete_h2d(self, transfer):
+        obj, origin = transfer.obj, transfer.origin
+        self.busy_ranks.remove(origin["rank"])
+        self.record("h2d_complete", obj, origin, tier=transfer.tier)
+        if transfer.tier == "memory":
+            self.busy_memory_ports.remove(obj.owner)
+        else:
+            client = self.clients[obj.owner]
+            client.restore_staging_bytes -= obj.size
+            self.record(
+                "staging_release",
+                obj,
+                origin,
+                staging_client=obj.owner,
+                used_bytes=client.restore_staging_bytes,
+            )
+            self._admit_staged_reads(obj.owner)
+        self._finish_get(obj, origin)
+        transfer.complete_ns = self.clock.now
+        self._dispatch_h2d()
+        if transfer.done:
+            transfer.done()
 
     def _schedule_poll(self, owner):
         client = self.clients[owner]
@@ -360,11 +469,10 @@ class ObjectStore:
             self._query_sources(owner, groups, group, stamp)
 
     def _finish_poll(self, owner, target):
-        if target is not None:
-            until = self._reclaim_to(owner, target)
-            if until is not None:
-                self.clock.at(until, self._finish_poll, owner, target)
-                return
+        if target is not None and not self._reclaim_to(
+            owner, target, lambda: self._finish_poll(owner, target)
+        ):
+            return
         client = self.clients[owner]
         client.next_poll_ns = self.clock.now + self.poll_interval
         client.offload_busy = False
@@ -400,9 +508,11 @@ class ObjectStore:
         if not group:
             self.clock.at(self.clock.now, self._next_bucket, owner, remaining)
             return
-        until = self._reclaim_to(owner, self.config.quota_bytes - size)
-        if until is not None:
-            self.clock.at(until, self._write_bucket, owner, remaining, group, source_ns, stamp)
+        if not self._reclaim_to(
+            owner,
+            self.config.quota_bytes - size,
+            lambda: self._write_bucket(owner, remaining, group, source_ns, stamp),
+        ):
             return
         client.disk_bytes += size
         client.peak_disk_bytes = max(client.peak_disk_bytes, client.disk_bytes)
@@ -450,15 +560,20 @@ class ObjectStore:
         self.clock.at(start, begin)
         self.clock.at(end, publish)
 
-    def _reclaim_to(self, owner, target_bytes):
+    def _reclaim_to(self, owner, target_bytes, resume):
         client = self.clients[owner]
         while client.disk_bytes > target_bytes:
             candidates = [read_key(k) for k in self._call("disk_candidate", owner)]
             if not candidates:
                 raise RuntimeError("Virtual quota and native bucket inventory disagree")
-            until = max(self.objects[k].disk_read_until for k in candidates)
-            if until > self.clock.now:
-                return until
+            for key in candidates:
+                obj = self.objects[key]
+                if obj.disk_readers:
+                    # Staging admission may still be waiting; the file is needed only through SSD read.
+                    if obj.on_disk_idle is not None:
+                        raise RuntimeError("Concurrent reclaim on the same client")
+                    obj.on_disk_idle = resume
+                    return False
             removed = self._call("remove_disk", owner)
             for expected, record in zip(candidates, removed, strict=True):
                 key, state = record.split(":")
@@ -473,7 +588,7 @@ class ObjectStore:
                 )
                 if not victim.memory:
                     del self.objects[victim.key]
-        return None
+        return True
 
     def _reject_offload(self, obj, origin):
         state = self._call("nack", obj.owner, obj.size, wire_key(obj.key))
@@ -481,28 +596,56 @@ class ObjectStore:
             raise RuntimeError("Unexpected native offload NACK state")
         self.record("offload_rejected", obj, origin, native_data_size=-1)
 
-    def get(self, key, size, origin):
+    def get(self, key, size, origin, *, on_complete=None):
+        """Return a clock-waitable restore (or the historical integer deadline in legacy mode)."""
         obj = self.objects[key]
         if obj.size != size:
             raise ValueError(f"Restore descriptor differs for {key}")
-        obj.readers += 1
+        staged = self.config.h2d_mib_s is not None
+        if staged and not 0 <= origin["rank"] < 8:
+            raise ValueError("Expected a TP8 destination rank")
         state, ttl = map(int, self._call("get", wire_key(key)))
         if state != int(obj.memory) + 2 * int(obj.disk) or state == 0:
             raise RuntimeError(f"Native GET state differs for {key}: {state}")
         client = self.clients[obj.owner]
         tier = "memory" if state & 1 else "disk"
-        self.record("get_" + tier, obj, origin, native_lease_ms=ttl)
+        if tier == "disk" and size > self.config.staging_bytes:
+            raise ValueError("Object exceeds GET staging budget")
+        obj.readers += 1
         if tier == "disk":
-            if size > self.config.staging_bytes:
-                raise ValueError("Object exceeds GET staging budget")
+            obj.disk_readers += 1
+        if staged:
+            origin = dict(origin, restore_id=next(self.restore_ids))
+        self.record("get_" + tier, obj, origin, native_lease_ms=ttl)
+        if staged:
+            transfer = Restore(obj, origin, tier, on_complete)
+            if tier == "memory":
+                self._ready_h2d(transfer)
+            else:
+                if (
+                    client.staging_waiters
+                    or size > self.config.staging_bytes - client.restore_staging_bytes
+                ):
+                    self.record(
+                        "staging_wait",
+                        obj,
+                        origin,
+                        staging_client=obj.owner,
+                        used_bytes=client.restore_staging_bytes,
+                    )
+                client.staging_waiters.append(transfer)
+                self._admit_staged_reads(obj.owner)
+            return transfer
+        if tier == "disk":
             end = self._disk_read(obj, origin, origin["rank"] % self.config.clients)
-            obj.disk_read_until = max(obj.disk_read_until, end)
-            return end
-        end = max(self.clock.now, client.memory_free_at) + math.ceil(
-            size * 1e9 / (self.config.memory_mib_s * MIB)
-        )
-        client.memory_free_at = end
-        self.clock.at(end, self._finish_get, obj, origin)
+        else:
+            end = max(self.clock.now, client.memory_free_at) + math.ceil(
+                size * 1e9 / (self.config.memory_mib_s * MIB)
+            )
+            client.memory_free_at = end
+            self.clock.at(end, self._finish_get, obj, origin)
+        if on_complete:
+            self.clock.at(end, on_complete)
         return end
 
     def _finish_get(self, obj, origin):
@@ -528,6 +671,13 @@ class ObjectStore:
     def summary(self):
         if self.allocating:
             raise ValueError("Unfinished PUT allocations at the audit boundary")
+        if (
+            any(self.h2d_waiters)
+            or self.busy_ranks
+            or self.busy_memory_ports
+            or any(c.restore_staging_bytes or c.staging_waiters for c in self.clients)
+        ):
+            raise ValueError("Unfinished staged GET at the audit boundary")
         if self.timeline is not None and self.timeline.rows:
             raise ValueError("Unused offload timing records at the final boundary")
         allocated, capacity, _ = map(int, self._call("usage"))
@@ -559,6 +709,15 @@ class ObjectStore:
                     "peak_memory_bytes": c.peak_memory_bytes,
                     "peak_disk_bytes": c.peak_disk_bytes,
                     "peak_staging_bytes": c.peak_staging_bytes,
+                    **(
+                        {
+                            "restore_staging_bytes": c.restore_staging_bytes,
+                            "peak_restore_staging_bytes": c.peak_restore_staging_bytes,
+                            "restore_staging_capacity_bytes": self.config.staging_bytes,
+                        }
+                        if self.config.h2d_mib_s is not None
+                        else {}
+                    ),
                 }
                 for index, c in enumerate(self.clients)
             ],

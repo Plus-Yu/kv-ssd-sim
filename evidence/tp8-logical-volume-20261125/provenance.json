@@ -1,0 +1,77 @@
+{
+  "host": "n15",
+  "base_commit_at_archive": "f27459eb56889c492649affd0fd76e00a8a735c7",
+  "source_tree": "base commit plus local changes. Run-time implementation digests are in each launch.json.",
+  "post_run_tool_sha256": {
+    "scripts/run_kvlab_matrix.py": "b7ba90b7f472e8469762d2b12dbef9c2b96dcdd29a5c11da1e42dc349aacbe41",
+    "scripts/compare_volume_replay.py": "9a4f9a4aff7b1dcf10311715a764474551e458fe919bb59553dc49bbcd5f2e06",
+    "scripts/check_public_replay.py": "9ebde138cd7454b0302e9db04887df4dd189cdeb166ed6a2a27deafc94907d18"
+  },
+  "trial_path_n15": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/logical-volume-20261125-2bqxD5",
+  "source_revision": "5afaa89882fc2c24a3dcb8bcdcd0485770c5021d",
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "source_file_on_n15": ".object-replay-build/kvlab-source/replay-40d-oct14-337a03810637.jsonl",
+  "input_sha256": "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997",
+  "independent_recompile_input_and_window_byte_identical": true,
+  "config_sha256_at_run": {
+    "single-3tb": "ec4fb3dfd789c20774c120c629a5b01bfe8ab6512f3e4dbec5a367cba4ab6300",
+    "volume-4x": "8c9ca3fdf0c1ad79ebdf8e3a4997f4d30d5c01fb9b7dab9142fc199246e2a516"
+  },
+  "vllm_at_run": "0.34.0rc1.dev302+gbe47189f3.cpu",
+  "native_master_at_run": {
+    "backend": "mooncake.MasterService.BatchEvict",
+    "mooncake_version": "0.3.14",
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_url": "https://codeload.github.com/kvcache-ai/Mooncake/tar.gz/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "archive_sha256": "482df63a230655e2210789179110a6bcf581360cb577acda5b941939d33709a7",
+    "wheel_dso": "/home/yzh/projects/kv-ssd-sim/.venv/lib/python3.13/site-packages/mooncake/_store.cpython-313-x86_64-linux-gnu.so",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92",
+    "master_source_sha256": "40899db810afcb48b6dc9bc6c6ad08b70005b688362dd7f58ec531a115c84a5b",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "builder_sha256": "7c62d48c63c5ab5ca5a36abbaeb5f1269f6809427546afbe3d02b0060d6a73ea",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "compiler": "g++-12 (Ubuntu 12.3.0-1ubuntu1~22.04.2) 12.3.0"
+  },
+  "hash_seed_from_launch": {
+    "four_warm_runs": "0",
+    "historical_control": null,
+    "pressure": null
+  },
+  "warm_wall_time_and_peak_rss_from_gnu_time": {
+    "single-3tb": "2:14.02 1508488 KiB",
+    "volume-1x": "2:12.86 1508964 KiB",
+    "volume-4x": "2:10.93 1508480 KiB",
+    "volume-8x": "2:10.40 1509168 KiB"
+  },
+  "short_matrix_entrypoint_smoke": {
+    "single-3tb": {
+      "profile": "reference-single-ssd",
+      "service": null,
+      "requests": 3,
+      "status": "complete",
+      "objects": 2462
+    },
+    "volume-1x": {
+      "profile": "reference",
+      "service": "1x",
+      "requests": 3,
+      "status": "complete",
+      "objects": 2462
+    },
+    "volume-4x": {
+      "profile": "reference",
+      "service": "4x",
+      "requests": 3,
+      "status": "complete",
+      "objects": 2462
+    },
+    "volume-8x": {
+      "profile": "reference",
+      "service": "8x",
+      "requests": 3,
+      "status": "complete",
+      "objects": 2462
+    }
+  }
+}

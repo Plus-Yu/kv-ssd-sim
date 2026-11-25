@@ -1,0 +1,833 @@
+{
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "input_sha256": "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997",
+  "requests": 136,
+  "sessions": 7,
+  "warmup_source_requests": 32,
+  "cases": {
+    "single-3tb": {
+      "profile": "reference-single-ssd",
+      "client_quota_bytes": 375000000000,
+      "total_quota_bytes": 3000000000000,
+      "effective_bytes_s": {
+        "write": 5000000000.0,
+        "read": 6800000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 29446557696
+            },
+            {
+              "read": 0,
+              "write": 29443018752
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29437710336
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29450096640
+            },
+            {
+              "read": 0,
+              "write": 29455405056
+            },
+            {
+              "read": 0,
+              "write": 29457174528
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 14481358848
+            },
+            "KDA": {
+              "read": 0,
+              "write": 221091102720
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 1393230000000,
+          "bins": 140,
+          "read_bytes": 0,
+          "write_bytes": 235572461568,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 25515491328,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 19871198208
+            },
+            {
+              "read": 0,
+              "write": 19867659264
+            },
+            {
+              "read": 0,
+              "write": 19865889792
+            },
+            {
+              "read": 0,
+              "write": 19860581376
+            },
+            {
+              "read": 0,
+              "write": 19864120320
+            },
+            {
+              "read": 0,
+              "write": 19869428736
+            },
+            {
+              "read": 0,
+              "write": 19874737152
+            },
+            {
+              "read": 0,
+              "write": 19876506624
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 9309192192
+            },
+            "KDA": {
+              "read": 0,
+              "write": 149640929280
+            }
+          },
+          "start_ns": 320756269648,
+          "end_ns": 1393230000000,
+          "bins": 108,
+          "read_bytes": 0,
+          "write_bytes": 158950121472,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 24066514944,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      },
+      "unique_objects": 19992,
+      "write_identity_sha256": "ea7c0a14007bcb9e8cd7c4dd1246259e8cea5c250a30c30003565c68309dae5d",
+      "memory_gets": 0,
+      "evicted_memory_objects": 0,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        29446557696,
+        29443018752,
+        29441249280,
+        29437710336,
+        29441249280,
+        29450096640,
+        29455405056,
+        29457174528
+      ],
+      "anchor": {
+        "time_ns": 320756269648,
+        "event": "measurement_anchor",
+        "request": "01cbca8f-1cdd-4727-9d21-3b5205b51306/1960811",
+        "allocated_bytes": 76622340096,
+        "capacity_bytes": 1024000000000,
+        "local_pool_usage": 0.03129496402877696,
+        "local_cached_hashes": 819,
+        "in_progress_allocations": 0,
+        "memory_payload_bytes": 76622340096,
+        "reserved_disk_bytes": 76622340096,
+        "published_disk_bytes": 76622340096,
+        "counts": {
+          "put_allocated": 6739,
+          "put_complete": 6739,
+          "disk_write_submit": 6739,
+          "disk_write_start": 6739,
+          "disk_publish": 6739
+        }
+      },
+      "requests_admitted_before_anchor": 35,
+      "requests_finished_before_anchor": 34,
+      "last_request_finished_ns": 1387194381623,
+      "last_io_complete_ns": 1393228329490,
+      "drain_after_last_finish_ns": 6033947867,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 1573254144
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 2110811136,
+      "volume_ios": {
+        "read": 0,
+        "write": 1208
+      },
+      "read_identity_difference_vs_4x": {
+        "full": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      }
+    },
+    "volume-1x": {
+      "profile": "reference",
+      "client_quota_bytes": 3000000000000,
+      "total_quota_bytes": 24000000000000,
+      "effective_bytes_s": {
+        "write": 5000000000.0,
+        "read": 6800000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 29446557696
+            },
+            {
+              "read": 0,
+              "write": 29443018752
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29437710336
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29450096640
+            },
+            {
+              "read": 0,
+              "write": 29455405056
+            },
+            {
+              "read": 0,
+              "write": 29457174528
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 14481358848
+            },
+            "KDA": {
+              "read": 0,
+              "write": 221091102720
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 1393230000000,
+          "bins": 140,
+          "read_bytes": 0,
+          "write_bytes": 235572461568,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 25515491328,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 19871198208
+            },
+            {
+              "read": 0,
+              "write": 19867659264
+            },
+            {
+              "read": 0,
+              "write": 19865889792
+            },
+            {
+              "read": 0,
+              "write": 19860581376
+            },
+            {
+              "read": 0,
+              "write": 19864120320
+            },
+            {
+              "read": 0,
+              "write": 19869428736
+            },
+            {
+              "read": 0,
+              "write": 19874737152
+            },
+            {
+              "read": 0,
+              "write": 19876506624
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 9309192192
+            },
+            "KDA": {
+              "read": 0,
+              "write": 149640929280
+            }
+          },
+          "start_ns": 320756269648,
+          "end_ns": 1393230000000,
+          "bins": 108,
+          "read_bytes": 0,
+          "write_bytes": 158950121472,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 24066514944,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      },
+      "unique_objects": 19992,
+      "write_identity_sha256": "ea7c0a14007bcb9e8cd7c4dd1246259e8cea5c250a30c30003565c68309dae5d",
+      "memory_gets": 0,
+      "evicted_memory_objects": 0,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        29446557696,
+        29443018752,
+        29441249280,
+        29437710336,
+        29441249280,
+        29450096640,
+        29455405056,
+        29457174528
+      ],
+      "anchor": {
+        "time_ns": 320756269648,
+        "event": "measurement_anchor",
+        "request": "01cbca8f-1cdd-4727-9d21-3b5205b51306/1960811",
+        "allocated_bytes": 76622340096,
+        "capacity_bytes": 1024000000000,
+        "local_pool_usage": 0.03129496402877696,
+        "local_cached_hashes": 819,
+        "in_progress_allocations": 0,
+        "memory_payload_bytes": 76622340096,
+        "reserved_disk_bytes": 76622340096,
+        "published_disk_bytes": 76622340096,
+        "counts": {
+          "put_allocated": 6739,
+          "put_complete": 6739,
+          "disk_write_submit": 6739,
+          "disk_write_start": 6739,
+          "disk_publish": 6739
+        }
+      },
+      "requests_admitted_before_anchor": 35,
+      "requests_finished_before_anchor": 34,
+      "last_request_finished_ns": 1387194381623,
+      "last_io_complete_ns": 1393228329490,
+      "drain_after_last_finish_ns": 6033947867,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 1573254144
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 2110811136,
+      "volume_ios": {
+        "read": 0,
+        "write": 1208
+      },
+      "read_identity_difference_vs_4x": {
+        "full": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      }
+    },
+    "volume-4x": {
+      "profile": "reference",
+      "client_quota_bytes": 3000000000000,
+      "total_quota_bytes": 24000000000000,
+      "effective_bytes_s": {
+        "write": 20000000000.0,
+        "read": 27200000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 29446557696
+            },
+            {
+              "read": 0,
+              "write": 29443018752
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29437710336
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29450096640
+            },
+            {
+              "read": 0,
+              "write": 29455405056
+            },
+            {
+              "read": 0,
+              "write": 29457174528
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 14481358848
+            },
+            "KDA": {
+              "read": 0,
+              "write": 221091102720
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 1394500000000,
+          "bins": 140,
+          "read_bytes": 0,
+          "write_bytes": 235572461568,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 30096857088,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 20102962176
+            },
+            {
+              "read": 0,
+              "write": 20099423232
+            },
+            {
+              "read": 0,
+              "write": 20097653760
+            },
+            {
+              "read": 0,
+              "write": 20092345344
+            },
+            {
+              "read": 0,
+              "write": 20095884288
+            },
+            {
+              "read": 0,
+              "write": 20101192704
+            },
+            {
+              "read": 0,
+              "write": 20104731648
+            },
+            {
+              "read": 0,
+              "write": 20108270592
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 9364045824
+            },
+            "KDA": {
+              "read": 0,
+              "write": 151438417920
+            }
+          },
+          "start_ns": 320756269648,
+          "end_ns": 1394500000000,
+          "bins": 108,
+          "read_bytes": 0,
+          "write_bytes": 160802463744,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 30096857088,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      },
+      "unique_objects": 19992,
+      "write_identity_sha256": "ea7c0a14007bcb9e8cd7c4dd1246259e8cea5c250a30c30003565c68309dae5d",
+      "memory_gets": 0,
+      "evicted_memory_objects": 0,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        29446557696,
+        29443018752,
+        29441249280,
+        29437710336,
+        29441249280,
+        29450096640,
+        29455405056,
+        29457174528
+      ],
+      "anchor": {
+        "time_ns": 320756269648,
+        "event": "measurement_anchor",
+        "request": "01cbca8f-1cdd-4727-9d21-3b5205b51306/1960811",
+        "allocated_bytes": 76622340096,
+        "capacity_bytes": 1024000000000,
+        "local_pool_usage": 0.03129496402877696,
+        "local_cached_hashes": 819,
+        "in_progress_allocations": 0,
+        "memory_payload_bytes": 76622340096,
+        "reserved_disk_bytes": 74769997824,
+        "published_disk_bytes": 74769997824,
+        "counts": {
+          "put_allocated": 6739,
+          "put_complete": 6739,
+          "disk_write_submit": 6612,
+          "disk_write_start": 6612,
+          "disk_publish": 6612
+        }
+      },
+      "requests_admitted_before_anchor": 35,
+      "requests_finished_before_anchor": 34,
+      "last_request_finished_ns": 1387194381623,
+      "last_io_complete_ns": 1394499534142,
+      "drain_after_last_finish_ns": 7305152519,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 597104640
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 2110811136,
+      "volume_ios": {
+        "read": 0,
+        "write": 1202
+      },
+      "read_identity_difference_vs_4x": {
+        "full": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      }
+    },
+    "volume-8x": {
+      "profile": "reference",
+      "client_quota_bytes": 3000000000000,
+      "total_quota_bytes": 24000000000000,
+      "effective_bytes_s": {
+        "write": 40000000000.0,
+        "read": 54400000000.0
+      },
+      "scopes": {
+        "full": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 29446557696
+            },
+            {
+              "read": 0,
+              "write": 29443018752
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29437710336
+            },
+            {
+              "read": 0,
+              "write": 29441249280
+            },
+            {
+              "read": 0,
+              "write": 29450096640
+            },
+            {
+              "read": 0,
+              "write": 29455405056
+            },
+            {
+              "read": 0,
+              "write": 29457174528
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 14481358848
+            },
+            "KDA": {
+              "read": 0,
+              "write": 221091102720
+            }
+          },
+          "start_ns": 0,
+          "end_ns": 1392400000000,
+          "bins": 140,
+          "read_bytes": 0,
+          "write_bytes": 235572461568,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 31677640704,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "by_client": [
+            {
+              "read": 0,
+              "write": 20102962176
+            },
+            {
+              "read": 0,
+              "write": 20099423232
+            },
+            {
+              "read": 0,
+              "write": 20097653760
+            },
+            {
+              "read": 0,
+              "write": 20092345344
+            },
+            {
+              "read": 0,
+              "write": 20095884288
+            },
+            {
+              "read": 0,
+              "write": 20101192704
+            },
+            {
+              "read": 0,
+              "write": 20104731648
+            },
+            {
+              "read": 0,
+              "write": 20108270592
+            }
+          ],
+          "by_type": {
+            "MLA": {
+              "read": 0,
+              "write": 9364045824
+            },
+            "KDA": {
+              "read": 0,
+              "write": 151438417920
+            }
+          },
+          "start_ns": 320756269648,
+          "end_ns": 1392400000000,
+          "bins": 108,
+          "read_bytes": 0,
+          "write_bytes": 160802463744,
+          "read_peak_10s_bytes": 0,
+          "write_peak_10s_bytes": 31677640704,
+          "disk_reads": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      },
+      "unique_objects": 19992,
+      "write_identity_sha256": "ea7c0a14007bcb9e8cd7c4dd1246259e8cea5c250a30c30003565c68309dae5d",
+      "memory_gets": 0,
+      "evicted_memory_objects": 0,
+      "evicted_disk_objects": 0,
+      "peak_disk_bytes_by_client": [
+        29446557696,
+        29443018752,
+        29441249280,
+        29437710336,
+        29441249280,
+        29450096640,
+        29455405056,
+        29457174528
+      ],
+      "anchor": {
+        "time_ns": 320756269648,
+        "event": "measurement_anchor",
+        "request": "01cbca8f-1cdd-4727-9d21-3b5205b51306/1960811",
+        "allocated_bytes": 76622340096,
+        "capacity_bytes": 1024000000000,
+        "local_pool_usage": 0.03129496402877696,
+        "local_cached_hashes": 819,
+        "in_progress_allocations": 0,
+        "memory_payload_bytes": 76622340096,
+        "reserved_disk_bytes": 74769997824,
+        "published_disk_bytes": 74769997824,
+        "counts": {
+          "put_allocated": 6739,
+          "put_complete": 6739,
+          "disk_write_submit": 6612,
+          "disk_write_start": 6612,
+          "disk_publish": 6612
+        }
+      },
+      "requests_admitted_before_anchor": 35,
+      "requests_finished_before_anchor": 34,
+      "last_request_finished_ns": 1387194381623,
+      "last_io_complete_ns": 1392397137989,
+      "drain_after_last_finish_ns": 5202756366,
+      "submitted_after_last_finish_bytes": {
+        "read": 0,
+        "write": 1395892224
+      },
+      "outstanding_at_last_finish_bytes": {
+        "read": 0,
+        "write": 0
+      },
+      "peak_outstanding_bytes": 2110811136,
+      "volume_ios": {
+        "read": 0,
+        "write": 1233
+      },
+      "read_identity_difference_vs_4x": {
+        "full": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        },
+        "measurement": {
+          "only_here": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          },
+          "only_4x": {
+            "occurrences": 0,
+            "unique_keys": 0,
+            "bytes": 0
+          }
+        }
+      }
+    }
+  }
+}

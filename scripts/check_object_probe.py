@@ -12,7 +12,7 @@ from kv_ssd_sim.object_store import MIB, Clock, ObjectStore, StoreConfig
 from kv_ssd_sim.runtime import PROJECT_ROOT as ROOT
 
 
-def check(reference):
+def check(reference, events_path=None):
     clock = Clock()
     events = []
 
@@ -20,14 +20,23 @@ def check(reference):
         events.append(dict(event=event, time_ns=clock.now, **data))
 
     with ObjectStore(clock, StoreConfig(1, 768 * MIB, 64 * MIB, 1024 * MIB), record) as store:
-        return exercise(reference, store, clock, events)
+        result = exercise(reference, store, clock, events)
+    if events_path:
+        with events_path.open("x") as target:
+            for event in events:
+                target.write(json.dumps(event) + "\n")
+    return result
 
 
 def exercise(reference, store, clock, events):
     from vllm.distributed.kv_transfer.kv_connector.v1.mooncake_store.coordinator import (
         MooncakeStoreCoordinator,
     )
-    from vllm.distributed.kv_transfer.kv_connector.v1.mooncake_store.data import LoadSpec, ReqMeta
+    from vllm.distributed.kv_transfer.kv_connector.v1.mooncake_store.data import (
+        LoadSpec,
+        MooncakeStoreConnectorMetadata,
+        ReqMeta,
+    )
     from vllm.sampling_params import SamplingParams
     from vllm.utils.hashing import sha256
     from vllm.v1.core.kv_cache_manager import KVCacheManager
@@ -35,7 +44,7 @@ def exercise(reference, store, clock, events):
     from vllm.v1.request import Request
 
     from kv_ssd_sim.deployment import native_deployment
-    from kv_ssd_sim.object_worker import MetadataRank
+    from kv_ssd_sim.object_worker import MetadataRank, MetadataTransfers
 
     plan, alloc = native_deployment(ROOT / "configs/kimi-k3-b300-step2")
     geo, groups = plan["geometry"], alloc.kv_cache_groups
@@ -102,8 +111,11 @@ def exercise(reference, store, clock, events):
         request.block_hashes,
         load_spec=LoadSpec(0, hits["all_disk_only"], True),
     )
-    for rank in ranks:
-        rank.load(meta)
+    transfers = MetadataTransfers(ranks)
+    metadata = MooncakeStoreConnectorMetadata({"step3"}, set())
+    metadata.requests.append(meta)
+    transfers.submit(metadata, set(), clock.now)
+    premature_ack = bool(transfers.output().finished_recving)
     while clock.events:
         clock.advance(clock.events[0][0])
 
@@ -132,6 +144,14 @@ def exercise(reference, store, clock, events):
         and not store.counts["get_memory"],
         "all_disk_only": len(store.objects) == 36
         and all(o.disk and not o.memory for o in store.objects.values()),
+        "all_ranks_received": not premature_ack
+        and transfers.output().finished_recving == {"step3"},
+        "two_stage_bytes": store.bytes["get_disk"]
+        == store.bytes["disk_read_complete"]
+        == store.bytes["h2d_complete"]
+        == store.bytes["staging_release"],
+        "bounded_restore_staging": store.clients[0].restore_staging_bytes == 0
+        and 0 < store.clients[0].peak_restore_staging_bytes <= store.config.staging_bytes,
     }
     return {
         "status": "passed" if all(checks.values()) else "failed",
@@ -142,6 +162,13 @@ def exercise(reference, store, clock, events):
         "unique_bytes": store.bytes["put_complete"],
         "rank_gets": len(reads),
         "restore_bytes": store.bytes["get_disk"],
+        "restore_staging_capacity_bytes": store.config.staging_bytes,
+        "restore_staging_peak_bytes": store.clients[0].peak_restore_staging_bytes,
+        "staging_wait_objects": store.counts["staging_wait"],
+        "load_complete_ns": next(e["time_ns"] for e in events if e["event"] == "load_complete"),
+        "last_disk_complete_ns": max(
+            e["time_ns"] for e in events if e["event"] == "disk_read_complete"
+        ),
     }
 
 
@@ -151,12 +178,13 @@ if __name__ == "__main__":
         "--reference", type=Path, default=ROOT / "evidence/ssd-c1/femu-c1-probe01.tar.gz"
     )
     p.add_argument("--output", required=True, type=Path)
+    p.add_argument("--events", type=Path, help="Also retain the raw ordered probe events")
     args = p.parse_args()
     os.environ["PYTHONHASHSEED"] = (
         "42"  # explicit seed passed to the native block hasher by this fixture
     )
     os.environ.setdefault("VLLM_SSM_CONV_STATE_LAYOUT", "SD")
-    report = check(args.reference)
+    report = check(args.reference, args.events)
     with args.output.open("x") as stream:
         stream.write(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report))

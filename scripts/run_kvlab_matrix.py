@@ -1,6 +1,7 @@
-"""Replay both source-selected windows under five one-factor reference scenarios."""
+"""Compare volume service scenarios and the single-drive control on identical compiled inputs."""
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -26,11 +27,41 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("windows", type=Path)
     p.add_argument("--output", required=True, type=Path)
-    p.add_argument("--window", choices=("calibration", "holdout"), action="append")
-    p.add_argument("--profile", choices=("reference", "reference-20261124"), default="reference")
+    p.add_argument("--window", choices=("calibration", "holdout", "warm"), action="append")
+    p.add_argument(
+        "--profile",
+        choices=(
+            "reference",
+            "reference-volume-20261125",
+            "reference-single-ssd",
+            "reference-20261124",
+        ),
+        default="reference",
+    )
     args = p.parse_args()
-    scenarios = PUBLIC_SCENARIOS if args.profile == "reference" else HISTORICAL_SCENARIOS
-    for name in args.window or ("calibration", "holdout"):
+    if args.profile in ("reference", "reference-volume-20261125"):
+        name = (
+            "kimi-k3-b300-large-ssd.json"
+            if args.profile == "reference"
+            else "kimi-k3-b300-logical-volume.json"
+        )
+        settings = Path(__file__).resolve().parents[1] / "configs" / name
+        profile = json.loads(settings.read_bytes())
+        scenarios = {
+            f"volume-{factor}": ["--volume-service", factor]
+            for factor in profile["volume"]["service_rate_multipliers"]
+        }
+        scenarios["single-3tb"] = ["--max-model-len", str(profile["max_model_len"])]
+        if args.profile == "reference":
+            scenarios["single-3tb"].extend(["--restore-path", "host-staged"])
+    else:
+        scenarios = (
+            PUBLIC_SCENARIOS if args.profile == "reference-single-ssd" else HISTORICAL_SCENARIOS
+        )
+    default_windows = (
+        ("warm",) if (args.windows / "warm/input.json").is_file() else ("calibration", "holdout")
+    )
+    for name in args.window or default_windows:
         folder = args.output / name
         folder.mkdir(parents=True, exist_ok=False)
         for case, flags in scenarios.items():
@@ -41,7 +72,7 @@ def main():
                         str(Path(__file__).with_name("run_object_replay.py")),
                         str(args.windows / name / "input.json"),
                         "--profile",
-                        args.profile,
+                        "reference-single-ssd" if case == "single-3tb" else args.profile,
                         "--output",
                         str(folder / case),
                         *flags,

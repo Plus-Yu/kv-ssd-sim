@@ -1,0 +1,88 @@
+{
+  "id": "tp8-b300-large-single-ssd-staged-20261125",
+  "kv_gib_per_rank": 55.0,
+  "max_model_len": 1048576,
+  "topology": "One large logical SSD (one FIFO). Eight storage clients have independent quotas, file buckets and restore arenas. No member disks are simulated.",
+  "natural_restore": "Memory replicas take priority. Disk-only objects use staging at the file owner and a separate H2D transfer to the requesting TP rank.",
+  "store": {
+    "lease_ms": 10000,
+    "offload_delay_ms": 10000,
+    "first_offload_ms": 0,
+    "high_watermark": 0.9,
+    "eviction_ratio": 0.05,
+    "disk_high_watermark": 0.9,
+    "disk_low_watermark": 0.8,
+    "put_allocation_ms": 0,
+    "save_ms": 0
+  },
+  "compute": {
+    "prefill_tokens_s": 22000,
+    "decode_ms_batch_1": 11.77,
+    "decode_ms_batch_8": 14.1
+  },
+  "bandwidth": {
+    "put_d2h_GB_s": 57.3,
+    "get_h2d_GB_s": 55.7,
+    "ssd_write_MB_s": 5000,
+    "ssd_read_MB_s": 6800
+  },
+  "sources": {
+    "kv": {
+      "url": "https://github.com/aws-samples/sample-llm-inference-on-eks/blob/main/docs/KIMI-K3-B300-PERFORMANCE.md",
+      "basis": "Single B300 TP8 node, K3 MXFP4, FP8 KV, utilization 0.95, max length 1048576. Reported 55.0 GiB per GPU, rounded. Convert with the pinned local hybrid geometry. Endpoint latency is a separate comparator."
+    },
+    "topology": {
+      "url": "https://docs.vllm.ai/en/v0.34.0/features/mooncake_store_connector_usage/",
+      "hardware_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+      "basis": "The eight 3.84 TB DGX cache devices supply the capacity budget only. This study represents 30.72 TB with one modeled SSD, a 24 TB KV budget and eight 3 TB client quotas.",
+      "os_url": "https://docs.nvidia.com/dgx/dgx-os-7-user-guide/installing_on_ubuntu.html"
+    },
+    "leases_eviction": {
+      "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/types.h",
+      "basis": "Pinned Mooncake 0.3.14 defaults for ordinary read leases, memory high watermark and eviction ratio."
+    },
+    "offload": {
+      "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp",
+      "defaults_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/storage_backend.h",
+      "bucket_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/storage_backend.cpp",
+      "basis": "Eager offload, initial poll at service start, then a 10 s wait after work. Virtual clients start together. At heartbeat completion, reclaim above 90% to at most 80% of the per-client disk quota using native FIFO bucket selection. Usage is accounted in payload bytes."
+    },
+    "prefill": {
+      "url": "https://github.com/whn09/kimi-k3-sglang",
+      "basis": "K3 2P+2D, eight B300 per prefill node, EP8, SGLang. Per-node active prefill throughput about 22k tokens/s with an 8192-token chunk. Cross-engine proxy for fresh tokens."
+    },
+    "decode": {
+      "url": "https://github.com/pegainfer-project/kern-k3-pp-prefill/blob/main/roofline/decode.md",
+      "basis": "K3 CUDA graph step p50, eight GB300, 8192-token context, TP8/EP8/DCP8, synthetic routing. Interpolate batches 1 through 8. Context scaling and mixed steps are uncalibrated."
+    },
+    "host_copy": {
+      "url": "https://github.com/ricardojacomini/b300-benchmarks/blob/main/report/b300_benchmark_report.md",
+      "basis": "Pinned 1024 MB cudaMemcpy, per GPU, 20 iterations. Optimistic local-copy proxy. Fixed control time is set to zero. NUMA, cross-rank contention, RPC and filesystem overhead need calibration."
+    },
+    "ssd": {
+      "url": "https://assets.micron.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad133a40b-b36c-4b17-b768-659acc4d4bca/renditions/original/as/7450-nvme-ssd-tech-prod-spec.pdf",
+      "part_number": "MTFDKCE3T8TFR-1BC15ABYY",
+      "table_url": "https://www.micron.com/products/storage/ssd/data-center-ssd/7450-ssd/part-catalog",
+      "basis": "Use 6.8/5.0 GB/s from the single Micron 7450 PRO E1.S surrogate as the default read/write service of one FIFO. 4x and 8x are optional service-rate sensitivities on the same device."
+    },
+    "restore": {
+      "file": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp#L231-L266",
+      "transfer": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/real_client.cpp#L9516-L9665",
+      "completion": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/client_service.cpp#L4411-L4431",
+      "basis": "Model file-owner restore space and a destination copy, with per-object pipelining within connector sub-batches. Use the host_copy H2D proxy until target measurements are available."
+    }
+  },
+  "volume": {
+    "member_count": 1,
+    "nominal_bytes_per_member": 30720000000000,
+    "offload_quota_bytes_per_client": 3000000000000,
+    "service_rate_multipliers": {
+      "1x": 1,
+      "4x": 4,
+      "8x": 8
+    },
+    "default_service": "1x",
+    "service_model": "One bidirectional FIFO. All scenarios use one logical device. The optional speedup scales this device only."
+  },
+  "restore_path": "host-staged"
+}
