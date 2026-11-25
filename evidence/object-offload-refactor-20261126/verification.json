@@ -1,0 +1,549 @@
+{
+  "status": "passed",
+  "date": "2026-11-26",
+  "host": "n15",
+  "baseline_commit": "4869c1d0e38bcd91e706c209c1810fc04eb12674",
+  "implementation_commit": "a84c944c0f79c37f3f4e91aa1273abca7692e42a",
+  "trial_root": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/refactor-offload-U6uPBB1T",
+  "prior_trial": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/refactor-BllpJxZA",
+  "native": {
+    "mooncake_version": "0.3.14",
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92"
+  },
+  "runtime_source_sha256": {
+    "scripts/run_object_replay.py": "2708f34e4a638a6bc35a9ec12fa78f4fcffea344c090d3663f7e80995cc57d3a",
+    "scripts/check_staged_restores.py": "a762163afc07da2dc9f9e025f5358d8ab39a4420531dbfe8ad1a3fb4e5914d30",
+    "scripts/prepare_object_trace.py": "c71c4807f5acd18cfe43dcaf8a75865afd0b5985b55a4c32fab8f18b2bec2b10",
+    "scripts/prepare_kvlab.py": "df4676ff370bd8cfea8292a79134eb14c027c7853ac9ba784452c35dd54d90e9",
+    "scripts/audit_aiperf_input.py": "b917bd757614367fd134d5f297e223596dcfcaa2cf8c1076c1653f32cc1fe99b",
+    "src/kv_ssd_sim/kvlab.py": "e39f0889424dae233474f59916f930c508a7b3e52419d9307d0bb70722373871",
+    "src/kv_ssd_sim/object_traffic.py": "68815ef97778b2d18e5006b62db94ba2b793fd450514ace2a9039795065b65cf",
+    "src/kv_ssd_sim/object_store.py": "968bc33e5a2502c4141eaecf3db099b1b21389caadccecba29863fcd756f8592",
+    "src/kv_ssd_sim/object_timing.py": "d956a9fb726aa860982074812019626664a0255092c834d1cabc51b983a46304",
+    "src/kv_ssd_sim/object_master.py": "385fc7615d4021bfb442602eafcb97c53206cc0a5bc879da922289cf6e36fc63",
+    "src/kv_ssd_sim/object_worker.py": "7a3d50256ccb9a84e270b3fdf3abdbb233adee09becc3e4b62c22000c5e8f2d2",
+    "src/kv_ssd_sim/native.py": "f51ae92b558e87af0d1e1b2b0fcc00fd967fcc549a61ef2e113b597f3a8b6183",
+    "src/kv_ssd_sim/k3_online.py": "b7fba26e0c5b3cc177749e1e290449baf4e44aa8e96a0c953c08ed9f53b4a84d",
+    "src/kv_ssd_sim/deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de",
+    "src/kv_ssd_sim/payload.py": "3a568e830798aa6d48d539ab7b9d24e7b339c74c30299f0a4abe5710d7634f00",
+    "src/kv_ssd_sim/runtime.py": "7b4b88b27cd739e578cd6fbed9e07235012704126d35e55a2c16970d53407d6f",
+    "src/kv_ssd_sim/events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+    "src/kv_ssd_sim/storage.py": "1c59d8de9d94aec4d5ed4fe9473e83b63ed915a3cf4d274389324d0206fa35eb",
+    "src/kv_ssd_sim/analysis/restore.py": "afbe46e3d645aa858a0b04385dfaf15fcf2f0d2a2a52d4db9db49332bd2031ed",
+    "src/kv_ssd_sim/adapters/vllm.py": "81829a48c6a12b89e901a2f6ccd210da5655dd1f4539336bf2011d79cd15cdf2",
+    "src/kv_ssd_sim/simulation/engine.py": "50b45ed7a0068644c88a8c7ef58fc2f2741ae08ec5f6ce3d0d0c31553f65c6c8",
+    "src/kv_ssd_sim/simulation/runner.py": "91627d89e64753dfdc9647b2188755f3381ceab049da5ec3ee2e7bb64fd8cbf5",
+    "src/kv_ssd_sim/simulation/settings.py": "3c96450a9e96c9446dca2f926a80930ca39cd3c8901bf07205d41691088234f3",
+    "src/kv_ssd_sim/simulation/provenance.py": "a4638b0601e2f58265a2d4a96bb0359fde3386eeab01e684c0574fbee6023cd8",
+    "src/kv_ssd_sim/simulation/clock.py": "1a426153941f115e1b7bca4870b57222bfb3a0b74c24107e071cde9230476535",
+    "src/kv_ssd_sim/simulation/storage/device.py": "389095ee60d1e71fbfdc6c34c9073ded1f8cb815c67ba2ee62e092a1983a06ae",
+    "src/kv_ssd_sim/simulation/storage/offload.py": "3671ae52d6da7ecc375028bd44f1a02b327db6d47b8727f2cf6cd737cbfc0016",
+    "src/kv_ssd_sim/simulation/storage/state.py": "bec1913a243869627ffa72e6036a8113782fd0f1fc60f7a459c377ed477f4649",
+    "src/kv_ssd_sim/simulation/storage/restore.py": "6bf40b63cdc831c2411ea70ea115d4407cdd7b276ec14c5649d1425e97edd826"
+  },
+  "comparisons": {
+    "volume-1x": {
+      "before": "refactor-BllpJxZA/final-matrix/warm/volume-1x",
+      "after": "refactor-offload-U6uPBB1T/replay/warm",
+      "profile": "reference",
+      "clients": 8,
+      "quota_bytes_per_client": 3000000000000,
+      "compiled_input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "dd4c319de467a12154d98db2983dc5fa2c01d05f2e053d6fed30cc90bd4dca79",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "4113da6e10150ac91e23b5abe915545c35d3783d0966296782d60a4596de241c",
+        "ssd-demand.jsonl.gz": "9482a87320af8c5a696d313bedf93231eabc2b3d1af2cca0b17090c151164de8",
+        "ssd-10s.csv": "da24825b5c46fc66295ee182f5342006f9692db950d0c235f7c4fbffdf31488e",
+        "ssd-summary.json": "ee3fd1268eac88f4921c5f63485611542552cf56a03c23ee6c1a83b1cefeb6ca",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1208,
+        "cross_request_bucket_writes": 714,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "volume-4x": {
+      "before": "refactor-BllpJxZA/final-matrix/warm/volume-4x",
+      "after": "refactor-offload-U6uPBB1T/volume-4x",
+      "profile": "reference",
+      "clients": 8,
+      "quota_bytes_per_client": 3000000000000,
+      "compiled_input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "28a212b1ba60e42d42541119cd60d8532af8d20bbf30bcd6a4e86d048f130224",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "b29f656aebb76964277e3c4d543aec700a4702e1c3f40595a49c205695106a24",
+        "ssd-demand.jsonl.gz": "5ad8dc217d761e8e9faa14230cea316460a147810012d364b356657eec576c92",
+        "ssd-10s.csv": "3ce6a217d1f347601a22979ddc6a5a19ff98ff622b8e7347ae91f81bfc8792e2",
+        "ssd-summary.json": "448713a7fdd0dd72e6976398696920672dca65adf22408a3ab690d30653f2009",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1202,
+        "cross_request_bucket_writes": 663,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "volume-8x": {
+      "before": "refactor-BllpJxZA/final-matrix/warm/volume-8x",
+      "after": "refactor-offload-U6uPBB1T/volume-8x",
+      "profile": "reference",
+      "clients": 8,
+      "quota_bytes_per_client": 3000000000000,
+      "compiled_input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "c85799a4c65b575a548fcb8e977f4509718f778fa7bdc93721ebfff56c2a0ba5",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "cee6b2e00d154970c4b330455e95b69933460f23f1f5dccdae3437bf257b2c8c",
+        "ssd-demand.jsonl.gz": "50321bafe65693a0ed9dc32c43ebfb98e47875dd67d9a5d79ce1c355b5ae1949",
+        "ssd-10s.csv": "0fe419891a163d384c8e82ea890d9d46f8cef1128212ea8fc066bd819d2eb28b",
+        "ssd-summary.json": "7d4a69d82445ba35b6d6c0b2152271fe05373e4cc4c2b51f8283f7f87b014d30",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1233,
+        "cross_request_bucket_writes": 633,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "single-3tb": {
+      "before": "refactor-BllpJxZA/final-matrix/warm/single-3tb",
+      "after": "refactor-offload-U6uPBB1T/single-3tb",
+      "profile": "reference-single-ssd",
+      "clients": 8,
+      "quota_bytes_per_client": 375000000000,
+      "compiled_input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "dd4c319de467a12154d98db2983dc5fa2c01d05f2e053d6fed30cc90bd4dca79",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "4113da6e10150ac91e23b5abe915545c35d3783d0966296782d60a4596de241c",
+        "ssd-demand.jsonl.gz": "9482a87320af8c5a696d313bedf93231eabc2b3d1af2cca0b17090c151164de8",
+        "ssd-10s.csv": "da24825b5c46fc66295ee182f5342006f9692db950d0c235f7c4fbffdf31488e",
+        "ssd-summary.json": "ee3fd1268eac88f4921c5f63485611542552cf56a03c23ee6c1a83b1cefeb6ca",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1208,
+        "cross_request_bucket_writes": 714,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "base-staged": {
+      "before": "refactor-BllpJxZA/final-restore/base-staged",
+      "after": "refactor-offload-U6uPBB1T/replay/base-staged",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+        "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "tp8-pressure": {
+      "before": "refactor-BllpJxZA/final-restore/tp8-pressure",
+      "after": "refactor-offload-U6uPBB1T/replay/tp8-pressure",
+      "profile": "reference",
+      "clients": 8,
+      "quota_bytes_per_client": 372244480,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "b30031a0298b59b0420434b02f3475cb1bb08c222675f3f8a58c997664220409",
+        "requests.json": "b43ab7494502f6838a1651b296eb628907ea9e51a1a19f317115e306eff38938",
+        "bucket-timing.jsonl": "0a662ebe5ca1ee8f9fa9c67c34e9be8aa3e8b898ca2c6e6df21c9681eab120e4",
+        "ssd-demand.jsonl.gz": "b6fad6fa112176c7c22a2f59cb61b927baa389334ff7fbcab1359a6b331508d1",
+        "ssd-10s.csv": "d2d715d65f34d08d5568eb02c59fc689949d795df08db4e32cf16061ed3898ad",
+        "ssd-summary.json": "58eb8554fb8db82603f86de2e60efb52f41631e38a6e13309e61ddf5f7107993",
+        "restore-summary.json": "9467414473b0a85cc60ede13bc54edcd202add1d386bcbe72ca1277d5891bc5a",
+        "objects.json": "58e576c8f36e50fb6b4122c0fa70abd4ba209c6410e2d7a546394a64d7178fc9",
+        "reuse.jsonl": "717a0b962abad11f8622c5f29992f4862087ea6981869e615361429255141700"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 8,
+        "cross_request_bucket_writes": 8,
+        "write_bytes": 1411817472,
+        "disk_gets": 10,
+        "read_bytes": 51603456,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "matched-legacy": {
+      "before": "refactor-BllpJxZA/final-restore/matched-legacy",
+      "after": "refactor-offload-U6uPBB1T/replay/matched-legacy",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "660e3cc67fee38ecfa16e5613e013bb13481537694ebb98eca9b05fea301fc06",
+        "requests.json": "fef42bd463d05af2eedcd9518b0e65c3d7c9f5590c2f202c4a0f606738adf661",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "0b2cdfd080f7da4b498fd7be9259854e61796cd18b2396d55c9419b2b337c9c3",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "child-staged": {
+      "before": "refactor-BllpJxZA/final-restore/child-staged",
+      "after": "refactor-offload-U6uPBB1T/replay/child-staged",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "a2fd059a0f73b3bacab52bcb4159a46206cb9e6411385bfae7b250acbfd54f4a",
+        "requests.json": "ca1047029f43c8ebf336b2e3ecf7c260e6ed22743c937889c6c7063f0a2ae22d",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "098770796861d41d0eeb5e5fbde37ddd36a543e6506ee1d6da2d41603d624e05",
+        "ssd-summary.json": "aef8f51cbdbecd2dfee27a8b715b33311eea80c3646d58516cbdd5e61921ff5e",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 5,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "child-legacy": {
+      "before": "refactor-BllpJxZA/final-restore/child-legacy",
+      "after": "refactor-offload-U6uPBB1T/replay/child-legacy",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "4e31611662c8fb9976936f88da47796cc38af6f2c1412bdc4caa99511cdbf54c",
+        "requests.json": "a014d96ae2ea4d8b5d33f02e8146bc1bf5dfcf55ee5ae2a8b04dfbd4a72181c4",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "098770796861d41d0eeb5e5fbde37ddd36a543e6506ee1d6da2d41603d624e05",
+        "ssd-summary.json": "6546cff9d6beecc09a2bbf9e84fa73897a78732270346cf90071df2593e8c7fd",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 5,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "default": {
+      "before": "refactor-BllpJxZA/n15-final",
+      "after": "refactor-offload-U6uPBB1T/default-after",
+      "profile": "n15",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "bc7600f2be50764a4c8f4c7feb8e13bf2ab1671872f9dfbdb19f42470a82d16b",
+        "requests.json": "d077c41d674220c4de4f402ff2dd22a0303472affe6a7e561451c6aade282eab",
+        "bucket-timing.jsonl": "8ad82c54b48fab78ed3a85f0042b5c6186ca9c7e58c9db43a8b8af2d6e2118b6",
+        "ssd-demand.jsonl.gz": "f24ef474a77149844145444ded6bceb31d90f1f70c2d050aa68aaa409ef778b7",
+        "ssd-10s.csv": "9dadcb3f45955b61e67a77c9eea719dfbd93e54fe5aac6401256feafa80437d1",
+        "ssd-summary.json": "0e96af31fdf236d3439ba3b1e5486fa6260f8b5f3879d7be2ff7470b743f7270",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "a7965bd5c22565958d69c57c3a958f4ea5423a1438cecfda1d273fd962fba514",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 0,
+        "write_bytes": 1411817472,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "timeline": {
+      "before": "refactor-BllpJxZA/timeline-final",
+      "after": "refactor-offload-U6uPBB1T/timeline-after",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 2977955840,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+      "output_sha256": {
+        "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+        "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "quota-768": {
+      "before": "refactor-offload-U6uPBB1T/quota-before",
+      "after": "refactor-offload-U6uPBB1T/quota-after",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 805306368,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "66e43ce51a420ab76a5a450add205c7535563098c4c9aafd22af2356c563f9cb",
+        "requests.json": "2ed2e76dbd5dd7e38172a23f48c423eb0ceb6dd152d005176c34a337149e3ca6",
+        "bucket-timing.jsonl": "7a6ae02173817536a63d1f23c884cf8390eacbe76fbf02a01aa3a0218a29d497",
+        "ssd-demand.jsonl.gz": "61a4124c52c182ef73d1f772e4890b0a51ecbbb1819e1f5cdcb1116435de1b67",
+        "ssd-10s.csv": "364d16da3e7f321113bbabe1a60fc493849f1a61307c0dd085b01b5f730e5f48",
+        "ssd-summary.json": "819f7eae93b553a2168eec9a544b299980547d58cb46d58a687eef4dd1c4b210",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "05d6c84e6e8514e7d2b4a6ecb821b761b0394eb017caff91635c073344c87b29",
+        "reuse.jsonl": "40ae7eed01d9eacb053792073ff0eb88a5f7fcb9bcb88fa4c2eb97d8478a18c6"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 7,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1417125888,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 57,
+        "evicted_disk_bytes": 762080256
+      },
+      "reclaim": {
+        "peak_disk_bytes": 767388672,
+        "final_disk_bytes": 655045632,
+        "removed_buckets": [
+          {
+            "owner": 0,
+            "bucket_id": 1,
+            "evicted_ns": 10152416052,
+            "keys": 18,
+            "payload_bytes": 252257280
+          },
+          {
+            "owner": 0,
+            "bucket_id": 2,
+            "evicted_ns": 10203929192,
+            "keys": 18,
+            "payload_bytes": 252257280
+          },
+          {
+            "owner": 0,
+            "bucket_id": 3,
+            "evicted_ns": 10254026754,
+            "keys": 21,
+            "payload_bytes": 257565696
+          }
+        ]
+      }
+    },
+    "quota-1450": {
+      "before": "refactor-offload-U6uPBB1T/watermark-before",
+      "after": "refactor-offload-U6uPBB1T/watermark-after",
+      "profile": "reference",
+      "clients": 1,
+      "quota_bytes_per_client": 1520435200,
+      "compiled_input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "observed_timing_sha256": null,
+      "output_sha256": {
+        "events.jsonl": "2b2979ba15b89de15e45d10b13ecee1ee7cdde9e7731ba1726cca43d593b7467",
+        "requests.json": "2ed2e76dbd5dd7e38172a23f48c423eb0ceb6dd152d005176c34a337149e3ca6",
+        "bucket-timing.jsonl": "7a6ae02173817536a63d1f23c884cf8390eacbe76fbf02a01aa3a0218a29d497",
+        "ssd-demand.jsonl.gz": "61a4124c52c182ef73d1f772e4890b0a51ecbbb1819e1f5cdcb1116435de1b67",
+        "ssd-10s.csv": "364d16da3e7f321113bbabe1a60fc493849f1a61307c0dd085b01b5f730e5f48",
+        "ssd-summary.json": "819f7eae93b553a2168eec9a544b299980547d58cb46d58a687eef4dd1c4b210",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "aef880607e96bf5d5afd994c0ae3ed20268d87b36dc5521e38f6e66b9018f79f",
+        "reuse.jsonl": "40ae7eed01d9eacb053792073ff0eb88a5f7fcb9bcb88fa4c2eb97d8478a18c6"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 7,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1417125888,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 18,
+        "evicted_disk_bytes": 252257280
+      },
+      "reclaim": {
+        "peak_disk_bytes": 1411817472,
+        "final_disk_bytes": 1164868608,
+        "removed_buckets": [
+          {
+            "owner": 0,
+            "bucket_id": 1,
+            "evicted_ns": 10282363497,
+            "keys": 18,
+            "payload_bytes": 252257280
+          }
+        ]
+      }
+    }
+  },
+  "additional_checks": {
+    "warm-comparison.json": "1c0ec688679da4b12d74ddb3fc9025a44314b2cad4ee7e405092a3a6ffc333f1",
+    "child-paired.json": "d9c810a050e6cd3698bb223292cccfaf04ad6b5aa6caa584d0914785adf92055",
+    "controlled-probe/report.json": "a63283cba2782f7b390851c8e26436c84b89adbbf3717585e7077e45843a0730",
+    "controlled-probe/events.jsonl": "4e85e70d113554bbc725925f7aae181bfda1e19cce8126bb99eda2bd2450752b"
+  },
+  "controlled_probe": {
+    "rank_gets": 120,
+    "restore_bytes": 619241472,
+    "staging_wait_objects": 115,
+    "restore_staging_capacity_bytes": 67108864,
+    "restore_staging_peak_bytes": 66788352
+  },
+  "portable_fixture_checks": [
+    "quota-768",
+    "quota-1450",
+    "base-staged"
+  ],
+  "tests": {
+    "prechange-tests.log": {
+      "passed": 2,
+      "sha256": "ce590a3b499e1d238bc4a8447a96d48d812b0e7ac9d09c5dbd02ad1a6adbad7d"
+    },
+    "tests.log": {
+      "passed": 120,
+      "sha256": "1829831d287c5c0541c4ba80a2d07ceeff903cfe8e2fe5ce0d85b38f7a3c40f4"
+    },
+    "native-tests.log": {
+      "passed": 6,
+      "sha256": "17c8f0e56835caec1749dee50698706d0b2a8b289b95c239b63cea5f5f5789a5"
+    }
+  }
+}
