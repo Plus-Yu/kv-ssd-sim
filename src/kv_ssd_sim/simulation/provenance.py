@@ -20,6 +20,7 @@ REPLAY_SOURCES = (
     "src/kv_ssd_sim/events.py",
     "src/kv_ssd_sim/storage.py",
     "src/kv_ssd_sim/analysis/restore.py",
+    "src/kv_ssd_sim/adapters/vllm.py",
     "src/kv_ssd_sim/simulation/engine.py",
     "src/kv_ssd_sim/simulation/runner.py",
     "src/kv_ssd_sim/simulation/settings.py",

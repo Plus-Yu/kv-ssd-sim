@@ -23,7 +23,7 @@ from vllm.v1.kv_cache_interface import KVCacheConfig
 from vllm.v1.outputs import KVConnectorOutput
 from vllm.v1.structured_output import StructuredOutputManager
 
-from .k3_online import metadata_rank_worker
+from .adapters.vllm import metadata_rank_worker
 from .native import scheduler_config
 from .object_store import MIB
 

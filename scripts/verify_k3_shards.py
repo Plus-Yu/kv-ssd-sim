@@ -81,7 +81,7 @@ def run(output, *, mount=None, segment_mib=768, quota_mib=1024):
             "MOONCAKE_OFFLOAD_HEARTBEAT_INTERVAL_SECONDS": "1",
         }
     )
-    from kv_ssd_sim.k3_online import metadata_rank_worker
+    from kv_ssd_sim.adapters.vllm import metadata_rank_worker
 
     rank_workers = [
         metadata_rank_worker(groups, unit, rank, "Kimi-K3", "step3-k3") for rank in range(8)
