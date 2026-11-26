@@ -1,0 +1,1079 @@
+{
+  "date": "2026-11-26",
+  "host": "n15",
+  "baseline_commit": "4609543115242f5e50bbcb9d4c9f078f59ac9bb2",
+  "implementation_commit": "dea311226e28d8ca49d3edca0bd762d34f23c10b",
+  "status": "partial",
+  "open_acceptance": [
+    "fresh_kvm_48_mib_probe",
+    "fresh_kvm_3_gib_0504"
+  ],
+  "milestones": {
+    "6": {
+      "commit": "62bb71a20644026d35d16a477b3a829e28c3d92a",
+      "status": "passed"
+    },
+    "7": {
+      "commit": "598532c4f5c98c132dedcc3a7cda2cd2a5f37796",
+      "status": "passed"
+    },
+    "8": {
+      "commit": "b196fe333cc579d7e1b730c20eb2dfcdcc7e3926",
+      "status": "native_and_archived_verification_passed_fresh_kvm_pending"
+    },
+    "9": {
+      "commit": "dea311226e28d8ca49d3edca0bd762d34f23c10b",
+      "status": "passed"
+    }
+  },
+  "trial_root": "/home/yzh/projects/kv-ssd-sim/.object-replay-build/trials/full-refactor-V3wpUodu",
+  "runtime_source_sha256": {
+    "scripts/run_object_replay.py": "2708f34e4a638a6bc35a9ec12fa78f4fcffea344c090d3663f7e80995cc57d3a",
+    "scripts/check_staged_restores.py": "a762163afc07da2dc9f9e025f5358d8ab39a4420531dbfe8ad1a3fb4e5914d30",
+    "scripts/prepare_object_trace.py": "635ce8a5283c043c909e3d5213188e945a2d6900c97ff3e2f92b04ca01f3cf81",
+    "scripts/prepare_kvlab.py": "b58505cceca25d712e7f288885e45adebefdda1e5f7c58fa12ea8f20516c8aa3",
+    "scripts/audit_aiperf_input.py": "5518b8b96799832324d3ba7b65716f16f2cc8ef2acc800951f0d2e726780266c",
+    "scripts/audit_weka.py": "7fae0b39066ad424375e40644393949f280ddaa1d00045774731b5f45d4b24d8",
+    "src/kv_ssd_sim/__init__.py": "61e261907cad6a033775f6b30308856fd3fcb7632dcb4d9c19c7f6e9c6b993fb",
+    "src/kv_ssd_sim/__main__.py": "ef6dd0ed3e82600907ea1f1239567dcf7a88bf867c603b4568f2ca811ae13ee4",
+    "src/kv_ssd_sim/adapters/__init__.py": "ee40bd8f732284e1978095fc070503a6cda70b599690e82560bffccec07b037b",
+    "src/kv_ssd_sim/adapters/mooncake.py": "d89f1826595a10f720e99d3dfa12281d5f3adb9a8dc870f1ffe917a9d7337d52",
+    "src/kv_ssd_sim/adapters/vllm.py": "8d6c0a44a6f3ead09b55de7897c27fcadf5301d78ec357a58af483080908e031",
+    "src/kv_ssd_sim/analysis/__init__.py": "d2f2b13161e3a4e57673050a4d774af750f3135232e90fa4dc607820c427badb",
+    "src/kv_ssd_sim/analysis/aiperf.py": "1eeb1a28d16cb767169ea7f65c51b7f9bb9a28ceb776ceb841d11570386df98c",
+    "src/kv_ssd_sim/analysis/block_capture.py": "6422aafc6c586963fafdf141bb2dc5ad3f50ccf4bcbf5f5a90f4df36d74aa20f",
+    "src/kv_ssd_sim/analysis/block_io.py": "c02a13377fb6adf4d859f88b4b5bda99dd2e6bd5ee2f0bc271327cf42213f638",
+    "src/kv_ssd_sim/analysis/femu.py": "c4cf0d96f5bbc69fa6dbb33fac1c58dedcbf13aa8ed94334874b91456c53bab8",
+    "src/kv_ssd_sim/analysis/nand.py": "2f82142363e8ef7b5d5c78ac781f54fd0969f3bc9431c3c7629a035c1544a6e8",
+    "src/kv_ssd_sim/analysis/natural.py": "feaca9517b5531c551839c302b7f0cc1acda1319231b14111085208dd8ed41fa",
+    "src/kv_ssd_sim/analysis/pressure.py": "733f4684012b24927c1ef034160ebf89c133095bd94eb0cf1845c52ca7c10536",
+    "src/kv_ssd_sim/analysis/restore.py": "afbe46e3d645aa858a0b04385dfaf15fcf2f0d2a2a52d4db9db49332bd2031ed",
+    "src/kv_ssd_sim/analysis/reuse.py": "a190988a956763e2e1bda5a4132f883c9fa1095c4880e0e7d003487c25c439d0",
+    "src/kv_ssd_sim/analysis/traffic.py": "946b15b8324a58f23f24fc3104cfedebbb6ca9aa4ac4cca681a9d1769b0b8805",
+    "src/kv_ssd_sim/audit.py": "878ba146966187aeb77ae606b889217fb9969bfbbb4628f648c0d98c465957aa",
+    "src/kv_ssd_sim/block_capture.py": "04338f1f059a8263dd75c15a7a7fed9a80962fa13a98c2fb3b74bbf2d60de334",
+    "src/kv_ssd_sim/cli.py": "58bbc9c19c025a7a439f142b6e27dc76d6053262683ed49bd7f188a1d1d0f181",
+    "src/kv_ssd_sim/core/__init__.py": "31e740e7e4f5da4d439659b4d31c713e4395c03312de5d40fd330090889d3e64",
+    "src/kv_ssd_sim/core/paths.py": "1605d136cea520e050d24347c98b8bb2898e66812da17c8b1ce5f536e92fac6d",
+    "src/kv_ssd_sim/core/provenance.py": "63a12bfd2b38439816d6bc5cf595188c411d229108837af1b4cd8631787295b6",
+    "src/kv_ssd_sim/deployment.py": "e2dc534ad96b3e25b40c4c7f45a8a60251810f6704a27b580f74cd06bf6d3b9f",
+    "src/kv_ssd_sim/devices/__init__.py": "f838a1af7d5e7ae3596ab65511291f33d627b6c704c1c6423421fe1d91ea84bc",
+    "src/kv_ssd_sim/devices/femu/__init__.py": "f623a83da15eff00eefa18d110f81c085c3a123fb0f19486915e4c92ff248d7e",
+    "src/kv_ssd_sim/devices/femu/block_capture.py": "9f9d01bfb86be78385982ceca3615d2bbbc591d063da38e4b4fb167e20c56f5f",
+    "src/kv_ssd_sim/devices/femu/device.py": "c17ae39642dd421f1ddd53fb98bf0a52537d2e1a07d7d4529fd6e327442c96ac",
+    "src/kv_ssd_sim/devices/femu/launcher.py": "9e1d2a859215cfa2e8588cfd04b0e6ccbb50f075c6d4866c8499c396c68ca0db",
+    "src/kv_ssd_sim/devices/femu/layout.py": "a12bb004366fdcc805a493125b4f6e876b0f5984cd1b0b84204cd206622b61fa",
+    "src/kv_ssd_sim/devices/femu/nand.py": "677f26fe4abb85e269d68e25b90e69b29d424fc02023e4aa17d1cb54bda1d4a3",
+    "src/kv_ssd_sim/devices/femu/probe.py": "9b1cb36bb569466fad18c3d8e1a127e82b1f4b745a07d0629667d5f7dc37a01c",
+    "src/kv_ssd_sim/devices/femu/qmp.py": "79f5b0f467e22d40e2f465c24d0e82971cc793d766648256dd9368d987130159",
+    "src/kv_ssd_sim/devices/femu/workload.py": "f50835ce4318925c970b5c665b69dc1ad60e8e68e6f52612e7301a2007d9d677",
+    "src/kv_ssd_sim/engine.py": "89c1c0661281dfea45da3a53f7614ad907f1fd36f2169caad61b15f8d7ed22a4",
+    "src/kv_ssd_sim/events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+    "src/kv_ssd_sim/experiment.py": "c0dd92899df0191a0a6ee2ed21436aca64962a0875c30e434b964bc8f142df26",
+    "src/kv_ssd_sim/experiments/__init__.py": "ff034e821ab1a3cd169eba3dc73e0a276156d805864602b40547c6d910e245a5",
+    "src/kv_ssd_sim/experiments/profiles.py": "5b24983af08af2743b45594820e14edcf816242051ce57006aa108296b26eb46",
+    "src/kv_ssd_sim/experiments/provenance.py": "797a786796bf3eff296512618d1f51a6079d3d05c4ae6086c879d15f72f6d602",
+    "src/kv_ssd_sim/experiments/runner.py": "ecad6cf51310060348ed1d64646b06330532086e07c418f6667f1338b12e75c9",
+    "src/kv_ssd_sim/experiments/settings.py": "fe3c8af13ff3e8174fabbd95663c62385f7c9c12b5ee4fdf363121b3697eb4d7",
+    "src/kv_ssd_sim/femu.py": "ef919287e8e3bbeebacdce268cc8bdca537b943f439f8ed07bcdab47bcaae671",
+    "src/kv_ssd_sim/hybrid.py": "d33e17c62bb892ecd2a31d9da668cc8826488804e27bb86ec0b1c047ae79ac3c",
+    "src/kv_ssd_sim/k3_online.py": "883bfcad68f8180530b136dfc057efd5347c20c43caae755af6794ce18b1237d",
+    "src/kv_ssd_sim/kvlab.py": "82f16dd063dc310b7a95ee033409db3afbef1a678d02ad7095d0c47312d49f67",
+    "src/kv_ssd_sim/layout.py": "d1570e32343f75366acb1d6d91df18489b288013173182525bfa6a26c81067f1",
+    "src/kv_ssd_sim/metadata_cache.py": "4989c095a31d1610824f1b56460c25ff857378063ecd5dbac5b797571a917e91",
+    "src/kv_ssd_sim/models/__init__.py": "50cb5fc8d655c06ec376a6012d389015c956929caafc565cddb59ef4e02ccffc",
+    "src/kv_ssd_sim/models/deployment.py": "129baa879b658fcf8013810b220a183ec4630084367f9323f833f61bf65d66d0",
+    "src/kv_ssd_sim/models/hybrid.py": "f252cc98973d56a9b8667deeb8df75433657745fc4f2f313753a7136db240113",
+    "src/kv_ssd_sim/models/kimi_k3.py": "3c80251b862f917ad0674fb882403e0fb817e4d60117cbbe27692298ea6fc4be",
+    "src/kv_ssd_sim/nand.py": "5ca884e22156dfb189b18f521bad3989621a041733fe3be1b8ef1995b2c94da0",
+    "src/kv_ssd_sim/native.py": "0c69bf18de6ba6faa9197d4cdb518ba92fb9b630fa76b321d712eb265351d8f1",
+    "src/kv_ssd_sim/object_master.py": "4d3cd80f7ba1700b437d1cd79f48c0d744b56c8c41104d341a20205f072f0ec8",
+    "src/kv_ssd_sim/object_store.py": "d156d384abd7ce07c3c84c82efbc064b51a16c6aebc201380331c11a449d9e05",
+    "src/kv_ssd_sim/object_timing.py": "59cc8d27182cda0a6da5ae6a5d7b012ab361d5350bba833fe8e4585cc569466e",
+    "src/kv_ssd_sim/object_traffic.py": "1b4fcda3a6068125786b0eb7e9da06c57aaa22874846e32e19e5c403a1ecd29b",
+    "src/kv_ssd_sim/object_worker.py": "44e5698fe1a028c3c2cd698f9221abf9e0e98cdc96a46f4737b0d67034178b8f",
+    "src/kv_ssd_sim/online/__init__.py": "b6a69945d71aa281d1734d182a908ec80c5d5079e1390e7578810429cf8160e0",
+    "src/kv_ssd_sim/online/buffers.py": "83e550475ecbe33bd2d540842d084bb993849b87fad40e829a0a7f5ae469f14d",
+    "src/kv_ssd_sim/online/engine.py": "af0b40587d26766cc1ca2a0e2d551c5d96cbaa4091af6f6d0f11cbf40a5001dd",
+    "src/kv_ssd_sim/online/experiment.py": "1679b090b72b5d9b7237035af1fece1ec84b22fddc7deee66534ea62c2dbc8ff",
+    "src/kv_ssd_sim/online/k3_online.py": "967d6b95c53b6f23705951fc02290d76d58a82b73ea69f5f1f1a0292dddba0ae",
+    "src/kv_ssd_sim/online/metadata_cache.py": "ca1a5cdddac39f9c1d59c4c4fc67184deb519861c51bd2fbd1b217d471f552bf",
+    "src/kv_ssd_sim/online/native.py": "06da6aac3b9bd5c6dcb009a5dd99ba7135d054eaaba7571dd88e46c042ce66e4",
+    "src/kv_ssd_sim/online/payload.py": "0f3d199ac6327178fc041b7d3eb50f522d5f202d0be18bcb8cecf244a03b9c5d",
+    "src/kv_ssd_sim/online/pressure.py": "5f82fa5c8b0205c7829c984f367e9f912ce1af872745bfc23f72ea85654bf47f",
+    "src/kv_ssd_sim/online/runtime.py": "c2a062b3e036bf98f17dbb28691559906d0e8069056906b6eb8127424f1ffab6",
+    "src/kv_ssd_sim/online/server.py": "e8c51b20b35a982d5732124614d13706a1032e5cd41e06c3a60d3f347019f265",
+    "src/kv_ssd_sim/online/smoke.py": "218f1152ef8bd5e56c15525149f68ab93f770eb11d8c0e07e1cd8b8c51579d36",
+    "src/kv_ssd_sim/online/storage.py": "abc39ef554f32194708c26dc20bbbad9df0af173b1303c3b5baf1fdaed0de6eb",
+    "src/kv_ssd_sim/online/timing.py": "82d8b9c23f5dba551232ac8d54494d92a8cb02a73109bf2291db8d1cf7c12915",
+    "src/kv_ssd_sim/payload.py": "614aed61e65063f5bdc49ed332cbe38fa518021e39ad84235f9e8c0ae7586b93",
+    "src/kv_ssd_sim/pressure.py": "8419873672b02e92f08da7b3e766075294e8bf2166945d49d8bb37b58ba9a3bf",
+    "src/kv_ssd_sim/runtime.py": "93c905cb29eec34c0387b6f028b4b4355bb7de45aa7ae51c398ab1e09cfcc4c0",
+    "src/kv_ssd_sim/server.py": "b60c2e668366f736c78306d7c4f872882a363e0516a04695a1f8e859513122e4",
+    "src/kv_ssd_sim/simulation/__init__.py": "1f76c8e30d0865df633044adaadade190a67755997c88ff84daff212d6bf9099",
+    "src/kv_ssd_sim/simulation/clock.py": "1a426153941f115e1b7bca4870b57222bfb3a0b74c24107e071cde9230476535",
+    "src/kv_ssd_sim/simulation/engine.py": "263869b1234465860963ab6b01b303fb070f2f8b936faab65289642fa86a88c6",
+    "src/kv_ssd_sim/simulation/provenance.py": "c449b2c31238e45657e62560b41b6e6d5a70b25f923fc078ba64f6ff0f95812c",
+    "src/kv_ssd_sim/simulation/runner.py": "f8f61abfd92e7a31948eced1adf2314678d019df4fe82a600d0d02f98f393795",
+    "src/kv_ssd_sim/simulation/settings.py": "7af42d1659d9a47a4371f42df57dd968c2c35da5b971ada13544c236018d1d2c",
+    "src/kv_ssd_sim/simulation/storage/__init__.py": "5698780060933ec6637c86a08dac0bbed212abf78c22f4637b099af7fd606b95",
+    "src/kv_ssd_sim/simulation/storage/config.py": "bec50d02874954b84df80c9b335b3aa150e4473af43fd9f027c7ab10ceb3b450",
+    "src/kv_ssd_sim/simulation/storage/device.py": "fa09cfd4818376c0a609652b55fe2246fa834f5a77a4bcd9f0cfe7806d45c1e6",
+    "src/kv_ssd_sim/simulation/storage/offload.py": "72b977235928cce8179f0ce4b40c2883e42abdb8a1bff46c5e193fa81e62310f",
+    "src/kv_ssd_sim/simulation/storage/restore.py": "50e6115f2ded1cc434c53d0d1237099b9ccce3df91ddba5de2aefc7ad639678b",
+    "src/kv_ssd_sim/simulation/storage/staging.py": "5551f3005ee6fb79440f90d28a5828d3a6110f5954186c9c97f8ee1a38a54d64",
+    "src/kv_ssd_sim/simulation/storage/state.py": "bec1913a243869627ffa72e6036a8113782fd0f1fc60f7a459c377ed477f4649",
+    "src/kv_ssd_sim/simulation/storage/store.py": "61a9da97d37fd01be485440faa104ed45b1387cd07fb6b6e274c06054146fa74",
+    "src/kv_ssd_sim/simulation/storage/transfer.py": "ff664eae963ce2fd2a5ee94375e06ac55459dc068c6160ecf0c70cd9c04768ce",
+    "src/kv_ssd_sim/simulation/timing.py": "d956a9fb726aa860982074812019626664a0255092c834d1cabc51b983a46304",
+    "src/kv_ssd_sim/simulation/worker.py": "c6c0266ab3c5c61caa87a05b346c6c9e5fc8ae6ef7e56bfa2239e7b5520b4dfe",
+    "src/kv_ssd_sim/smoke.py": "b9b2efffc08a3d23973127d865477aa95d5d9ca33820e7d1412d92439f638dd8",
+    "src/kv_ssd_sim/storage.py": "4fcd2a7e0877b6284993ca5160f9c823f7f0da0278f3f4c21b1f8f5cac5752ce",
+    "src/kv_ssd_sim/timing.py": "7c2dc5ebe850c8dd9f8cecbffa44b5bb921db1cb60b17b3d141697aeef41485e",
+    "src/kv_ssd_sim/trace.py": "96ad8c0b48b598e362b01c25caaaf9f2ce7c148a4ec1a2144f18c92de7b922a9",
+    "src/kv_ssd_sim/workload/__init__.py": "e624c8a59231d31ce996d3c0d2f043279a078fd291af36457ef8e78f8c7d9fb3",
+    "src/kv_ssd_sim/workload/aiperf.py": "fd61aef4de0a47ec008b4692f9d183dc1c4055b263665108774ff2ee0229992e",
+    "src/kv_ssd_sim/workload/arrivals.py": "0336e5db8cb6cf716daaebc7aa14e7a5ac7f44aeef57289a22a518831d7e1b5b",
+    "src/kv_ssd_sim/workload/audit.py": "7156f2760e2172ec8a0072f50ce81095acb2c715ea61a5d08c6ebca77b4a3d9e",
+    "src/kv_ssd_sim/workload/compiler.py": "77a701c2688a777f19512e59247efe78a09f159a8fc3604244de653bc5018cff",
+    "src/kv_ssd_sim/workload/corpus.py": "974621420adff17dc2a7582869b62f7c91b95eb099eab45d7a0f2ad11f987a4d",
+    "src/kv_ssd_sim/workload/kvlab.py": "fcfae88ba55bdac14ca83a177b516c569d7d47af8d003ca211225949d683914e",
+    "src/kv_ssd_sim/workload/prepare.py": "820eb09186434feb9e83fe34f80c09e10a452f3d28b88ea42fa84106434f52d0",
+    "src/kv_ssd_sim/workload/tokens.py": "3bf7b4ce9ba108b9b28c2888af5acb3dd3d04d7688952bee08a43bb6b0509a8d",
+    "src/kv_ssd_sim/workload/weka.py": "944d9eca9d1b16ea730890669c422b27408b15e433cb82d94c3a62946958478e",
+    "src/kv_ssd_sim/workload/weka_audit.py": "5e3c270be55f1f2c01b1dab08f75093080f73dbfb21344c2276f0c3c0bebad34",
+    "src/kv_ssd_sim/workload/weka_compiler.py": "c20a4298c1276e8349c0837836f115833b4bac6e8540634133263dce4dbc9b61",
+    "src/kv_ssd_sim/workload/windows.py": "c7e32f09e85b1a2885edaa0bd9a29f5b4955273c86466d518f526849c3d95b9d"
+  },
+  "native": {
+    "revision": "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c",
+    "mooncake_version": "0.3.14",
+    "driver_source_sha256": "d3ee17f033b05b59ad9f37670b78d6605480c2e8770510427fb8ceccd32b328c",
+    "executable_sha256": "7f353b84a89a177fc5f2b8db7293c7685615c9cf9a4d9ee51bdc07a51eefc1f1",
+    "wheel_dso_sha256": "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8",
+    "online_master_sha256": "0985bbe1e3662e2e0d935c08101322b88b654bcaf81eec925d6f5a8d01ecbe92"
+  },
+  "prechange_runtime_source_sha256": {
+    "scripts/run_object_replay.py": "2708f34e4a638a6bc35a9ec12fa78f4fcffea344c090d3663f7e80995cc57d3a",
+    "scripts/check_staged_restores.py": "a762163afc07da2dc9f9e025f5358d8ab39a4420531dbfe8ad1a3fb4e5914d30",
+    "scripts/prepare_object_trace.py": "c71c4807f5acd18cfe43dcaf8a75865afd0b5985b55a4c32fab8f18b2bec2b10",
+    "scripts/prepare_kvlab.py": "df4676ff370bd8cfea8292a79134eb14c027c7853ac9ba784452c35dd54d90e9",
+    "scripts/audit_aiperf_input.py": "b917bd757614367fd134d5f297e223596dcfcaa2cf8c1076c1653f32cc1fe99b",
+    "src/kv_ssd_sim/kvlab.py": "e39f0889424dae233474f59916f930c508a7b3e52419d9307d0bb70722373871",
+    "src/kv_ssd_sim/object_traffic.py": "68815ef97778b2d18e5006b62db94ba2b793fd450514ace2a9039795065b65cf",
+    "src/kv_ssd_sim/object_store.py": "968bc33e5a2502c4141eaecf3db099b1b21389caadccecba29863fcd756f8592",
+    "src/kv_ssd_sim/object_timing.py": "d956a9fb726aa860982074812019626664a0255092c834d1cabc51b983a46304",
+    "src/kv_ssd_sim/object_master.py": "385fc7615d4021bfb442602eafcb97c53206cc0a5bc879da922289cf6e36fc63",
+    "src/kv_ssd_sim/object_worker.py": "7a3d50256ccb9a84e270b3fdf3abdbb233adee09becc3e4b62c22000c5e8f2d2",
+    "src/kv_ssd_sim/native.py": "f51ae92b558e87af0d1e1b2b0fcc00fd967fcc549a61ef2e113b597f3a8b6183",
+    "src/kv_ssd_sim/k3_online.py": "b7fba26e0c5b3cc177749e1e290449baf4e44aa8e96a0c953c08ed9f53b4a84d",
+    "src/kv_ssd_sim/deployment.py": "4c6c59aab4bf90e5f65fc498df27c6ee5503cdaa2df98a893641773bc27085de",
+    "src/kv_ssd_sim/payload.py": "3a568e830798aa6d48d539ab7b9d24e7b339c74c30299f0a4abe5710d7634f00",
+    "src/kv_ssd_sim/runtime.py": "7b4b88b27cd739e578cd6fbed9e07235012704126d35e55a2c16970d53407d6f",
+    "src/kv_ssd_sim/events.py": "315b341b3b4ea14a7e33dbec0a4c27c68cd6ff36b4b2c9b2a0a1bc8f7eb300a7",
+    "src/kv_ssd_sim/storage.py": "1c59d8de9d94aec4d5ed4fe9473e83b63ed915a3cf4d274389324d0206fa35eb",
+    "src/kv_ssd_sim/analysis/restore.py": "afbe46e3d645aa858a0b04385dfaf15fcf2f0d2a2a52d4db9db49332bd2031ed",
+    "src/kv_ssd_sim/adapters/vllm.py": "81829a48c6a12b89e901a2f6ccd210da5655dd1f4539336bf2011d79cd15cdf2",
+    "src/kv_ssd_sim/simulation/engine.py": "50b45ed7a0068644c88a8c7ef58fc2f2741ae08ec5f6ce3d0d0c31553f65c6c8",
+    "src/kv_ssd_sim/simulation/runner.py": "91627d89e64753dfdc9647b2188755f3381ceab049da5ec3ee2e7bb64fd8cbf5",
+    "src/kv_ssd_sim/simulation/settings.py": "3c96450a9e96c9446dca2f926a80930ca39cd3c8901bf07205d41691088234f3",
+    "src/kv_ssd_sim/simulation/provenance.py": "a4638b0601e2f58265a2d4a96bb0359fde3386eeab01e684c0574fbee6023cd8",
+    "src/kv_ssd_sim/simulation/clock.py": "1a426153941f115e1b7bca4870b57222bfb3a0b74c24107e071cde9230476535",
+    "src/kv_ssd_sim/simulation/storage/device.py": "389095ee60d1e71fbfdc6c34c9073ded1f8cb815c67ba2ee62e092a1983a06ae",
+    "src/kv_ssd_sim/simulation/storage/offload.py": "3671ae52d6da7ecc375028bd44f1a02b327db6d47b8727f2cf6cd737cbfc0016",
+    "src/kv_ssd_sim/simulation/storage/state.py": "bec1913a243869627ffa72e6036a8113782fd0f1fc60f7a459c377ed477f4649",
+    "src/kv_ssd_sim/simulation/storage/restore.py": "6bf40b63cdc831c2411ea70ea115d4407cdd7b276ec14c5649d1425e97edd826"
+  },
+  "comparisons": {
+    "volume-1x": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/warm",
+      "after": "accepted-matrix/warm/volume-1x",
+      "profile": "reference",
+      "hashseed": "0",
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "output_sha256": {
+        "events.jsonl": "dd4c319de467a12154d98db2983dc5fa2c01d05f2e053d6fed30cc90bd4dca79",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "4113da6e10150ac91e23b5abe915545c35d3783d0966296782d60a4596de241c",
+        "ssd-demand.jsonl.gz": "9482a87320af8c5a696d313bedf93231eabc2b3d1af2cca0b17090c151164de8",
+        "ssd-10s.csv": "da24825b5c46fc66295ee182f5342006f9692db950d0c235f7c4fbffdf31488e",
+        "ssd-summary.json": "ee3fd1268eac88f4921c5f63485611542552cf56a03c23ee6c1a83b1cefeb6ca",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1208,
+        "cross_request_bucket_writes": 714,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "volume-4x": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/volume-4x",
+      "after": "accepted-matrix/warm/volume-4x",
+      "profile": "reference",
+      "hashseed": "0",
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "output_sha256": {
+        "events.jsonl": "28a212b1ba60e42d42541119cd60d8532af8d20bbf30bcd6a4e86d048f130224",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "b29f656aebb76964277e3c4d543aec700a4702e1c3f40595a49c205695106a24",
+        "ssd-demand.jsonl.gz": "5ad8dc217d761e8e9faa14230cea316460a147810012d364b356657eec576c92",
+        "ssd-10s.csv": "3ce6a217d1f347601a22979ddc6a5a19ff98ff622b8e7347ae91f81bfc8792e2",
+        "ssd-summary.json": "448713a7fdd0dd72e6976398696920672dca65adf22408a3ab690d30653f2009",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1202,
+        "cross_request_bucket_writes": 663,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "volume-8x": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/volume-8x",
+      "after": "accepted-matrix/warm/volume-8x",
+      "profile": "reference",
+      "hashseed": "0",
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "output_sha256": {
+        "events.jsonl": "c85799a4c65b575a548fcb8e977f4509718f778fa7bdc93721ebfff56c2a0ba5",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "cee6b2e00d154970c4b330455e95b69933460f23f1f5dccdae3437bf257b2c8c",
+        "ssd-demand.jsonl.gz": "50321bafe65693a0ed9dc32c43ebfb98e47875dd67d9a5d79ce1c355b5ae1949",
+        "ssd-10s.csv": "0fe419891a163d384c8e82ea890d9d46f8cef1128212ea8fc066bd819d2eb28b",
+        "ssd-summary.json": "7d4a69d82445ba35b6d6c0b2152271fe05373e4cc4c2b51f8283f7f87b014d30",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1233,
+        "cross_request_bucket_writes": 633,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "single-3tb": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/single-3tb",
+      "after": "accepted-matrix/warm/single-3tb",
+      "profile": "reference-single-ssd",
+      "hashseed": "0",
+      "profile_inputs_sha256": {
+        "configs/profiles/reference-single-ssd.json": "05fbe5c14a502ffc82e219ca5eaca508bebfcd35a49721e1b6ac48e8ac7647fc",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997"
+      ],
+      "output_sha256": {
+        "events.jsonl": "dd4c319de467a12154d98db2983dc5fa2c01d05f2e053d6fed30cc90bd4dca79",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "4113da6e10150ac91e23b5abe915545c35d3783d0966296782d60a4596de241c",
+        "ssd-demand.jsonl.gz": "9482a87320af8c5a696d313bedf93231eabc2b3d1af2cca0b17090c151164de8",
+        "ssd-10s.csv": "da24825b5c46fc66295ee182f5342006f9692db950d0c235f7c4fbffdf31488e",
+        "ssd-summary.json": "ee3fd1268eac88f4921c5f63485611542552cf56a03c23ee6c1a83b1cefeb6ca",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 136,
+        "unique_written_keys": 19992,
+        "bucket_writes": 1208,
+        "cross_request_bucket_writes": 714,
+        "write_bytes": 235572461568,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "base-staged": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/base-staged",
+      "after": "accepted-small/base-staged",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+        "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "tp8-pressure": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/tp8-pressure",
+      "after": "accepted-small/tp8-pressure",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "b30031a0298b59b0420434b02f3475cb1bb08c222675f3f8a58c997664220409",
+        "requests.json": "b43ab7494502f6838a1651b296eb628907ea9e51a1a19f317115e306eff38938",
+        "bucket-timing.jsonl": "0a662ebe5ca1ee8f9fa9c67c34e9be8aa3e8b898ca2c6e6df21c9681eab120e4",
+        "ssd-demand.jsonl.gz": "b6fad6fa112176c7c22a2f59cb61b927baa389334ff7fbcab1359a6b331508d1",
+        "ssd-10s.csv": "d2d715d65f34d08d5568eb02c59fc689949d795df08db4e32cf16061ed3898ad",
+        "ssd-summary.json": "58eb8554fb8db82603f86de2e60efb52f41631e38a6e13309e61ddf5f7107993",
+        "restore-summary.json": "9467414473b0a85cc60ede13bc54edcd202add1d386bcbe72ca1277d5891bc5a",
+        "objects.json": "58e576c8f36e50fb6b4122c0fa70abd4ba209c6410e2d7a546394a64d7178fc9",
+        "reuse.jsonl": "717a0b962abad11f8622c5f29992f4862087ea6981869e615361429255141700"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 8,
+        "cross_request_bucket_writes": 8,
+        "write_bytes": 1411817472,
+        "disk_gets": 10,
+        "read_bytes": 51603456,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "matched-legacy": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/matched-legacy",
+      "after": "accepted-small/matched-legacy",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "660e3cc67fee38ecfa16e5613e013bb13481537694ebb98eca9b05fea301fc06",
+        "requests.json": "fef42bd463d05af2eedcd9518b0e65c3d7c9f5590c2f202c4a0f606738adf661",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "0b2cdfd080f7da4b498fd7be9259854e61796cd18b2396d55c9419b2b337c9c3",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "child-staged": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/child-staged",
+      "after": "accepted-small/child-staged",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1"
+      ],
+      "output_sha256": {
+        "events.jsonl": "a2fd059a0f73b3bacab52bcb4159a46206cb9e6411385bfae7b250acbfd54f4a",
+        "requests.json": "ca1047029f43c8ebf336b2e3ecf7c260e6ed22743c937889c6c7063f0a2ae22d",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "098770796861d41d0eeb5e5fbde37ddd36a543e6506ee1d6da2d41603d624e05",
+        "ssd-summary.json": "aef8f51cbdbecd2dfee27a8b715b33311eea80c3646d58516cbdd5e61921ff5e",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 5,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "child-legacy": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/replay/child-legacy",
+      "after": "accepted-small/child-legacy",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "ead8ab62cf2cef12be362ba41b4ea75c3cef9011afda3ef11ff4a6f8e62b93c1"
+      ],
+      "output_sha256": {
+        "events.jsonl": "4e31611662c8fb9976936f88da47796cc38af6f2c1412bdc4caa99511cdbf54c",
+        "requests.json": "a014d96ae2ea4d8b5d33f02e8146bc1bf5dfcf55ee5ae2a8b04dfbd4a72181c4",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "098770796861d41d0eeb5e5fbde37ddd36a543e6506ee1d6da2d41603d624e05",
+        "ssd-summary.json": "6546cff9d6beecc09a2bbf9e84fa73897a78732270346cf90071df2593e8c7fd",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 5,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "default": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/default-after",
+      "after": "accepted-default",
+      "profile": "n15",
+      "hashseed": null,
+      "profile_inputs_sha256": null,
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "bc7600f2be50764a4c8f4c7feb8e13bf2ab1671872f9dfbdb19f42470a82d16b",
+        "requests.json": "d077c41d674220c4de4f402ff2dd22a0303472affe6a7e561451c6aade282eab",
+        "bucket-timing.jsonl": "8ad82c54b48fab78ed3a85f0042b5c6186ca9c7e58c9db43a8b8af2d6e2118b6",
+        "ssd-demand.jsonl.gz": "f24ef474a77149844145444ded6bceb31d90f1f70c2d050aa68aaa409ef778b7",
+        "ssd-10s.csv": "9dadcb3f45955b61e67a77c9eea719dfbd93e54fe5aac6401256feafa80437d1",
+        "ssd-summary.json": "0e96af31fdf236d3439ba3b1e5486fa6260f8b5f3879d7be2ff7470b743f7270",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "a7965bd5c22565958d69c57c3a958f4ea5423a1438cecfda1d273fd962fba514",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 0,
+        "write_bytes": 1411817472,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "timeline": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/timeline-after",
+      "after": "accepted-timeline",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+        "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 6,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1411817472,
+        "disk_gets": 24,
+        "read_bytes": 42467328,
+        "evicted_disk_objects": 0,
+        "evicted_disk_bytes": 0
+      }
+    },
+    "quota-768": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/quota-after",
+      "after": "accepted-small/quota-768",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "66e43ce51a420ab76a5a450add205c7535563098c4c9aafd22af2356c563f9cb",
+        "requests.json": "2ed2e76dbd5dd7e38172a23f48c423eb0ceb6dd152d005176c34a337149e3ca6",
+        "bucket-timing.jsonl": "7a6ae02173817536a63d1f23c884cf8390eacbe76fbf02a01aa3a0218a29d497",
+        "ssd-demand.jsonl.gz": "61a4124c52c182ef73d1f772e4890b0a51ecbbb1819e1f5cdcb1116435de1b67",
+        "ssd-10s.csv": "364d16da3e7f321113bbabe1a60fc493849f1a61307c0dd085b01b5f730e5f48",
+        "ssd-summary.json": "819f7eae93b553a2168eec9a544b299980547d58cb46d58a687eef4dd1c4b210",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "05d6c84e6e8514e7d2b4a6ecb821b761b0394eb017caff91635c073344c87b29",
+        "reuse.jsonl": "40ae7eed01d9eacb053792073ff0eb88a5f7fcb9bcb88fa4c2eb97d8478a18c6"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 7,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1417125888,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 57,
+        "evicted_disk_bytes": 762080256
+      }
+    },
+    "quota-1450": {
+      "status": "passed",
+      "before": "refactor-offload-U6uPBB1T/watermark-after",
+      "after": "accepted-small/quota-1450",
+      "profile": "reference",
+      "hashseed": null,
+      "profile_inputs_sha256": {
+        "configs/profiles/reference.json": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+        "configs/hardware/b300-tp8.json": "57309e780a9af44c7dc5e03e40149fbd86d8a8951cc18615715697afae606712",
+        "configs/storage/mooncake-single-volume.json": "03f03a838364aed57ed836993dc231fa41db806b0690e11a4a72ad46167b7c7d"
+      },
+      "observed_timing_sha256": null,
+      "input_sha256": [
+        "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924"
+      ],
+      "output_sha256": {
+        "events.jsonl": "2b2979ba15b89de15e45d10b13ecee1ee7cdde9e7731ba1726cca43d593b7467",
+        "requests.json": "2ed2e76dbd5dd7e38172a23f48c423eb0ceb6dd152d005176c34a337149e3ca6",
+        "bucket-timing.jsonl": "7a6ae02173817536a63d1f23c884cf8390eacbe76fbf02a01aa3a0218a29d497",
+        "ssd-demand.jsonl.gz": "61a4124c52c182ef73d1f772e4890b0a51ecbbb1819e1f5cdcb1116435de1b67",
+        "ssd-10s.csv": "364d16da3e7f321113bbabe1a60fc493849f1a61307c0dd085b01b5f730e5f48",
+        "ssd-summary.json": "819f7eae93b553a2168eec9a544b299980547d58cb46d58a687eef4dd1c4b210",
+        "restore-summary.json": "7fcda942b783ac5591c9e91dbedf03e025a12023d76ea821c17991fa68df89f3",
+        "objects.json": "aef880607e96bf5d5afd994c0ae3ed20268d87b36dc5521e38f6e66b9018f79f",
+        "reuse.jsonl": "40ae7eed01d9eacb053792073ff0eb88a5f7fcb9bcb88fa4c2eb97d8478a18c6"
+      },
+      "full_window": {
+        "requests": 4,
+        "unique_written_keys": 108,
+        "bucket_writes": 7,
+        "cross_request_bucket_writes": 6,
+        "write_bytes": 1417125888,
+        "disk_gets": 0,
+        "read_bytes": 0,
+        "evicted_disk_objects": 18,
+        "evicted_disk_bytes": 252257280
+      }
+    }
+  },
+  "workload": {
+    "raw_kvlab_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+    "warm_requests": 136,
+    "sessions": 7,
+    "warmup_requests": 32,
+    "warm_before_after_sha256": {
+      "selection.json": "892ea0ef5caae43bae672d40d17b2444c4bb0f8033e1a3a4be132f7f9a61823d",
+      "warm/input.json": "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997",
+      "warm/window.json": "e14d84539934086462b53b09bc8b39d29a0569992f767e280aa3dece0af763a6"
+    },
+    "short_windows_before_after_sha256": {
+      "calibration/input.json": "d8c9c24de8560769f29319f767b6e7b8aafccb0550f35033f277247d20954f72",
+      "calibration/window.json": "d9f141ab0935da37ecaac7b292c7e2254b014b40d08da534b5e7b6fc5487b66e",
+      "holdout/input.json": "7755830a98d1b98afd10ae3bbaf0ea9531c651b04aa653343f6a996e9e4a589e",
+      "holdout/window.json": "8a951afcf5e0c6715315e65e9570ff144f4c10e59dff78336048a2d2d196aab3",
+      "selection.json": "b396172cbcee16bae97e6121b8538dadcffee5d881a24ede2a84c362e3880b00"
+    },
+    "weka_0504_two_compiled_sha256": "3eff5ff22f424172a1a05ac1367ed9b554f5fee2ebb1dbcde8fdbab9345f8045",
+    "weka_subagents_five_normalized_sha256": "ba7bd1f6d779d4082d8d96b44b450a64ab3ee076e298d341d2d7e56b79dff759",
+    "native_geometry": {
+      "status": "passed",
+      "layers": 93,
+      "groups": 4,
+      "ranks": 8,
+      "pool_blocks_per_rank": 1876
+    },
+    "reference_effective_kv_blocks_per_rank": 2781
+  },
+  "additional_output_sha256": {
+    "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+    "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+    "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf",
+    "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+    "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+    "child-paired.json": "d9c810a050e6cd3698bb223292cccfaf04ad6b5aa6caa584d0914785adf92055",
+    "warm-comparison.json": "1c0ec688679da4b12d74ddb3fc9025a44314b2cad4ee7e405092a3a6ffc333f1",
+    "staging-probe/events.jsonl": "4e85e70d113554bbc725925f7aae181bfda1e19cce8126bb99eda2bd2450752b",
+    "staging-probe/report.json": "a63283cba2782f7b390851c8e26436c84b89adbbf3717585e7077e45843a0730"
+  },
+  "controlled_64_mib_probe": {
+    "status": "passed",
+    "checks": {
+      "archived_passed": true,
+      "missing_one_of_36": true,
+      "lookup": true,
+      "writes_by_rank_group_key_boundary_size": true,
+      "reads_by_rank_key_size_multiplicity": true,
+      "complete_disk_reads": true,
+      "all_disk_only": true,
+      "all_ranks_received": true,
+      "two_stage_bytes": true,
+      "bounded_restore_staging": true
+    },
+    "reference_sha256": "15e1771fe1ae37f94b2249516ae262f56e8267e618c77e02a8ed042c366fe09d",
+    "lookup_tokens": {
+      "rank0_only": 0,
+      "missing_group2_rank7": 0,
+      "all_disk_only": 1536
+    },
+    "unique_objects": 36,
+    "unique_bytes": 470605824,
+    "rank_gets": 120,
+    "restore_bytes": 619241472,
+    "restore_staging_capacity_bytes": 67108864,
+    "restore_staging_peak_bytes": 66788352,
+    "staging_wait_objects": 115,
+    "load_complete_ns": 2015205462,
+    "last_disk_complete_ns": 2014999468
+  },
+  "fresh_host_file_replays": {
+    "tp8": {
+      "status": "passed",
+      "objects": 36,
+      "disk_only_reads": 135,
+      "all_rank_restores": 120
+    },
+    "tp8_unique_object_bytes": 470605824,
+    "tp8_events_file_sha256": "8cc74e4d5c3246f660f0e18ea4b3867751b43feeba45b29c6e65ea088aac33c9",
+    "online_two_requests": {
+      "read_delay_ms": 30.0,
+      "observed_delay_ms": 30.182396,
+      "native_store_get_ms": 27.288451,
+      "restore_ms": 59.759271,
+      "request_2_ttft_ms": 74.3296998552978,
+      "request_2_latency_ms": 82.65697676688433,
+      "request_2_compute_budget_ms": 16.0,
+      "request_2_external_tokens": 256,
+      "checksum_verified": true,
+      "causal_chain_verified": true,
+      "disk_only_verified": true
+    },
+    "online_manifest_sha256": "32875860ae48ee86a85fd20d1a6abe16eae5f06f7187987c6cb08fc16fba0bb5"
+  },
+  "femu": {
+    "archived_resample": {
+      "probe": {
+        "before_and_recomputed_nand_report_sha256": "806d04a057b68769112fb12fd3c8231b47a0a48b59f11b5a687cf36507ef0e84",
+        "original_archive": "evidence/n15-kvm-20261120-074735/femu-n15-probe-20261120-074735.tar.gz",
+        "windows": [
+          {
+            "start": "empty",
+            "end": "page",
+            "host_write_bytes": 4096,
+            "host_read_bytes": 0,
+            "nand_program_bytes": 4096,
+            "gc_relocation_bytes": 0,
+            "block_erases": 0,
+            "page_deltas": {
+              "nand-write-pages": 1,
+              "gc-write-pages": 0,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 1
+            },
+            "byte_waf": 1.0
+          },
+          {
+            "start": "page",
+            "end": "partial",
+            "host_write_bytes": 512,
+            "host_read_bytes": 0,
+            "nand_program_bytes": 4096,
+            "gc_relocation_bytes": 0,
+            "block_erases": 0,
+            "page_deltas": {
+              "nand-write-pages": 1,
+              "gc-write-pages": 0,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 1
+            },
+            "byte_waf": 8.0
+          },
+          {
+            "start": "partial",
+            "end": "read",
+            "host_write_bytes": 0,
+            "host_read_bytes": 4096,
+            "nand_program_bytes": 0,
+            "gc_relocation_bytes": 0,
+            "block_erases": 0,
+            "page_deltas": {
+              "nand-write-pages": 0,
+              "gc-write-pages": 0,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 0
+            },
+            "byte_waf": null
+          },
+          {
+            "start": "read",
+            "end": "filled",
+            "host_write_bytes": 50331648,
+            "host_read_bytes": 0,
+            "nand_program_bytes": 50331648,
+            "gc_relocation_bytes": 0,
+            "block_erases": 0,
+            "page_deltas": {
+              "nand-write-pages": 12288,
+              "gc-write-pages": 0,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 12288
+            },
+            "byte_waf": 1.0
+          },
+          {
+            "start": "filled",
+            "end": "rewritten",
+            "host_write_bytes": 75497472,
+            "host_read_bytes": 0,
+            "nand_program_bytes": 603971584,
+            "gc_relocation_bytes": 528474112,
+            "block_erases": 2304,
+            "page_deltas": {
+              "nand-write-pages": 18432,
+              "gc-write-pages": 129022,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 18432
+            },
+            "byte_waf": 7.999891493055555
+          }
+        ],
+        "occupied_fractions": [
+          [
+            "empty",
+            0.0
+          ],
+          [
+            "page",
+            6.103515625e-05
+          ],
+          [
+            "partial",
+            0.0001220703125
+          ],
+          [
+            "read",
+            0.0001220703125
+          ],
+          [
+            "filled",
+            0.7501220703125
+          ],
+          [
+            "rewritten",
+            0.75
+          ]
+        ]
+      },
+      "0504": {
+        "before_and_recomputed_nand_report_sha256": "d311fd4ffcf6db319a277c894fff24d9ab3ce56b728187a4978526dc9766be55",
+        "original_archive": "evidence/n15-kvm-20261120-074735/femu-n15-0504-20261120-074735.tar.gz",
+        "windows": [
+          {
+            "start": "first_send",
+            "end": "device_end",
+            "host_write_bytes": 2403450880,
+            "host_read_bytes": 8192,
+            "nand_program_bytes": 2403450880,
+            "gc_relocation_bytes": 0,
+            "block_erases": 0,
+            "page_deltas": {
+              "nand-write-pages": 586780,
+              "gc-write-pages": 0,
+              "map-write-pages": 0,
+              "pad-write-pages": 0,
+              "parity-write-pages": 0,
+              "host-write-pages": 586780
+            },
+            "byte_waf": 1.0
+          }
+        ],
+        "occupied_fractions": [
+          [
+            "first_send",
+            0.02796459197998047
+          ],
+          [
+            "device_end",
+            0.5875616073608398
+          ]
+        ],
+        "verification_n15_sha256": "eb5126c857428690db0f5fea1bceed476ed8778867b8a45d1137fb00533a4aa6",
+        "objects": {
+          "logical_ranks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "counts_by_object_bytes": {
+            "18723840": 120,
+            "1769472": 88
+          },
+          "unique_keys": 208,
+          "logical_bytes": 2402574336,
+          "complete_kda_boundaries": 5,
+          "max_inflight_put_bytes": 452911104,
+          "key_content_sha256": "173bfdbe0ff676b4301cee05be60c30795a68772776cbd8565773d966fda0999"
+        },
+        "block_reconciliation": {
+          "first_http_send_ns": 128293663345,
+          "device_end_ns": 233103349082,
+          "target": "259,0",
+          "block_issued_write_bytes": 2403450880,
+          "block_completed_write_bytes": 2403450880,
+          "block_issued_read_bytes": 8192
+        }
+      }
+    },
+    "fresh_preparation": {
+      "probe": {
+        "status": "prepared_only",
+        "launch": "prepare-48mib-launch.json",
+        "sha256": "effef5881415ec556bec3755e0ed051669c012a68eb00897ec1e8377435c1afa",
+        "guest_inputs_sha256": {},
+        "binary_sha256": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+        "namespace_mib": 48,
+        "expected_lines": 32,
+        "guest_ram_mib": 1024,
+        "vcpu": 2
+      },
+      "0504": {
+        "status": "prepared_only",
+        "launch": "prepare-3gib-launch.json",
+        "sha256": "c436403b10da204a9ce164b429ba8ee1cf1573370ebcf89609a99d2655a47f8a",
+        "guest_inputs_sha256": {
+          "config.json": "2024b75fdca33791a96cb8354d50aecc94d56022e8589c2df3c22c33fd211b33",
+          "hybrid.json": "fba5251b8959820aed35d99fe6c1db9e4b33bdd76368af9b4dc1bd2fa34ac269",
+          "trace.json": "d123b80995bcba44e7e69b0f3795e0783882e1e4794d838b55e53091f397bdaa"
+        },
+        "binary_sha256": "3672aa21e9eb08b4a41f05b8cd243c29a199f5616bf2bfcbdfb0dcec3621e7a1",
+        "namespace_mib": 3072,
+        "expected_lines": 2048,
+        "guest_ram_mib": 8192,
+        "vcpu": 2
+      }
+    },
+    "fresh_kvm_runs": {
+      "status": "not_run",
+      "host": "n15",
+      "user": "yzh",
+      "open_dev_kvm": "EACCES",
+      "docker_image_inspect": "permission denied connecting to the Docker socket",
+      "sudo_result": "yzh is not in the sudoers file",
+      "operator_entry": "bash scripts/run-n15-checkout.sh \"$PWD\" /home/yzh/n15-kv-baseline"
+    }
+  },
+  "historical_checksum_manifests": {
+    "evidence/kimi-k3-step4/SHA256SUMS": {
+      "sha256": "06730b9cbcc7f714101190e6cbfcd8107c58e943bcb32c8de9570929b621168e",
+      "entries": 36
+    },
+    "evidence/kimi-k3-step5/SHA256SUMS": {
+      "sha256": "f02c59d2071f11d948ab3a2f7bcafc5e0e293d37371ce5fff37f35180cb0fc26",
+      "entries": 32
+    },
+    "evidence/kimi-k3-step6/SHA256SUMS": {
+      "sha256": "4ef9405b26b0634fe0cc9c30e5d00ca3fd2fa61c7df1f06350c144e63f5358d0",
+      "entries": 6
+    },
+    "evidence/kvlab-first-windows-20261124/SHA256SUMS": {
+      "sha256": "be892e5d5cf49f8a882a0f0ba13610be2533fa99c1a27c85dc15a47a84a8ff4c",
+      "entries": 49
+    },
+    "evidence/large-ssd-staged-20261125/SHA256SUMS": {
+      "sha256": "30a50d298b97209f7c0bf8f2459e4d6664f75343baf1cf383082d28856e8be4a",
+      "entries": 12
+    },
+    "evidence/n15-kvm-20261120-074735/SHA256SUMS": {
+      "sha256": "91918411ea4aa3f7eccbb34746f853bac3bb92f315def12667187eb5101fb121",
+      "entries": 10
+    },
+    "evidence/object-offload-refactor-20261126/SHA256SUMS": {
+      "sha256": "9dca0aac6fe003134255814392c7f7d0e4d4c874028ba379560fccee74474e32",
+      "entries": 5
+    },
+    "evidence/object-replay-mooncake-native-20261123/SHA256SUMS": {
+      "sha256": "e5975caa7c7b446285d26bc74fbc0cdaa76411d276ae4c15914fca89e8469640",
+      "entries": 10
+    },
+    "evidence/object-replay-n15-20261123/SHA256SUMS": {
+      "sha256": "699e5027865d7d458844a455e37d8a3fdd367002af646fe3048b1b19d56fe9aa",
+      "entries": 19
+    },
+    "evidence/object-replay-refactor-20261125/SHA256SUMS": {
+      "sha256": "d13c0e7942b213363eea40e07322db3c79f9bed9e7d1b4effa577606d6fd1611",
+      "entries": 3
+    },
+    "evidence/ssd-b1/SHA256SUMS": {
+      "sha256": "016a3518021a5185926c21e7689a8e7eba9508f2e8eca6ca0b36b50380763ff4",
+      "entries": 2
+    },
+    "evidence/ssd-b2/SHA256SUMS": {
+      "sha256": "82c803b4efb8181fa5e914cbc50651c7f0e20965fc94d7cfe01087daa79085b0",
+      "entries": 5
+    },
+    "evidence/ssd-c1/SHA256SUMS": {
+      "sha256": "6f7f3e7b745a76253a9e70c0c1920a20fdd3b04cd4babe32030fb2908c45143e",
+      "entries": 5
+    },
+    "evidence/ssd-c2/SHA256SUMS": {
+      "sha256": "30ddb45ee984cf564b53261d17d2911a0bb6be488eae3f3b9c710fa55659cbfd",
+      "entries": 10
+    },
+    "evidence/ssd-d/SHA256SUMS": {
+      "sha256": "efcb6ebadddd5f2e6febc0e8c512c11460418612058731399ebbbfbfcc074a02",
+      "entries": 13
+    },
+    "evidence/ssd-e/SHA256SUMS": {
+      "sha256": "ac7d941795f28c049befb3f59c3f236abfb4e4d1d704dcbdc934c1b24a4c32ea",
+      "entries": 4
+    },
+    "evidence/ssd-stage-a/SHA256SUMS": {
+      "sha256": "c48d72a94d735f92668eac5b332a9c45268b2438669c4f22bde86c6ccd63a994",
+      "entries": 7
+    },
+    "evidence/tp8-logical-volume-20261125/SHA256SUMS": {
+      "sha256": "c67530cd79da4eb2b7cc8bf406d7cd9a10c52c3b2caac225b82153a34d2f7ecd",
+      "entries": 11
+    },
+    "evidence/tp8-public-20261125/SHA256SUMS": {
+      "sha256": "0450514301d1e38b244ea6b1e856cdc77803af55304e832c83f0d5cb255a6ef7",
+      "entries": 6
+    }
+  },
+  "tests": {
+    "non_integration": "124 passed, 6 deselected in 41.19s",
+    "native_integration": "6 passed in 150.74s (0:02:30)"
+  }
+}
