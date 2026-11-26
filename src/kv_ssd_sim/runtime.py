@@ -14,7 +14,7 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+from .core.paths import PROJECT_ROOT
 
 
 def native_environment() -> dict[str, str]:

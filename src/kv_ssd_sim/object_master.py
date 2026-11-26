@@ -10,7 +10,8 @@ import tempfile
 from contextlib import ExitStack
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+from .core.paths import PROJECT_ROOT as ROOT
+
 REVISION = "e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c"
 STORE_SHA = "19573f3ed46c577e52e62851667266bd3cc8d40781300ae22ce8a73a624814a8"
 
