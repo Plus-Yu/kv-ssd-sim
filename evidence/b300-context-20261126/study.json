@@ -1,0 +1,576 @@
+{
+  "source_sha256": "337a03810637e0d062c2f320bd6a17392a476fa19e196a80e3a7359a47731f61",
+  "input_sha256": "1c66fc3940376e972c3ef34cfafd6ae13b1c8792d34b7593ef59dae002d7d997",
+  "sessions": 7,
+  "requests": 136,
+  "geometry_sha256": "5baf48628a17addfdece7714e313b7717425770f12516c9849e55c5dc7fe3b83",
+  "vllm_version": "0.34.0rc1.dev302+gbe47189f3.cpu",
+  "runtime_sources_sha256": "cddd6609c1d963216f5c40bc56b671b14c054f32ff0773cdcee039223073afc3",
+  "decode_save_write_difference": {
+    "only_enabled": {
+      "MLA": {
+        "occurrences": 330,
+        "bytes": 583925760
+      },
+      "KDA": {
+        "occurrences": 8160,
+        "bytes": 152786534400
+      }
+    },
+    "only_disabled": {
+      "MLA": {
+        "occurrences": 0,
+        "bytes": 0
+      },
+      "KDA": {
+        "occurrences": 0,
+        "bytes": 0
+      }
+    }
+  },
+  "cases": {
+    "base": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 824,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1533930007199,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "legacy-clock": {
+      "profile": "reference",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": null,
+      "context_cost_scale": null,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 755,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 82583396352,
+      "write_peak_10s_bytes": 4394999808,
+      "last_response_ns": 1401437290751,
+      "last_io_complete_ns": 1404793725799,
+      "batch_histogram": {
+        "1": 66298,
+        "2": 10856,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 3978,
+      "max_effective_context": null,
+      "steps_above_long_decode_anchor": null,
+      "compute_steps": 77180,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "ssd-4x": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "4x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 833,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1530982133513,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "ssd-8x": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "8x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 831,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1530493654172,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "host-4-lanes": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": 4,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 824,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1533930007199,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 4,
+      "d2h_lane_wait_ns_sum": 982365362,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "host-half-rate": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 0.5,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 824,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1533930007199,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "save-decode": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": true,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 1536,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 21834,
+      "write_identity_sha256": "7bc747a284ec64503d81e6c31458cf3f0193ec0d0cd98b498342c31933717092",
+      "file_writes": 1481,
+      "read_bytes": 0,
+      "write_bytes": 264466833408,
+      "measurement_write_bytes": 180799147008,
+      "write_peak_10s_bytes": 7784497152,
+      "last_response_ns": 1454253800539,
+      "last_io_complete_ns": 1460042632314,
+      "batch_histogram": {
+        "1": 69221,
+        "2": 9305,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 3978,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78523,
+      "compute_steps": 78552,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 15065284608,
+        "KDA": 249401548800
+      },
+      "write_bytes_beyond_source_prompt": {
+        "KDA": 28310446080,
+        "MLA": 583925760
+      }
+    },
+    "seq-16": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 16,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 824,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1533930007199,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "seq-32": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 824,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84423352320,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1530129288273,
+      "last_io_complete_ns": 1533930007199,
+      "batch_histogram": {
+        "1": 69832,
+        "2": 9089,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 4058,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78908,
+      "compute_steps": 78947,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "tokens-2048": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 2048,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13848,
+      "write_identity_sha256": "ebda82225c682ab51814ce83814820c2617db454a1075a019f41b614c6e97936",
+      "file_writes": 869,
+      "read_bytes": 0,
+      "write_bytes": 120533188608,
+      "measurement_write_bytes": 92062679040,
+      "write_peak_10s_bytes": 3244695552,
+      "last_response_ns": 1529350619983,
+      "last_io_complete_ns": 1534387230160,
+      "batch_histogram": {
+        "1": 70324,
+        "2": 9093,
+        "3": 34
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 2044,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 79381,
+      "compute_steps": 79451,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 106051829760
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "tokens-8192": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 8192,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 1,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13224,
+      "write_identity_sha256": "f5fff8755925b1ef3eef2119cf30533d5fd008637214b326e575211aaecb54c8",
+      "file_writes": 802,
+      "read_bytes": 0,
+      "write_bytes": 108849512448,
+      "measurement_write_bytes": 83075235840,
+      "write_peak_10s_bytes": 2795323392,
+      "last_response_ns": 1530129288276,
+      "last_io_complete_ns": 1533815277208,
+      "batch_histogram": {
+        "1": 69599,
+        "2": 9069,
+        "3": 22
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 8064,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 78662,
+      "compute_steps": 78690,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 94368153600
+      },
+      "write_bytes_beyond_source_prompt": {}
+    },
+    "context-cost-2x": {
+      "profile": "reference-context",
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "step_profile_sha256": "621dd224b33828b9416da9830e84b3edf46117f2b4ea98031f9a948021cfc335",
+      "context_cost_scale": 2.0,
+      "ssd_service": "1x",
+      "host_copy_lanes": null,
+      "host_copy_scale": 1,
+      "unique_written_keys": 13344,
+      "write_identity_sha256": "9dda1f3901b5ecaabcc4dbf3bfb41c3d990af16dbf38931d730bed2b8fb3f2c4",
+      "file_writes": 876,
+      "read_bytes": 0,
+      "write_bytes": 111096373248,
+      "measurement_write_bytes": 84890419200,
+      "write_peak_10s_bytes": 2798862336,
+      "last_response_ns": 1535897787030,
+      "last_io_complete_ns": 1543859770216,
+      "batch_histogram": {
+        "1": 70068,
+        "2": 8971,
+        "3": 26
+      },
+      "peak_batch": 3,
+      "peak_scheduled_tokens": 3977,
+      "max_effective_context": 202323,
+      "steps_above_long_decode_anchor": 79027,
+      "compute_steps": 79065,
+      "peak_simultaneous_host_copies": 8,
+      "d2h_lane_wait_ns_sum": 0,
+      "write_bytes_by_type": {
+        "MLA": 14481358848,
+        "KDA": 96615014400
+      },
+      "write_bytes_beyond_source_prompt": {}
+    }
+  }
+}

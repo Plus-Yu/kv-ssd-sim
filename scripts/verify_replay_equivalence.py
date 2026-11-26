@@ -21,8 +21,25 @@ def digest(path):
 def settings(folder):
     launch = json.loads((folder / "launch.json").read_bytes())
     sources = launch.pop("source_sha256")
+    # Replays predating explicit scheduler settings used the dense native allocation default.
+    launch.setdefault(
+        "scheduler",
+        {
+            "max_num_seqs": 8,
+            "max_num_batched_tokens": 4096,
+            "chunked_prefill": True,
+            "async_scheduling": False,
+            "save_decode_cache": False,
+            "prefix_cache_retention_input": None,
+            "prefix_cache_retention_interval": None,
+            "load_async": True,
+            "lookup_async": False,
+        },
+    )
     for compiled in launch["compiled_inputs"]:
         del compiled["file"]
+    if launch.get("compute_calibration"):
+        del launch["compute_calibration"]["file"]
     if launch.get("offload_timing_input"):
         del launch["offload_timing_input"]["file"]
     return launch, sources

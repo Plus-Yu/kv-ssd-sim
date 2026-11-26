@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-26",
+  "host": "n15",
+  "checkout_base_commit": "aa6cd65df6a7a2987ab9917cba5a74b617198616",
+  "runtime_source_files": 79,
+  "runtime_sources_sha256": "cddd6609c1d963216f5c40bc56b671b14c054f32ff0773cdcee039223073afc3",
+  "matrix_root": ".object-replay-build/trials/b300-context-ezEO9GLR/accepted",
+  "matrix_run_file_sha256": {
+    "base": {
+      "launch.json": "50651e8a2abf6034351f415ee46c32a347d5cf3f170707210627e9aebe244bd4",
+      "events.jsonl": "292a2d52553e521bf923644be9d779e6124f2706fa29e47a022df92e05400403",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "e7f6b6fc77155ee0f8db7cbc9520e8cc45b376dbb7cfa2d121cc5d4b8ba2e9a8",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "legacy-clock": {
+      "launch.json": "fb7e120bd24ab1370ca73196dfeb06664a009f7e14a73c8decac79cd8445d2f7",
+      "events.jsonl": "e36b1c60f6cd8740e4b88e40fd1c275966ea03aad3f4f5f9569ca7721d2de005",
+      "requests.json": "1ce54b280d8896cec0e12923bc5f8467dfa22394637d4f88662b0769c65887ae",
+      "ssd-summary.json": "f1b0556e884a22d7cad1eeb5c2402064d6d10c5044a4558be956f566c44b64b7",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "ssd-4x": {
+      "launch.json": "7d3fcf7342c6aa6ef9a8ded65fbee21a673dddad7e651c3ef60d2fb14916db46",
+      "events.jsonl": "05681c5e58c9d40d9cc9dcfc7f1e78cd229e942ff151123e3c56f6141894c453",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "c388d63a43ac2c685983d2a28886ee6aa0b3f2cc1e7917d5032d1134e93cb71f",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "ssd-8x": {
+      "launch.json": "30d06b4663a5d76be21a84a4f564ad10f849d1e3b42fb8f8d08b76efd20899c3",
+      "events.jsonl": "ebd5c541754df0233f4aa388de874511e3c90652bd38def7726f142ea9e9fb3f",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "a0cfe015508e3bfd78a24bfffd1b75b00f0274a4c1263f99296181ddde9e2392",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "host-4-lanes": {
+      "launch.json": "23d28c0e6f5bd032b64df64975b159dbc94d4e372fb7a31d38155f6ab2561245",
+      "events.jsonl": "7a541b4225643fd62c519991a17719439cfbaef3a2817417a99dfa422712aa00",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "e7f6b6fc77155ee0f8db7cbc9520e8cc45b376dbb7cfa2d121cc5d4b8ba2e9a8",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "host-half-rate": {
+      "launch.json": "359c284bfa3ddc7db4cf156333569e23a8767f87891c2d9d51d6724f729eb703",
+      "events.jsonl": "f00fd99130be997a4ac86c72d017b7525f76f57e610231fa847357c5d491a34e",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "e7f6b6fc77155ee0f8db7cbc9520e8cc45b376dbb7cfa2d121cc5d4b8ba2e9a8",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "save-decode": {
+      "launch.json": "2fc8c495a52cbbf98ef1348c2ead41c71e714945c5c6adff3fdb739cebea8801",
+      "events.jsonl": "75d5f3399383e52d0126eaaed6777daf51783e197341cdf165d67e743317f4be",
+      "requests.json": "4c17db4747d7e863d5367f642a8948a1c71ad9361fcf955cd330841f9929fd77",
+      "ssd-summary.json": "1b7e43b4a1f7495203709374315910674092c1829da23d1d24c937b8385b77f6",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "seq-16": {
+      "launch.json": "e866bf142935a97e7016ed4df34c4bf97a16ff918c0c4aafb0d38e4d2b0b3bb0",
+      "events.jsonl": "292a2d52553e521bf923644be9d779e6124f2706fa29e47a022df92e05400403",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "e7f6b6fc77155ee0f8db7cbc9520e8cc45b376dbb7cfa2d121cc5d4b8ba2e9a8",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "seq-32": {
+      "launch.json": "f332fa5fb6dbb2e6574cc277b46770c43166e6db2a650c904f273bd50b476ad8",
+      "events.jsonl": "292a2d52553e521bf923644be9d779e6124f2706fa29e47a022df92e05400403",
+      "requests.json": "dbaed3cd23ee398062b508c8f611664081ddd64189bc96457cf852e36f3bf670",
+      "ssd-summary.json": "e7f6b6fc77155ee0f8db7cbc9520e8cc45b376dbb7cfa2d121cc5d4b8ba2e9a8",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "tokens-2048": {
+      "launch.json": "b33ad0765b22ac9da20a2b663acf6f153e6ebc191be33c6b6ae387b8719c4562",
+      "events.jsonl": "d0aa660e27f218c4a013d28065497c143271f41756248ff2daafacf1eb2553b0",
+      "requests.json": "b293059b27e30e5f0cd8a0a1b1331b350ab939273e32302875b29210146af31d",
+      "ssd-summary.json": "545ec351e5f6c36ce762b4e8a221c541d7a4a954b043ca1ae4d11684beee7afb",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "tokens-8192": {
+      "launch.json": "2c4aa5b9eee17b5ea159b782cc48ac611be8c73715a923d7966f96fd592354d0",
+      "events.jsonl": "2ec355cc33273fa5377bc0334f345fb092b32f565594708f271292cd20c8635c",
+      "requests.json": "65175d95b01eb55f936fd251e58f3b694e4ac0f5872adc5c585325a829f4886d",
+      "ssd-summary.json": "a24c19ba11ac730183c9d0ca7bcfdab3df7e5905cd5095a01b05460aab42a37a",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    },
+    "context-cost-2x": {
+      "launch.json": "26abd27532f440dee20b60b034dc18e1bef6f9cf6360ebf230e97b5874c2612e",
+      "events.jsonl": "1ac90db4a703092d2225de1cd1b860a8f477900a55c5138e8f2dec7cc95eab27",
+      "requests.json": "9e9c7d12ddc930b2e3a9e0fb58495ef7581b0eb94ad2d8535017e72cff4b3809",
+      "ssd-summary.json": "2504a9fd4186775f78ef58aab2b738542d6503cebc439a8f9564bcbe30c0ff0b",
+      "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91"
+    }
+  },
+  "test_suites": {
+    "unit-tests.log": {
+      "scope": "entire non-integration suite",
+      "result": "128 passed, 9 deselected in 41.54s"
+    },
+    "native-sockets.log": {
+      "scope": "six existing native integration tests using vLLM and Mooncake",
+      "result": "6 passed in 151.03s (0:02:31)"
+    },
+    "context-tests.log": {
+      "scope": "three timing/transfer unit tests also included in the non-integration suite, plus three new native probes",
+      "result": "6 passed in 24.10s"
+    }
+  },
+  "native_probes": {
+    "boundary_skipped": {
+      "raw": ".object-replay-build/trials/b300-context-ezEO9GLR/final-probes/test_native_decode_boundary_an0/result",
+      "requests": 1,
+      "prompt_tokens_per_request": [
+        1520
+      ],
+      "output_tokens_per_request": [
+        160
+      ],
+      "peak_batch": 1,
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "unique_keys": 35,
+      "unique_object_bytes": 468836352,
+      "confirmed_puts_at_boundary_1536": {
+        "MLA": 0,
+        "KDA": 0
+      },
+      "events_sha256": "8bfb16c75dcd935f9f7334181cd162ea1d8170ddf9d0326f5ab96f1ff149eb03"
+    },
+    "boundary_saved": {
+      "raw": ".object-replay-build/trials/b300-context-ezEO9GLR/final-probes/test_native_decode_boundary_an1/result",
+      "requests": 1,
+      "prompt_tokens_per_request": [
+        1520
+      ],
+      "output_tokens_per_request": [
+        160
+      ],
+      "peak_batch": 1,
+      "scheduler": {
+        "max_num_seqs": 8,
+        "max_num_batched_tokens": 4096,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": true,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 1536,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "unique_keys": 60,
+      "unique_object_bytes": 919977984,
+      "confirmed_puts_at_boundary_1536": {
+        "MLA": 1,
+        "KDA": 24
+      },
+      "events_sha256": "19759476c23da8e139659a68979301a0c38da0c666491a2cf93acdd3e50ab800"
+    },
+    "batch32": {
+      "raw": ".object-replay-build/trials/b300-context-ezEO9GLR/final-probes/test_native_decode_boundary_an2/result",
+      "requests": 32,
+      "prompt_tokens_per_request": [
+        32
+      ],
+      "output_tokens_per_request": [
+        8
+      ],
+      "peak_batch": 32,
+      "scheduler": {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 2048,
+        "chunked_prefill": true,
+        "async_scheduling": false,
+        "save_decode_cache": false,
+        "prefix_cache_retention_input": 0,
+        "prefix_cache_retention_interval": 0,
+        "load_async": true,
+        "lookup_async": false
+      },
+      "unique_keys": 0,
+      "unique_object_bytes": 0,
+      "confirmed_puts_at_boundary_1536": {
+        "MLA": 0,
+        "KDA": 0
+      },
+      "events_sha256": "96dc00a6ae8ba443f56b290c0446e27baa02efdf253025edbc9677587f1a260e"
+    }
+  },
+  "35_second_natural_recovery": {
+    "archive-replay": {
+      "raw": ".object-replay-build/trials/b300-context-ezEO9GLR/archive-replay",
+      "input_sha256": "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924",
+      "shared_host_copy_lanes": null,
+      "serviced_gets": {
+        "memory": 96,
+        "disk": 24
+      },
+      "ssd_read_bytes": 42467328,
+      "peak_h2d_ranks": 2,
+      "last_disk_complete_ns": 35111418844,
+      "last_load_complete_ns": 35115623980,
+      "restore_summary_sha256": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d"
+    },
+    "one-lane": {
+      "raw": ".object-replay-build/trials/b300-context-ezEO9GLR/one-lane",
+      "input_sha256": "a5b56a6aca4eb3dcfc27e6b948ef2ecc66203bd19fa4f0c1f0db8c08d9b42924",
+      "shared_host_copy_lanes": 1,
+      "serviced_gets": {
+        "memory": 96,
+        "disk": 24
+      },
+      "ssd_read_bytes": 42467328,
+      "peak_h2d_ranks": 1,
+      "last_disk_complete_ns": 35111418844,
+      "last_load_complete_ns": 35116291108,
+      "restore_summary_sha256": "4ed43d21bde14b41e24bbcff7b319d784f1d546a0edd48dfd39e70bd145e14a3"
+    }
+  },
+  "historical_equivalence": {
+    "136_request_warm_reference": {
+      "status": "passed",
+      "source_files": 79,
+      "output_sha256": {
+        "events.jsonl": "dd4c319de467a12154d98db2983dc5fa2c01d05f2e053d6fed30cc90bd4dca79",
+        "requests.json": "fc55ce363c27808d96918e6f69b9fdf6edc8fda2cccd088fe59d33d9c793c5c0",
+        "bucket-timing.jsonl": "4113da6e10150ac91e23b5abe915545c35d3783d0966296782d60a4596de241c",
+        "ssd-demand.jsonl.gz": "9482a87320af8c5a696d313bedf93231eabc2b3d1af2cca0b17090c151164de8",
+        "ssd-10s.csv": "da24825b5c46fc66295ee182f5342006f9692db950d0c235f7c4fbffdf31488e",
+        "ssd-summary.json": "ee3fd1268eac88f4921c5f63485611542552cf56a03c23ee6c1a83b1cefeb6ca",
+        "restore-summary.json": "4268bde25c7c47a7aece75b4b24e67a84cac20d535ec664bad5879e676077a91",
+        "objects.json": "1418188501a6ca22a4c4514c5b77fb3edf0937d2d944400cc8d1b9201bb60050",
+        "reuse.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "35_second_return_reference": {
+      "status": "passed",
+      "source_files": 79,
+      "output_sha256": {
+        "events.jsonl": "951c31ec6eedcd7ab7b3732ffe65b8ab627c512b2d63f1e5e0dd37913c5b4c65",
+        "requests.json": "d834fc270af4348cc8479c94ae75154b701bf4022e87631664868224cac58d35",
+        "bucket-timing.jsonl": "7c1746c8e52e1743ae7d44e44beb0524451d75764950022894d41cc6e6c8603e",
+        "ssd-demand.jsonl.gz": "89ad3b4e7bc498d53a7a742e4b5da13a9e34fcc7176d604980e2e15e37688e6c",
+        "ssd-10s.csv": "ed36f7565208b77c19932c4f790dd8919f686c8c16d6e6743ce875e14384f07c",
+        "ssd-summary.json": "4d4bb504a7f3a459295191a0fb6892e60c5658ef442fcaa23cd7435b5ac88d29",
+        "restore-summary.json": "4ab9e262464bf8d621cc49741af0fd6572edeafe98d84f867918552bd526fd0d",
+        "objects.json": "ab5933f79abc5c551a5e93090e246be93695eda628dec8fa651c268028269248",
+        "reuse.jsonl": "4d87c08a2f04b68d16bfec761811d786e47058460af31528c9415556d5743fdf"
+      }
+    }
+  },
+  "combined_profile_smoke": {
+    "scheduler": {
+      "max_num_seqs": 16,
+      "max_num_batched_tokens": 4096,
+      "chunked_prefill": true,
+      "async_scheduling": false,
+      "save_decode_cache": true,
+      "prefix_cache_retention_input": 0,
+      "prefix_cache_retention_interval": 1536,
+      "load_async": true,
+      "lookup_async": false
+    },
+    "volume_service": "4x",
+    "shared_host_copy_lanes": 4,
+    "audit": {
+      "directory": ".object-replay-build/trials/b300-context-ezEO9GLR/combined",
+      "profile_sha256": "8c1d97afc1e46216b6d570a4bca74566c1e87c6fc8afa4b8c7813dabf579bd7e",
+      "max_model_len": 1048576,
+      "requests": 136,
+      "unique_keys": 21834,
+      "local_reuse_tokens": 15898112,
+      "natural_disk_gets": 0,
+      "natural_disk_keys": 0,
+      "memory_gets": 0,
+      "first_write_submit_ns": 10000000000,
+      "last_request_finished_ns": 1454253800539,
+      "write_submitted_after_foreground_bytes": 240611328,
+      "read_bytes": 0,
+      "write_bytes": 264466833408,
+      "end_ns": 1462260000000,
+      "disk_read_events": [],
+      "sha256": {
+        "launch.json": "f3693539c8c4c8fa3523c467b371473120dc670029b6732cdabca5ccca0c109c",
+        "events.jsonl": "22b57b7ed8121450b7a6d7d480627bcbe4d4792053f1c279b686ede03599363c",
+        "summary.json": "eebdcedea31f105ef11f0609840fa36508fd687352785a17056dfc9c6f40b9c3",
+        "ssd-summary.json": "67394ded7833040b869bcb58a8a986aedf58e1b9b36ebab1d8e78a057d9816f8",
+        "requests.json": "4c17db4747d7e863d5367f642a8948a1c71ad9361fcf955cd330841f9929fd77"
+      }
+    }
+  }
+}

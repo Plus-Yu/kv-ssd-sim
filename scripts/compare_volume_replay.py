@@ -186,6 +186,8 @@ def compare(folder, window):
             for k, v in store.items()
             if k not in {"quota_bytes", "device_mib_s", "device_read_mib_s"}
         }
+        settings["scheduler"] = launch.get("scheduler")
+        settings["compute_profile_sha256"] = launch.get("compute_calibration", {}).get("sha256")
         if common is not None and common != settings:
             raise ValueError(f"Non-storage settings differ in {name}")
         common = settings

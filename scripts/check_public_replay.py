@@ -47,7 +47,13 @@ def verify(folder):
             elif event == "save_queued":
                 copied_bytes += row["copy_bytes"]
                 copy_ns = math.ceil(row["copy_bytes"] * 1e9 / (store["put_mib_s"] * 2**20))
-                if row["complete_ns"] - row["start_ns"] != round(store["save_ms"] * 1e6) + copy_ns:
+                ready = row["start_ns"] + round(store["save_ms"] * 1e6)
+                start = row.get("copy_start_ns", ready)
+                if (
+                    start < ready
+                    or row.get("copy_ready_ns", ready) != ready
+                    or row["complete_ns"] != start + copy_ns
+                ):
                     raise ValueError(
                         f"Rank PUT service time disagrees with allocated bytes in {folder}"
                     )

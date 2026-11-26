@@ -39,7 +39,16 @@ def metadata_rank_worker(groups, unit, rank, model_name, prefix):
     return worker
 
 
-def scheduler_config(max_model_len, block_size, hybrid_config=None, *, k3=False):
+def scheduler_config(
+    max_model_len,
+    block_size,
+    hybrid_config=None,
+    *,
+    k3=False,
+    max_num_seqs=8,
+    max_num_batched_tokens=None,
+    save_decode_cache=False,
+):
     """Common scheduler, prefix and connector settings for payload and metadata workers."""
     from vllm.config import (
         CacheConfig,
@@ -66,8 +75,10 @@ def scheduler_config(max_model_len, block_size, hybrid_config=None, *, k3=False)
         device_config=DeviceConfig(device="cpu"),
         scheduler_config=SchedulerConfig(
             is_encoder_decoder=False,
-            max_num_seqs=8,
-            max_num_batched_tokens=4096 if k3 else 128,
+            max_num_seqs=max_num_seqs,
+            max_num_batched_tokens=(4096 if k3 else 128)
+            if max_num_batched_tokens is None
+            else max_num_batched_tokens,
             max_model_len=max_model_len,
             enable_chunked_prefill=True,
             async_scheduling=False,
@@ -95,7 +106,7 @@ def scheduler_config(max_model_len, block_size, hybrid_config=None, *, k3=False)
                 **({"store_tp_size": 8 if k3 else 1} if hybrid else {}),
                 "load_async": True,
                 "lookup_async": False,
-                "save_decode_cache": False,
+                "save_decode_cache": save_decode_cache,
             },
         ),
     )

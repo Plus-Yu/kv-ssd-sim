@@ -1,5 +1,7 @@
 """Causal admissions and native vLLM steps on the object-replay clock."""
 
+from .timing import ContextTiming
+
 
 def simulate(admissions, scheduler, transfers, store, hash_unit, timing, record_steps):
     from vllm.sampling_params import SamplingParams
@@ -61,7 +63,17 @@ def simulate(admissions, scheduler, transfers, store, hash_unit, timing, record_
                 max(0, min(b, live[r].num_prompt_tokens) - a) for r, (a, b) in ranges.items()
             )
             decoding = sum(a >= live[r].num_prompt_tokens for r, (a, _) in ranges.items())
-            duration = round(timing.duration_ms(fresh, len(ranges), decoding) * 1e6)
+            details = {}
+            if isinstance(timing, ContextTiming):
+                work = [
+                    (a, max(0, min(b, live[r].num_prompt_tokens) - a))
+                    for r, (a, b) in ranges.items()
+                ]
+                duration = round(timing.step_ms(work) * 1e6)
+                details["context_before_tokens"] = [h for h, _ in work]
+                details["fresh_tokens_by_sequence"] = [q for _, q in work]
+            else:
+                duration = round(timing.duration_ms(fresh, len(ranges), decoding) * 1e6)
             end_ns = clock.now + duration
             if record_steps and ranges:
                 store.emit(
@@ -70,6 +82,7 @@ def simulate(admissions, scheduler, transfers, store, hash_unit, timing, record_
                     fresh_prompt_tokens=fresh,
                     decode_only_sequences=decoding,
                     duration_ns=duration,
+                    **details,
                 )
             loads = transfers.submit(
                 scheduled.kv_connector_metadata, scheduled.finished_req_ids, end_ns

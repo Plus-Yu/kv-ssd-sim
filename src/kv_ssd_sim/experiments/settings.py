@@ -12,14 +12,15 @@ from ..core.paths import PROJECT_ROOT as ROOT
 from ..core.provenance import package_source_hashes
 from ..simulation.storage.config import StoreConfig
 from ..simulation.storage.device import MIB
-from ..simulation.timing import StepTiming
+from ..simulation.timing import ContextTiming, StepTiming
 from .profiles import PROFILE_FILES, load_profile
 
 
 @dataclass
 class ReplaySettings:
     store: StoreConfig
-    timing: StepTiming
+    timing: StepTiming | ContextTiming
+    scheduler: dict
     blocks: int
     max_len: int
     offsets: list[float]
@@ -28,7 +29,11 @@ class ReplaySettings:
 
 
 def apply_calibration(args):
-    if args.volume_service and args.profile not in ("reference", "reference-volume-20261125"):
+    if args.volume_service and args.profile not in (
+        "reference",
+        "reference-context",
+        "reference-volume-20261125",
+    ):
         raise ArgumentTypeError("--volume-service requires a reference volume profile")
     fit = None
     if args.service_profile:
@@ -54,7 +59,9 @@ def apply_calibration(args):
 
 def resolve_settings(args, plan, folder, fit):
     reference = args.profile != "n15"
-    profile_path = PROFILE_FILES.get(args.profile)
+    profile_path = PROFILE_FILES.get(
+        "reference" if args.profile == "reference-context" else args.profile
+    )
     public, profile_inputs = load_profile(profile_path) if profile_path else (None, {})
     volume = public.get("volume") if public else None
     online = json.loads((ROOT / "configs/k3-c1-online.json").read_bytes())
@@ -131,6 +138,16 @@ def resolve_settings(args, plan, folder, fit):
         store_args["h2d_mib_s"] = reference_h2d if args.h2d_mib_s is None else args.h2d_mib_s
     else:
         store_args["h2d_mib_s"] = None
+    if not math.isfinite(args.host_copy_scale) or args.host_copy_scale <= 0:
+        raise ArgumentTypeError("--host-copy-scale must be finite and positive")
+    if args.host_copy_lanes is not None or args.host_copy_scale != 1:
+        if restore_path != "host-staged" or store_args.get("put_mib_s") is None:
+            raise ArgumentTypeError("Host-copy controls require timed PUTs and host-staged GETs")
+        store_args["host_copy_lanes"] = args.host_copy_lanes
+        for field in ("put_mib_s", "h2d_mib_s", "memory_mib_s"):
+            store_args[field] = (
+                store_args.get(field, getattr(StoreConfig, field)) * args.host_copy_scale
+            )
     if not math.isfinite(args.ssd_time_scale) or args.ssd_time_scale <= 0:
         raise ArgumentTypeError("--ssd-time-scale must be finite and positive")
     if args.ssd_time_scale != 1:
@@ -157,11 +174,53 @@ def resolve_settings(args, plan, folder, fit):
         prefill, prefill_rate = args.prefill_ms, None
     if args.decode_ms is not None:
         decode = decode8 = args.decode_ms
-    timing = StepTiming(prefill, decode, decode8, prefill_rate, args.compute_scale)
+    step_profile = args.step_profile
+    if args.profile == "reference-context" and step_profile is None:
+        step_profile = ROOT / "configs/compute/b300-tp8-context.json"
+    calibration = None
+    if step_profile:
+        if args.prefill_ms is not None or args.decode_ms is not None or fit:
+            raise ArgumentTypeError("The paired context profile supplies both phase timings")
+        source = json.loads(step_profile.read_bytes())
+        model_file = ROOT / "references/kimi-k3-b300/model-config.json"
+        model = json.loads(model_file.read_bytes())
+        timing = ContextTiming.from_profile(
+            source,
+            plan,
+            model.get("text_config", model),
+            args.compute_scale,
+            args.context_cost_scale,
+        )
+        calibration = {
+            "file": str(step_profile),
+            "sha256": checksum(step_profile),
+            "parameters": source,
+            "model_geometry_sha256": checksum(model_file),
+            "context_cost_scale": args.context_cost_scale,
+        }
+    else:
+        if args.context_cost_scale != 1:
+            raise ArgumentTypeError("--context-cost-scale requires a context timing profile")
+        timing = StepTiming(prefill, decode, decode8, prefill_rate, args.compute_scale)
+    scheduler = {
+        "max_num_seqs": args.max_num_seqs,
+        "max_num_batched_tokens": args.max_num_batched_tokens,
+        "save_decode_cache": bool(args.save_decode_cache),
+        "native_retention": calibration is not None or args.save_decode_cache is not None,
+    }
+    max_batch = timing.decode_batch[-1] if calibration else 8
+    if not 1 <= args.max_num_seqs <= max_batch:
+        raise ArgumentTypeError(f"Timing profile supports 1–{max_batch} sequences per step")
     blocks = args.num_blocks if args.num_blocks is not None else default_blocks
     max_len = args.max_model_len if args.max_model_len is not None else default_len
     if blocks < 3 or max_len < 1:
         raise ArgumentTypeError("Invalid scheduler capacity")
+    if args.max_num_batched_tokens < max(
+        args.max_num_seqs, min(max_len, plan["geometry"]["manager_block_tokens"])
+    ):
+        raise ArgumentTypeError(
+            "Token budget must accommodate native hybrid block alignment and the batch"
+        )
     offsets = args.offset_s or [0] * len(args.inputs)
     if len(offsets) != len(args.inputs) or any(not math.isfinite(s) or s < 0 for s in offsets):
         raise ArgumentTypeError("Supply one nonnegative, finite offset per input")
@@ -170,8 +229,10 @@ def resolve_settings(args, plan, folder, fit):
         "num_blocks": blocks,
         "max_model_len": max_len,
         "store": asdict(config),
-        "prefill_ms": timing.prefill_ms,
-        "decode_ms": timing.decode_ms if timing.decode_ms == timing.decode_ms_batch_8 else None,
+        "prefill_ms": None if calibration else timing.prefill_ms,
+        "decode_ms": None
+        if calibration or timing.decode_ms != timing.decode_ms_batch_8
+        else timing.decode_ms,
         "step_timing": asdict(timing),
         "ssd_time_scale": args.ssd_time_scale,
         "restore_path": restore_path,
@@ -184,6 +245,21 @@ def resolve_settings(args, plan, folder, fit):
         if fit
         else None,
     }
+    if config.host_copy_lanes is None:
+        del manifest["store"]["host_copy_lanes"]
+    else:
+        manifest["host_copy_model"] = {
+            "shared_lanes": config.host_copy_lanes,
+            "directions": ["D2H", "H2D"],
+            "upper_bound_bytes_s": config.host_copy_lanes
+            * max(config.put_mib_s, config.h2d_mib_s)
+            * MIB,
+            "scope": "FIFO reservations shared by rank PUTs and staged GETs, excluding SSD DMA",
+        }
+    if args.host_copy_scale != 1:
+        manifest["host_copy_scale"] = args.host_copy_scale
+    if calibration:
+        manifest["compute_calibration"] = calibration
     if public:
         override_fields = (
             "clients",
@@ -252,9 +328,10 @@ def resolve_settings(args, plan, folder, fit):
     return ReplaySettings(
         store=config,
         timing=timing,
+        scheduler=scheduler,
         blocks=blocks,
         max_len=max_len,
         offsets=offsets,
-        record_steps=bool(public),
+        record_steps=bool(public) or bool(calibration),
         manifest=manifest,
     )

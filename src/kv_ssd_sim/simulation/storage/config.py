@@ -26,8 +26,16 @@ class StoreConfig:
     disk_high_watermark: float | None = None
     disk_low_watermark: float | None = None
     h2d_mib_s: float | None = 8192  # None explicitly selects the historical completion clock.
+    host_copy_lanes: int | None = None
 
     def __post_init__(self):
+        if self.host_copy_lanes is not None and (
+            type(self.host_copy_lanes) is not int
+            or not 1 <= self.host_copy_lanes <= 16
+            or self.h2d_mib_s is None
+            or self.put_mib_s is None
+        ):
+            raise ValueError("Shared copy lanes require staged GET, timed PUT and 1–16 lanes")
         if self.clients not in (1, 8) or any(
             type(v) is not int or v <= 0
             for v in (self.segment_bytes, self.staging_bytes, self.quota_bytes)

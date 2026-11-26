@@ -1,0 +1,18 @@
+{
+  "id": "kimi-k3-b300-tp8-aws-context-v1",
+  "target": {"model": "Kimi-K3", "gpu": "B300", "tp": 8, "dcp": 1, "pp": 1, "speculative": false},
+  "prefill_anchor_tokens": 1024,
+  "prefill_anchor_ms": 241,
+  "decode_context_tokens": [1536, 8512],
+  "decode_batch": [1, 8, 16, 32],
+  "decode_short_ms": [9.45, 14.57, 17.84, 24.12],
+  "decode_long_ms": [null, 18.1, 22.3, 34.2],
+  "dense_tflops_per_gpu": 2250,
+  "hbm_gb_s_per_gpu": 7750,
+  "sources": {
+    "prefill_and_decode": "https://github.com/aws-samples/sample-llm-inference-on-eks/blob/main/docs/KIMI-K3-B300-PERFORMANCE.md",
+    "dense_compute": "https://www.nvidia.com/en-us/data-center/hgx/",
+    "hbm": "https://resources.nvidia.com/en-us-dgx-software/dgx-b300-datasheet",
+    "basis": "AWS sections 4 and 5, one aggregated 8xB300 vLLM deployment, MXFP4 / FP8 KV. C1 mean TTFT for 1024 tokens and client mean ITL for 1024/1024 and 8000/1024. Use prompt plus half the generated length for mean decode context. Concurrency proxies scheduled batch. Endpoint timings include service overhead and ramp-up. There is no C1 longer-context measurement. Outside these points infer incremental dense MLA work from the pinned K3 geometry at HGX dense BF16 peak (36 sparse PF/s / 2 / 8) and DGX node HBM peak (62 TB/s / 8). These are sensitivity assumptions, not GPU step measurements."
+  }
+}

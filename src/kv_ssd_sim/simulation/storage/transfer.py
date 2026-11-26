@@ -1,5 +1,6 @@
 """Source memory ports and TP rank H2D ports scheduled on the virtual clock."""
 
+import heapq
 import itertools
 import math
 from collections import deque
@@ -17,6 +18,19 @@ class TransferPorts:
         self.ready_order = itertools.count()
         self.busy_ranks = set()
         self.busy_memory_ports = set()
+        self.copy_lane_ends = [0] * (config.host_copy_lanes or 0)
+
+    def reserve_copy(self, size, rate_mib_s):
+        """Reserve at readiness, in clock order, for either transfer direction."""
+        start = self.clock.now
+        if not size:
+            return start, start
+        if self.copy_lane_ends:
+            start = max(start, self.copy_lane_ends[0])
+        end = start + math.ceil(size * 1e9 / (rate_mib_s * MIB))
+        if self.copy_lane_ends:
+            heapq.heapreplace(self.copy_lane_ends, end)
+        return start, end
 
     def busy(self):
         return any(self.h2d_waiters) or bool(self.busy_ranks or self.busy_memory_ports)
@@ -46,9 +60,15 @@ class TransferPorts:
             if memory:
                 self.busy_memory_ports.add(owner)
                 rate = min(rate, self.config.memory_mib_s)
-            self.record("h2d_start", transfer.obj, transfer.origin, tier=transfer.tier)
-            duration = math.ceil(transfer.obj.size * 1e9 / (rate * MIB))
-            self.clock.at(self.clock.now + duration, self._complete_h2d, transfer)
+            start, end = self.reserve_copy(transfer.obj.size, rate)
+            if start == self.clock.now:
+                self._start_h2d(transfer)
+            else:
+                self.clock.at(start, self._start_h2d, transfer)
+            self.clock.at(end, self._complete_h2d, transfer)
+
+    def _start_h2d(self, transfer):
+        self.record("h2d_start", transfer.obj, transfer.origin, tier=transfer.tier)
 
     def _complete_h2d(self, transfer):
         obj, origin = transfer.obj, transfer.origin

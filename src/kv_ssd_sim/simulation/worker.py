@@ -180,7 +180,20 @@ class MetadataRank:
         self._begin_save(meta, batch)
         size = sum(obj.size for obj, _ in batch.writes)
         config = self.store.config
-        end = start + round(config.save_ms * 1e6) + math.ceil(size * 1e9 / (config.put_mib_s * MIB))
+        ready = start + round(config.save_ms * 1e6)
+        if config.host_copy_lanes and ready > self.clock.now:
+            self.clock.at(ready, self._schedule_copy, meta, batch, start, ready, size)
+        else:
+            self._schedule_copy(meta, batch, start, ready, size)
+
+    def _schedule_copy(self, meta, batch, start, ready, size):
+        config = self.store.config
+        details = {}
+        if config.host_copy_lanes:
+            copy_start, end = self.store.restores.ports.reserve_copy(size, config.put_mib_s)
+            details.update(copy_ready_ns=ready, copy_start_ns=copy_start)
+        else:
+            end = ready + math.ceil(size * 1e9 / (config.put_mib_s * MIB))
         self.store.emit(
             "save_queued",
             request=meta.req_id,
@@ -189,6 +202,7 @@ class MetadataRank:
             start_ns=start,
             complete_ns=end,
             copy_bytes=size,
+            **details,
         )
         self.clock.at(end, self._complete_timed_save, meta, batch)
 
@@ -341,16 +355,26 @@ class InProcessLookup:
 
 
 @contextmanager
-def metadata_scheduler(store, plan, groups, blocks, max_length):
+def metadata_scheduler(
+    store, plan, groups, blocks, max_length, *, native_retention=False, **scheduler_options
+):
     geometry = plan["geometry"]
     block, unit = geometry["manager_block_tokens"], geometry["hash_tokens"]
-    config = scheduler_config(max_length, block, k3=True)
+    config = scheduler_config(max_length, block, k3=True, **scheduler_options)
     cache = config.cache_config
     cache.kv_cache_layout = "LBHNC"
     cache.prefix_match_unit = cache.hash_block_size = cache.cache_hit_alignment_tokens = unit
     cache.num_gpu_blocks = blocks
     config.parallel_config.world_size = 8
-    allocation = KVCacheConfig(num_blocks=blocks, kv_cache_groups=groups, kv_cache_tensors=[])
+    allocation = KVCacheConfig(
+        num_blocks=blocks,
+        kv_cache_groups=groups,
+        kv_cache_tensors=[],
+        # Mirror native KV planning before the connector selects decode checkpoints.
+        prefix_cache_retention_interval=cache.prefix_cache_retention_interval
+        if native_retention
+        else None,
+    )
     with set_current_vllm_config(config):
         register_all_kvcache_specs(config)
         coord = MooncakeStoreCoordinator.from_kv_cache_config(allocation, config, block, unit)

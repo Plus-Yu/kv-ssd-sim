@@ -28,7 +28,9 @@ def build_parser():
         "--offset-s", type=float, action="append", help="One root offset per input (seconds)"
     )
     p.add_argument(
-        "--profile", choices=("n15", *PROFILE_FILES, "reference-20261124"), default="n15"
+        "--profile",
+        choices=("n15", *PROFILE_FILES, "reference-context", "reference-20261124"),
+        default="n15",
     )
     p.add_argument(
         "--volume-service",
@@ -42,6 +44,39 @@ def build_parser():
     )
     p.add_argument("--num-blocks", type=int)
     p.add_argument("--max-model-len", type=int)
+    p.add_argument(
+        "--max-num-seqs", type=int, default=8, help="Native vLLM scheduled sequence limit"
+    )
+    p.add_argument(
+        "--max-num-batched-tokens", type=int, default=4096, help="Native per-step token budget"
+    )
+    p.add_argument(
+        "--save-decode-cache",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Enable native Mooncake decode saves and hybrid checkpoint retention",
+    )
+    p.add_argument(
+        "--step-profile", type=Path, help="Paired K3 TP8/DCP1 prefill/decode timing JSON"
+    )
+    p.add_argument(
+        "--context-cost-scale",
+        type=float,
+        default=1,
+        help="Scale only the inferred additional MLA work (measured anchors stay fixed)",
+    )
+    p.add_argument(
+        "--host-copy-lanes",
+        type=int,
+        choices=range(1, 17),
+        help="Simultaneous node-wide D2H and H2D copies sharing finite lanes",
+    )
+    p.add_argument(
+        "--host-copy-scale",
+        type=float,
+        default=1,
+        help="Multiply the effective D2H, memory-read and H2D rates together",
+    )
     p.add_argument("--clients", type=int, choices=(1, 8))
     for budget in ("segment", "staging", "quota"):
         p.add_argument("--" + budget + "-mib", type=int, help="Override per-client capacity in MiB")
@@ -150,11 +185,27 @@ def run(args, *, device_factory=default_device, transfer_factory=TransferPorts):
                         "transfer_implementation"
                     ]
             manifest["native_master"] = store.master.provenance
-            write("launch.json", manifest)
-            with metadata_scheduler(store, plan, allocation.kv_cache_groups, blocks, max_len) as (
+            with metadata_scheduler(
+                store, plan, allocation.kv_cache_groups, blocks, max_len, **settings.scheduler
+            ) as (
                 scheduler,
                 transfers,
             ):
+                native = scheduler.connector.connector_scheduler
+                manifest["scheduler"] = {
+                    "max_num_seqs": scheduler.scheduler_config.max_num_seqs,
+                    "max_num_batched_tokens": scheduler.scheduler_config.max_num_batched_tokens,
+                    "chunked_prefill": scheduler.scheduler_config.enable_chunked_prefill,
+                    "async_scheduling": scheduler.scheduler_config.async_scheduling,
+                    "save_decode_cache": native.save_decode_cache,
+                    "prefix_cache_retention_input": scheduler.vllm_config.cache_config.prefix_cache_retention_interval
+                    if settings.scheduler["native_retention"]
+                    else None,
+                    "prefix_cache_retention_interval": scheduler.kv_cache_config.prefix_cache_retention_interval,
+                    "load_async": native.load_async,
+                    "lookup_async": native.lookup_async,
+                }
+                write("launch.json", manifest)
                 requests = simulate(
                     admissions,
                     scheduler,
