@@ -4,7 +4,7 @@ import json
 from collections import deque
 from dataclasses import dataclass
 
-from ...object_master import read_key, wire_key
+from ...adapters.mooncake import read_key, wire_key
 
 
 @dataclass(frozen=True)

@@ -2,12 +2,39 @@ import asyncio
 import json
 from collections import deque
 from types import SimpleNamespace
+from unittest.mock import Mock
 
 import pytest
 
 from kv_ssd_sim.object_store import MIB, Clock, ObjectStore, OffloadTimeline, StoreConfig
 from kv_ssd_sim.object_timing import StepTiming
 from kv_ssd_sim.object_traffic import describe_traffic
+from kv_ssd_sim.simulation.storage.device import FifoSSD
+from kv_ssd_sim.simulation.storage.transfer import TransferPorts
+
+
+def test_supplied_device_and_ports_serve_both_offload_and_restore():
+    clock = Clock()
+    cfg = StoreConfig(1, 8 * MIB, MIB, 4 * MIB, offload_delay_ms=0, h2d_mib_s=1000)
+    device = FifoSSD(read_mib_s=250, write_mib_s=500)
+    ports = Mock(wraps=TransferPorts)
+    events = []
+    with ObjectStore(
+        clock,
+        cfg,
+        lambda op, **row: events.append((op, clock.now)),
+        device=device,
+        transfer_factory=ports,
+    ) as store:
+        assert store.put("k", MIB, {"rank": 0}) == 0
+        clock.advance(2_000_000)
+        store.drop_published_memory({})
+        clock.advance(store.get("k", MIB, {"rank": 7}))
+        assert ("disk_publish", 2_000_000) in events
+        assert ("disk_read_complete", 6_000_000) in events
+        assert ("h2d_complete", 7_000_000) in events
+        ports.assert_called_once()
+        assert store.summary()["clients"][0]["restore_staging_bytes"] == 0
 
 
 def test_inflight_native_put_charges_capacity_before_becoming_readable():

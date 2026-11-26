@@ -40,3 +40,7 @@ class FifoSSD:
                 raise ValueError("Recorded write conflicts with an occupied drive or pending read")
         self.free_at = end
         return DeviceIO(next(self._ids), start, end)
+
+
+def default_device(config):
+    return FifoSSD(config.device_read_mib_s or config.device_mib_s, config.device_mib_s)

@@ -6,7 +6,9 @@ import os
 from pathlib import Path
 
 from ..analysis.restore import audit as audit_restores
-from ..object_store import ObjectStore
+from .storage.store import ObjectStore
+from .storage.device import default_device
+from .storage.transfer import TransferPorts
 from ..object_traffic import describe_traffic, export_demand
 from ..runtime import PROJECT_ROOT as ROOT
 from .clock import Clock
@@ -85,12 +87,12 @@ def build_parser():
     return p
 
 
-def run(args):
+def run(args, *, device_factory=default_device, transfer_factory=TransferPorts):
     fit = apply_calibration(args)
     os.environ.setdefault("VLLM_SSM_CONV_STATE_LAYOUT", "SD")
 
-    from kv_ssd_sim.deployment import native_deployment
-    from kv_ssd_sim.object_worker import metadata_scheduler
+    from ..models.deployment import native_deployment
+    from .worker import metadata_scheduler
 
     folder = ROOT / "configs/kimi-k3-b300-step2"
     plan, allocation = native_deployment(folder)
@@ -118,9 +120,32 @@ def run(args):
             if event == "bucket_timing":
                 timings.write(json.dumps(fields) + "\n")
 
+        device = device_factory(settings.store)
         with ObjectStore(
-            clock, settings.store, emit, args.output / "master.log", timeline
+            clock,
+            settings.store,
+            emit,
+            args.output / "master.log",
+            timeline,
+            device=device,
+            transfer_factory=transfer_factory,
         ) as store:
+            if device_factory is not default_device:
+                manifest["device_implementation"] = (
+                    f"{type(device).__module__}.{type(device).__qualname__}"
+                )
+                manifest["service_model"] = (
+                    "Custom storage service: " + manifest["device_implementation"]
+                )
+                if "logical_volume" in manifest:
+                    manifest["logical_volume"].pop("fifo_queues", None)
+            if transfer_factory is not TransferPorts:
+                ports = type(store.restores.ports)
+                manifest["transfer_implementation"] = f"{ports.__module__}.{ports.__qualname__}"
+                if "restore_model" in manifest:
+                    manifest["restore_model"]["transfer_implementation"] = manifest[
+                        "transfer_implementation"
+                    ]
             manifest["native_master"] = store.master.provenance
             write("launch.json", manifest)
             with metadata_scheduler(store, plan, allocation.kv_cache_groups, blocks, max_len) as (

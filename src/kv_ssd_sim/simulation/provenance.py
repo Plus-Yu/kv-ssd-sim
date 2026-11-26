@@ -42,4 +42,11 @@ REPLAY_SOURCES = (
     "src/kv_ssd_sim/workload/compiler.py",
     "src/kv_ssd_sim/workload/prepare.py",
     "src/kv_ssd_sim/workload/arrivals.py",
+    "src/kv_ssd_sim/simulation/storage/config.py",
+    "src/kv_ssd_sim/simulation/storage/store.py",
+    "src/kv_ssd_sim/simulation/storage/staging.py",
+    "src/kv_ssd_sim/simulation/storage/transfer.py",
+    "src/kv_ssd_sim/simulation/worker.py",
+    "src/kv_ssd_sim/simulation/timing.py",
+    "src/kv_ssd_sim/adapters/mooncake.py",
 )
