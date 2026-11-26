@@ -7,9 +7,9 @@ from pathlib import Path
 
 import pytest
 
-from kv_ssd_sim.events import load_events
-from kv_ssd_sim.experiment import validate_trial
-from kv_ssd_sim.trace import load_weka
+from kv_ssd_sim.core.events import load_events
+from kv_ssd_sim.online.experiment import validate_trial
+from kv_ssd_sim.workload.weka import load_weka
 
 ROOT = Path(__file__).resolve().parents[1]
 pytestmark = [
@@ -111,7 +111,7 @@ def test_hybrid_missing_kda_forces_recompute(tmp_path):
 
     # Fault injection lives in this subprocess test only.
     (tmp_path / "sitecustomize.py").write_text("""
-from kv_ssd_sim.storage import ObservedStore
+from kv_ssd_sim.online.storage import ObservedStore
 original = ObservedStore.evict_memory_replicas
 def evict_and_remove_kda(self, keys):
     original(self, keys)

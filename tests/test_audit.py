@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from kv_ssd_sim.audit import (
+from kv_ssd_sim.workload.audit import (
     audit_trace,
     select_parent_prefix,
     sha256,

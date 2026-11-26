@@ -8,10 +8,11 @@ import sys
 import threading
 from pathlib import Path
 
-from kv_ssd_sim.deployment import native_deployment, require
-from kv_ssd_sim.events import EventLog
-from kv_ssd_sim.runtime import PROJECT_ROOT, mooncake_master, native_environment
-from kv_ssd_sim.storage import ObservedStore
+from kv_ssd_sim.core.events import EventLog
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.models.deployment import native_deployment, require
+from kv_ssd_sim.online.runtime import mooncake_master, native_environment
+from kv_ssd_sim.online.storage import ObservedStore
 
 
 def run(output, *, mount=None, segment_mib=768, quota_mib=1024):
@@ -66,7 +67,7 @@ def run(output, *, mount=None, segment_mib=768, quota_mib=1024):
     slab_bytes = slab.numel()
     device = None
     if mount:
-        from kv_ssd_sim.femu import FEMUDevice
+        from kv_ssd_sim.devices.femu.device import FEMUDevice
 
         device = FEMUDevice(mount)
     disk = mount / "k3-probe" if mount else output / "disk"

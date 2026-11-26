@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -11,10 +12,15 @@ ANALYSIS = ROOT / ".venv-aiperf/bin/python"
 
 
 def boot(trial):
+    env = os.environ.copy()
+    env["PYTHONPATH"] = os.pathsep.join(filter(None, (str(ROOT / "src"), env.get("PYTHONPATH"))))
     subprocess.run(
         [
             PY,
-            ROOT / "scripts/run_femu.py",
+            "-m",
+            "kv_ssd_sim",
+            "femu",
+            "run",
             "--trial",
             trial,
             "--workload",
@@ -41,6 +47,7 @@ def boot(trial):
         ],
         check=True,
         cwd=ROOT,
+        env=env,
     )
     return ROOT / "outputs" / trial
 

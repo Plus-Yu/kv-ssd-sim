@@ -2,14 +2,18 @@
 
 import argparse
 import json
+import sys
 from bisect import bisect_left, bisect_right
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from analyze_b2 import read
 from analyze_k3_ssd import ROOT, transfer_ledger
-from measure_ssd import NS, check, measurements, parse_trace, stats
-from verify_aiperf import read_jsonl, verify
-from verify_block_capture import check_receipt
+
+from kv_ssd_sim.analysis.aiperf import read_jsonl, verify
+from kv_ssd_sim.analysis.block_capture import check_receipt
+from kv_ssd_sim.analysis.block_io import NS, check, measurements, parse_trace, stats
 
 
 def diagnose(path):

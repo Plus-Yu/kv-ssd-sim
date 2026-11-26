@@ -15,12 +15,12 @@ from contextlib import nullcontext
 from pathlib import Path
 from unittest.mock import patch
 
+from kv_ssd_sim.core.events import EventLog
 from kv_ssd_sim.core.provenance import package_source_hashes
-from kv_ssd_sim.events import EventLog
 from kv_ssd_sim.online.native import HostFence, NativeRuntime
-from kv_ssd_sim.online.payload import SYNTHETIC_TOKEN
 from kv_ssd_sim.online.runtime import mooncake_master
 from kv_ssd_sim.online.timing import wait_until
+from kv_ssd_sim.workload.tokens import SYNTHETIC_TOKEN
 from kv_ssd_sim.workload.weka import load_weka, save_normalized
 
 

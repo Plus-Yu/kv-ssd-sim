@@ -9,17 +9,11 @@ from importlib.metadata import version
 
 from ..adapters.mooncake import checksum
 from ..core.paths import PROJECT_ROOT as ROOT
+from ..core.provenance import package_source_hashes
 from ..simulation.storage.config import StoreConfig
 from ..simulation.storage.device import MIB
 from ..simulation.timing import StepTiming
 from .profiles import PROFILE_FILES, load_profile
-from .provenance import REPLAY_SOURCES
-
-PUBLIC_PROFILES = {
-    "reference": ROOT / "configs/kimi-k3-b300-large-ssd.json",
-    "reference-volume-20261125": ROOT / "configs/kimi-k3-b300-logical-volume.json",
-    "reference-single-ssd": ROOT / "configs/kimi-k3-b300-object-replay.json",
-}
 
 
 @dataclass
@@ -237,7 +231,7 @@ def resolve_settings(args, plan, folder, fit):
             "disk_get": "SSD completion releases the file pin; H2D completion releases staging",
             "request_ack": "all objects in all receiver sub-batches on all TP ranks complete",
         }
-    manifest["source_sha256"] = {name: checksum(ROOT / name) for name in REPLAY_SOURCES}
+    manifest["source_sha256"] = package_source_hashes(relative_to=ROOT)
     manifest["service_model"] = (
         "Native offset allocators, writer-preferred segments, global MasterService.BatchEvict, "
         "eager offload with periodic client heartbeats, native bucket grouping and source leases, "

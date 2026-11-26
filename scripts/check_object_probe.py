@@ -8,8 +8,11 @@ import tarfile
 from collections import Counter
 from pathlib import Path
 
-from kv_ssd_sim.object_store import MIB, Clock, ObjectStore, StoreConfig
-from kv_ssd_sim.runtime import PROJECT_ROOT as ROOT
+from kv_ssd_sim.core.paths import PROJECT_ROOT as ROOT
+from kv_ssd_sim.simulation.clock import Clock
+from kv_ssd_sim.simulation.storage.config import StoreConfig
+from kv_ssd_sim.simulation.storage.device import MIB
+from kv_ssd_sim.simulation.storage.store import ObjectStore
 
 
 def check(reference, events_path=None):
@@ -43,8 +46,8 @@ def exercise(reference, store, clock, events):
     from vllm.v1.core.kv_cache_utils import get_request_block_hasher, init_none_hash
     from vllm.v1.request import Request
 
-    from kv_ssd_sim.deployment import native_deployment
-    from kv_ssd_sim.object_worker import MetadataRank, MetadataTransfers
+    from kv_ssd_sim.models.deployment import native_deployment
+    from kv_ssd_sim.simulation.worker import MetadataRank, MetadataTransfers
 
     plan, alloc = native_deployment(ROOT / "configs/kimi-k3-b300-step2")
     geo, groups = plan["geometry"], alloc.kv_cache_groups

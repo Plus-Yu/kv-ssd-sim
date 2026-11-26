@@ -16,7 +16,7 @@ from typing import Any
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
-from kv_ssd_sim.events import EventLog
+from kv_ssd_sim.core.events import EventLog
 
 
 def buffers_digest(addresses: list[int], sizes: list[int]) -> str:

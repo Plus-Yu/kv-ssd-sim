@@ -10,8 +10,8 @@ import sys
 import time
 from pathlib import Path
 
-from kv_ssd_sim.runtime import free_port, mooncake_master, native_environment
-from kv_ssd_sim.storage import replica_types
+from kv_ssd_sim.online.runtime import free_port, mooncake_master, native_environment
+from kv_ssd_sim.online.storage import replica_types
 
 
 def main():

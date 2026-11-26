@@ -6,6 +6,7 @@ import gzip
 import hashlib
 import json
 import re
+import sys
 from bisect import bisect_right
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -13,9 +14,13 @@ from itertools import pairwise
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from analyze_b2 import matched_settings, read
 from analyze_k3_ssd import charts, online
-from measure_ssd import check
+
+from kv_ssd_sim.analysis.block_io import check
 
 
 def fields(path):

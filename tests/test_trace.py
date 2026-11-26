@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from kv_ssd_sim.trace import load_weka, normalize_trace
+from kv_ssd_sim.workload.weka import load_weka, normalize_trace
 
 ROOT = Path(__file__).resolve().parents[1]
 

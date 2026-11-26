@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from kv_ssd_sim.k3_online import RankConnectors
+from kv_ssd_sim.online.k3_online import RankConnectors
 
 
 def test_rank_completions_accumulate_across_steps():

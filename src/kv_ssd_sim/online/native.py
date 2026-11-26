@@ -19,7 +19,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from kv_ssd_sim.adapters.vllm import VLLM_VERSION, scheduler_config
-from kv_ssd_sim.events import EventLog
+from kv_ssd_sim.core.events import EventLog
 from kv_ssd_sim.online.payload import PreparedPayloads
 from kv_ssd_sim.online.runtime import free_port
 from kv_ssd_sim.online.storage import ObservedStore
@@ -108,7 +108,8 @@ class NativeRuntime:
         self.block_size = 64
         self.num_blocks = num_blocks
         self.hybrid = None
-        from kv_ssd_sim.online.k3_online import K3Buffers, K3Profile, RankConnectors, logical_rank
+        from kv_ssd_sim.models.kimi_k3 import K3Profile
+        from kv_ssd_sim.online.k3_online import K3Buffers, RankConnectors, logical_rank
 
         k3 = isinstance(hybrid_config, K3Profile)
         self.hash_unit = 128 if k3 else self.block_size

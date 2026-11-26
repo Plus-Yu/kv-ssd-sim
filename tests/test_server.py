@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from transformers import AutoTokenizer
 
-from kv_ssd_sim.server import parse_chat
+from kv_ssd_sim.online.server import parse_chat
 
 
 @pytest.fixture(scope="module")

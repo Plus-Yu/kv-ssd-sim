@@ -1,11 +1,13 @@
 """Compare volume service scenarios and the single-drive control on identical compiled inputs."""
 
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+SOURCE = Path(__file__).resolve().parents[1] / "src"
+sys.path.insert(0, str(SOURCE))
 
 HISTORICAL_SCENARIOS = {
     "base": [],
@@ -58,6 +60,8 @@ def main():
     default_windows = (
         ("warm",) if (args.windows / "warm/input.json").is_file() else ("calibration", "holdout")
     )
+    env = os.environ.copy()
+    env["PYTHONPATH"] = os.pathsep.join(filter(None, (str(SOURCE), env.get("PYTHONPATH"))))
     for name in args.window or default_windows:
         folder = args.output / name
         folder.mkdir(parents=True, exist_ok=False)
@@ -66,7 +70,9 @@ def main():
                 subprocess.run(
                     [
                         sys.executable,
-                        str(Path(__file__).with_name("run_object_replay.py")),
+                        "-m",
+                        "kv_ssd_sim",
+                        "simulate",
                         str(args.windows / name / "input.json"),
                         "--profile",
                         "reference-single-ssd" if case == "single-3tb" else args.profile,
@@ -74,6 +80,7 @@ def main():
                         str(folder / case),
                         *flags,
                     ],
+                    env=env,
                     check=True,
                     stdout=log,
                     stderr=subprocess.STDOUT,

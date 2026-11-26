@@ -20,14 +20,15 @@ from pathlib import Path
 
 from aiohttp import web
 
+from kv_ssd_sim.core.events import EventLog
 from kv_ssd_sim.core.provenance import package_source_hashes
 from kv_ssd_sim.devices.femu.block_capture import mark
-from kv_ssd_sim.events import EventLog
 from kv_ssd_sim.models.hybrid import HybridConfig
 from kv_ssd_sim.online.engine import ReplayEngine
 from kv_ssd_sim.online.native import NativeRuntime
-from kv_ssd_sim.online.payload import MAX_PREPARED_BYTES, SYNTHETIC_TOKEN, PreparedPayloads
+from kv_ssd_sim.online.payload import MAX_PREPARED_BYTES, PreparedPayloads
 from kv_ssd_sim.online.runtime import mooncake_master
+from kv_ssd_sim.workload.tokens import SYNTHETIC_TOKEN
 from kv_ssd_sim.workload.weka import ReplayRequest
 
 
@@ -466,7 +467,7 @@ def serve(args):
         raise ValueError("Invalid admission limit or port")
     tokenizer = AutoTokenizer.from_pretrained(str(args.tokenizer), local_files_only=True)
     hybrid = HybridConfig.load(args.hybrid_config) if args.hybrid_config else None
-    from kv_ssd_sim.online.k3_online import K3Profile
+    from kv_ssd_sim.models.kimi_k3 import K3Profile
 
     k3 = isinstance(hybrid, K3Profile)
     pool = (

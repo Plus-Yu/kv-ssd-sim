@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from kv_ssd_sim.deployment import capacity, convert
-from kv_ssd_sim.runtime import PROJECT_ROOT
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.models.deployment import capacity, convert
 
 CONFIG = PROJECT_ROOT / "configs/kimi-k3-b300-step2"
 

@@ -7,8 +7,9 @@ import os
 import sys
 from pathlib import Path
 
-from kv_ssd_sim.deployment import convert
-from kv_ssd_sim.runtime import PROJECT_ROOT, native_environment
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.models.deployment import convert
+from kv_ssd_sim.online.runtime import native_environment
 
 
 def main():

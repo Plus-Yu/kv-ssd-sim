@@ -1,9 +1,5 @@
 """Causal admissions and native vLLM steps on the object-replay clock."""
 
-from ..workload.arrivals import Admissions
-
-__all__ = ["Admissions", "simulate"]
-
 
 def simulate(admissions, scheduler, transfers, store, hash_unit, timing, record_steps):
     from vllm.sampling_params import SamplingParams

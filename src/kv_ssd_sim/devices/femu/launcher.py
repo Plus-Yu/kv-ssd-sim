@@ -15,6 +15,7 @@ import tempfile
 from pathlib import Path
 
 from kv_ssd_sim.core.paths import PROJECT_ROOT as ROOT
+from kv_ssd_sim.core.provenance import package_source_hashes
 
 ASSETS = ROOT / ".femu"
 REVISION = "a898d22b2f894042afe0f4ef21867393c5c78a70"
@@ -285,36 +286,14 @@ def main(argv=None):
         "nand_read_ns": args.nand_read_ns,
         "workload": args.workload,
         "guest_inputs_sha256": {p.name: digest(p) for p in sorted((output / "input").iterdir())},
-        "inputs_sha256": {
-            str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in (
+        "inputs_sha256": package_source_hashes(
+            relative_to=ROOT,
+            extra_files=(
                 ASSETS / "alpine-vmlinuz",
                 ramdisk,
                 binary,
-                ROOT / "scripts/femu_workload.py",
+                ROOT / "scripts/femu_guest_init.sh",
                 ROOT / "scripts/run_femu.py",
-                ROOT / "src/kv_ssd_sim/devices/femu/launcher.py",
-                ROOT / "src/kv_ssd_sim/devices/femu/workload.py",
-                ROOT / "src/kv_ssd_sim/online/metadata_cache.py",
-                ROOT / "src/kv_ssd_sim/core/paths.py",
-                *(
-                    (
-                        ROOT / "scripts/femu_qmp.py",
-                        ROOT / "src/kv_ssd_sim/devices/femu/qmp.py",
-                        ROOT / "src/kv_ssd_sim/devices/femu/nand.py",
-                        ROOT / "src/kv_ssd_sim/devices/femu/block_capture.py",
-                        ROOT / "src/kv_ssd_sim/devices/femu/probe.py",
-                        ROOT / "src/kv_ssd_sim/analysis/nand.py",
-                        ROOT / "src/kv_ssd_sim/analysis/block_capture.py",
-                        ROOT / "src/kv_ssd_sim/analysis/block_io.py",
-                        ROOT / "src/kv_ssd_sim/analysis/aiperf.py",
-                        ROOT / "src/kv_ssd_sim/nand.py",
-                        ROOT / "scripts/femu_nand_probe.py",
-                        ROOT / "src/kv_ssd_sim/block_capture.py",
-                    )
-                    if args.nand_stats
-                    else ()
-                ),
                 *(
                     (ROOT / ".native/layout/libbucketlayout.so", ROOT / "native/bucket_layout.cpp")
                     if args.bucket_layout
@@ -325,8 +304,8 @@ def main(argv=None):
                 ROOT / "scripts/run_aiperf.py",
                 output / "package-distributions.json",
                 *sorted((output / "model-cache").rglob("*.json")),
-            )
-        },
+            ),
+        ),
         "host_disk_exposed": False,
         "host_network_exposed": False,
     }

@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from kv_ssd_sim.hybrid import HybridConfig
+from kv_ssd_sim.models.hybrid import HybridConfig
 
 
 def test_geometry_and_namespaces(tmp_path):

@@ -16,20 +16,8 @@ from unittest.mock import patch
 
 import numpy as np
 
-from kv_ssd_sim.adapters.vllm import metadata_rank_worker
+from kv_ssd_sim.core.paths import PROJECT_ROOT
 from kv_ssd_sim.models.deployment import native_deployment, require
-from kv_ssd_sim.models.kimi_k3 import K3Profile
-from kv_ssd_sim.online.runtime import PROJECT_ROOT
-
-# Preserve the original metadata planner import used by earlier experiments.
-__all__ = [
-    "CapacitySamples",
-    "K3Buffers",
-    "K3Profile",
-    "RankConnectors",
-    "logical_rank",
-    "metadata_rank_worker",
-]
 
 
 class K3Buffers:

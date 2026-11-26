@@ -4,15 +4,18 @@
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
 import time
 from pathlib import Path
 
-from verify_femu import verify
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from kv_ssd_sim.analysis.femu import verify
+
 TRACE = ROOT / "datasets/kimi-k3-b300-step1/slice.json"
 HYBRID = ROOT / "configs/hybrid-tiny.json"
 SLICE_SHA = "40379c1607947b2d84c9de6a37d501fc8f0adafd59b14f0cc7a7d7585cfd3896"
@@ -44,7 +47,10 @@ def main():
             start = time.time_ns()
             command = [
                 sys.executable,
-                str(ROOT / "scripts/run_femu.py"),
+                "-m",
+                "kv_ssd_sim",
+                "femu",
+                "run",
                 "--trial",
                 name,
                 "--workload",
@@ -66,7 +72,13 @@ def main():
             ]
             # GNU time reports the maximum RSS of the launcher/children, including QEMU.
             usage = folder.with_suffix(".maxrss-kib")
-            subprocess.run(["/usr/bin/time", "-f", "%M", "-o", str(usage), *command], check=True)
+            env = os.environ.copy()
+            env["PYTHONPATH"] = os.pathsep.join(
+                filter(None, (str(ROOT / "src"), env.get("PYTHONPATH")))
+            )
+            subprocess.run(
+                ["/usr/bin/time", "-f", "%M", "-o", str(usage), *command], check=True, env=env
+            )
             (folder / "host-usage.json").write_text(
                 json.dumps(
                     {

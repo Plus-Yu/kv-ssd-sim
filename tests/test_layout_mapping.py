@@ -42,7 +42,7 @@ def test_inventory_rejects_payload_changes(tmp_path, monkeypatch):
 
     import pytest
 
-    from kv_ssd_sim import layout
+    from kv_ssd_sim.devices.femu import layout
 
     monkeypatch.setattr(layout, "extent_map", lambda _: [[0, 4096, 4096]])
     key = "k3-online-tp8@store_format:attention_head_major@group:0@" + "a" * 64

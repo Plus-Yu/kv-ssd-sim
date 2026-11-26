@@ -9,7 +9,8 @@ from pathlib import Path
 
 from run_kvlab_matrix import HISTORICAL_SCENARIOS, PUBLIC_SCENARIOS
 
-from kv_ssd_sim.kvlab import LIMITS, NS, candidates, dump
+from kv_ssd_sim.workload.corpus import LIMITS, NS, dump
+from kv_ssd_sim.workload.windows import candidates
 
 
 def load(path):

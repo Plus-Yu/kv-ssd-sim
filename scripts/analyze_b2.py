@@ -3,11 +3,14 @@
 import argparse
 import csv
 import json
+import sys
 from pathlib import Path
 
-from measure_ssd import NS, check, measurements, parse_trace, stats
-from verify_block_capture import check_receipt
-from verify_femu import verify
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from kv_ssd_sim.analysis.block_capture import check_receipt
+from kv_ssd_sim.analysis.block_io import NS, check, measurements, parse_trace, stats
+from kv_ssd_sim.analysis.femu import verify
 
 
 def read(path):

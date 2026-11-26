@@ -1,6 +1,6 @@
 import asyncio
 
-from kv_ssd_sim.timing import wait_until
+from kv_ssd_sim.online.timing import wait_until
 
 
 def test_early_wakeup_is_rechecked_and_copy_time_consumes_budget():

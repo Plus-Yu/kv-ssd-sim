@@ -6,7 +6,9 @@ import sqlite3
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from .kvlab import LIMITS, audit, compile_window, dump, select_warm_window, select_windows
+from .compiler import compile_window
+from .corpus import LIMITS, audit, dump
+from .windows import select_warm_window, select_windows
 
 
 def main(argv=None):

@@ -3,8 +3,8 @@ from unittest.mock import Mock
 
 import pytest
 
-from kv_ssd_sim.events import EventLog, load_events
-from kv_ssd_sim.storage import ObservedStore
+from kv_ssd_sim.core.events import EventLog, load_events
+from kv_ssd_sim.online.storage import ObservedStore
 
 
 class MemoryDescriptor:

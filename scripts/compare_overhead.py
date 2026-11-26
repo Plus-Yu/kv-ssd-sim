@@ -6,8 +6,8 @@ import csv
 import json
 from pathlib import Path
 
-from kv_ssd_sim.events import load_events
-from kv_ssd_sim.experiment import validate_trial
+from kv_ssd_sim.core.events import load_events
+from kv_ssd_sim.online.experiment import validate_trial
 
 
 def inspect_run(path):

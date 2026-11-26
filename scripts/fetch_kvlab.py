@@ -10,7 +10,7 @@ import tempfile
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-from kv_ssd_sim.kvlab import REVISION, SHA256
+from kv_ssd_sim.workload.corpus import REVISION, SHA256
 
 NAME = "replay-40d-oct14-337a03810637"
 BLOB = "9f9476958fe8a8dda14f22795bc7de3711147b42cf3b65e8f4a5e2c832f21995"

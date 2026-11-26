@@ -10,8 +10,8 @@ import struct
 import time
 from pathlib import Path
 
+from kv_ssd_sim.core.paths import PROJECT_ROOT
 from kv_ssd_sim.devices.femu.block_capture import STOP
-from kv_ssd_sim.online.runtime import PROJECT_ROOT
 
 FIEMAP = 0xC020660B
 HEADER = struct.Struct("=QQIIII")

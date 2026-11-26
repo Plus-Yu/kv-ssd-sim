@@ -1,0 +1,182 @@
+.
+├── configs/
+│   ├── hardware/
+│   │   └── b300-tp8.json
+│   ├── kimi-k3-b300-step2/
+│   │   ├── mooncake.json
+│   │   ├── resolved.json
+│   │   ├── server.json
+│   │   └── ssd.json
+│   ├── model/
+│   │   └── config.json
+│   ├── profiles/
+│   │   ├── reference-single-ssd.json
+│   │   ├── reference-volume-20261125.json
+│   │   └── reference.json
+│   ├── sim-tokenizer/
+│   │   ├── chat_template.jinja
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── storage/
+│   │   └── mooncake-single-volume.json
+│   ├── hybrid-tiny.json
+│   ├── k3-c1-online.json
+│   ├── kimi-k3-b300-large-ssd.json
+│   ├── kimi-k3-b300-logical-volume.json
+│   ├── kimi-k3-b300-object-replay.json
+│   ├── kimi-k3-b300-reference.json
+│   ├── pressure-hybrid.json
+│   └── pressure-store.json
+├── native/
+│   ├── bucket_layout.cpp
+│   ├── object_replay_master.cpp
+│   └── object_replay_observer.cpp
+├── scripts/
+│   ├── aiperf_gate/
+│   │   └── sitecustomize.py
+│   ├── analyze_b2.py
+│   ├── analyze_k3_ssd.py
+│   ├── analyze_kvlab_native.py
+│   ├── analyze_layout.py
+│   ├── analyze_nand.py
+│   ├── analyze_step6.py
+│   ├── archive_kvlab.py
+│   ├── audit_aiperf_input.py
+│   ├── audit_layout_concurrency.py
+│   ├── audit_weka.py
+│   ├── bootstrap.py
+│   ├── build_bucket_layout.py
+│   ├── build_femu.sh
+│   ├── build_object_master.py
+│   ├── build_object_observer.py
+│   ├── build_sim_tokenizer.py
+│   ├── check_k3_shard_evidence.py
+│   ├── check_object_probe.py
+│   ├── check_pressure.py
+│   ├── check_public_replay.py
+│   ├── check_staged_restores.py
+│   ├── compare_femu.py
+│   ├── compare_object_replay.py
+│   ├── compare_overhead.py
+│   ├── compare_restore_paths.py
+│   ├── compare_volume_replay.py
+│   ├── diagnose_mooncake_reput.py
+│   ├── diagnose_ssd_boundary.py
+│   ├── femu_guest_init.sh
+│   ├── fetch_kvlab.py
+│   ├── fetch_weka_sample.py
+│   ├── measure_ssd.py
+│   ├── plan_k3_deployment.py
+│   ├── plot_ssd_measurements.py
+│   ├── plot_step6.py
+│   ├── prepare_kvlab.py
+│   ├── prepare_object_trace.py
+│   ├── reproduce_kvlab_n15.sh
+│   ├── reproduce_replay_refactor.sh
+│   ├── resume_after_quota.py
+│   ├── run-n15-checkout.sh
+│   ├── run_aiperf.py
+│   ├── run_femu.py
+│   ├── run_k3_ssd.py
+│   ├── run_kvlab_matrix.py
+│   ├── run_object_holdout.py
+│   ├── run_object_replay.py
+│   ├── run_step6.py
+│   ├── summarize_kvlab.py
+│   ├── verify_aiperf.py
+│   ├── verify_femu.py
+│   ├── verify_k3_shards.py
+│   ├── verify_replay_equivalence.py
+│   └── verify_step1.py
+└── src/
+    └── kv_ssd_sim/
+        ├── adapters/
+        │   ├── __init__.py
+        │   ├── mooncake.py
+        │   └── vllm.py
+        ├── analysis/
+        │   ├── __init__.py
+        │   ├── aiperf.py
+        │   ├── block_capture.py
+        │   ├── block_io.py
+        │   ├── femu.py
+        │   ├── nand.py
+        │   ├── natural.py
+        │   ├── pressure.py
+        │   ├── restore.py
+        │   ├── reuse.py
+        │   └── traffic.py
+        ├── core/
+        │   ├── __init__.py
+        │   ├── events.py
+        │   ├── paths.py
+        │   └── provenance.py
+        ├── devices/
+        │   ├── femu/
+        │   │   ├── __init__.py
+        │   │   ├── block_capture.py
+        │   │   ├── device.py
+        │   │   ├── launcher.py
+        │   │   ├── layout.py
+        │   │   ├── nand.py
+        │   │   ├── probe.py
+        │   │   ├── qmp.py
+        │   │   └── workload.py
+        │   └── __init__.py
+        ├── experiments/
+        │   ├── __init__.py
+        │   ├── profiles.py
+        │   ├── runner.py
+        │   └── settings.py
+        ├── models/
+        │   ├── __init__.py
+        │   ├── deployment.py
+        │   ├── hybrid.py
+        │   └── kimi_k3.py
+        ├── online/
+        │   ├── __init__.py
+        │   ├── buffers.py
+        │   ├── engine.py
+        │   ├── experiment.py
+        │   ├── k3_online.py
+        │   ├── metadata_cache.py
+        │   ├── native.py
+        │   ├── payload.py
+        │   ├── pressure.py
+        │   ├── runtime.py
+        │   ├── server.py
+        │   ├── smoke.py
+        │   ├── storage.py
+        │   └── timing.py
+        ├── simulation/
+        │   ├── storage/
+        │   │   ├── __init__.py
+        │   │   ├── config.py
+        │   │   ├── device.py
+        │   │   ├── offload.py
+        │   │   ├── restore.py
+        │   │   ├── staging.py
+        │   │   ├── state.py
+        │   │   ├── store.py
+        │   │   └── transfer.py
+        │   ├── __init__.py
+        │   ├── clock.py
+        │   ├── engine.py
+        │   ├── timing.py
+        │   └── worker.py
+        ├── workload/
+        │   ├── __init__.py
+        │   ├── aiperf.py
+        │   ├── arrivals.py
+        │   ├── audit.py
+        │   ├── compiler.py
+        │   ├── corpus.py
+        │   ├── prepare.py
+        │   ├── tokens.py
+        │   ├── weka.py
+        │   ├── weka_audit.py
+        │   ├── weka_compiler.py
+        │   └── windows.py
+        ├── __init__.py
+        ├── __main__.py
+        └── cli.py

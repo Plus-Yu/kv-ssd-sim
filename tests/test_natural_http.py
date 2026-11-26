@@ -1,11 +1,9 @@
 """Natural FEMU accepts absent reads while controlled-cold verification remains strict."""
 
-import importlib
-from pathlib import Path
-
 import pytest
 
-from kv_ssd_sim.femu import FEMUDevice
+from kv_ssd_sim.analysis.natural import restored_batches
+from kv_ssd_sim.devices.femu.device import FEMUDevice
 
 
 def test_natural_namespace_without_get_or_sectors(monkeypatch):
@@ -18,10 +16,8 @@ def test_natural_namespace_without_get_or_sectors(monkeypatch):
             device.verify()
 
 
-def test_natural_no_get_and_multiple_tiers(monkeypatch):
-    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    describe = importlib.import_module("verify_natural").restored_batches
-    assert describe([]) == []
+def test_natural_no_get_and_multiple_tiers():
+    assert restored_batches([]) == []
     events = []
     for i, (tiers, sectors) in enumerate(
         [(["MEMORY"], 0), (["LOCAL_DISK"], 8), (["MEMORY", "LOCAL_DISK"], 0)]
@@ -46,9 +42,9 @@ def test_natural_no_get_and_multiple_tiers(monkeypatch):
                 },
             ]
         )
-    rows = describe(events)
+    rows = restored_batches(events)
     assert [r["device_read_bytes_in_get"] for r in rows] == [0, 4096, 0]
     assert rows[-1]["available_replicas_by_object"] == {"LOCAL_DISK+MEMORY": 1}
     events[-1]["checksum_ok"] = [False]
     with pytest.raises(ValueError, match="restored object"):
-        describe(events)
+        restored_batches(events)

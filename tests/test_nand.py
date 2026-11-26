@@ -1,11 +1,8 @@
 import json
-import sys
-from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from analyze_nand import interval, sample
+from kv_ssd_sim.analysis.nand import interval, sample
 
 
 def save_snapshot(path, name, stamp, sectors=0, data=0, gc=0, erases=0, valid=0, invalid=0):

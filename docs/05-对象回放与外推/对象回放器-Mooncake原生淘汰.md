@@ -12,7 +12,7 @@
 | 4．驱动原生内存回收 | 独立子进程的系统时钟使用回放时间，固定起点与 100 ms 原生租约索引桶对齐。使用 upstream 的测试友元接管后台内存回收时钟并停用客户端超时剔除，虚拟客户端在会话间持续在线。每个 10 ms 边界读取 master 的全池占用与分配压力，按固定源码的比例公式调用 `MasterService::BatchEvict`。候选索引、租约、引用检查、对象目标和实际释放都在同一 wheel 中执行。无压力时可跳过连续空轮次，跨越空闲期时仍执行有压力的轮次。 |
 | 5．审计与时间校准 | 每次回收记录时间、回收前后原生占用、实际失去内存副本的键。观察通过 `GetReplicaListForAdmin`，避免给观察对象续租。结束时逐键核对 Python 账本和 master 的实际副本状态。运行输出每个原生 bucket 的源查询、写入开始、落盘回执时间。同一入口支持读入对齐后的时间记录。 |
 
-构建只编译驱动。构建时给同版本头文件加一个仅用于访问虚拟 bucket 索引的友元声明，磁盘选择函数与内存选择函数均从已校验的动态库执行。项目中的 Python `ObjectStore` 负责虚拟传输、事件与账本。[构建脚本](../../scripts/build_object_master.py) · [C++ 驱动](../../native/object_replay_master.cpp) · [虚拟 Store](../../src/kv_ssd_sim/object_store.py) · [vLLM 保存与恢复入口](../../src/kv_ssd_sim/object_worker.py) · [上游 master](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/master_service.cpp) · [上游 FileStorage](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp)
+构建只编译驱动。构建时给同版本头文件加一个仅用于访问虚拟 bucket 索引的友元声明，磁盘选择函数与内存选择函数均从已校验的动态库执行。项目中的 Python `ObjectStore` 负责虚拟传输、事件与账本。[构建脚本](../../scripts/build_object_master.py) · [C++ 驱动](../../native/object_replay_master.cpp) · [虚拟 Store](../../src/kv_ssd_sim/simulation/storage/store.py) · [vLLM 保存与恢复入口](../../src/kv_ssd_sim/simulation/worker.py) · [上游 master](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/master_service.cpp) · [上游 FileStorage](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp)
 
 ## 验收与实测
 

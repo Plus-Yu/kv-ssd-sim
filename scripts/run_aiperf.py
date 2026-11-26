@@ -89,6 +89,7 @@ def main():
         str(ROOT / ".venv/bin/python"),
         "-m",
         "kv_ssd_sim",
+        "online",
         "serve",
         "--output",
         str(output / "server"),

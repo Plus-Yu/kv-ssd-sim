@@ -3,7 +3,7 @@ import threading
 
 import pytest
 
-from kv_ssd_sim.native import HostFence
+from kv_ssd_sim.online.native import HostFence
 
 
 def test_save_cannot_pass_unreleased_compute_fence():

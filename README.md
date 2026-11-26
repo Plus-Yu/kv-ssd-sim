@@ -2,7 +2,7 @@
 
 这版直接运行 **vLLM 原生 Scheduler、KVCacheManager、MooncakeStoreConnector，以及 Mooncake 原生磁盘 offload**。不加载模型权重，不执行 forward；使用真实 CPU KV 缓冲区和固定计算等待时间。
 
-按研究阶段查找实施计划、验收报告、系统架构图和实机校准边界，见[研究文档导航](docs/README.md)。
+按研究阶段查找实施计划、验收报告、系统架构图和实机校准边界。当前模块分工、历史命令和 13 对回放的复现方法见清理验收记录。[研究文档导航](docs/README.md) · [兼容层清理与验收](docs/05-对象回放与外推/兼容层清理与验收.md)
 
 八卡对象回放主配置 `--profile reference` 使用 **一块 30.72 TB 逻辑 SSD**、24 TB KV 配额、1.024 TB Store 和 1M 上下文。SSD 读完成后，对象保留在文件所属客户端的有界暂存区，直到传输至目标 rank。八个 rank 全部完成后再通知 vLLM。[大容量单盘、两阶段恢复与复现](docs/05-对象回放与外推/大容量单盘与两阶段KV恢复验收.md)
 
@@ -30,14 +30,13 @@ SSD 负载阶段 B2 已完成两轮自然回放的流式块采集，并按设备
 
 **FEMU 在线闭环已通过本机 TCG 验证。** 在相同 16 ms 计算预算下，只把 NAND 页读从 40 μs 改为 100 ms，Mooncake GET 从 178 ms 增至 566 ms，请求 TTFT 从 218 ms 增至 608 ms；两组混合状态均校验成功。见 [FEMU 验收报告](docs/01-原型与闭环接入/FEMU验收报告.md) 和 [构建与复现](docs/01-原型与闭环接入/FEMU-next.md)。这是无 GPU / 无 KVM 的功能验收，不能把 TCG 的绝对时延当作真实 GPU 性能。
 
-普通 `demo` / `replay` 仍默认使用本机文件系统和可选 receiver 等待；实际 FEMU 实验由 `scripts/run_femu.py` 启动客体，使用 `--femu-mount`。
+普通 `demo` / `online replay` 默认使用本机文件系统和可选的 receiver 等待。设备实验由 `kv-ssd-sim femu run` 启动客体，使用 `--femu-mount`。
 
 ## 运行
 
-环境已经安装在本项目的 `.venv`，无需全局安装或 GPU。
+以下示例从 checkout 根目录运行，使用已安装项目的 `.venv`。n15 宿主可用阶段 05 的离线 Python 环境，通过 `"$py" -m kv_ssd_sim` 调用同一入口。[n15 环境与完整复现命令](docs/05-对象回放与外推/兼容层清理与验收.md)
 
 ```bash
-cd /home/plusyu/projects/kv-ssd-sim
 source .venv/bin/activate
 kv-ssd-sim doctor
 
@@ -159,12 +158,14 @@ python3.13 scripts/bootstrap.py --index-url https://pypi.tuna.tsinghua.edu.cn/si
 
 脚本复用 `.native/wheels` 的已校验文件，仅在项目下创建环境和解包库，不执行系统安装。它需要联网；其他发行版需提供兼容原生库并加 `--skip-native-libs`。完整原生集成测试可运行 `KV_SSD_RUN_NATIVE_TESTS=1 pytest -m integration -q`，需要允许本机套接字。
 
-- `src/kv_ssd_sim/native.py`：构造原生组件与 CPU fence 适配。
-- `engine.py`：固定计算、原生 scheduler output/update 循环。
-- `storage.py`：原生 Store 观测代理、读延迟、校验及磁盘屏障。
-- `trace.py`：确定性 token 与依赖规范化。
-- `experiment.py`：分进程对照实验与因果链验收。
-- `payload.py` / `timing.py`：回放前的紧凑数据准备、按调度范围复制、计算截止时间。
-- `scripts/compare_overhead.py`：比较前后计算阶段，并核对请求长度、计算预算、恢复 token 数及全部对象 SHA256。
+| 实验或操作 | 命令 | 维护位置 |
+|---|---|---|
+| 编译输入与选择带前史的 kvlab 窗口 | `kv-ssd-sim workload kvlab` | [WEKA 与 kvlab 输入](src/kv_ssd_sim/workload/) |
+| 在虚拟时钟下预测 SSD 对象流量 | `kv-ssd-sim simulate INPUT --profile reference --output OUT` | [实验配置与装配](src/kv_ssd_sim/experiments/) · [调度与存储](src/kv_ssd_sim/simulation/) |
+| 用真实 KV 字节与原生 Mooncake 文件运行 | `kv-ssd-sim online replay`、`kv-ssd-sim online serve` | [在线执行与计算预算](src/kv_ssd_sim/online/) · [共享原生适配](src/kv_ssd_sim/adapters/) |
+| 启动 FEMU，重算设备测量 | `kv-ssd-sim femu run`、`kv-ssd-sim analyze nand`、`kv-ssd-sim verify femu` | [设备与客体入口](src/kv_ssd_sim/devices/femu/) · [NAND 与块层对账](src/kv_ssd_sim/analysis/nand.py) |
+| 从有序对象事件重建 SSD 账本与恢复过程 | `kv-ssd-sim analyze traffic`、`kv-ssd-sim verify restore` | [对象流量](src/kv_ssd_sim/analysis/traffic.py) · [恢复核查](src/kv_ssd_sim/analysis/restore.py) |
 
-输入格式参考 [WEKA 原始项目](https://github.com/callanjfox/kv-cache-tester) 和 [AIPerf WEKA 文档](https://docs.nvidia.com/aiperf/v0.13.0/tutorials/datasets-inputs/replay-weka-agentic-coding-traces)。`replay` 保留小型 token-ID 驱动器；`scripts/run_aiperf.py` 调用独立环境中的 AIPerf 0.13.0，经 HTTP 驱动同一原生执行循环。FEMU 联合运行使用 `scripts/run_femu.py --workload aiperf`，复现步骤见联合验收报告。
+各入口也可用 `python -m kv_ssd_sim` 调用。在线事件序号、单调时钟和源码 SHA-256 分别由共享模块维护。[事件记录](src/kv_ssd_sim/core/events.py) · [来源清单](src/kv_ssd_sim/core/provenance.py)
+
+顶层 `replay` 和 `online replay` 共用 token-ID 驱动器。`scripts/run_aiperf.py` 用独立环境中的 AIPerf 0.13.0 经 HTTP 驱动同一原生执行循环。FEMU 联合运行使用 `kv-ssd-sim femu run --workload aiperf`。[WEKA 输入](https://github.com/callanjfox/kv-cache-tester) · [AIPerf WEKA 文档](https://docs.nvidia.com/aiperf/v0.13.0/tutorials/datasets-inputs/replay-weka-agentic-coding-traces) · [联合验收与复现](docs/01-原型与闭环接入/AIPerf-FEMU联合验收报告.md)

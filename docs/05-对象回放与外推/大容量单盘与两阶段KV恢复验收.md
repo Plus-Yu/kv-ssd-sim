@@ -28,10 +28,10 @@ flowchart LR
     B --> A["八个 rank 全部完成<br/>load_complete → vLLM"]
 ```
 
-1. **选键和分层。** 固定版本 Mooncake master 决定内存分配、租约、可用副本与淘汰。内存副本优先。磁盘对象在 bucket 成功发布后才可读。保存端继续按新增字节计 GPU→DRAM 的时间，随后异步落盘。[虚拟 Store 与原生元数据接口](../../src/kv_ssd_sim/object_store.py)
+1. **选键和分层。** 固定版本 Mooncake master 决定内存分配、租约、可用副本与淘汰。内存副本优先。磁盘对象在 bucket 成功发布后才可读。保存端继续按新增字节计 GPU→DRAM 的时间，随后异步落盘。[虚拟 Store 与原生元数据接口](../../src/kv_ssd_sim/simulation/storage/store.py)
 2. **暂存和背压。** 磁盘 GET 按 `owner` 在文件所属客户端预留对象有效载荷字节，随后进入 SSD 队列。该客户端空间不足时按到达顺序等待，其他客户端仍可向单盘提交 I/O。未读完的文件受到保护。`disk_read_complete` 后即可回收原文件，已读出的暂存数据继续占用容量，直到该对象 `h2d_complete`。日志区分 `staging_wait`、`staging_reserve`、`staging_release`，分别报告当前占用、累计峰值和容量。这里的占用用于恢复，不含写入端的源缓冲。Mooncake 的 `LoadBatch` 在文件所有者处分配恢复缓冲，随后由 `BatchGetOffloadObject` 交付目标数据。[FileStorage 读文件](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp#L231-L266) · [RealClient 恢复缓冲与传输](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/real_client.cpp#L9516-L9665)
 3. **传输与资源竞争。** 内存对象查到即可排 H2D，磁盘对象在盘读完成时才加入目标 rank 的队列。同一 rank 按就绪顺序传输，不同 rank 可以重叠。内存 GET 同时使用来源客户端的内存读端口及目标 H2D 端口，以二者较慢的速率计算一次复制。磁盘读按单盘服务率计时，后续复制单独按 H2D 速率计时。于是 SSD 可以读下一对象，同时把上一对象交给 GPU。[固定版本传输完成等待](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/client_service.cpp#L4411-L4431)
-4. **恢复完成。** 保留原生 vLLM receiver 的键顺序与暂存预算分批。每个 rank 在当前子批全部 GET 完成后才发出下一子批，并顺序处理本 rank 的恢复请求。最后一个 rank 的最后一对象完成后才向调度器发布 `finished_recving`。后继请求继续使用 trace 的开始或完成依赖。对象用 `restore_id` 关联 SSD、H2D 和 GET 事件，每次跨 rank 恢复用 `load_id` 关联。[rank 接收与调度通知](../../src/kv_ssd_sim/object_worker.py) · [阶段和字节检查器](../../scripts/check_staged_restores.py)
+4. **恢复完成。** 保留原生 vLLM receiver 的键顺序与暂存预算分批。每个 rank 在当前子批全部 GET 完成后才发出下一子批，并顺序处理本 rank 的恢复请求。最后一个 rank 的最后一对象完成后才向调度器发布 `finished_recving`。后继请求继续使用 trace 的开始或完成依赖。对象用 `restore_id` 关联 SSD、H2D 和 GET 事件，每次跨 rank 恢复用 `load_id` 关联。[rank 接收与调度通知](../../src/kv_ssd_sim/simulation/worker.py) · [阶段和字节检查器](../../scripts/check_staged_restores.py)
 
 **模型粒度。** 同一原生 receiver 子批内部按对象流水。真实 Mooncake 可以按文件所有者批量执行 `AllocateBatch → BatchLoad` 后才开始整批传输。该批次屏障、暂存分配器碎片、io_uring 的对齐开销、RPC、PCIe/NUMA 共享带宽均会影响实际时序。当前恢复池按 payload 计量，普通文件后端默认关闭 io_uring，连接器本身仍按其保守预算拆分子批。现阶段可直接审计每个时刻的因果与字节，绝对时延和流水重叠度仍需目标机采样。[Mooncake 恢复分配规则](https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp#L1421-L1475)
 

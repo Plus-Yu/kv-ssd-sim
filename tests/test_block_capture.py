@@ -1,15 +1,8 @@
 """Verify stream integrity, completions crossing a window, and time-bracket checks."""
 
-import importlib
-from pathlib import Path
-
 import pytest
 
-
-@pytest.fixture
-def audit(monkeypatch):
-    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    return importlib.import_module("verify_block_capture")
+from kv_ssd_sim.analysis import block_capture as audit
 
 
 def snapshot(label, t, reads, secs, depth):
@@ -21,8 +14,8 @@ def snapshot(label, t, reads, secs, depth):
     }
 
 
-def test_completion_window_with_an_inflight_read(audit):
-    from measure_ssd import Event
+def test_completion_window_with_an_inflight_read():
+    from kv_ssd_sim.analysis.block_io import Event
 
     blocks = [
         Event(5000, "issue", "259,0", "R", 0, 8, "x", None),
@@ -48,7 +41,7 @@ def test_completion_window_with_an_inflight_read(audit):
         audit.reconcile(blocks, marks)
 
 
-def test_stream_receipt(audit):
+def test_stream_receipt():
     counters = {
         "overrun": 0,
         "commit overrun": 0,
@@ -71,8 +64,8 @@ def test_stream_receipt(audit):
         audit.check_receipt(receipt, "259,0", "stream")
 
 
-def test_plain_trace_requires_external_kernel_record_count(audit):
-    from measure_ssd import parse_trace
+def test_plain_trace_requires_external_kernel_record_count():
+    from kv_ssd_sim.analysis.block_io import parse_trace
 
     text = (
         "worker [001] ..... 1.1: block_rq_issue: 259,0 W 4096 () 0 + 8 [worker]\n"
@@ -85,8 +78,8 @@ def test_plain_trace_requires_external_kernel_record_count(audit):
         parse_trace(text, "259,0")
 
 
-def test_resolve_busy_counter_bracket_and_reject_inconsistent_state(audit):
-    from measure_ssd import Event
+def test_resolve_busy_counter_bracket_and_reject_inconsistent_state():
+    from kv_ssd_sim.analysis.block_io import Event
 
     blocks = [
         Event(5000, "issue", "259,0", "R", 0, 8, "x", None),

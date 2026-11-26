@@ -1,23 +1,18 @@
 """Fail closed on an invalid guest workload or a timing window overlapping cold prep."""
 
-import importlib
 import json
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
+from kv_ssd_sim.analysis import femu as verify
+from kv_ssd_sim.devices.femu import workload
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
-@pytest.fixture
-def modules(monkeypatch):
-    monkeypatch.syspath_prepend(str(ROOT / "scripts"))
-    return importlib.import_module("femu_workload"), importlib.import_module("verify_femu")
-
-
-def test_staged_copy_not_live_host_input(tmp_path, modules):
-    workload, verify = modules
+def test_staged_copy_not_live_host_input(tmp_path):
     source = tmp_path / "user.json"
     source.write_bytes((ROOT / "examples/two_requests.weka.json").read_bytes())
     args = SimpleNamespace(
@@ -51,8 +46,7 @@ def test_staged_copy_not_live_host_input(tmp_path, modules):
     ("fixture", "blocks", "reason"),
     [("subagents.weka.json", 96, "serial parent"), ("two_requests.weka.json", 4, "no truncation")],
 )
-def test_preflight_rejects_unrepresentable_input(tmp_path, modules, fixture, blocks, reason):
-    workload, _ = modules
+def test_preflight_rejects_unrepresentable_input(tmp_path, fixture, blocks, reason):
     args = SimpleNamespace(
         workload="aiperf",
         input=ROOT / "examples" / fixture,
@@ -68,8 +62,7 @@ def test_preflight_rejects_unrepresentable_input(tmp_path, modules, fixture, blo
 
 
 @pytest.mark.parametrize("fault", [None, "overlap", "missing", "unfinished_previous", "ttft"])
-def test_cold_preparation_boundary(tmp_path, modules, fault):
-    _, verify = modules
+def test_cold_preparation_boundary(tmp_path, fault):
     (tmp_path / "client").mkdir()
 
     def write(path, rows):

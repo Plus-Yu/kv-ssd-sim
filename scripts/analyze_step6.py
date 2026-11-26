@@ -5,14 +5,19 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict, deque
 from itertools import takewhile
 from pathlib import Path
 from statistics import median
 
 from compare_femu import require_matched_trials
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from run_step6 import ORDER, READ_NS, SLICE_SHA
-from verify_femu import verify
+
+from kv_ssd_sim.analysis.femu import verify
 
 
 def require(value, message):

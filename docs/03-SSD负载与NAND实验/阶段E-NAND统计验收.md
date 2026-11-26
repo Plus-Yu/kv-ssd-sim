@@ -24,7 +24,7 @@
 
 ## 采集与口径
 
-在项目的默认单 namespace、页映射 FEMU BlackBox 上，启动时加 `--nand-stats` 可以同时记录客体块 I/O 和设备内部 NAND 计数。宿主通过私有 Unix socket 请求 `query-femu(nsid=1, kind=lines, limit=4096)`。每个边界只执行一次 FTL 查询，返回计数、几何及所有 line 的页状态。每个 line 是跨多个物理擦除块的分配单位。当前采集支持一次查询可容纳的至多 4,096 个 line。控制程序、QMP 原始回复和时间标记均写到被测盘以外。使用项目已固定的 FEMU revision `a898d22b2f894042afe0f4ef21867393c5c78a70`。[启动器](../../scripts/run_femu.py) · [宿主 QMP 采集](../../scripts/femu_qmp.py) · [客体采样](../../src/kv_ssd_sim/nand.py)
+在项目的默认单 namespace、页映射 FEMU BlackBox 上，启动时加 `--nand-stats` 可以同时记录客体块 I/O 和设备内部 NAND 计数。宿主通过私有 Unix socket 请求 `query-femu(nsid=1, kind=lines, limit=4096)`。每个边界只执行一次 FTL 查询，返回计数、几何及所有 line 的页状态。每个 line 是跨多个物理擦除块的分配单位。当前采集支持一次查询可容纳的至多 4,096 个 line。控制程序、QMP 原始回复和时间标记均写到被测盘以外。使用项目已固定的 FEMU revision `a898d22b2f894042afe0f4ef21867393c5c78a70`。[启动器](../../scripts/run_femu.py) · [宿主 QMP 采集](../../src/kv_ssd_sim/devices/femu/qmp.py) · [客体采样](../../src/kv_ssd_sim/devices/femu/nand.py)
 
 | 统计量 | 计算方法和单位 |
 |---|---|

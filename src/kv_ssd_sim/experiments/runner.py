@@ -10,12 +10,14 @@ from ..analysis.reuse import describe_traffic
 from ..analysis.traffic import export_demand
 from ..core.paths import PROJECT_ROOT as ROOT
 from ..simulation.clock import Clock
-from ..simulation.engine import Admissions, simulate
+from ..simulation.engine import simulate
 from ..simulation.storage.device import default_device
 from ..simulation.storage.offload import OffloadTimeline
 from ..simulation.storage.store import ObjectStore
 from ..simulation.storage.transfer import TransferPorts
-from .settings import PUBLIC_PROFILES, apply_calibration, resolve_settings
+from ..workload.arrivals import Admissions
+from .profiles import PROFILE_FILES
+from .settings import apply_calibration, resolve_settings
 
 
 def build_parser():
@@ -26,7 +28,7 @@ def build_parser():
         "--offset-s", type=float, action="append", help="One root offset per input (seconds)"
     )
     p.add_argument(
-        "--profile", choices=("n15", *PUBLIC_PROFILES, "reference-20261124"), default="n15"
+        "--profile", choices=("n15", *PROFILE_FILES, "reference-20261124"), default="n15"
     )
     p.add_argument(
         "--volume-service",

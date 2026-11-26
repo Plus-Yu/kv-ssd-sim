@@ -5,14 +5,18 @@ import csv
 import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from itertools import accumulate
 from pathlib import Path
 from statistics import median
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from analyze_b2 import inspect, matched_settings, read
-from measure_ssd import MIB, NS, check
-from verify_aiperf import read_jsonl
+
+from kv_ssd_sim.analysis.aiperf import read_jsonl
+from kv_ssd_sim.analysis.block_io import MIB, NS, check
 
 ROOT = Path(__file__).resolve().parents[1]
 

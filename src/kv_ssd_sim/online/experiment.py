@@ -9,8 +9,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-from kv_ssd_sim.events import load_events
-from kv_ssd_sim.online.runtime import PROJECT_ROOT, native_environment
+from kv_ssd_sim.core.events import load_events
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.online.runtime import native_environment
 
 
 def validate_trial(path: Path) -> dict:

@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 
-from kv_ssd_sim.events import EventLog, load_events
+from kv_ssd_sim.core.events import EventLog, load_events
 
 
 def test_buffered_log_closes_with_complete_ordered_thread_events(tmp_path):

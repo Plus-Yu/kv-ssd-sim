@@ -6,9 +6,9 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from kv_ssd_sim.deployment import require
-from kv_ssd_sim.events import load_events
-from kv_ssd_sim.runtime import PROJECT_ROOT
+from kv_ssd_sim.core.events import load_events
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.models.deployment import require
 
 
 def check(directory):

@@ -4,19 +4,10 @@ import hashlib
 import json
 import sqlite3
 
-from kv_ssd_sim.kvlab import (
-    NS,
-    SCHEMA,
-    candidates,
-    compile_window,
-    insert_session,
-    render,
-    select_warm_window,
-    select_windows,
-    session_calls,
-    utc_ns,
-)
-from kv_ssd_sim.object_traffic import export_demand
+from kv_ssd_sim.analysis.traffic import export_demand
+from kv_ssd_sim.workload.compiler import compile_window, render
+from kv_ssd_sim.workload.corpus import NS, SCHEMA, insert_session, session_calls, utc_ns
+from kv_ssd_sim.workload.windows import candidates, select_warm_window, select_windows
 
 
 def request(rid, seconds, duration, ref, think, length=2200):

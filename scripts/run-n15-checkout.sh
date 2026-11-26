@@ -81,6 +81,7 @@ docker run --rm -i --device /dev/kvm --user "$(id -u):$(id -g)" \
   -v "$work/miniconda3:/home/plusyu/miniconda3:ro" \
   -w /home/plusyu/projects/kv-ssd-sim "$image" bash -seu <<'GUEST_LAUNCHER'
 set -o pipefail
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
 .venv/bin/python -m kv_ssd_sim doctor | tee outputs/doctor.json
 .venv-aiperf/bin/python -c 'import aiperf, matplotlib, tokenizers'
 (cd evidence/ssd-e && sha256sum -c SHA256SUMS)

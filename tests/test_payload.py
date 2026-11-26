@@ -5,7 +5,7 @@ from unittest.mock import patch
 import numpy as np
 import pytest
 
-from kv_ssd_sim.payload import PreparedPayloads
+from kv_ssd_sim.online.payload import PreparedPayloads
 
 
 def reference(tokens, layers=2):
@@ -27,7 +27,9 @@ def test_scheduled_copies_match_original_bytes_across_blocks_and_decode():
     caches = [np.full((4, 2, 64, 2, 2, 32), 0xA5, dtype=np.uint8) for _ in range(2)]
     blocks = [2, 0]
     # Nonsequential scheduling also covers recomputation after preemption.
-    with patch("kv_ssd_sim.payload.hashlib.sha256", side_effect=AssertionError("runtime hash")):
+    with patch(
+        "kv_ssd_sim.online.payload.hashlib.sha256", side_effect=AssertionError("runtime hash")
+    ):
         for start, end in [(64, 70), (0, 23), (23, 64), (70, 74), (74, 75), (0, 16)]:
             prepared.copy_range("r", start, end, blocks, caches, 64)
     expected = reference(list(prompt) + [100] * 5)

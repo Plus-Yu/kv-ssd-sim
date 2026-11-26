@@ -39,7 +39,7 @@
 
 ## 3. 输入指纹怎样影响 SSD 预测
 
-trace 提供脱敏的块哈希和长度估计。编译器按 kvlab 的规则排列 system、tools、messages，跳过首个小于 200 B 的系统计费块。对相同的角色和内容哈希，用该窗口第一次出现时的长度生成稳定的合成 token。每条请求维持原始总长度，缺少指纹的尾部按请求隔离。估计超出总长的部分记录在清单。原生 vLLM 在这些 token 上计算 K3 的块键。真实提示词和 K3 tokenizer 产生的原始 token ID 在发布数据中不可见。[上游前缀规则](https://github.com/weka/kvlab/blob/3fd1a8411f9f30b6c54fda850a094b809c331d51/benchmark/replay_router.go#L1377) · [编译器](../../src/kv_ssd_sim/kvlab.py)
+trace 提供脱敏的块哈希和长度估计。编译器按 kvlab 的规则排列 system、tools、messages，跳过首个小于 200 B 的系统计费块。对相同的角色和内容哈希，用该窗口第一次出现时的长度生成稳定的合成 token。每条请求维持原始总长度，缺少指纹的尾部按请求隔离。估计超出总长的部分记录在清单。原生 vLLM 在这些 token 上计算 K3 的块键。真实提示词和 K3 tokenizer 产生的原始 token ID 在发布数据中不可见。[上游前缀规则](https://github.com/weka/kvlab/blob/3fd1a8411f9f30b6c54fda850a094b809c331d51/benchmark/replay_router.go#L1377) · [编译器](../../src/kv_ssd_sim/workload/compiler.py)
 
 A 窗口中，同一 system 内容哈希两次被估为 4,221 和 4,203 token。初版按请求独立展开，返回请求仅保留 4,254 个共同 token，预测写入 31.435 GB。固定重复哈希长度后，共同前缀增至 **74,728 token**，vLLM 本地实际复用 **73,728 token**，预测写入降至 **20.126 GB**。B 窗口共同前缀为 4,227 token，本地复用 3,072 token。源端报告的 Claude cache read 在两条返回请求上分别为 87,278 和 0 token。这一字段可核查重建误差，直接把它当 K3 命中或 SSD 读会混淆模型、路由与驻留层级。[A 的输入账本](../../evidence/kvlab-first-windows-20261124/reference-calibration.json) · [B 的输入账本](../../evidence/kvlab-first-windows-20261124/reference-holdout.json) · [修正前的输入和预测](../../evidence/kvlab-first-windows-20261124/prefix-diagnostic.tar.gz)
 

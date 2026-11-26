@@ -25,7 +25,7 @@
 | 客户端与传输 | 可登记 1 个或 8 个虚拟客户端。按 rank 排保存任务，按客户端模拟内存读，多个客户端向同一条虚拟磁盘队列提交读写。 | 当前八个逻辑 worker 共用一个嵌入式 Mooncake 客户端、一个 TCP 传输端和同一 ext4 目录。线程竞争、内存复制、bucket 文件写入和回执实际发生。bucket 是 Mooncake 将多个对象合并写出的存储单位。 |
 | 文件系统、块层与 NAND | 写入和恢复按对象有效载荷计数。虚拟磁盘返回对象的完成时间。 | 客体运行 ext4、页缓存、Linux 块层和 NVMe 驱动，能记录块大小、逻辑块地址（LBA）、在途数和完成时刻。FEMU 的闪存转换层（FTL）再执行地址映射、页编程和垃圾回收（GC），数据后端在宿主 RAM 中。 |
 
-原生选键和数据搬运可以单独验证。例如，同版本 master 的 `GetReplicaList` 会处理读租约，`NotifyOffloadSuccess` 会处理落盘回执。回放器已经调用这些接口。决定它们相对淘汰轮次何时发生的时钟和队列，仍属于回放模型。[原生接口与受控验证](对象回放器-Mooncake原生淘汰.md) · [虚拟 Store](../../src/kv_ssd_sim/object_store.py) · [真实客户端与 CPU 缓冲](../03-SSD负载与NAND实验/阶段C1-K3真实尺寸与容量验收.md)
+原生选键和数据搬运可以单独验证。例如，同版本 master 的 `GetReplicaList` 会处理读租约，`NotifyOffloadSuccess` 会处理落盘回执。回放器已经调用这些接口。决定它们相对淘汰轮次何时发生的时钟和队列，仍属于回放模型。[原生接口与受控验证](对象回放器-Mooncake原生淘汰.md) · [虚拟 Store](../../src/kv_ssd_sim/simulation/storage/store.py) · [真实客户端与 CPU 缓冲](../03-SSD负载与NAND实验/阶段C1-K3真实尺寸与容量验收.md)
 
 ### 哪些量靠参数控制
 
@@ -39,7 +39,7 @@
 | `--offload-interval-ms`、`--offload-timeline` | 默认客户端每 1,000 ms 有一次领取待落盘任务的机会。也可按客户端与整桶键集合输入源查询、开始写、发布磁盘副本的时间。 | **后台时序。** 心跳间隔影响哪些对象会同时被取走。桶写完后，成功回执会解除相应源引用。用模型导出的时间表重放可以检验可重复性，标定需要同一负载的实测时间表。 |
 | FEMU 的 namespace、NAND 几何、页时延和 GC 阈值 | n15 基线为 3 GiB 可见空间、4 GiB 原始 NAND、4 KiB 页。页读 40 µs、页写 200 µs、块擦除 2 ms，两个 GC 阈值参数为 75 和 95。 | **设备模型输入。** 启动器开放了 `--namespace-mib`、`--blocks-per-plane`、`--nand-read-ns` 等选项，其他若干值由启动命令固定。FTL 按模型状态产生搬迁、擦除和写放大。Mooncake 的 90% 水位管 Store 内存，FEMU 的 GC 阈值管闪存回收。 |
 
-回放中设置的保存时间可以改变最终读盘次数。设备侧设置的页读时延也可以经 GET 完成反馈影响正在等待的请求。这两个参数分别作用于不同的软件边界。[回放 CLI 与默认值](../../scripts/run_object_replay.py) · [rank 保存实现](../../src/kv_ssd_sim/object_worker.py) · [FEMU 启动器](../../scripts/run_femu.py) · [n15 实际启动命令](../../outputs/femu-n15-0504-20261120-074735/launch.json)
+回放中设置的保存时间可以改变最终读盘次数。设备侧设置的页读时延也可以经 GET 完成反馈影响正在等待的请求。这两个参数分别作用于不同的软件边界。[回放 CLI 与默认值](../../scripts/run_object_replay.py) · [rank 保存实现](../../src/kv_ssd_sim/simulation/worker.py) · [FEMU 启动器](../../scripts/run_femu.py) · [n15 实际启动命令](../../outputs/femu-n15-0504-20261120-074735/launch.json)
 
 ## 第二段差距 · FEMU 闭环与目标服务器
 

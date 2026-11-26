@@ -1,6 +1,7 @@
 """Order within a virtual timestamp matters, gzip container timestamps do not."""
 
 import gzip
+import hashlib
 import json
 import runpy
 import shutil
@@ -9,18 +10,36 @@ from pathlib import Path
 
 import pytest
 
+from kv_ssd_sim.core.provenance import package_source_hashes
 from kv_ssd_sim.experiments.profiles import PROFILE_FILES, load_profile, verify_reference
-from kv_ssd_sim.simulation.settings import PUBLIC_PROFILES
 
 ROOT = Path(__file__).resolve().parents[1]
+FROZEN_PROFILES = {
+    "reference": ROOT / "configs/kimi-k3-b300-large-ssd.json",
+    "reference-volume-20261125": ROOT / "configs/kimi-k3-b300-logical-volume.json",
+    "reference-single-ssd": ROOT / "configs/kimi-k3-b300-object-replay.json",
+}
 compare = runpy.run_path(str(ROOT / "scripts/verify_replay_equivalence.py"))["compare"]
+
+
+def test_femu_and_online_manifests_share_every_package_source():
+    package = ROOT / "src/kv_ssd_sim"
+    guest = ROOT / "scripts/femu_guest_init.sh"
+    expected = {
+        path.relative_to(package).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in package.rglob("*.py")
+    }
+    assert package_source_hashes() == expected
+    checkout = {f"src/kv_ssd_sim/{name}": value for name, value in expected.items()}
+    checkout["scripts/femu_guest_init.sh"] = hashlib.sha256(guest.read_bytes()).hexdigest()
+    assert package_source_hashes(relative_to=ROOT, extra_files=(guest,)) == checkout
 
 
 @pytest.mark.parametrize("name", PROFILE_FILES)
 def test_composed_profile_reproduces_frozen_snapshot_and_binds_all_inputs(name):
     path = PROFILE_FILES[name].relative_to(ROOT)
     profile, inputs = load_profile(path)
-    assert profile == json.loads(PUBLIC_PROFILES[name].read_bytes())
+    assert profile == json.loads(FROZEN_PROFILES[name].read_bytes())
     record = {
         "file": path.as_posix(),
         "sha256": inputs[path.as_posix()],

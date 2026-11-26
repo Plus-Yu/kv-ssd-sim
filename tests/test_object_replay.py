@@ -6,11 +6,14 @@ from unittest.mock import Mock
 
 import pytest
 
-from kv_ssd_sim.object_store import MIB, Clock, ObjectStore, OffloadTimeline, StoreConfig
-from kv_ssd_sim.object_timing import StepTiming
-from kv_ssd_sim.object_traffic import describe_traffic
-from kv_ssd_sim.simulation.storage.device import FifoSSD
+from kv_ssd_sim.analysis.reuse import describe_traffic
+from kv_ssd_sim.simulation.clock import Clock
+from kv_ssd_sim.simulation.storage.config import StoreConfig
+from kv_ssd_sim.simulation.storage.device import MIB, FifoSSD
+from kv_ssd_sim.simulation.storage.offload import OffloadTimeline
+from kv_ssd_sim.simulation.storage.store import ObjectStore
 from kv_ssd_sim.simulation.storage.transfer import TransferPorts
+from kv_ssd_sim.simulation.timing import StepTiming
 
 
 def test_supplied_device_and_ports_serve_both_offload_and_restore():
@@ -104,7 +107,7 @@ def test_step_time_uses_fresh_tokens_and_the_scheduled_batch():
 
 def test_per_rank_put_time_uses_accepted_bytes_and_waits_for_the_previous_save():
     pytest.importorskip("vllm")
-    from kv_ssd_sim.object_worker import MetadataRank
+    from kv_ssd_sim.simulation.worker import MetadataRank
 
     rank = MetadataRank.__new__(MetadataRank)
     rank.clock = clock = Clock()
@@ -397,7 +400,7 @@ def test_exact_reuse_distance_in_bytes(tmp_path):
 
 def test_load_ack_survives_multiple_scheduler_polls():
     pytest.importorskip("vllm")
-    from kv_ssd_sim.object_worker import MetadataTransfers
+    from kv_ssd_sim.simulation.worker import MetadataTransfers
 
     clock = Clock()
     rank = SimpleNamespace(
@@ -428,7 +431,7 @@ def test_load_ack_survives_multiple_scheduler_polls():
 
 def test_staged_subbatches_and_rank_receiver_wait_for_actual_get_callbacks():
     pytest.importorskip("vllm")
-    from kv_ssd_sim.object_worker import MetadataRank, MetadataTransfers
+    from kv_ssd_sim.simulation.worker import MetadataRank, MetadataTransfers
 
     clock, issued = Clock(), []
     store = SimpleNamespace(config=SimpleNamespace(h2d_mib_s=100), emit=lambda *a, **k: None)
@@ -481,7 +484,7 @@ def test_staged_subbatches_and_rank_receiver_wait_for_actual_get_callbacks():
 
 
 def test_native_shutdown_detects_errors_from_last_async_put():
-    from kv_ssd_sim.server import ServingLoop
+    from kv_ssd_sim.online.server import ServingLoop
 
     async def close():
         store = SimpleNamespace(errors=[], femu_device=None)

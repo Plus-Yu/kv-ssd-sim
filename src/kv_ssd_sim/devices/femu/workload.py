@@ -25,7 +25,7 @@ def stage(directory, args):
         raise ValueError("Invalid context or pool block count")
     if not all(math.isfinite(ms) and ms >= 0 for ms in (args.prefill_ms, args.decode_ms)):
         raise ValueError("Compute budgets must be finite and nonnegative")
-    from kv_ssd_sim.online.k3_online import K3Profile
+    from kv_ssd_sim.models.kimi_k3 import K3Profile
 
     k3 = isinstance(hybrid, K3Profile)
     pool = (
@@ -151,6 +151,7 @@ def guest(output):
             sys.executable,
             "-m",
             "kv_ssd_sim",
+            "online",
             "replay",
             str(bundle / "trace.json"),
             "--output",

@@ -2,12 +2,19 @@
 """Verify pinned inputs and reproduce audits; optional installed AIPerf check."""
 
 import argparse
+import hashlib
 import json
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
-from kv_ssd_sim.audit import sha256, write_audit_bundle
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from kv_ssd_sim.workload.audit import sha256, write_audit_bundle
+
+# This revision introduced artifacts.lock.json and contains its five frozen code files.
+STEP1_REVISION = "ac1ea99fb54d50c65c9c29e59c47acd747040a87"
 
 
 def require(condition, message):
@@ -20,13 +27,27 @@ def main():
     parser.add_argument(
         "--aiperf", action="store_true", help="Also regenerate offline AIPerf audit"
     )
+    parser.add_argument(
+        "--aiperf-python",
+        type=Path,
+        default=ROOT / ".venv-aiperf/bin/python",
+        help="Interpreter with the frozen AIPerf dependencies",
+    )
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
     manifest = json.loads((root / "references/kimi-k3-b300/artifacts.lock.json").read_text())
+    frozen_code = []
     for name, expected in manifest["files"].items():
         path = (root / name).resolve()
         require(path.is_relative_to(root), f"Path escapes project: {name}")
-        require(sha256(path) == expected, f"SHA256 mismatch: {name}")
+        if path.is_file() and sha256(path) == expected:
+            continue
+        require(Path(name).parts[0] in {"scripts", "src", "tests"}, f"SHA256 mismatch: {name}")
+        blob = subprocess.check_output(
+            ["git", "cat-file", "blob", f"{STEP1_REVISION}:{name}"], cwd=root
+        )
+        require(hashlib.sha256(blob).hexdigest() == expected, f"Frozen source mismatch: {name}")
+        frozen_code.append(name)
     source_manifest = json.loads((root / "references/kimi-k3-b300/sources.json").read_text())
     for entry in source_manifest["files"]:
         require(sha256(root / entry["file"]) == entry["sha256"], entry["file"])
@@ -58,7 +79,7 @@ def main():
             output = Path(temp) / "aiperf.json"
             subprocess.run(
                 [
-                    str(root / ".venv-aiperf/bin/python"),
+                    str(args.aiperf_python),
                     str(root / "scripts/audit_aiperf_input.py"),
                     "--output",
                     str(output),
@@ -75,6 +96,8 @@ def main():
             {
                 "status": "passed",
                 "pinned_files": len(manifest["files"]),
+                "frozen_code_revision": STEP1_REVISION,
+                "files_verified_from_git": frozen_code,
                 "source_and_slice_reproduced": True,
                 "aiperf_reproduced": args.aiperf,
                 "scope": "step 1 only; no K3 runtime or FEMU performance acceptance",

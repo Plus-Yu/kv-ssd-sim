@@ -5,7 +5,7 @@ import json
 import os
 from pathlib import Path
 
-from kv_ssd_sim.events import EventLog
+from kv_ssd_sim.core.events import EventLog
 from kv_ssd_sim.online.runtime import mooncake_master
 from kv_ssd_sim.online.storage import ObservedStore
 

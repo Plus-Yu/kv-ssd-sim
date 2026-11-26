@@ -1,15 +1,8 @@
 """Check trace loss, ambiguity, and window-boundary accounting on small kernels traces."""
 
-import importlib
-from pathlib import Path
-
 import pytest
 
-
-@pytest.fixture
-def measure(monkeypatch):
-    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    return importlib.import_module("measure_ssd")
+from kv_ssd_sim.analysis import block_io as measure
 
 
 def line(t, stage="issue", op="RA", sector=2047, count=8, error=0, device="259,0"):
@@ -22,7 +15,7 @@ def trace(*lines):
     return f"# entries-in-buffer/entries-written: {len(lines)}/{len(lines)}\n" + "\n".join(lines)
 
 
-def test_window_edges_spanning_idle_and_hotspot(measure):
+def test_window_edges_spanning_idle_and_hotspot():
     data = trace(line("0.5"), line("1.5", "complete"), line("2.0"), line("2.5", "complete"))
     es, _ = measure.parse_trace(data, "259,0")
     a, b, idle = measure.measurements(es, 1_000_000_000, 3_500_000_000, 1_000_000_000)
@@ -38,7 +31,7 @@ def test_window_edges_spanning_idle_and_hotspot(measure):
     assert s["W"]["adjacent_share"] is None
 
 
-def test_overlapping_identical_requests_and_control_ops(measure):
+def test_overlapping_identical_requests_and_control_ops():
     data = trace(
         line("1.0"),
         line("1.1"),
@@ -57,7 +50,7 @@ def test_overlapping_identical_requests_and_control_ops(measure):
     assert [e.op for e in es[::2]] == ["R", "R", "flush", "discard", "W"]
 
 
-def test_integrity_rejections(measure):
+def test_integrity_rejections():
     good = trace(line("1.0"), line("1.2", "complete"))
     for bad in (
         good.replace("2/2", "2/3"),

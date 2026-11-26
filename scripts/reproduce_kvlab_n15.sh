@@ -35,22 +35,22 @@ tar -xzf evidence/object-replay-n15-20261123/inputs.tar.gz -C "$study" input/050
 fixture=femu-n15-0504-20261120-074735
 tar -xzf "evidence/n15-kvm-20261120-074735/$fixture.tar.gz" -C "$study" \
     "$fixture/joint/server/events.jsonl" "$fixture/joint/server/summary.json"
-"$py" scripts/run_object_replay.py "$study/input/0504.json" --restore-path legacy --output "$study/regression-0504"
+"$py" -m kv_ssd_sim simulate "$study/input/0504.json" --restore-path legacy --output "$study/regression-0504"
 if ! "$py" scripts/compare_object_replay.py --prediction "$study/regression-0504" \
     --server "$study/$fixture/joint/server" --retrospective --output "$study/regression.json"; then
     "$py" -c 'import json,sys; c=json.load(open(sys.argv[1]))["checks"]; sys.exit(not all(v for k,v in c.items() if k!="final_memory_keys"))' "$study/regression.json"
 fi
-"$py" scripts/prepare_kvlab.py audit "$source_file" --output "$study/corpus"
-"$py" scripts/prepare_kvlab.py windows "$source_file" --audit "$study/corpus" --limit 12288 --output "$study/paired"
-"$py" scripts/prepare_kvlab.py windows "$source_file" --audit "$study/corpus" --limit 131072 --output "$study/reference"
+"$py" -m kv_ssd_sim workload kvlab audit "$source_file" --output "$study/corpus"
+"$py" -m kv_ssd_sim workload kvlab windows "$source_file" --audit "$study/corpus" --limit 12288 --output "$study/paired"
+"$py" -m kv_ssd_sim workload kvlab windows "$source_file" --audit "$study/corpus" --limit 131072 --output "$study/reference"
 
 cal="$study/paired/calibration/input.json"
 held="$study/paired/holdout/input.json"
-"$py" scripts/run_object_replay.py "$cal" --restore-path legacy --output "$study/pred-cal"
+"$py" -m kv_ssd_sim simulate "$cal" --restore-path legacy --output "$study/pred-cal"
 "$py" scripts/run_object_holdout.py "$cal" --prediction "$study/pred-cal" --observer "$observer" --output "$study/online-cal"
 "$py" scripts/analyze_kvlab_native.py fit --native "$study/online-cal" --output "$study/calibration.json"
 "$py" scripts/analyze_kvlab_native.py score --native "$study/online-cal" --prediction "$study/pred-cal" --output "$study/score-cal"
-"$py" scripts/run_object_replay.py "$held" --restore-path legacy --output "$study/frozen-holdout" --service-profile "$study/calibration.json"
+"$py" -m kv_ssd_sim simulate "$held" --restore-path legacy --output "$study/frozen-holdout" --service-profile "$study/calibration.json"
 for i in 1 2 3; do
     "$py" scripts/run_object_holdout.py "$held" --prediction "$study/frozen-holdout" --observer "$observer" \
         --native-prefill-ms 10 --native-decode-ms 2 --output "$study/online-holdout-$i"

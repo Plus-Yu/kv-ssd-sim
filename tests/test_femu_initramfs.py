@@ -1,13 +1,13 @@
 import gzip
-import importlib
+from importlib.util import find_spec
 from pathlib import Path
 
 import pytest
 
+from kv_ssd_sim.devices.femu import launcher
+
 
 def test_firmware_directory_before_kernel(tmp_path, monkeypatch):
-    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    launcher = importlib.import_module("run_femu")
     monkeypatch.setattr(launcher, "ASSETS", tmp_path)
     modules = tmp_path / "modloop/modules"
     firmware = modules / "firmware"
@@ -28,6 +28,10 @@ def test_firmware_directory_before_kernel(tmp_path, monkeypatch):
         Path, "iterdir", lambda p: iter((firmware, kernel)) if p == modules else iterdir(p)
     )
     archive = gzip.decompress(launcher.initramfs().read_bytes())
+    for entry in ("probe", "block_capture", "workload"):
+        module = f"kv_ssd_sim.devices.femu.{entry}"
+        assert f"-m {module} ".encode() in archive
+        assert find_spec(module) is not None
     assert b"PAYLOAD_ext4" in archive and b"PAYLOAD_helper" in archive
     assert b"FIRMWARE_PAYLOAD" in archive and b"PAYLOAD_unused" not in archive
     (firmware / "modules.dep").touch()

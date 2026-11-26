@@ -3,9 +3,12 @@
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
-from verify_femu import run_path, verify
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from kv_ssd_sim.analysis.femu import run_path, verify
 
 
 def read(path):

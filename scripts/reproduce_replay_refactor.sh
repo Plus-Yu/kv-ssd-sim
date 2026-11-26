@@ -9,6 +9,7 @@ fixtures=$(realpath "$1")
 stage=$(realpath -m "$2")
 shift 2
 cd "$(dirname "$0")/.."
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
 python_bin=${REPLAY_PYTHON:-python3}
 mkdir "$stage"
 return_flags=(--profile reference --clients 1 --num-blocks 11 --max-model-len 12288
@@ -45,7 +46,7 @@ for sample in "$@"; do
     *) echo "Unknown fixture: $sample" >&2; exit 2 ;;
   esac
   if [[ $sample == *-legacy ]]; then flags+=(--restore-path legacy); fi
-  "$python_bin" scripts/run_object_replay.py "$input" "${flags[@]}" --output "$output" \
+  "$python_bin" -m kv_ssd_sim simulate "$input" "${flags[@]}" --output "$output" \
     > "$stage/$sample.log" 2>&1
   "$python_bin" scripts/verify_replay_equivalence.py "$reference" "$output" --source-root . \
     > "$stage/$sample-check.json"

@@ -34,6 +34,7 @@ case "$model" in *FEMU*|*Femu*) ;; *) fail "unexpected NVMe model: $model" ;; es
 # The launcher passes ONLY a new RAM-backed FEMU device, never a host block device.
 echo disposable-femu-guest > /run/kv-ssd-femu-guest
 project=/home/plusyu/projects/kv-ssd-sim
+export PYTHONPATH="$project/src${PYTHONPATH:+:$PYTHONPATH}"
 trial=$($bb sed -n 's/.*kvtrial=\([^ ]*\).*/\1/p' /proc/cmdline)
 case "$trial" in femu-*) ;; *) fail 'invalid trial name' ;; esac
 output="$project/outputs/$trial"
@@ -44,7 +45,7 @@ esac
 case " $($bb cat /proc/cmdline) " in
   *" kvworkload=nand-probe "*)
     cd "$project" || fail cd
-    .venv/bin/python scripts/femu_nand_probe.py "$output" > "$output/replay.log" 2>&1
+    .venv/bin/python -m kv_ssd_sim.devices.femu.probe "$output" > "$output/replay.log" 2>&1
     result=$?
     echo "$result" > "$output/guest-exit-code.txt"
     $bb sync
@@ -85,7 +86,7 @@ capture=$($bb sed -n 's/.*kvcapture=\([^ ]*\).*/\1/p' /proc/cmdline)
 case "$capture" in
   stream|buffer)
     export KV_SSD_CAPTURE_ROOT="$output"
-    .venv/bin/python -m kv_ssd_sim.block_capture "$capture" > "$output/capture.log" 2>&1 &
+    .venv/bin/python -m kv_ssd_sim.devices.femu.block_capture "$capture" > "$output/capture.log" 2>&1 &
     collector=$!
     while [ ! -e /run/kv-ssd-capture-ready ]; do
       kill -0 "$collector" 2>/dev/null || fail collector-start
@@ -111,12 +112,12 @@ case "$workload" in
     disk_name=k3-probe
     ;;
   aiperf)
-    .venv/bin/python scripts/femu_workload.py "$output" > "$output/replay.log" 2>&1
+    .venv/bin/python -m kv_ssd_sim.devices.femu.workload "$output" > "$output/replay.log" 2>&1
     result=$?
     disk_name=server
     ;;
   replay)
-    .venv/bin/python scripts/femu_workload.py "$output" > "$output/replay.log" 2>&1
+    .venv/bin/python -m kv_ssd_sim.devices.femu.workload "$output" > "$output/replay.log" 2>&1
     result=$?
     disk_name=replay
     ;;

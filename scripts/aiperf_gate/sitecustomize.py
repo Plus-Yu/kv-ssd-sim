@@ -35,7 +35,7 @@ class GateFinder:
             @functools.wraps(send)
             async def gated(self, request_info, *args, **kwargs):
                 if os.environ.get("KV_SSD_CAPTURE_ROOT"):
-                    from kv_ssd_sim.block_capture import mark
+                    from kv_ssd_sim.devices.femu.block_capture import mark
 
                     mark("http_send", client_id=request_info.x_request_id)
                 if not os.environ.get("KV_SSD_GATE_URL"):

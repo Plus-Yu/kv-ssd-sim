@@ -135,17 +135,17 @@ def main(argv=None):
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0 if all(item["ok"] for item in report["imports"].values()) else 1
     if args.command == "serve":
-        from .server import serve
+        from .online.server import serve
 
         serve(args)
         return 0
     if args.command == "smoke-store":
-        from .smoke import smoke_store
+        from .online.smoke import smoke_store
 
         print(json.dumps(smoke_store(args.output), indent=2))
         return 0
     if args.command == "replay":
-        from .engine import run_replay
+        from .online.engine import run_replay
 
         report = run_replay(
             args.input,
@@ -162,7 +162,7 @@ def main(argv=None):
             pressure_config=args.pressure_config,
         )
     else:
-        from .experiment import run_demo
+        from .online.experiment import run_demo
 
         report = run_demo(args.output, args.delays_ms)
     print(json.dumps(report, ensure_ascii=False, indent=2))

@@ -1,17 +1,16 @@
 """The archived capacity run must fail verification when its distinguishing evidence is lost."""
 
-import importlib
 import json
 from pathlib import Path
 
 import pytest
 
+from kv_ssd_sim.analysis.pressure import check_pressure
+
 
 @pytest.mark.parametrize("fault", ["cold", "resident", "kda_present", "no_device_reads", "jobs"])
-def test_pressure_evidence_rejects_false_positives(monkeypatch, fault):
+def test_pressure_evidence_rejects_false_positives(fault):
     project = Path(__file__).resolve().parents[1]
-    monkeypatch.syspath_prepend(str(project / "scripts"))
-    check = importlib.import_module("check_pressure").check_pressure
     root = project / "evidence/kimi-k3-step5/femu-step5-natural03"
     run = root / "replay"
     manifest = json.loads((run / "run_manifest.json").read_text())
@@ -44,4 +43,4 @@ def test_pressure_evidence_rejects_false_positives(monkeypatch, fault):
     else:
         events.pop(next(i for i, e in enumerate(events) if e["event"] == "save_job_finished"))
     with pytest.raises(ValueError, match=cases[fault]):
-        check(root, events, summary, manifest, chains)
+        check_pressure(root, events, summary, manifest, chains)

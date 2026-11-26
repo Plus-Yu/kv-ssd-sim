@@ -1,20 +1,17 @@
 """Reject incomplete device/Store/scheduler/HTTP evidence, even with passing summaries."""
 
-import importlib
 import json
-from pathlib import Path
 
 import pytest
+
+from kv_ssd_sim.analysis import aiperf, femu
 
 
 @pytest.fixture
 def evidence(tmp_path, monkeypatch):
-    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    verifier = importlib.import_module("verify_femu")
-    http = importlib.import_module("verify_aiperf")
     # HTTP coverage/token verification is separate; this fixture exercises
     # the final correlation against kernel block completions.
-    monkeypatch.setattr(http, "verify", lambda _: {"femu_verified": True})
+    monkeypatch.setattr(aiperf, "verify", lambda _: {"femu_verified": True})
     server = tmp_path / "joint/server"
     server.mkdir(parents=True)
     client = tmp_path / "joint/client"
@@ -73,7 +70,7 @@ def evidence(tmp_path, monkeypatch):
         "worker-1 [000] 1.003100: block_rq_issue: 259,0 R 4096 () 16 + 8 [worker]\n"
         "worker-1 [000] 1.003200: block_rq_complete: 259,0 R () 16 + 8 [0]\n"
     )
-    return verifier, tmp_path
+    return femu, tmp_path
 
 
 def test_joint_device_to_http_chain(evidence):

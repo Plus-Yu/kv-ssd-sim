@@ -12,8 +12,8 @@ from pathlib import Path
 
 import aiohttp
 
-from kv_ssd_sim.runtime import PROJECT_ROOT as ROOT
-from kv_ssd_sim.runtime import free_port
+from kv_ssd_sim.core.paths import PROJECT_ROOT as ROOT
+from kv_ssd_sim.online.runtime import free_port
 
 
 def checksum(path):
@@ -70,6 +70,7 @@ async def run(args):
         sys.executable,
         "-m",
         "kv_ssd_sim",
+        "online",
         "serve",
         "--output",
         str(args.output / "server"),
