@@ -32,12 +32,16 @@ def native_environment() -> dict[str, str]:
     return env
 
 
-def reexec_with_native_libraries() -> None:
+def reexec_with_native_libraries(argv=None) -> None:
     if os.environ.get("KV_SSD_NATIVE_ENV") == "1":
         return
     env = native_environment()
     env["KV_SSD_NATIVE_ENV"] = "1"
-    os.execve(sys.executable, [sys.executable, "-m", "kv_ssd_sim", *sys.argv[1:]], env)
+    os.execve(
+        sys.executable,
+        [sys.executable, "-m", "kv_ssd_sim", *(sys.argv[1:] if argv is None else argv)],
+        env,
+    )
 
 
 def free_port() -> int:

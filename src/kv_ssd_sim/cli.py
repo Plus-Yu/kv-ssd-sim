@@ -2,15 +2,80 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from importlib import import_module
 from pathlib import Path
 
-from .runtime import doctor, reexec_with_native_libraries
-from .trace import load_weka, save_normalized
+from .core.paths import PROJECT_ROOT
+from .online.runtime import doctor, reexec_with_native_libraries
+from .workload.weka import load_weka, save_normalized
+
+GROUPS = {
+    "workload": (
+        "Compile and audit workload inputs",
+        {
+            "audit": ("workload.weka_audit", "Audit a WEKA input and its selected prefix"),
+            "compile-weka": ("workload.weka_compiler", "Compile causal WEKA arrivals with AIPerf"),
+            "kvlab": ("workload.prepare", "Audit or compile kvlab windows"),
+        },
+    ),
+    "online": (
+        "Run native vLLM and Mooncake on the host clock",
+        {
+            "replay": (None, "Run a native replay"),
+            "serve": (None, "Start the native HTTP service"),
+        },
+    ),
+    "femu": (
+        "Run device experiments",
+        {
+            "run": ("devices.femu.launcher", "Boot a disposable FEMU guest"),
+        },
+    ),
+    "analyze": (
+        "Recompute experiment ledgers",
+        {
+            "traffic": (
+                "analysis.traffic",
+                "Rebuild SSD traffic and byte reuse from object events",
+            ),
+            "nand": ("analysis.nand", "Reconcile FEMU snapshots and block events"),
+        },
+    ),
+    "verify": (
+        "Verify experiment evidence",
+        {
+            "restore": ("analysis.restore", "Audit object restores through H2D completion"),
+            "femu": ("analysis.femu", "Verify the native and guest evidence of a FEMU run"),
+        },
+    ),
+}
 
 
 def main(argv=None):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "simulate":
+        from .experiments.runner import main as simulate
+
+        return simulate(argv[1:])
+    if argv and argv[0] in GROUPS:
+        group = argv[0]
+        description, actions = GROUPS[group]
+        sub = argparse.ArgumentParser(prog=f"kv-ssd-sim {group}", description=description)
+        choices = sub.add_subparsers(dest="action", required=True)
+        for name, (_, help_text) in actions.items():
+            choices.add_parser(name, help=help_text)
+        action = sub.parse_args(argv[1:2]).action
+        target, _ = actions[action]
+        if group == "online":
+            return main([action, *argv[2:]])
+        return import_module("." + target, __package__).main(argv[2:])
+
     parser = argparse.ArgumentParser(description="CPU-only native KV cache emulation prototype")
     commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("simulate", help="Run object-level replay on the virtual clock")
+    for name, (description, _) in GROUPS.items():
+        commands.add_parser(name, help=description)
     commands.add_parser("doctor", help="Inspect native runtimes and FEMU capability")
     smoke = commands.add_parser("smoke-store", help="Verify native CPU Mooncake disk restore")
     smoke.add_argument("--output", type=Path, required=True)
@@ -39,7 +104,7 @@ def main(argv=None):
     serve.add_argument(
         "--tokenizer",
         type=Path,
-        default=Path(__file__).resolve().parents[2] / "configs/sim-tokenizer",
+        default=PROJECT_ROOT / "configs/sim-tokenizer",
     )
     serve.add_argument("--prefill-ms", type=float, default=10)
     serve.add_argument("--decode-ms", type=float, default=2)
@@ -64,7 +129,7 @@ def main(argv=None):
         save_normalized(requests, args.output)
         print(json.dumps({"requests": len(requests), "output": str(args.output)}, indent=2))
         return 0
-    reexec_with_native_libraries()
+    reexec_with_native_libraries(argv)
     if args.command == "doctor":
         report = doctor()
         print(json.dumps(report, ensure_ascii=False, indent=2))

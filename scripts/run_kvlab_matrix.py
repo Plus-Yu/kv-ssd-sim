@@ -1,10 +1,11 @@
 """Compare volume service scenarios and the single-drive control on identical compiled inputs."""
 
 import argparse
-import json
 import subprocess
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 HISTORICAL_SCENARIOS = {
     "base": [],
@@ -40,13 +41,9 @@ def main():
     )
     args = p.parse_args()
     if args.profile in ("reference", "reference-volume-20261125"):
-        name = (
-            "kimi-k3-b300-large-ssd.json"
-            if args.profile == "reference"
-            else "kimi-k3-b300-logical-volume.json"
-        )
-        settings = Path(__file__).resolve().parents[1] / "configs" / name
-        profile = json.loads(settings.read_bytes())
+        from kv_ssd_sim.experiments.profiles import PROFILE_FILES, load_profile
+
+        profile, _ = load_profile(PROFILE_FILES[args.profile])
         scenarios = {
             f"volume-{factor}": ["--volume-service", factor]
             for factor in profile["volume"]["service_rate_multipliers"]

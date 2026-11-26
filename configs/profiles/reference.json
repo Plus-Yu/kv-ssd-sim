@@ -1,0 +1,45 @@
+{
+  "components": [
+    "hardware/b300-tp8.json",
+    "storage/mooncake-single-volume.json"
+  ],
+  "settings": {
+    "id": "tp8-b300-large-single-ssd-staged-20261125",
+    "max_model_len": 1048576,
+    "topology": "One large logical SSD (one FIFO). Eight storage clients have independent quotas, file buckets and restore arenas. No member disks are simulated.",
+    "natural_restore": "Memory replicas take priority. Disk-only objects use staging at the file owner and a separate H2D transfer to the requesting TP rank.",
+    "volume": {
+      "member_count": 1,
+      "nominal_bytes_per_member": 30720000000000,
+      "offload_quota_bytes_per_client": 3000000000000,
+      "service_rate_multipliers": {
+        "1x": 1,
+        "4x": 4,
+        "8x": 8
+      },
+      "default_service": "1x",
+      "service_model": "One bidirectional FIFO. All scenarios use one logical device. The optional speedup scales this device only."
+    },
+    "restore_path": "host-staged",
+    "sources": {
+      "topology": {
+        "url": "https://docs.vllm.ai/en/v0.34.0/features/mooncake_store_connector_usage/",
+        "hardware_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+        "basis": "The eight 3.84 TB DGX cache devices supply the capacity budget only. This study represents 30.72 TB with one modeled SSD, a 24 TB KV budget and eight 3 TB client quotas.",
+        "os_url": "https://docs.nvidia.com/dgx/dgx-os-7-user-guide/installing_on_ubuntu.html"
+      },
+      "ssd": {
+        "url": "https://assets.micron.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad133a40b-b36c-4b17-b768-659acc4d4bca/renditions/original/as/7450-nvme-ssd-tech-prod-spec.pdf",
+        "part_number": "MTFDKCE3T8TFR-1BC15ABYY",
+        "table_url": "https://www.micron.com/products/storage/ssd/data-center-ssd/7450-ssd/part-catalog",
+        "basis": "Use 6.8/5.0 GB/s from the single Micron 7450 PRO E1.S surrogate as the default read/write service of one FIFO. 4x and 8x are optional service-rate sensitivities on the same device."
+      },
+      "restore": {
+        "file": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp#L231-L266",
+        "transfer": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/real_client.cpp#L9516-L9665",
+        "completion": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/client_service.cpp#L4411-L4431",
+        "basis": "Model file-owner restore space and a destination copy, with per-object pipelining within connector sub-batches. Use the host_copy H2D proxy until target measurements are available."
+      }
+    }
+  }
+}

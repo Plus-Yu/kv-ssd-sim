@@ -9,7 +9,7 @@ from tempfile import TemporaryDirectory
 from .kvlab import LIMITS, audit, compile_window, dump, select_warm_window, select_windows
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     scan = commands.add_parser("audit")
@@ -26,7 +26,7 @@ def main():
     pick.set_defaults(limit=LIMITS[0], max_span_s=300, max_requests=24)
     warm.set_defaults(limit=LIMITS[-1], max_span_s=40 * 86400)
     warm.add_argument("--warmup-requests", type=int, default=32)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.output.exists():
         parser.error("Choose a new output directory")
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -127,12 +127,12 @@ def compile_trace(source, context_limit, artifacts):
     }
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--context-limit", type=int, default=12288)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     compiled = compile_trace(args.input, args.context_limit, args.output.parent)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x") as f:

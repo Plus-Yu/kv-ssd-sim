@@ -10,6 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from kv_ssd_sim.analysis.restore import audit as audit_restores
+from kv_ssd_sim.experiments.profiles import verify_reference
 
 
 def verify(folder):
@@ -20,13 +21,9 @@ def verify(folder):
     ssd = load("ssd-summary.json")
     store = launch["store"]
     reference = launch["reference_settings"]
-    profile = Path(__file__).resolve().parents[1] / reference["file"]
-    if (
-        summary["status"] != "complete"
-        or hashlib.sha256(profile.read_bytes()).hexdigest() != reference["sha256"]
-        or json.loads(profile.read_bytes()) != reference["baseline"]
-    ):
-        raise ValueError(f"Run incomplete or reference profile differs in {folder}")
+    verify_reference(reference)
+    if summary["status"] != "complete":
+        raise ValueError(f"Incomplete run in {folder}")
     memory, disk = set(), set()
     reads, starts, completions, gets, restores = (Counter() for _ in range(5))
     published_bytes = copied_bytes = 0

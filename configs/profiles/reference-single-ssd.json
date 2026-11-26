@@ -1,0 +1,25 @@
+{
+  "components": [
+    "hardware/b300-tp8.json",
+    "storage/mooncake-single-volume.json"
+  ],
+  "settings": {
+    "id": "tp8-b300-public-20261125",
+    "max_model_len": 131072,
+    "topology": "Eight logical embedded rank clients feed one shared drive. Per-client segment, staging and quota use the project budgets in kimi-k3-b300-step2/resolved.json.",
+    "natural_restore": "Use native prefix lookup, leases and BatchEvict. Prefer a memory replica on GET. A disk replica becomes readable on successful bucket publication.",
+    "sources": {
+      "topology": {
+        "url": "https://docs.vllm.ai/en/v0.34.0/features/mooncake_store_connector_usage/",
+        "hardware_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+        "basis": "Embedded rank-local segments are a supported deployment. Eight clients, one SSD and the space assigned to them describe the chosen deployment."
+      },
+      "ssd": {
+        "url": "https://assets.micron.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad133a40b-b36c-4b17-b768-659acc4d4bca/renditions/original/as/7450-nvme-ssd-tech-prod-spec.pdf",
+        "part_number": "MTFDKCE3T8TFR-1BC15ABYY",
+        "table_url": "https://www.micron.com/products/storage/ssd/data-center-ssd/7450-ssd/part-catalog",
+        "basis": "One Micron 7450 PRO E1.S 3.84 TB as a same-form-factor surrogate for one DGX drive. Table 1, E1.S 15/25 mm, 128 KB sequential, steady state, QD32, power state 0. Separate decimal MB/s directions share one virtual FIFO. Small and mixed I/O require measurement."
+      }
+    }
+  }
+}

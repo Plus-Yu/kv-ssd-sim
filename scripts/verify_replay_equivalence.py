@@ -4,7 +4,12 @@ import argparse
 import gzip
 import hashlib
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from kv_ssd_sim.core.paths import PROJECT_ROOT
+from kv_ssd_sim.experiments.profiles import verify_reference
 
 
 def digest(path):
@@ -26,6 +31,15 @@ def settings(folder):
 def compare(before, after, source_root=None):
     reference, _ = settings(before)
     candidate, sources = settings(after)
+    old_profile, new_profile = (m.get("reference_settings") for m in (reference, candidate))
+    if source_root and new_profile:
+        verify_reference(new_profile, source_root)
+    if old_profile and new_profile and old_profile != new_profile:
+        # Paths and file layout may change. Both snapshots must bind to their inputs.
+        for record in (old_profile, new_profile):
+            verify_reference(record, source_root or PROJECT_ROOT)
+            for field in ("file", "sha256", "inputs_sha256"):
+                record.pop(field, None)
     if reference != candidate:
         differing = reference.keys() ^ candidate.keys()
         differing.update(

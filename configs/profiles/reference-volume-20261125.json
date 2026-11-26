@@ -1,0 +1,38 @@
+{
+  "components": [
+    "hardware/b300-tp8.json",
+    "storage/mooncake-single-volume.json"
+  ],
+  "settings": {
+    "id": "tp8-b300-logical-volume-20261125",
+    "max_model_len": 1048576,
+    "topology": "Eight embedded clients retain independent quotas and bucket ownership on one logical volume backed by eight NVMe members. Only volume-level I/O is modeled.",
+    "natural_restore": "Use native prefix lookup, leases and BatchEvict. Prefer a memory replica on GET. A disk replica becomes readable on successful bucket publication.",
+    "volume": {
+      "member_count": 8,
+      "nominal_bytes_per_member": 3840000000000,
+      "offload_quota_bytes_per_client": 3000000000000,
+      "service_rate_multipliers": {
+        "1x": 1,
+        "4x": 4,
+        "8x": 8
+      },
+      "default_service": "4x",
+      "service_model": "One bidirectional FIFO. Multiply both single-member directional rates by the selected factor. 4x is an uncalibrated intermediate scenario, 8x is an arithmetic sequential ceiling. No stripe, member LBA, NAND or per-member assignment."
+    },
+    "sources": {
+      "topology": {
+        "url": "https://docs.vllm.ai/en/v0.34.0/features/mooncake_store_connector_usage/",
+        "hardware_url": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+        "basis": "DGX B300 has eight 3.84 TB cache devices and 2 TB default host RAM. DGX OS recommends RAID 0 for data caching. The aggregate 24 TB KV budget and eight independent 3 TB client quotas are study choices.",
+        "os_url": "https://docs.nvidia.com/dgx/dgx-os-7-user-guide/installing_on_ubuntu.html"
+      },
+      "ssd": {
+        "url": "https://assets.micron.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad133a40b-b36c-4b17-b768-659acc4d4bca/renditions/original/as/7450-nvme-ssd-tech-prod-spec.pdf",
+        "part_number": "MTFDKCE3T8TFR-1BC15ABYY",
+        "table_url": "https://www.micron.com/products/storage/ssd/data-center-ssd/7450-ssd/part-catalog",
+        "basis": "Micron 7450 PRO E1.S 3.84 TB Table 1 sequential rates per member, decimal MB/s. These are inputs to the logical volume service scenarios, with no measured array throughput."
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "store": {
+    "lease_ms": 10000,
+    "offload_delay_ms": 10000,
+    "first_offload_ms": 0,
+    "high_watermark": 0.9,
+    "eviction_ratio": 0.05,
+    "disk_high_watermark": 0.9,
+    "disk_low_watermark": 0.8,
+    "put_allocation_ms": 0,
+    "save_ms": 0
+  },
+  "bandwidth": {
+    "put_d2h_GB_s": 57.3,
+    "get_h2d_GB_s": 55.7,
+    "ssd_write_MB_s": 5000,
+    "ssd_read_MB_s": 6800
+  },
+  "sources": {
+    "leases_eviction": {
+      "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/types.h",
+      "basis": "Pinned Mooncake 0.3.14 defaults for ordinary read leases, memory high watermark and eviction ratio."
+    },
+    "offload": {
+      "url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/file_storage.cpp",
+      "defaults_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/include/storage_backend.h",
+      "bucket_url": "https://github.com/kvcache-ai/Mooncake/blob/e1ea5d31bb5e46ff2df9f90e7c2fbaf52fcdee8c/mooncake-store/src/storage_backend.cpp",
+      "basis": "Eager offload, initial poll at service start, then a 10 s wait after work. Virtual clients start together. At heartbeat completion, reclaim above 90% to at most 80% of the per-client disk quota using native FIFO bucket selection. Usage is accounted in payload bytes."
+    }
+  }
+}

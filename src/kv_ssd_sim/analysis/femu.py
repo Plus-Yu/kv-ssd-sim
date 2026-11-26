@@ -328,10 +328,10 @@ def verify(path):
     return result
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trials", type=Path, nargs="+")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     print(json.dumps([verify(path) for path in args.trials], indent=2))
 
 

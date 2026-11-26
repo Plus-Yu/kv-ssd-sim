@@ -1,0 +1,26 @@
+{
+  "kv_gib_per_rank": 55.0,
+  "compute": {
+    "prefill_tokens_s": 22000,
+    "decode_ms_batch_1": 11.77,
+    "decode_ms_batch_8": 14.1
+  },
+  "sources": {
+    "kv": {
+      "url": "https://github.com/aws-samples/sample-llm-inference-on-eks/blob/main/docs/KIMI-K3-B300-PERFORMANCE.md",
+      "basis": "Single B300 TP8 node, K3 MXFP4, FP8 KV, utilization 0.95, max length 1048576. Reported 55.0 GiB per GPU, rounded. Convert with the pinned local hybrid geometry. Endpoint latency is a separate comparator."
+    },
+    "prefill": {
+      "url": "https://github.com/whn09/kimi-k3-sglang",
+      "basis": "K3 2P+2D, eight B300 per prefill node, EP8, SGLang. Per-node active prefill throughput about 22k tokens/s with an 8192-token chunk. Cross-engine proxy for fresh tokens."
+    },
+    "decode": {
+      "url": "https://github.com/pegainfer-project/kern-k3-pp-prefill/blob/main/roofline/decode.md",
+      "basis": "K3 CUDA graph step p50, eight GB300, 8192-token context, TP8/EP8/DCP8, synthetic routing. Interpolate batches 1 through 8. Context scaling and mixed steps are uncalibrated."
+    },
+    "host_copy": {
+      "url": "https://github.com/ricardojacomini/b300-benchmarks/blob/main/report/b300_benchmark_report.md",
+      "basis": "Pinned 1024 MB cudaMemcpy, per GPU, 20 iterations. Optimistic local-copy proxy. Fixed control time is set to zero. NUMA, cross-rank contention, RPC and filesystem overhead need calibration."
+    }
+  }
+}

@@ -89,7 +89,7 @@ def initramfs():
     return destination
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--trial", required=True)
     parser.add_argument("--nand-read-ns", type=int, default=40000)
@@ -129,7 +129,7 @@ def main():
     parser.add_argument(
         "--nand-stats", action="store_true", help="Collect same-window QMP NAND counters"
     )
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.workload == "nand-probe":
         args.nand_stats = True
         if (args.namespace_mib, args.blocks_per_plane) != (48, 32):

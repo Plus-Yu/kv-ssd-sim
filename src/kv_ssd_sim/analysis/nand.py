@@ -254,10 +254,10 @@ def verify(path):
     return report
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trial", type=Path)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     print(json.dumps(verify(args.trial)["windows"], indent=2))
 
 

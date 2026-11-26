@@ -9,8 +9,28 @@ from pathlib import Path
 
 import pytest
 
+from kv_ssd_sim.experiments.profiles import PROFILE_FILES, load_profile, verify_reference
+from kv_ssd_sim.simulation.settings import PUBLIC_PROFILES
+
 ROOT = Path(__file__).resolve().parents[1]
 compare = runpy.run_path(str(ROOT / "scripts/verify_replay_equivalence.py"))["compare"]
+
+
+@pytest.mark.parametrize("name", PROFILE_FILES)
+def test_composed_profile_reproduces_frozen_snapshot_and_binds_all_inputs(name):
+    path = PROFILE_FILES[name].relative_to(ROOT)
+    profile, inputs = load_profile(path)
+    assert profile == json.loads(PUBLIC_PROFILES[name].read_bytes())
+    record = {
+        "file": path.as_posix(),
+        "sha256": inputs[path.as_posix()],
+        "baseline": profile,
+        "inputs_sha256": inputs.copy(),
+    }
+    verify_reference(record)
+    del record["inputs_sha256"]["configs/hardware/b300-tp8.json"]
+    with pytest.raises(ValueError, match="component hashes"):
+        verify_reference(record)
 
 
 @pytest.mark.parametrize("name", ["events.jsonl", "ssd-demand.jsonl.gz"])
