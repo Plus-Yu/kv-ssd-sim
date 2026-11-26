@@ -24,7 +24,8 @@ from vllm.v1.outputs import KVConnectorOutput
 from vllm.v1.structured_output import StructuredOutputManager
 
 from kv_ssd_sim.adapters.vllm import metadata_rank_worker
-from kv_ssd_sim.native import scheduler_config
+
+from ..adapters.vllm import scheduler_config
 from .storage.device import MIB
 
 

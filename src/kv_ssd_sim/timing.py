@@ -1,10 +1,7 @@
-"""Wait for a compute deadline, including placeholder copying in its budget."""
+"""Compatibility import for kv_ssd_sim.online.timing."""
 
-import asyncio
-import time
+import sys
 
+from kv_ssd_sim.online import timing as _implementation
 
-async def wait_until(deadline, *, clock=time.perf_counter, sleep=asyncio.sleep):
-    # Recheck the monotonic clock in case an event loop timer wakes early.
-    while (remaining := deadline - clock()) > 0:
-        await sleep(remaining)
+sys.modules[__name__] = _implementation

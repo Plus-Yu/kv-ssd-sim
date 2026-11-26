@@ -49,4 +49,11 @@ REPLAY_SOURCES = (
     "src/kv_ssd_sim/simulation/worker.py",
     "src/kv_ssd_sim/simulation/timing.py",
     "src/kv_ssd_sim/adapters/mooncake.py",
+    "src/kv_ssd_sim/online/native.py",
+    "src/kv_ssd_sim/online/runtime.py",
+    "src/kv_ssd_sim/online/storage.py",
+    "src/kv_ssd_sim/online/k3_online.py",
+    "src/kv_ssd_sim/online/payload.py",
+    "src/kv_ssd_sim/models/kimi_k3.py",
+    "src/kv_ssd_sim/workload/tokens.py",
 )

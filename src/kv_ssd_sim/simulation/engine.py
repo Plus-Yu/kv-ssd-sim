@@ -12,7 +12,7 @@ def simulate(admissions, scheduler, transfers, store, hash_unit, timing, record_
     from vllm.v1.outputs import ModelRunnerOutput
     from vllm.v1.request import Request
 
-    from kv_ssd_sim.payload import SYNTHETIC_TOKEN
+    from ..workload.tokens import SYNTHETIC_TOKEN
 
     init_none_hash(sha256)
     hasher = get_request_block_hasher(hash_unit, sha256)

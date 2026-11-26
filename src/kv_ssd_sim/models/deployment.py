@@ -10,8 +10,9 @@ from importlib.metadata import version
 from pathlib import Path
 from types import SimpleNamespace
 
-from kv_ssd_sim.native import VLLM_VERSION
 from kv_ssd_sim.core.paths import PROJECT_ROOT
+
+from ..adapters.vllm import VLLM_VERSION
 
 
 def require(ok, message):

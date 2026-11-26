@@ -1,7 +1,6 @@
-"""Compatibility import for kv_ssd_sim.models.hybrid."""
+"""Original public imports for hybrid geometry and CPU buffers."""
 
-import sys
+from .models.hybrid import HybridConfig
+from .online.buffers import HybridBuffers
 
-from kv_ssd_sim.models import hybrid as _implementation
-
-sys.modules[__name__] = _implementation
+__all__ = ["HybridBuffers", "HybridConfig"]
